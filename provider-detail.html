@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Detail - CryptoMall</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+        
+        /* Rating stars */
+        .star-filled {
+            color: #FBBF24;
+        }
+        
+        .star-empty {
+            color: #E5E7EB;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                </nav>
+                <div class="flex items-center gap-2">
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="w-full py-12 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-5xl mx-auto">
+                    <!-- Breadcrumb -->
+                    <div class="mb-8">
+                        <a href="providers.html" class="inline-flex items-center text-sm text-primary">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Provider Directory
+                        </a>
+                    </div>
+                    
+                    <!-- Provider Profile -->
+                    <div class="bg-white rounded-lg shadow-sm overflow-hidden">
+                        <!-- Provider Header -->
+                        <div class="p-8 border-b">
+                            <div class="flex flex-col md:flex-row md:items-center">
+                                <div class="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
+                                    <div id="provider-avatar" class="w-24 h-24 bg-primary-light rounded-full flex items-center justify-center">
+                                        <span class="text-4xl font-bold text-primary">A</span>
+                                    </div>
+                                </div>
+                                <div class="flex-grow">
+                                    <h1 id="provider-name" class="text-3xl font-bold mb-1">Alex Chen</h1>
+                                    <p id="provider-company" class="text-xl text-gray-600 mb-2">CryptoSafe Solutions</p>
+                                    <div class="flex flex-wrap gap-2 mb-3">
+                                        <span id="provider-category" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
+                                            Security
+                                        </span>
+                                        <span id="provider-subcategory" class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                            Wallet Security
+                                        </span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <div class="flex mr-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                            </svg>
+                                        </div>
+                                        <span id="provider-rating" class="text-sm font-medium">4.9</span>
+                                        <span class="mx-1 text-gray-500">•</span>
+                                        <span id="provider-reviews" class="text-sm text-gray-500">127 reviews</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4 md:mt-0 md:ml-6 flex-shrink-0">
+                                    <button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
+                                        Contact Provider
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Content -->
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 p-8">
+                            <!-- Main Content -->
+                            <div class="md:col-span-2">
+                                <div class="space-y-8">
+                                    <!-- About Section -->
+                                    <section>
+                                        <h2 class="text-xl font-bold mb-4">About</h2>
+                                        <p id="provider-description" class="text-gray-700">
+                                            Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017. With over 8 years of experience in cybersecurity and blockchain technology, I provide comprehensive security solutions for individuals and businesses in the cryptocurrency space.
+                                        </p>
+                                    </section>
+                                    
+                                    <!-- Services Section -->
+                                    <section>
+                                        <h2 class="text-xl font-bold mb-4">Services</h2>
+                                        <ul class="space-y-3">
+                                            <li class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span>Wallet security audits and vulnerability assessments</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span>Cryptocurrency wallet recovery services</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span>Secure storage setup and best practices consultation</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span>Multi-signature wallet configuration</span>
+                                            </li>
+                                            <li class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                                </svg>
+                                                <span>Security training for individuals and teams</span>
+                                            </li>
+                                        </ul>
+                                    </section>
+                                    
+                                    <!-- Experience Section -->
+                                    <section>
+                                        <h2 class="text-xl font-bold mb-4">Experience</h2>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <h3 class="font-semibold">Founder & Security Specialist</h3>
+                                                <p class="text-sm text-gray-500">CryptoSafe Solutions • 2017 - Present</p>
+                                                <p class="text-sm mt-1">
+                                                    Founded CryptoSafe Solutions to provide specialized security services for cryptocurrency users. Developed proprietary methods for wallet recovery and security auditing. Helped over 500 clients recover access to their digital assets.
+                                                </p>
+                                            </div>
+                                            <div>
+                                                <h3 class="font-semibold">Cybersecurity Analyst</h3>
+                                                <p class="text-sm text-gray-500">BlockSecure Inc. • 2015 - 2017</p>
+                                                <p class="text-sm mt-1">
+                                                    Specialized in blockchain security and cryptocurrency exchange protection. Conducted security audits and penetration testing for major cryptocurrency platforms.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
+                                    <!-- Credentials Section -->
+                                    <section>
+                                        <h2 class="text-xl font-bold mb-4">Credentials</h2>
+                                        <div class="space-y-3">
+                                            <div class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                                </svg>
+                                                <div>
+                                                    <h3 class="font-medium">Certified Information Systems Security Professional (CISSP)</h3>
+                                                    <p class="text-sm text-gray-500">ISC² • 2016</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                                </svg>
+                                                <div>
+                                                    <h3 class="font-medium">Certified Blockchain Security Professional (CBSP)</h3>
+                                                    <p class="text-sm text-gray-500">Blockchain Security Alliance • 2018</p>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mt-0.5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                                                </svg>
+                                                <div>
+                                                    <h3 class="font-medium">Master of Science in Cybersecurity</h3>
+                                                    <p class="text-sm text-gray-500">Stanford University • 2014</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    
+                                    <!-- Reviews Section -->
+                                    <section>
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h2 class="text-xl font-bold">Reviews</h2>
+                                            <a href="#" class="text-sm text-primary hover:underline">See all 127 reviews</a>
+                                        </div>
+                                        <div class="space-y-6">
+                                            <!-- Review 1 -->
+                                            <div class="border-b pb-6">
+                                                <div class="flex items-center mb-2">
+                                                    <div class="flex mr-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm font-medium">5.0</span>
+                                                </div>
+                                                <h3 class="font-medium">Michael T.</h3>
+                                                <p class="text-sm text-gray-500 mb-2">April 15, 2025</p>
+                                                <p class="text-sm">
+                                                    Alex helped me recover access to a wallet I thought was lost forever. His expertise and professionalism are unmatched. He explained every step of the process clearly and ensured my funds were secure throughout. Highly recommended!
+                                                </p>
+                                            </div>
+                                            
+                                            <!-- Review 2 -->
+                                            <div>
+                                                <div class="flex items-center mb-2">
+                                                    <div class="flex mr-2">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 star-filled" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                    </div>
+                                                    <span class="text-sm font-medium">5.0</span>
+                                                </div>
+                                                <h3 class="font-medium">Jennifer L.</h3>
+                                                <p class="text-sm text-gray-500 mb-2">March 28, 2025</p>
+                                                <p class="text-sm">
+                                                    I hired Alex to set up a secure multi-signature wallet system for our small business. His knowledge of best practices and attention to detail were impressive. He also provided excellent training for our team. The setup has been running flawlessly for months.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </div>
+                            </div>
+                            
+                            <!-- Sidebar -->
+                            <div>
+                                <div class="space-y-6">
+                                    <!-- Contact Card -->
+                                    <div class="bg-gray-50 border rounded-lg p-6">
+                                        <h3 class="font-semibold mb-4">Contact Information</h3>
+                                        <div class="space-y-3">
+                                            <div class="flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                                                </svg>
+                                                <span class="text-sm">alex@cryptosafesolutions.com</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                </svg>
+                                                <span class="text-sm">(555) 123-4567</span>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9" />
+                                                </svg>
+                                                <span class="text-sm">cryptosafesolutions.com</span>
+                                            </div>
+                                            <div id="provider-location" class="flex items-center">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                </svg>
+                                                <span class="text-sm">Remote (US-based)</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-6">
+                                            <button class="w-full inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
+                                                Contact Provider
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Availability Card -->
+                                    <div class="bg-gray-50 border rounded-lg p-6">
+                                        <h3 class="font-semibold mb-4">Availability</h3>
+                                        <div class="space-y-2">
+                                            <div class="flex justify-between">
+                                                <span class="text-sm">Monday - Friday</span>
+                                                <span class="text-sm">9:00 AM - 5:00 PM ET</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm">Saturday</span>
+                                                <span class="text-sm">By appointment</span>
+                                            </div>
+                                            <div class="flex justify-between">
+                                                <span class="text-sm">Sunday</span>
+                                                <span class="text-sm">Closed</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 pt-4 border-t">
+                                            <p class="text-sm text-gray-500">
+                                                Emergency support available 24/7 for existing clients.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Similar Providers Card -->
+                                    <div class="bg-gray-50 border rounded-lg p-6">
+                                        <h3 class="font-semibold mb-4">Similar Providers</h3>
+                                        <div class="space-y-4">
+                                            <div class="flex items-start">
+                                                <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                                                    <span class="text-sm font-bold text-primary">J</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-medium text-sm">James Wilson</h4>
+                                                    <p class="text-xs text-gray-500">Blockchain Forensics</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <span class="text-xs ml-1">4.9</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                                                    <span class="text-sm font-bold text-primary">D</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-medium text-sm">Daniel Park</h4>
+                                                    <p class="text-xs text-gray-500">Crypto Security Audits</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <span class="text-xs ml-1">4.9</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex items-start">
+                                                <div class="w-10 h-10 bg-primary-light rounded-full flex items-center justify-center flex-shrink-0 mr-3">
+                                                    <span class="text-sm font-bold text-primary">J</span>
+                                                </div>
+                                                <div>
+                                                    <h4 class="font-medium text-sm">Jennifer Wilson</h4>
+                                                    <p class="text-xs text-gray-500">Secure Storage Solutions</p>
+                                                    <div class="flex items-center mt-1">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                        </svg>
+                                                        <span class="text-xs ml-1">4.8</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <a href="providers.html" class="text-sm text-primary hover:underline">View all security providers</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Crypto Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get provider ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const providerId = urlParams.get('id');
+            
+            // If there's a provider ID, load the corresponding provider
+            if (providerId) {
+                loadProvider(providerId);
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        });
+        
+        // Function to load provider data based on ID
+        function loadProvider(id) {
+            // This would typically fetch provider data from a server
+            // For this demo, we'll just update the provider based on the ID
+            
+            const providers = {
+                '1': {
+                    name: "Alex Chen",
+                    company: "CryptoSafe Solutions",
+                    category: "Security",
+                    subcategory: "Wallet Security",
+                    rating: 4.9,
+                    reviews: 127,
+                    description: "Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.",
+                    location: "Remote (US-based)",
+                    avatar: "A"
+                },
+                '2': {
+                    name: "Sarah Johnson",
+                    company: "Crypto Tax Pros",
+                    category: "Tax",
+                    subcategory: "Crypto Taxation",
+                    rating: 4.8,
+                    reviews: 93,
+                    description: "CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.",
+                    location: "New York, NY (Remote Available)",
+                    avatar: "S"
+                }
+                // More providers would be defined here in a real implementation
+            };
+            
+            // If provider exists, update the page
+            if (providers[id]) {
+                const provider = providers[id];
+                document.getElementById('provider-name').textContent = provider.name;
+                document.getElementById('provider-company').textContent = provider.company;
+                document.getElementById('provider-category').textContent = provider.category;
+                document.getElementById('provider-subcategory').textContent = provider.subcategory;
+                document.getElementById('provider-rating').textContent = provider.rating;
+                document.getElementById('provider-reviews').textContent = `${provider.reviews} reviews`;
+                document.getElementById('provider-description').textContent = provider.description;
+                document.getElementById('provider-location').innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <span class="text-sm">${provider.location}</span>
+                `;
+                document.getElementById('provider-avatar').innerHTML = `<span class="text-4xl font-bold text-primary">${provider.avatar}</span>`;
+                document.title = `${provider.name} - ${provider.company} - CryptoMall`;
+            }
+        }
+    </script>
+</body>
+</html>
