@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provider Directory - CryptoMall</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+        
+        /* Card hover effect */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                </nav>
+                <div class="flex items-center gap-2">
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="w-full py-12 md:py-24 lg:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-8">
+                        <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Provider Directory</h1>
+                        <p class="mt-4 text-gray-500">
+                            Browse and search our vetted crypto service providers across various specialties.
+                        </p>
+                    </div>
+                    
+                    <!-- Search and Filter Section -->
+                    <div class="mb-8 p-6 border rounded-lg shadow-sm bg-white">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                                <input type="text" id="search" placeholder="Search by name or company" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                                <select id="category" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">All Categories</option>
+                                    <option value="Security">Security & Protection</option>
+                                    <option value="Tax">Tax & Accounting</option>
+                                    <option value="Education">Education & Learning</option>
+                                    <option value="Legal">Legal Assistance</option>
+                                    <option value="Development">Development & Technical</option>
+                                    <option value="Business">Business Integration</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                                <select id="location" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">All Locations</option>
+                                    <option value="Remote">Remote Only</option>
+                                    <option value="New York">New York</option>
+                                    <option value="San Francisco">San Francisco</option>
+                                    <option value="Chicago">Chicago</option>
+                                    <option value="Austin">Austin</option>
+                                    <option value="Miami">Miami</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mt-4 flex justify-end">
+                            <button id="apply-filters" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
+                                Apply Filters
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Results Section -->
+                    <div id="results-count" class="mb-4 text-sm text-gray-500">
+                        Showing all 20 providers
+                    </div>
+                    
+                    <div id="providers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Provider cards will be dynamically populated here -->
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        <nav class="inline-flex rounded-md shadow">
+                            <a href="#" class="inline-flex items-center px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                Previous
+                            </a>
+                            <a href="#" class="inline-flex items-center px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-primary">
+                                1
+                            </a>
+                            <a href="#" class="inline-flex items-center px-3 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                2
+                            </a>
+                            <a href="#" class="inline-flex items-center px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                                Next
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Crypto Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Provider data
+        const allProviders = [
+            {
+                id: 1,
+                name: "Alex Chen",
+                company: "CryptoSafe Solutions",
+                category: "Security",
+                subcategory: "Wallet Security",
+                rating: 4.9,
+                reviews: 127,
+                description: "Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.",
+                location: "Remote (US-based)",
+                image: "A"
+            },
+            {
+                id: 2,
+                name: "Sarah Johnson",
+                company: "Crypto Tax Pros",
+                category: "Tax",
+                subcategory: "Crypto Taxation",
+                rating: 4.8,
+                reviews: 93,
+                description: "CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.",
+                location: "New York, NY (Remote Available)",
+                image: "S"
+            },
+            {
+                id: 3,
+                name: "Michael Rodriguez",
+                company: "BlockEd Academy",
+                category: "Education",
+                subcategory: "Beginner Courses",
+                rating: 4.7,
+                reviews: 215,
+                description: "Blockchain educator with a passion for making crypto accessible to beginners. Creator of the 'Crypto Fundamentals' course series.",
+                location: "Remote",
+                image: "M"
+            },
+            {
+                id: 4,
+                name: "Jessica Lee",
+                company: "Crypto Legal Advisors",
+                category: "Legal",
+                subcategory: "Regulatory Compliance",
+                rating: 4.9,
+                reviews: 78,
+                description: "Attorney specializing in cryptocurrency regulations and compliance. Helping businesses navigate the evolving legal landscape of digital assets.",
+                location: "San Francisco, CA (Remote Available)",
+                image: "J"
+            },
+            {
+                id: 5,
+                name: "David Kim",
+                company: "CryptoDevs",
+                category: "Development",
+                subcategory: "Smart Contracts",
+                rating: 4.8,
+                reviews: 64,
+                description: "Blockchain developer with expertise in Ethereum and Solana smart contracts. Focused on security-first development practices.",
+                location: "Remote",
+                image: "D"
+            },
+            {
+                id: 6,
+                name: "Emma Wilson",
+                company: "Crypto Business Solutions",
+                category: "Business",
+                subcategory: "Payment Integration",
+                rating: 4.7,
+                reviews: 52,
+                description: "Consultant specializing in helping businesses integrate cryptocurrency payment solutions. Expert in merchant services and payment processors.",
+                location: "Chicago, IL (Remote Available)",
+                image: "E"
+            },
+            {
+                id: 7,
+                name: "Robert Taylor",
+                company: "Secure Node Hosting",
+                category: "Technical",
+                subcategory: "Node Operation",
+                rating: 4.6,
+                reviews: 41,
+                description: "Technical specialist in setting up and maintaining cryptocurrency nodes. Expertise in staking, validation, and node security.",
+                location: "Remote",
+                image: "R"
+            },
+            {
+                id: 8,
+                name: "Olivia Martinez",
+                company: "CryptoTax Simplified",
+                category: "Tax",
+                subcategory: "Tax Software",
+                rating: 4.5,
+                reviews: 89,
+                description: "Creator of user-friendly crypto tax software designed for both beginners and experienced traders. Simplifying tax compliance since 2019.",
+                location: "Austin, TX (Remote Available)",
+                image: "O"
+            },
+            {
+                id: 9,
+                name: "James Wilson",
+                company: "Blockchain Forensics",
+                category: "Security",
+                subcategory: "Forensic Analysis",
+                rating: 4.9,
+                reviews: 37,
+                description: "Specialist in blockchain forensics and transaction analysis. Helping recover funds and investigate suspicious activities on the blockchain.",
+                location: "Remote (US-based)",
+                image: "J"
+            },
+            {
+                id: 10,
+                name: "Sophia Garcia",
+                company: "DeFi Educators",
+                category: "Education",
+                subcategory: "DeFi Training",
+                rating: 4.7,
+                reviews: 112,
+                description: "Educator specializing in decentralized finance (DeFi) protocols and strategies. Making complex DeFi concepts accessible to everyone.",
+                location: "Remote",
+                image: "S"
+            },
+            {
+                id: 11,
+                name: "Thomas Wright",
+                company: "Crypto Estate Planning",
+                category: "Legal",
+                subcategory: "Estate Planning",
+                rating: 4.8,
+                reviews: 45,
+                description: "Attorney specializing in estate planning for cryptocurrency holders. Ensuring your digital assets are properly handled and transferred according to your wishes.",
+                location: "Miami, FL (Remote Available)",
+                image: "T"
+            },
+            {
+                id: 12,
+                name: "Natalie Brown",
+                company: "NFT Creators Hub",
+                category: "Development",
+                subcategory: "NFT Creation",
+                rating: 4.6,
+                reviews: 73,
+                description: "NFT developer and consultant helping artists and creators enter the NFT space. Specializing in marketplace integration and smart contract development.",
+                location: "Remote",
+                image: "N"
+            },
+            {
+                id: 13,
+                name: "Daniel Park",
+                company: "Crypto Security Audits",
+                category: "Security",
+                subcategory: "Security Audits",
+                rating: 4.9,
+                reviews: 56,
+                description: "Security specialist conducting comprehensive audits of cryptocurrency wallets, exchanges, and smart contracts. Identifying vulnerabilities before they can be exploited.",
+                location: "Remote",
+                image: "D"
+            },
+            {
+                id: 14,
+                name: "Rachel Green",
+                company: "Crypto Bookkeeping",
+                category: "Tax",
+                subcategory: "Bookkeeping",
+                rating: 4.7,
+                reviews: 68,
+                description: "Specialized bookkeeper for cryptocurrency businesses and high-volume traders. Maintaining accurate records for tax compliance and business insights.",
+                location: "Chicago, IL (Remote Available)",
+                image: "R"
+            },
+            {
+                id: 15,
+                name: "Kevin Zhang",
+                company: "Mining Solutions",
+                category: "Technical",
+                subcategory: "Mining Setup",
+                rating: 4.5,
+                reviews: 39,
+                description: "Mining specialist helping individuals and businesses set up and optimize cryptocurrency mining operations. Expert in hardware selection and configuration.",
+                location: "Remote",
+                image: "K"
+            },
+            {
+                id: 16,
+                name: "Lisa Thompson",
+                company: "Crypto Technical Analysis",
+                category: "Education",
+                subcategory: "Technical Analysis",
+                rating: 4.6,
+                reviews: 87,
+                description: "Educator specializing in cryptocurrency technical analysis and trading strategies. Helping traders make more informed decisions based on market data.",
+                location: "Remote",
+                image: "L"
+            },
+            {
+                id: 17,
+                name: "Mark Johnson",
+                company: "Blockchain Business Advisors",
+                category: "Business",
+                subcategory: "Business Formation",
+                rating: 4.8,
+                reviews: 42,
+                description: "Business consultant specializing in blockchain startup formation and structure. Helping entrepreneurs navigate the unique challenges of the crypto space.",
+                location: "New York, NY (Remote Available)",
+                image: "M"
+            },
+            {
+                id: 18,
+                name: "Samantha Lee",
+                company: "Smart Contract Security",
+                category: "Development",
+                subcategory: "Security Audits",
+                rating: 4.9,
+                reviews: 31,
+                description: "Smart contract developer and auditor with a focus on security. Identifying and fixing vulnerabilities in decentralized applications and protocols.",
+                location: "San Francisco, CA (Remote Available)",
+                image: "S"
+            },
+            {
+                id: 19,
+                name: "Christopher Davis",
+                company: "Crypto Tax Planning",
+                category: "Tax",
+                subcategory: "Tax Planning",
+                rating: 4.7,
+                reviews: 59,
+                description: "Tax strategist specializing in cryptocurrency tax planning and optimization. Helping clients minimize tax liability while maintaining full compliance.",
+                location: "Austin, TX (Remote Available)",
+                image: "C"
+            },
+            {
+                id: 20,
+                name: "Jennifer Wilson",
+                company: "Secure Storage Solutions",
+                category: "Security",
+                subcategory: "Secure Storage",
+                rating: 4.8,
+                reviews: 47,
+                description: "Security expert specializing in cold storage solutions for cryptocurrency. Helping individuals and businesses implement robust security measures for their digital assets.",
+                location: "Remote (US-based)",
+                image: "J"
+            }
+        ];
+        
+        // Current filtered providers
+        let currentProviders = [...allProviders];
+        
+        // Render provider cards
+        function renderProviders(providers) {
+            const providersGrid = document.getElementById('providers-grid');
+            providersGrid.innerHTML = '';
+            
+            if (providers.length === 0) {
+                providersGrid.innerHTML = `
+                    <div class="col-span-full text-center py-8">
+                        <p class="text-gray-500">No providers match your search criteria. Please try different filters.</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            providers.forEach(provider => {
+                const providerCard = document.createElement('div');
+                providerCard.className = 'flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition';
+                providerCard.innerHTML = `
+                    <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
+                        <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
+                            <span class="text-2xl font-bold text-primary">${provider.image}</span>
+                        </div>
+                    </div>
+                    <div class="p-6 space-y-2 w-full">
+                        <h3 class="text-xl font-bold">${provider.name}</h3>
+                        <p class="text-sm text-gray-500">${provider.company}</p>
+                        <div class="flex items-center space-x-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+                            </svg>
+                            <span class="text-sm font-medium">${provider.rating}</span>
+                            <span class="text-sm text-gray-500">(${provider.reviews} reviews)</span>
+                        </div>
+                        <div class="flex flex-wrap gap-1 mt-2">
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
+                                ${provider.category}
+                            </span>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                ${provider.subcategory}
+                            </span>
+                        </div>
+                        <p class="text-sm">${provider.description}</p>
+                        <p class="text-sm text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 inline mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            ${provider.location}
+                        </p>
+                        <div class="pt-2">
+                            <a href="provider-detail.html?id=${provider.id}" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                View Profile
+                            </a>
+                        </div>
+                    </div>
+                `;
+                providersGrid.appendChild(providerCard);
+            });
+            
+            // Update results count
+            document.getElementById('results-count').textContent = `Showing ${providers.length} of ${allProviders.length} providers`;
+        }
+        
+        // Apply filters
+        function applyFilters() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const categoryFilter = document.getElementById('category').value;
+            const locationFilter = document.getElementById('location').value;
+            
+            let filteredProviders = allProviders.filter(provider => {
+                // Search filter
+                const matchesSearch = searchTerm === '' || 
+                    provider.name.toLowerCase().includes(searchTerm) || 
+                    provider.company.toLowerCase().includes(searchTerm) ||
+                    provider.description.toLowerCase().includes(searchTerm);
+                
+                // Category filter
+                const matchesCategory = categoryFilter === '' || provider.category === categoryFilter;
+                
+                // Location filter
+                const matchesLocation = locationFilter === '' || provider.location.includes(locationFilter);
+                
+                return matchesSearch && matchesCategory && matchesLocation;
+            });
+            
+            currentProviders = filteredProviders;
+            renderProviders(currentProviders);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Render initial providers
+            renderProviders(currentProviders);
+            
+            // Set up filter button
+            document.getElementById('apply-filters').addEventListener('click', applyFilters);
+            
+            // Set up search input (apply filters on enter key)
+            document.getElementById('search').addEventListener('keyup', function(event) {
+                if (event.key === 'Enter') {
+                    applyFilters();
+                }
+            });
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        });
+    </script>
+</body>
+</html>

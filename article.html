@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article - CryptoMall</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+        
+        /* Article content styling */
+        .article-content h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .article-content h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .article-content ul, .article-content ol {
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .article-content ul {
+            list-style-type: disc;
+        }
+        
+        .article-content ol {
+            list-style-type: decimal;
+        }
+        
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .article-content blockquote {
+            border-left: 4px solid #e5e7eb;
+            padding-left: 1rem;
+            font-style: italic;
+            margin: 1rem 0;
+        }
+        
+        .article-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1.5rem 0;
+            border-radius: 0.375rem;
+        }
+        
+        .article-content a {
+            color: #6366f1;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                </nav>
+                <div class="flex items-center gap-2">
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <article class="w-full py-12 md:py-24">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto">
+                    <!-- Article Header -->
+                    <div id="article-header" class="mb-8">
+                        <a href="education.html" class="inline-flex items-center text-sm text-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                            Back to Education Hub
+                        </a>
+                        
+                        <div id="article-category" class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit mb-2">
+                            Fundamentals
+                        </div>
+                        
+                        <h1 id="article-title" class="text-3xl font-bold tracking-tighter sm:text-4xl mb-2">
+                            Cryptocurrency Basics: A Beginner's Guide
+                        </h1>
+                        
+                        <div class="flex items-center text-sm text-gray-500 mb-6">
+                            <span id="article-date">May 1, 2025</span>
+                            <span class="mx-2">•</span>
+                            <span id="article-read-time">10 min read</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Article Content -->
+                    <div class="article-content prose max-w-none">
+                        <p>
+                            Cryptocurrency can seem complex and intimidating at first glance, but understanding the fundamentals will help you navigate this exciting space safely and confidently. This guide covers the essential concepts every beginner should know before diving into the world of digital assets.
+                        </p>
+                        
+                        <h2>What is Cryptocurrency?</h2>
+                        <p>
+                            At its core, cryptocurrency is a digital or virtual form of money that uses cryptography for security and operates on decentralized networks based on blockchain technology. Unlike traditional currencies issued by governments (known as fiat currencies), cryptocurrencies typically operate without a central authority.
+                        </p>
+                        <p>
+                            The first and most well-known cryptocurrency, Bitcoin, was created in 2009 by an individual or group using the pseudonym Satoshi Nakamoto. Since then, thousands of alternative cryptocurrencies (often called "altcoins") have been developed, each with its own features and purposes.
+                        </p>
+                        
+                        <h2>How Does Blockchain Technology Work?</h2>
+                        <p>
+                            Blockchain is the underlying technology that powers most cryptocurrencies. It's essentially a distributed digital ledger that records all transactions across a network of computers. Here's a simplified explanation of how it works:
+                        </p>
+                        <ol>
+                            <li><strong>Transactions are grouped into "blocks":</strong> When you send cryptocurrency to someone, that transaction is grouped with other recent transactions into a block.</li>
+                            <li><strong>Blocks are verified by network participants:</strong> Computers on the network (called nodes) verify the transactions in each block through a consensus mechanism.</li>
+                            <li><strong>Verified blocks are added to the "chain":</strong> Once verified, the new block is added to the existing chain of blocks, creating a permanent, unalterable record.</li>
+                            <li><strong>The blockchain is distributed:</strong> The complete record is stored across many computers, making it extremely difficult to hack or alter.</li>
+                        </ol>
+                        <p>
+                            This decentralized structure is what makes blockchain technology revolutionary. It eliminates the need for a trusted third party (like a bank) to verify transactions.
+                        </p>
+                        
+                        <h2>Key Cryptocurrency Concepts</h2>
+                        
+                        <h3>Wallets</h3>
+                        <p>
+                            Cryptocurrency wallets don't actually store your coins or tokens. Instead, they store the private keys that give you access to your cryptocurrency on the blockchain. There are several types of wallets:
+                        </p>
+                        <ul>
+                            <li><strong>Hot wallets:</strong> Connected to the internet (mobile apps, desktop software, web-based)</li>
+                            <li><strong>Cold wallets:</strong> Offline storage (hardware devices, paper wallets)</li>
+                            <li><strong>Custodial wallets:</strong> A third party holds your private keys (like an exchange)</li>
+                            <li><strong>Non-custodial wallets:</strong> You control your private keys</li>
+                        </ul>
+                        <p>
+                            For security, many users keep small amounts in hot wallets for convenience and larger holdings in cold wallets for enhanced security.
+                        </p>
+                        
+                        <h3>Public and Private Keys</h3>
+                        <p>
+                            Cryptocurrency uses a system of cryptographic keys:
+                        </p>
+                        <ul>
+                            <li><strong>Public key:</strong> Like your account number, this is shared to receive funds</li>
+                            <li><strong>Private key:</strong> Like your password, this must be kept secret and secure</li>
+                        </ul>
+                        <p>
+                            Your private key is used to sign transactions, proving you're the owner of the funds. If someone gains access to your private key, they can access and transfer your cryptocurrency.
+                        </p>
+                        
+                        <h3>Mining and Consensus Mechanisms</h3>
+                        <p>
+                            Different cryptocurrencies use different methods to validate transactions and create new coins:
+                        </p>
+                        <ul>
+                            <li><strong>Proof of Work (PoW):</strong> Used by Bitcoin and some others, requires computers to solve complex mathematical problems to validate transactions and create new blocks. This process requires significant computational power and energy.</li>
+                            <li><strong>Proof of Stake (PoS):</strong> Validators are selected to create new blocks based on how many coins they hold and are willing to "stake" as collateral. This method uses significantly less energy than PoW.</li>
+                            <li><strong>Other mechanisms:</strong> Many variations and alternatives exist, including Delegated Proof of Stake, Proof of Authority, and more.</li>
+                        </ul>
+                        
+                        <h2>Getting Started with Cryptocurrency</h2>
+                        
+                        <h3>Step 1: Educate Yourself</h3>
+                        <p>
+                            Before investing any money, take time to learn about cryptocurrency fundamentals, security practices, and the specific projects you're interested in. Be wary of investment advice from unverified sources, especially on social media.
+                        </p>
+                        
+                        <h3>Step 2: Choose a Reputable Exchange</h3>
+                        <p>
+                            To buy cryptocurrency, you'll typically need to use an exchange. Look for established exchanges with strong security measures, regulatory compliance, and positive user reviews. Popular options include Coinbase, Kraken, and Gemini.
+                        </p>
+                        
+                        <h3>Step 3: Set Up Secure Storage</h3>
+                        <p>
+                            While you can keep small amounts on exchanges, it's generally recommended to transfer larger holdings to a personal wallet where you control the private keys. Consider a hardware wallet for significant investments.
+                        </p>
+                        
+                        <h3>Step 4: Start Small</h3>
+                        <p>
+                            Begin with small amounts while you're learning. The cryptocurrency market can be highly volatile, so never invest more than you can afford to lose.
+                        </p>
+                        
+                        <h2>Common Cryptocurrency Terms</h2>
+                        <ul>
+                            <li><strong>Altcoin:</strong> Any cryptocurrency other than Bitcoin</li>
+                            <li><strong>DeFi (Decentralized Finance):</strong> Financial services built on blockchain technology without traditional intermediaries</li>
+                            <li><strong>NFT (Non-Fungible Token):</strong> Unique digital assets representing ownership of specific items</li>
+                            <li><strong>Smart Contract:</strong> Self-executing contracts with the terms directly written into code</li>
+                            <li><strong>Gas Fees:</strong> Transaction fees paid to network validators, particularly on the Ethereum network</li>
+                            <li><strong>HODL:</strong> Slang for holding onto cryptocurrency rather than selling, regardless of market conditions</li>
+                        </ul>
+                        
+                        <h2>Security Best Practices</h2>
+                        <p>
+                            Security should be your top priority when dealing with cryptocurrency:
+                        </p>
+                        <ul>
+                            <li>Use strong, unique passwords for all cryptocurrency-related accounts</li>
+                            <li>Enable two-factor authentication (2FA) whenever possible</li>
+                            <li>Never share your private keys or recovery phrases with anyone</li>
+                            <li>Be cautious of phishing attempts and verify website URLs carefully</li>
+                            <li>Keep your software and devices updated</li>
+                            <li>Consider using a hardware wallet for significant holdings</li>
+                            <li>Back up your wallet recovery phrases in secure, offline locations</li>
+                        </ul>
+                        
+                        <h2>Conclusion</h2>
+                        <p>
+                            Cryptocurrency represents a fundamental shift in how we think about money and financial systems. While the technology and terminology may seem overwhelming at first, taking the time to understand the basics will help you navigate this space more confidently.
+                        </p>
+                        <p>
+                            Remember that the cryptocurrency market can be highly volatile, and it's important to approach it with caution. Start small, continue learning, and consider consulting with financial professionals before making significant investments.
+                        </p>
+                        <p>
+                            For more specific guidance on cryptocurrency security, taxation, or other specialized topics, explore our other educational resources or connect with a vetted service provider through our directory.
+                        </p>
+                    </div>
+                    
+                    <!-- Article Footer -->
+                    <div class="mt-12 pt-6 border-t">
+                        <div class="flex flex-col sm:flex-row sm:justify-between items-start sm:items-center">
+                            <div class="mb-4 sm:mb-0">
+                                <span class="text-sm text-gray-500">Last updated: May 1, 2025</span>
+                            </div>
+                            <div class="flex space-x-4">
+                                <button class="inline-flex items-center text-sm text-gray-500 hover:text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                                    </svg>
+                                    Share
+                                </button>
+                                <button class="inline-flex items-center text-sm text-gray-500 hover:text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                                    </svg>
+                                    Print
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Related Articles -->
+                    <div class="mt-12">
+                        <h2 class="text-2xl font-bold mb-6">Related Articles</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Related Article 1 -->
+                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                                <div class="p-6">
+                                    <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit mb-2">
+                                        Security
+                                    </div>
+                                    <h3 class="text-lg font-bold">Securing Your Crypto: Best Practices</h3>
+                                    <p class="text-sm text-gray-500 mt-2">
+                                        Essential security practices every crypto user should follow to protect their digital assets.
+                                    </p>
+                                    <div class="mt-4">
+                                        <a href="article.html?id=2" class="text-primary text-sm font-medium hover:underline">
+                                            Read Article →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Related Article 2 -->
+                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                                <div class="p-6">
+                                    <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit mb-2">
+                                        Wallets
+                                    </div>
+                                    <h3 class="text-lg font-bold">Choosing the Right Crypto Wallet</h3>
+                                    <p class="text-sm text-gray-500 mt-2">
+                                        A comparison of different wallet types and how to select the best one for your needs.
+                                    </p>
+                                    <div class="mt-4">
+                                        <a href="article.html?id=4" class="text-primary text-sm font-medium hover:underline">
+                                            Read Article →
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Crypto Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get article ID from URL parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+            
+            // If there's an article ID, load the corresponding article
+            if (articleId) {
+                loadArticle(articleId);
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+            });
+        });
+        
+        // Function to load article content based on ID
+        function loadArticle(id) {
+            // This would typically fetch article data from a server
+            // For this demo, we'll just update the article based on the ID
+            
+            const articles = {
+                '1': {
+                    title: 'Cryptocurrency Basics: A Beginner\'s Guide',
+                    category: 'Fundamentals',
+                    date: 'May 1, 2025',
+                    readTime: '10 min read'
+                    // Content is already in the HTML
+                },
+                '2': {
+                    title: 'Securing Your Crypto: Best Practices',
+                    category: 'Security',
+                    date: 'April 25, 2025',
+                    readTime: '8 min read'
+                    // Would include content in a real implementation
+                },
+                '3': {
+                    title: 'Cryptocurrency Tax Essentials',
+                    category: 'Tax',
+                    date: 'April 18, 2025',
+                    readTime: '12 min read'
+                },
+                '4': {
+                    title: 'Choosing the Right Crypto Wallet',
+                    category: 'Wallets',
+                    date: 'April 10, 2025',
+                    readTime: '9 min read'
+                },
+                '5': {
+                    title: 'DeFi Fundamentals: Decentralized Finance Explained',
+                    category: 'DeFi',
+                    date: 'April 5, 2025',
+                    readTime: '15 min read'
+                },
+                '6': {
+                    title: 'NFT Guide: Understanding Non-Fungible Tokens',
+                    category: 'NFTs',
+                    date: 'March 28, 2025',
+                    readTime: '11 min read'
+                }
+            };
+            
+            // If article exists, update the page
+            if (articles[id]) {
+                const article = articles[id];
+                document.getElementById('article-title').textContent = article.title;
+                document.getElementById('article-category').textContent = article.category;
+                document.getElementById('article-date').textContent = article.date;
+                document.getElementById('article-read-time').textContent = article.readTime;
+                document.title = `${article.title} - CryptoMall`;
+                
+                // In a real implementation, we would also update the content
+                // For this demo, we're only showing article 1's content
+            }
+        }
+    </script>
+</body>
+</html>
