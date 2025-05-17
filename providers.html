@@ -69,6 +69,10 @@
             color: #9ca3af;
         }
         
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
         .dark-mode .border {
             border-color: #374151;
         }
@@ -81,6 +85,39 @@
         
         .dark-mode .shadow-sm {
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Improved dark mode form elements */
+        .dark-mode input,
+        .dark-mode select {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        .dark-mode input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .range-slider {
+            background: #4b5563;
+        }
+        
+        .dark-mode label.text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .text-sm.font-medium.text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .text-sm.text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        /* Fix for form labels in dark mode */
+        .dark-mode label.block.text-sm.font-medium.text-gray-700 {
+            color: #e5e7eb !important;
         }
 
         /* Hide provider cards that don't match filters */
