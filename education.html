@@ -36,6 +36,82 @@
         .content-section.active {
             display: block;
         }
+        
+        /* Tag styles */
+        .tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            margin: 0.25rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .tag-default {
+            background-color: #e5e7eb;
+            color: #4b5563;
+        }
+        
+        .tag-selected {
+            background-color: #6366f1;
+            color: white;
+        }
+        
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #111827;
+        }
+        
+        .dark-mode .text-gray-900 {
+            color: #f9fafb;
+        }
+        
+        .dark-mode .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .border {
+            border-color: #374151;
+        }
+        
+        .dark-mode .bg-gray-50,
+        .dark-mode .bg-gray-100,
+        .dark-mode .bg-gray-200 {
+            background-color: #1f2937;
+        }
+        
+        .dark-mode .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode .tag-default {
+            background-color: #374151;
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .tab-active {
+            border-color: #6366f1;
+            color: #6366f1;
+        }
+        
+        .dark-mode .text-sm.text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .text-sm.text-gray-700 {
+            color: #e5e7eb;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -85,6 +161,31 @@
                         </p>
                     </div>
                     
+                    <!-- Tag Filtering -->
+                    <div class="mb-8">
+                        <div class="flex flex-col items-start">
+                            <h2 class="text-lg font-medium mb-2">Filter by Tags:</h2>
+                            <div id="tag-container" class="flex flex-wrap mb-4">
+                                <span class="tag tag-default" data-tag="blockchain">Blockchain</span>
+                                <span class="tag tag-default" data-tag="security">Security</span>
+                                <span class="tag tag-default" data-tag="wallets">Wallets</span>
+                                <span class="tag tag-default" data-tag="defi">DeFi</span>
+                                <span class="tag tag-default" data-tag="nft">NFTs</span>
+                                <span class="tag tag-default" data-tag="tax">Taxation</span>
+                                <span class="tag tag-default" data-tag="trading">Trading</span>
+                                <span class="tag tag-default" data-tag="mining">Mining</span>
+                                <span class="tag tag-default" data-tag="pow">Proof of Work</span>
+                                <span class="tag tag-default" data-tag="pos">Proof of Stake</span>
+                                <span class="tag tag-default" data-tag="privacy">Privacy</span>
+                                <span class="tag tag-default" data-tag="legal">Legal</span>
+                            </div>
+                            <div class="flex items-center mb-2">
+                                <span id="selected-tags-count" class="text-sm text-gray-500 mr-4">0 tags selected</span>
+                                <button id="clear-tags" class="text-sm text-primary hover:underline hidden">Clear All Tags</button>
+                            </div>
+                        </div>
+                    </div>
+                    
                     <!-- Tabs Navigation -->
                     <div class="mb-8">
                         <div class="flex border-b overflow-x-auto">
@@ -97,9 +198,10 @@
                     
                     <!-- Guides Section -->
                     <div id="guides-section" class="content-section active">
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <div id="guides-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Guide 1 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition" 
+                                 data-tags="blockchain,security,wallets">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         Fundamentals
@@ -111,6 +213,11 @@
                                     <p class="text-sm text-gray-500">
                                         Cryptocurrency can seem complex at first, but understanding the fundamentals will help you navigate this exciting space safely. This guide covers the essential concepts every beginner should know.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Blockchain</span>
+                                        <span class="tag tag-default">Security</span>
+                                        <span class="tag tag-default">Wallets</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=1" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -120,7 +227,8 @@
                             </div>
                             
                             <!-- Guide 2 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="security,wallets,privacy">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         Security
@@ -132,6 +240,11 @@
                                     <p class="text-sm text-gray-500">
                                         Security should be your top priority when dealing with cryptocurrencies. This guide covers essential practices to help protect your digital assets from theft, hacking, and accidental loss.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Security</span>
+                                        <span class="tag tag-default">Wallets</span>
+                                        <span class="tag tag-default">Privacy</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=2" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -141,7 +254,8 @@
                             </div>
                             
                             <!-- Guide 3 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="tax,legal">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         Tax
@@ -153,6 +267,10 @@
                                     <p class="text-sm text-gray-500">
                                         Understanding the tax implications of cryptocurrency transactions is crucial for staying compliant with regulations. This guide provides an overview of cryptocurrency taxation in the United States.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Tax</span>
+                                        <span class="tag tag-default">Legal</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=3" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -162,7 +280,8 @@
                             </div>
                             
                             <!-- Guide 4 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="wallets,security,privacy">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         Wallets
@@ -174,6 +293,11 @@
                                     <p class="text-sm text-gray-500">
                                         Selecting the right wallet is one of the most important decisions for cryptocurrency users. This guide explains the different types of wallets and helps you choose based on your security needs and usage patterns.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Wallets</span>
+                                        <span class="tag tag-default">Security</span>
+                                        <span class="tag tag-default">Privacy</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=4" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -183,7 +307,8 @@
                             </div>
                             
                             <!-- Guide 5 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="defi,trading,blockchain">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         DeFi
@@ -195,6 +320,11 @@
                                     <p class="text-sm text-gray-500">
                                         Decentralized Finance (DeFi) is revolutionizing financial services through blockchain technology. This guide introduces key DeFi concepts, popular protocols, and important considerations for users.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">DeFi</span>
+                                        <span class="tag tag-default">Trading</span>
+                                        <span class="tag tag-default">Blockchain</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=5" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -204,7 +334,8 @@
                             </div>
                             
                             <!-- Guide 6 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="nft,blockchain">
                                 <div class="p-6 border-b">
                                     <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
                                         NFTs
@@ -216,9 +347,67 @@
                                     <p class="text-sm text-gray-500">
                                         Non-Fungible Tokens (NFTs) have created new possibilities for digital ownership and creative expression. This guide explains NFT technology, marketplaces, and considerations for creators and collectors.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">NFT</span>
+                                        <span class="tag tag-default">Blockchain</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=6" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Guide 7 -->
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="mining,pow,blockchain">
+                                <div class="p-6 border-b">
+                                    <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
+                                        Mining
+                                    </div>
+                                    <h3 class="text-xl font-bold mt-2">Cryptocurrency Mining Explained</h3>
+                                    <p class="text-gray-500 text-sm">How mining works, hardware requirements, and profitability considerations.</p>
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <p class="text-sm text-gray-500">
+                                        Mining is the process that secures many cryptocurrency networks and creates new coins. This guide explains the technical aspects of mining, hardware requirements, and how to calculate potential profitability.
+                                    </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Mining</span>
+                                        <span class="tag tag-default">Proof of Work</span>
+                                        <span class="tag tag-default">Blockchain</span>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0 mt-auto">
+                                    <a href="article.html?id=7" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Guide 8 -->
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="pos,blockchain">
+                                <div class="p-6 border-b">
+                                    <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
+                                        Consensus
+                                    </div>
+                                    <h3 class="text-xl font-bold mt-2">Proof of Stake vs. Proof of Work</h3>
+                                    <p class="text-gray-500 text-sm">Comparing the two major consensus mechanisms in blockchain networks.</p>
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <p class="text-sm text-gray-500">
+                                        Consensus mechanisms are the backbone of blockchain networks. This guide compares Proof of Work and Proof of Stake, explaining their differences, advantages, and environmental implications.
+                                    </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Proof of Stake</span>
+                                        <span class="tag tag-default">Proof of Work</span>
+                                        <span class="tag tag-default">Blockchain</span>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0 mt-auto">
+                                    <a href="article.html?id=8" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
                                         Read More
                                     </a>
                                 </div>
@@ -228,9 +417,10 @@
                     
                     <!-- Articles Section -->
                     <div id="articles-section" class="content-section">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div id="articles-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <!-- Article 1 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="legal,blockchain">
                                 <div class="p-6 border-b">
                                     <div class="flex justify-between items-center">
                                         <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
@@ -243,56 +433,12 @@
                                 </div>
                                 <div class="p-6 flex-grow">
                                     <p class="text-sm text-gray-500">
-                                        Regulatory frameworks for cryptocurrency have evolved significantly since Bitcoin's inception. This article examines key developments in crypto regulation across major jurisdictions and what they mean for users and businesses.
+                                        Regulatory frameworks for cryptocurrencies continue to evolve globally. This article examines how regulations have developed and what they might mean for the future of digital assets.
                                     </p>
-                                </div>
-                                <div class="p-6 pt-0 mt-auto">
-                                    <a href="article.html?id=7" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- Article 2 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
-                                <div class="p-6 border-b">
-                                    <div class="flex justify-between items-center">
-                                        <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
-                                            Security
-                                        </div>
-                                        <span class="text-xs text-gray-500">April 28, 2025</span>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Legal</span>
+                                        <span class="tag tag-default">Blockchain</span>
                                     </div>
-                                    <h3 class="text-xl font-bold mt-2">Common Crypto Scams and How to Avoid Them</h3>
-                                    <p class="text-gray-500 text-sm">Identifying and protecting yourself from cryptocurrency fraud.</p>
-                                </div>
-                                <div class="p-6 flex-grow">
-                                    <p class="text-sm text-gray-500">
-                                        The cryptocurrency space has unfortunately attracted numerous scammers and fraudsters. This article details the most common types of crypto scams and provides practical advice for protecting yourself and your assets.
-                                    </p>
-                                </div>
-                                <div class="p-6 pt-0 mt-auto">
-                                    <a href="article.html?id=8" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                        Read More
-                                    </a>
-                                </div>
-                            </div>
-                            
-                            <!-- Article 3 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
-                                <div class="p-6 border-b">
-                                    <div class="flex justify-between items-center">
-                                        <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
-                                            Technology
-                                        </div>
-                                        <span class="text-xs text-gray-500">April 15, 2025</span>
-                                    </div>
-                                    <h3 class="text-xl font-bold mt-2">Layer 2 Solutions: Scaling Blockchain Technology</h3>
-                                    <p class="text-gray-500 text-sm">Understanding Layer 2 scaling solutions and their impact on blockchain adoption.</p>
-                                </div>
-                                <div class="p-6 flex-grow">
-                                    <p class="text-sm text-gray-500">
-                                        Layer 2 scaling solutions are addressing blockchain's scalability challenges. This article explains different Layer 2 approaches, their advantages and limitations, and how they're changing the blockchain landscape.
-                                    </p>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=9" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
@@ -301,25 +447,89 @@
                                 </div>
                             </div>
                             
-                            <!-- Article 4 -->
-                            <div class="border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition">
+                            <!-- Article 2 -->
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="trading,defi">
                                 <div class="p-6 border-b">
                                     <div class="flex justify-between items-center">
                                         <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
-                                            Business
+                                            Strategy
                                         </div>
-                                        <span class="text-xs text-gray-500">April 3, 2025</span>
+                                        <span class="text-xs text-gray-500">May 5, 2025</span>
                                     </div>
-                                    <h3 class="text-xl font-bold mt-2">Integrating Cryptocurrency Payments for Small Businesses</h3>
-                                    <p class="text-gray-500 text-sm">A practical guide to accepting crypto payments for small business owners.</p>
+                                    <h3 class="text-xl font-bold mt-2">Yield Farming Strategies for Beginners</h3>
+                                    <p class="text-gray-500 text-sm">A beginner's guide to generating passive income in DeFi.</p>
                                 </div>
                                 <div class="p-6 flex-grow">
                                     <p class="text-sm text-gray-500">
-                                        More businesses are exploring cryptocurrency payment options. This article provides a step-by-step guide for small business owners looking to integrate crypto payments, including platform comparisons and tax considerations.
+                                        Yield farming has become a popular way to earn passive income in the DeFi ecosystem. This article introduces basic strategies for beginners while highlighting potential risks and rewards.
                                     </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Trading</span>
+                                        <span class="tag tag-default">DeFi</span>
+                                    </div>
                                 </div>
                                 <div class="p-6 pt-0 mt-auto">
                                     <a href="article.html?id=10" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 3 -->
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="privacy,security,wallets">
+                                <div class="p-6 border-b">
+                                    <div class="flex justify-between items-center">
+                                        <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
+                                            Privacy
+                                        </div>
+                                        <span class="text-xs text-gray-500">April 28, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mt-2">Privacy Coins: Features and Considerations</h3>
+                                    <p class="text-gray-500 text-sm">An overview of privacy-focused cryptocurrencies and their technology.</p>
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <p class="text-sm text-gray-500">
+                                        Privacy coins offer enhanced anonymity features beyond what standard cryptocurrencies provide. This article examines the technology behind privacy coins and the regulatory challenges they face.
+                                    </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">Privacy</span>
+                                        <span class="tag tag-default">Security</span>
+                                        <span class="tag tag-default">Wallets</span>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0 mt-auto">
+                                    <a href="article.html?id=11" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                        Read More
+                                    </a>
+                                </div>
+                            </div>
+                            
+                            <!-- Article 4 -->
+                            <div class="resource-card border rounded-lg overflow-hidden shadow-sm bg-white h-full flex flex-col card-hover transition"
+                                 data-tags="nft,trading">
+                                <div class="p-6 border-b">
+                                    <div class="flex justify-between items-center">
+                                        <div class="bg-gray-200 text-xs px-2 py-1 rounded-full w-fit">
+                                            Market
+                                        </div>
+                                        <span class="text-xs text-gray-500">April 15, 2025</span>
+                                    </div>
+                                    <h3 class="text-xl font-bold mt-2">NFT Market Trends in 2025</h3>
+                                    <p class="text-gray-500 text-sm">Current trends and future predictions for the NFT marketplace.</p>
+                                </div>
+                                <div class="p-6 flex-grow">
+                                    <p class="text-sm text-gray-500">
+                                        The NFT market continues to evolve with new use cases beyond digital art. This article explores current trends, emerging platforms, and predictions for the future of non-fungible tokens.
+                                    </p>
+                                    <div class="flex flex-wrap mt-4">
+                                        <span class="tag tag-default">NFT</span>
+                                        <span class="tag tag-default">Trading</span>
+                                    </div>
+                                </div>
+                                <div class="p-6 pt-0 mt-auto">
+                                    <a href="article.html?id=12" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
                                         Read More
                                     </a>
                                 </div>
@@ -329,76 +539,78 @@
                     
                     <!-- Glossary Section -->
                     <div id="glossary-section" class="content-section">
-                        <div class="border rounded-lg shadow-sm bg-white">
-                            <div class="p-6 border-b">
-                                <h2 class="text-xl font-semibold">Cryptocurrency Glossary</h2>
-                                <p class="text-gray-500 text-sm mt-1">
-                                    Essential terms and definitions for understanding the cryptocurrency ecosystem.
-                                </p>
-                            </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm bg-white">
                             <div class="p-6">
+                                <h2 class="text-2xl font-bold mb-6">Cryptocurrency Glossary</h2>
+                                
                                 <div class="space-y-6">
-                                    <!-- Glossary Letter Section -->
                                     <div>
-                                        <h3 class="text-lg font-semibold text-primary mb-2">A</h3>
-                                        <dl class="space-y-4">
-                                            <div>
-                                                <dt class="font-medium">Address</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">A unique identifier that serves as a virtual location where cryptocurrency can be sent to and from, similar to an email address or bank account number.</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">Altcoin</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">Any cryptocurrency other than Bitcoin. The term is an abbreviation of "alternative coin."</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">ASIC</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">Application-Specific Integrated Circuit. Specialized hardware designed specifically for mining cryptocurrency at high efficiency.</dd>
-                                            </div>
-                                        </dl>
+                                        <h3 class="text-lg font-bold">Blockchain</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A distributed digital ledger that records transactions across many computers so that any involved record cannot be altered retroactively, without the alteration of all subsequent blocks.
+                                        </p>
                                     </div>
                                     
-                                    <!-- Glossary Letter Section -->
                                     <div>
-                                        <h3 class="text-lg font-semibold text-primary mb-2">B</h3>
-                                        <dl class="space-y-4">
-                                            <div>
-                                                <dt class="font-medium">Block</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">A collection of transaction data in a cryptocurrency network. Blocks are linked together to form a blockchain.</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">Blockchain</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">A distributed digital ledger that records transactions across many computers so that any involved record cannot be altered retroactively.</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">Bull/Bear Market</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">Market conditions where prices are rising (bull) or falling (bear) over an extended period.</dd>
-                                            </div>
-                                        </dl>
+                                        <h3 class="text-lg font-bold">Cryptocurrency</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A digital or virtual currency that uses cryptography for security and operates independently of a central bank.
+                                        </p>
                                     </div>
                                     
-                                    <!-- Glossary Letter Section -->
                                     <div>
-                                        <h3 class="text-lg font-semibold text-primary mb-2">C</h3>
-                                        <dl class="space-y-4">
-                                            <div>
-                                                <dt class="font-medium">Cold Storage</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">Keeping cryptocurrency offline to protect it from hacking and theft. Examples include hardware wallets and paper wallets.</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">Consensus Mechanism</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">The method by which a cryptocurrency network agrees on which transactions are valid. Common types include Proof of Work and Proof of Stake.</dd>
-                                            </div>
-                                            <div>
-                                                <dt class="font-medium">Cryptocurrency</dt>
-                                                <dd class="text-sm text-gray-500 mt-1">A digital or virtual currency that uses cryptography for security and operates on a decentralized network.</dd>
-                                            </div>
-                                        </dl>
+                                        <h3 class="text-lg font-bold">Decentralized Finance (DeFi)</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            Financial applications built on blockchain technologies that enable activities like borrowing, lending, and trading without traditional intermediaries like banks.
+                                        </p>
                                     </div>
                                     
-                                    <!-- More glossary terms would continue here -->
-                                    <div class="text-center pt-4">
-                                        <p class="text-sm text-gray-500">
-                                            This is a partial list. Our complete glossary contains over 100 cryptocurrency terms and definitions.
+                                    <div>
+                                        <h3 class="text-lg font-bold">Mining</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            The process of validating transactions and adding them to a blockchain, typically involving solving complex mathematical problems with computing power.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Non-Fungible Token (NFT)</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A unique digital asset that represents ownership of a specific item or piece of content, such as art, music, or collectibles.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Proof of Stake (PoS)</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A consensus mechanism where validators are chosen to create new blocks based on the number of coins they hold and are willing to "stake" as collateral.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Proof of Work (PoW)</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A consensus mechanism that requires miners to solve complex mathematical puzzles to validate transactions and create new blocks.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Smart Contract</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            Self-executing contracts with the terms directly written into code, automatically enforcing agreements without the need for intermediaries.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Wallet</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A digital tool that allows users to store, send, and receive cryptocurrencies. Can be software-based (hot wallets) or hardware-based (cold wallets).
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Yield Farming</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            The practice of staking or lending crypto assets to generate returns or rewards in the form of additional cryptocurrency.
                                         </p>
                                     </div>
                                 </div>
@@ -408,75 +620,51 @@
                     
                     <!-- FAQ Section -->
                     <div id="faq-section" class="content-section">
-                        <div class="border rounded-lg shadow-sm bg-white">
-                            <div class="p-6 border-b">
-                                <h2 class="text-xl font-semibold">Frequently Asked Questions</h2>
-                                <p class="text-gray-500 text-sm mt-1">
-                                    Common questions about cryptocurrency and blockchain technology.
-                                </p>
-                            </div>
+                        <div class="border rounded-lg overflow-hidden shadow-sm bg-white">
                             <div class="p-6">
+                                <h2 class="text-2xl font-bold mb-6">Frequently Asked Questions</h2>
+                                
                                 <div class="space-y-6">
-                                    <!-- FAQ Category -->
                                     <div>
-                                        <h3 class="text-lg font-semibold text-primary mb-4">Cryptocurrency Basics</h3>
-                                        <div class="space-y-4">
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">What is cryptocurrency?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    Cryptocurrency is a digital or virtual form of currency that uses cryptography for security and operates on decentralized networks based on blockchain technology. Unlike traditional currencies issued by governments (fiat), cryptocurrencies typically operate without a central authority.
-                                                </p>
-                                            </div>
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">How do cryptocurrencies work?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    Cryptocurrencies work using blockchain technology, which is a distributed ledger enforced by a network of computers. Transactions are verified by network nodes through cryptography and recorded in the blockchain. This decentralized structure allows cryptocurrencies to operate without central oversight.
-                                                </p>
-                                            </div>
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">What's the difference between Bitcoin and other cryptocurrencies?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    Bitcoin was the first cryptocurrency and remains the largest by market capitalization. Other cryptocurrencies (often called "altcoins") may offer different features, such as enhanced privacy, smart contract functionality, faster transaction speeds, or different consensus mechanisms. Each cryptocurrency has its own blockchain and specific use cases.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- FAQ Category -->
-                                    <div>
-                                        <h3 class="text-lg font-semibold text-primary mb-4">Security & Storage</h3>
-                                        <div class="space-y-4">
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">How do I keep my cryptocurrency safe?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    To keep your cryptocurrency safe, use secure wallets (preferably hardware wallets for large amounts), enable two-factor authentication, use strong unique passwords, be cautious of phishing attempts, keep your software updated, and consider cold storage for long-term holdings. Never share your private keys or recovery phrases with anyone.
-                                                </p>
-                                            </div>
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">What happens if I lose my wallet or private keys?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    If you lose access to your wallet or private keys without having a backup (recovery seed phrase), your cryptocurrency will likely be permanently lost. There is typically no way to recover lost private keys or reset access to cryptocurrency wallets. This is why securely backing up your recovery phrase is essential.
-                                                </p>
-                                            </div>
-                                            <div class="border-b pb-4">
-                                                <h4 class="font-medium">What's the difference between hot and cold wallets?</h4>
-                                                <p class="text-sm text-gray-500 mt-2">
-                                                    Hot wallets are connected to the internet (like mobile or exchange wallets) and are convenient for frequent transactions but more vulnerable to hacking. Cold wallets are offline storage methods (like hardware wallets or paper wallets) that are not connected to the internet, making them more secure but less convenient for frequent use.
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- More FAQ categories would continue here -->
-                                    <div class="text-center pt-4">
-                                        <p class="text-sm text-gray-500">
-                                            Can't find the answer you're looking for? Take our matching quiz to connect with a crypto expert who can help.
+                                        <h3 class="text-lg font-bold">How do I start investing in cryptocurrency?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            To start investing in cryptocurrency, you'll need to create an account on a reputable exchange, complete identity verification, connect a payment method, and then place your first order. We recommend starting with small amounts and thoroughly researching any cryptocurrency before investing.
                                         </p>
-                                        <div class="mt-4">
-                                            <a href="quiz.html" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
-                                                Take the Quiz
-                                            </a>
-                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">What's the difference between a hot wallet and a cold wallet?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            A hot wallet is connected to the internet (like mobile or desktop applications) and provides convenient access but with higher security risks. A cold wallet is kept offline (like hardware devices) and offers enhanced security but less convenience for frequent transactions.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">How are cryptocurrencies taxed?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            In most countries, cryptocurrencies are treated as property for tax purposes. This means you may owe capital gains taxes when you sell, trade, or use cryptocurrency. The specific rules vary by country, so it's important to consult with a tax professional familiar with crypto taxation.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">What happens if I lose my private keys?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            If you lose your private keys without having a backup (like a seed phrase), you will permanently lose access to your cryptocurrency. There is no "forgot password" option or central authority that can restore access. This is why securely backing up your keys is essential.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">Is cryptocurrency mining profitable?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            Mining profitability depends on several factors including electricity costs, hardware expenses, cryptocurrency prices, and network difficulty. For many individuals, mining popular cryptocurrencies like Bitcoin is no longer profitable without specialized equipment and access to low-cost electricity.
+                                        </p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-bold">How do I protect myself from cryptocurrency scams?</h3>
+                                        <p class="text-sm text-gray-500 mt-1">
+                                            To protect yourself from scams, research thoroughly before investing, be skeptical of promises of guaranteed returns, verify the legitimacy of projects and teams, use reputable exchanges, enable two-factor authentication, and never share your private keys or seed phrases with anyone.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -571,9 +759,10 @@
     </footer>
 
     <script>
-        // Tab switching functionality
         document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching
             const tabButtons = document.querySelectorAll('.tab-button');
+            const contentSections = document.querySelectorAll('.content-section');
             
             tabButtons.forEach(button => {
                 button.addEventListener('click', function() {
@@ -581,37 +770,163 @@
                     tabButtons.forEach(btn => {
                         btn.classList.remove('tab-active');
                         btn.classList.add('text-gray-500');
+                        btn.classList.add('hover:text-gray-900');
                     });
                     
                     // Add active class to clicked tab
                     this.classList.add('tab-active');
                     this.classList.remove('text-gray-500');
+                    this.classList.remove('hover:text-gray-900');
                     
                     // Hide all content sections
-                    document.querySelectorAll('.content-section').forEach(section => {
+                    contentSections.forEach(section => {
                         section.classList.remove('active');
                     });
                     
-                    // Show selected content section
+                    // Show corresponding content section
                     const tabId = this.getAttribute('data-tab');
-                    document.getElementById(`${tabId}-section`).classList.add('active');
+                    document.getElementById(tabId + '-section').classList.add('active');
+                    
+                    // Apply tag filtering to the newly active section
+                    applyTagFiltering();
                 });
             });
             
-            // Check for hash in URL to activate specific tab
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1); // Remove the # character
-                const tabButton = document.querySelector(`.tab-button[data-tab="${hash}"]`);
-                if (tabButton) {
-                    tabButton.click();
+            // Tag filtering
+            const tags = document.querySelectorAll('.tag[data-tag]');
+            const resourceCards = document.querySelectorAll('.resource-card');
+            const selectedTagsCount = document.getElementById('selected-tags-count');
+            const clearTagsButton = document.getElementById('clear-tags');
+            
+            let selectedTags = [];
+            
+            // Tag click event
+            tags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    const tagValue = this.getAttribute('data-tag');
+                    
+                    // Toggle tag selection
+                    if (selectedTags.includes(tagValue)) {
+                        // Remove tag
+                        selectedTags = selectedTags.filter(tag => tag !== tagValue);
+                        this.classList.remove('tag-selected');
+                        this.classList.add('tag-default');
+                    } else {
+                        // Add tag
+                        selectedTags.push(tagValue);
+                        this.classList.add('tag-selected');
+                        this.classList.remove('tag-default');
+                    }
+                    
+                    // Update selected tags count
+                    selectedTagsCount.textContent = selectedTags.length + ' tags selected';
+                    
+                    // Show/hide clear button
+                    if (selectedTags.length > 0) {
+                        clearTagsButton.classList.remove('hidden');
+                    } else {
+                        clearTagsButton.classList.add('hidden');
+                    }
+                    
+                    // Apply filtering
+                    applyTagFiltering();
+                });
+            });
+            
+            // Clear tags button
+            clearTagsButton.addEventListener('click', function() {
+                selectedTags = [];
+                
+                // Reset all tag buttons
+                tags.forEach(tag => {
+                    tag.classList.remove('tag-selected');
+                    tag.classList.add('tag-default');
+                });
+                
+                // Update count and hide clear button
+                selectedTagsCount.textContent = '0 tags selected';
+                clearTagsButton.classList.add('hidden');
+                
+                // Show all cards
+                applyTagFiltering();
+            });
+            
+            // Apply tag filtering function
+            function applyTagFiltering() {
+                if (selectedTags.length === 0) {
+                    // Show all cards if no tags selected
+                    resourceCards.forEach(card => {
+                        card.style.display = 'flex';
+                        card.style.order = 0;
+                    });
+                    return;
                 }
+                
+                // Get active section
+                const activeSection = document.querySelector('.content-section.active');
+                const activeContainer = activeSection.querySelector('div[id$="-container"]');
+                
+                // Filter and sort cards
+                const perfectMatches = [];
+                const partialMatches = [];
+                const noMatches = [];
+                
+                resourceCards.forEach(card => {
+                    const cardTags = card.getAttribute('data-tags').split(',');
+                    const matchCount = selectedTags.filter(tag => cardTags.includes(tag)).length;
+                    
+                    if (matchCount === selectedTags.length) {
+                        // Perfect match - card has all selected tags
+                        perfectMatches.push(card);
+                    } else if (matchCount > 0) {
+                        // Partial match - card has some but not all selected tags
+                        partialMatches.push(card);
+                    } else {
+                        // No match - card has none of the selected tags
+                        noMatches.push(card);
+                    }
+                });
+                
+                // Sort cards by match quality
+                const allCards = [...perfectMatches, ...partialMatches, ...noMatches];
+                
+                // Reorder cards in the DOM
+                allCards.forEach((card, index) => {
+                    // Set display based on match status
+                    if (perfectMatches.includes(card) || partialMatches.includes(card)) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                    
+                    // Set order for sorting
+                    card.style.order = index;
+                    
+                    // Move card to the active container
+                    if (activeContainer && activeContainer.contains(card)) {
+                        activeContainer.appendChild(card);
+                    }
+                });
             }
             
             // Theme toggle functionality
             const themeToggle = document.getElementById('theme-toggle');
             themeToggle.addEventListener('click', function() {
                 document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
             });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
         });
     </script>
 </body>

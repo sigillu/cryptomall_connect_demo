@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - CryptoMall</title>
+    <title>Take the Quiz - CryptoMall</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles */
@@ -17,34 +17,82 @@
         /* Transitions */
         .transition { transition: all 0.3s ease; }
         
-        /* Quiz progress bar */
+        /* Quiz styles */
+        .quiz-option {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        
+        .quiz-option.selected {
+            border-color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        /* Progress bar */
         .progress-bar {
             height: 8px;
             background-color: #e5e7eb;
-            border-radius: 9999px;
+            border-radius: 4px;
             overflow: hidden;
         }
-        .progress-bar-fill {
+        
+        .progress-fill {
             height: 100%;
             background-color: #6366f1;
-            border-radius: 9999px;
             transition: width 0.3s ease;
         }
         
-        /* Quiz question container */
-        .question-container {
-            display: none;
-        }
-        .question-container.active {
-            display: block;
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
         }
         
-        /* Results container */
-        .results-container {
-            display: none;
+        .dark-mode .bg-white {
+            background-color: #111827;
         }
-        .results-container.active {
-            display: block;
+        
+        .dark-mode .text-gray-900 {
+            color: #f9fafb;
+        }
+        
+        .dark-mode .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .border {
+            border-color: #374151;
+        }
+        
+        .dark-mode .bg-gray-50,
+        .dark-mode .bg-gray-100,
+        .dark-mode .bg-gray-200 {
+            background-color: #1f2937;
+        }
+        
+        .dark-mode .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode .progress-bar {
+            background-color: #374151;
+        }
+        
+        .dark-mode .quiz-option:hover {
+            background-color: rgba(99, 102, 241, 0.15);
+        }
+        
+        .dark-mode .quiz-option.selected {
+            background-color: rgba(99, 102, 241, 0.2);
         }
     </style>
 </head>
@@ -88,186 +136,444 @@
         <section class="w-full py-12 md:py-24 lg:py-32">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="max-w-3xl mx-auto">
-                    <div class="text-center mb-8">
-                        <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Find Your Crypto Match</h1>
-                        <p class="mt-4 text-gray-500">
-                            Answer a few questions to get matched with crypto service providers that fit your needs.
-                        </p>
-                    </div>
-                    
-                    <!-- Quiz Container -->
-                    <div id="quiz-container" class="border rounded-lg shadow-sm bg-white">
-                        <div class="p-6 border-b">
-                            <div class="space-y-2">
-                                <div class="flex items-center justify-between">
-                                    <h3 class="text-xl font-semibold" id="question-number">Question 1 of 4</h3>
-                                    <span class="text-sm text-gray-500" id="progress-percentage">25% completed</span>
+                    <div id="quiz-container">
+                        <!-- Quiz Intro -->
+                        <div id="quiz-intro" class="text-center mb-8">
+                            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Find Your Crypto Match</h1>
+                            <p class="mt-4 text-gray-500">
+                                Answer a few questions about your needs and we'll match you with the right crypto service providers.
+                            </p>
+                            <button id="start-quiz" class="mt-8 inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                Start Quiz
+                            </button>
+                        </div>
+                        
+                        <!-- Quiz Questions -->
+                        <div id="quiz-questions" class="hidden">
+                            <!-- Progress Bar -->
+                            <div class="mb-8">
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
+                                    <span id="progress-percent">20%</span>
                                 </div>
                                 <div class="progress-bar">
-                                    <div class="progress-bar-fill" id="progress-bar" style="width: 25%"></div>
+                                    <div class="progress-fill" style="width: 20%;"></div>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <!-- Question 1 -->
-                        <div class="question-container active" id="question-1">
-                            <div class="p-6">
+                            
+                            <!-- Question 1 -->
+                            <div class="question" id="question-1">
+                                <h2 class="text-2xl font-bold mb-6">What's your primary interest in cryptocurrency?</h2>
                                 <div class="space-y-4">
-                                    <h3 class="text-xl font-semibold">What type of crypto service are you looking for?</h3>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q1-option1" name="q1" value="Security" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q1-option1" class="text-sm font-medium text-gray-700 cursor-pointer">Security & Protection</label>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Learning the basics</h3>
+                                                <p class="text-sm text-gray-500">I'm new to crypto and want to understand the fundamentals</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q1-option2" name="q1" value="Tax" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q1-option2" class="text-sm font-medium text-gray-700 cursor-pointer">Tax & Accounting</label>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Technical implementation</h3>
+                                                <p class="text-sm text-gray-500">I need help integrating crypto into my business or project</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q1-option3" name="q1" value="Education" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q1-option3" class="text-sm font-medium text-gray-700 cursor-pointer">Education & Learning</label>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Security and protection</h3>
+                                                <p class="text-sm text-gray-500">I want to ensure my crypto assets are secure</p>
+                                            </div>
                                         </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q1-option4" name="q1" value="Legal" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q1-option4" class="text-sm font-medium text-gray-700 cursor-pointer">Legal Assistance</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q1-option5" name="q1" value="Development" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q1-option5" class="text-sm font-medium text-gray-700 cursor-pointer">Development & Technical</label>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Tax and legal compliance</h3>
+                                                <p class="text-sm text-gray-500">I need help with tax reporting or legal questions</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="p-6 border-t flex justify-between">
-                                <button class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition opacity-50 cursor-not-allowed" disabled>
+                            
+                            <!-- Question 2 -->
+                            <div class="question hidden" id="question-2">
+                                <h2 class="text-2xl font-bold mb-6">What's your experience level with cryptocurrency?</h2>
+                                <div class="space-y-4">
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Complete beginner</h3>
+                                                <p class="text-sm text-gray-500">I'm just starting to learn about cryptocurrency</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Some experience</h3>
+                                                <p class="text-sm text-gray-500">I understand the basics but need help with more advanced topics</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Experienced user</h3>
+                                                <p class="text-sm text-gray-500">I'm comfortable with crypto but need specialized expertise</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Professional/Business</h3>
+                                                <p class="text-sm text-gray-500">I need enterprise-level solutions or consulting</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 3 -->
+                            <div class="question hidden" id="question-3">
+                                <h2 class="text-2xl font-bold mb-6">What type of service are you looking for?</h2>
+                                <div class="space-y-4">
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">One-time consultation</h3>
+                                                <p class="text-sm text-gray-500">I need specific questions answered or a one-time service</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Ongoing support</h3>
+                                                <p class="text-sm text-gray-500">I need regular assistance or maintenance</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Project implementation</h3>
+                                                <p class="text-sm text-gray-500">I need help building or implementing a specific solution</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Educational resources</h3>
+                                                <p class="text-sm text-gray-500">I'm looking for learning materials or training</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 4 -->
+                            <div class="question hidden" id="question-4">
+                                <h2 class="text-2xl font-bold mb-6">What's your budget range for crypto services?</h2>
+                                <div class="space-y-4">
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Under $500</h3>
+                                                <p class="text-sm text-gray-500">Looking for affordable basic services</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">$500 - $2,000</h3>
+                                                <p class="text-sm text-gray-500">Mid-range services or consultations</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">$2,000 - $10,000</h3>
+                                                <p class="text-sm text-gray-500">Professional services or larger projects</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">$10,000+</h3>
+                                                <p class="text-sm text-gray-500">Enterprise-level solutions or comprehensive services</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Question 5 -->
+                            <div class="question hidden" id="question-5">
+                                <h2 class="text-2xl font-bold mb-6">How soon do you need these services?</h2>
+                                <div class="space-y-4">
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Immediately</h3>
+                                                <p class="text-sm text-gray-500">I need help as soon as possible</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Within a month</h3>
+                                                <p class="text-sm text-gray-500">I'm planning to start soon</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">In the next few months</h3>
+                                                <p class="text-sm text-gray-500">I'm researching options for a future project</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="quiz-option border rounded-lg p-4 hover:border-primary">
+                                        <div class="flex items-start">
+                                            <div class="flex-shrink-0 mt-0.5">
+                                                <div class="h-5 w-5 border rounded-full flex items-center justify-center option-circle">
+                                                    <div class="h-3 w-3 rounded-full bg-primary hidden option-selected"></div>
+                                                </div>
+                                            </div>
+                                            <div class="ml-3">
+                                                <h3 class="font-medium">Just exploring</h3>
+                                                <p class="text-sm text-gray-500">I'm gathering information with no immediate timeline</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Navigation Buttons -->
+                            <div class="mt-8 flex justify-between">
+                                <button id="prev-button" class="inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950 disabled:pointer-events-none disabled:opacity-50" disabled>
                                     Previous
                                 </button>
-                                <button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition" onclick="nextQuestion(1)">
+                                <button id="next-button" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
                                     Next
                                 </button>
                             </div>
                         </div>
                         
-                        <!-- Question 2 -->
-                        <div class="question-container" id="question-2">
-                            <div class="p-6">
-                                <div class="space-y-4">
-                                    <h3 class="text-xl font-semibold">What specific service do you need?</h3>
-                                    <div class="space-y-2" id="q2-options">
-                                        <!-- Options will be dynamically populated based on Q1 answer -->
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-6 border-t flex justify-between">
-                                <button class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition" onclick="previousQuestion(2)">
-                                    Previous
-                                </button>
-                                <button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition" onclick="nextQuestion(2)">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Question 3 -->
-                        <div class="question-container" id="question-3">
-                            <div class="p-6">
-                                <div class="space-y-4">
-                                    <h3 class="text-xl font-semibold">What is your experience level with cryptocurrency?</h3>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q3-option1" name="q3" value="Beginner" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q3-option1" class="text-sm font-medium text-gray-700 cursor-pointer">Complete Beginner</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q3-option2" name="q3" value="Basic" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q3-option2" class="text-sm font-medium text-gray-700 cursor-pointer">Some Basic Knowledge</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q3-option3" name="q3" value="Intermediate" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q3-option3" class="text-sm font-medium text-gray-700 cursor-pointer">Intermediate User</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q3-option4" name="q3" value="Advanced" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q3-option4" class="text-sm font-medium text-gray-700 cursor-pointer">Advanced User</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q3-option5" name="q3" value="Expert" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q3-option5" class="text-sm font-medium text-gray-700 cursor-pointer">Professional/Expert</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-6 border-t flex justify-between">
-                                <button class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition" onclick="previousQuestion(3)">
-                                    Previous
-                                </button>
-                                <button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition" onclick="nextQuestion(3)">
-                                    Next
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Question 4 -->
-                        <div class="question-container" id="question-4">
-                            <div class="p-6">
-                                <div class="space-y-4">
-                                    <h3 class="text-xl font-semibold">Do you prefer working with someone remotely or locally?</h3>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q4-option1" name="q4" value="Remote" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q4-option1" class="text-sm font-medium text-gray-700 cursor-pointer">Remote Only</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q4-option2" name="q4" value="Local" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q4-option2" class="text-sm font-medium text-gray-700 cursor-pointer">Local Only</label>
-                                        </div>
-                                        <div class="flex items-center space-x-2">
-                                            <input type="radio" id="q4-option3" name="q4" value="Either" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                                            <label for="q4-option3" class="text-sm font-medium text-gray-700 cursor-pointer">Either Remote or Local</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="p-6 border-t flex justify-between">
-                                <button class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition" onclick="previousQuestion(4)">
-                                    Previous
-                                </button>
-                                <button class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition" onclick="showResults()">
-                                    See Results
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Results Container -->
-                    <div id="results-container" class="results-container space-y-8">
-                        <div class="border rounded-lg shadow-sm bg-white">
-                            <div class="p-6 border-b">
-                                <h3 class="text-xl font-semibold">Your Matches</h3>
-                                <p class="text-gray-500 text-sm mt-1">
-                                    Based on your answers, we've found these service providers that match your needs.
+                        <!-- Quiz Results -->
+                        <div id="quiz-results" class="hidden">
+                            <div class="text-center mb-8">
+                                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Your Crypto Service Matches</h1>
+                                <p class="mt-4 text-gray-500">
+                                    Based on your needs, we've found these service providers that might be a good fit.
                                 </p>
                             </div>
-                            <div class="p-6">
-                                <div class="space-y-6" id="results-list">
-                                    <!-- Results will be dynamically populated -->
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                                <!-- Match 1 -->
+                                <div class="border rounded-lg overflow-hidden shadow-sm bg-white">
+                                    <div class="p-6 border-b">
+                                        <div class="flex justify-between items-center">
+                                            <h3 class="text-xl font-bold">CryptoSecure Solutions</h3>
+                                            <div class="flex items-center">
+                                                <span class="text-yellow-500">★★★★★</span>
+                                                <span class="text-sm text-gray-500 ml-1">(48)</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Security & Wallet Protection</p>
+                                    </div>
+                                    <div class="p-6">
+                                        <p class="text-sm text-gray-500">
+                                            Specializing in cryptocurrency security audits, wallet protection, and recovery services. Perfect for users concerned about asset security.
+                                        </p>
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Security</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Wallets</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Recovery</span>
+                                        </div>
+                                        <div class="mt-6">
+                                            <a href="provider-detail.html?id=1" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                                View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Match 2 -->
+                                <div class="border rounded-lg overflow-hidden shadow-sm bg-white">
+                                    <div class="p-6 border-b">
+                                        <div class="flex justify-between items-center">
+                                            <h3 class="text-xl font-bold">Blockchain Educators</h3>
+                                            <div class="flex items-center">
+                                                <span class="text-yellow-500">★★★★☆</span>
+                                                <span class="text-sm text-gray-500 ml-1">(36)</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Crypto Education & Training</p>
+                                    </div>
+                                    <div class="p-6">
+                                        <p class="text-sm text-gray-500">
+                                            Offering comprehensive educational resources, personalized training, and workshops for beginners and intermediate crypto users.
+                                        </p>
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Education</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Training</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Workshops</span>
+                                        </div>
+                                        <div class="mt-6">
+                                            <a href="provider-detail.html?id=2" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                                View Profile
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Match 3 -->
+                                <div class="border rounded-lg overflow-hidden shadow-sm bg-white">
+                                    <div class="p-6 border-b">
+                                        <div class="flex justify-between items-center">
+                                            <h3 class="text-xl font-bold">CryptoTax Experts</h3>
+                                            <div class="flex items-center">
+                                                <span class="text-yellow-500">★★★★★</span>
+                                                <span class="text-sm text-gray-500 ml-1">(52)</span>
+                                            </div>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Cryptocurrency Tax Services</p>
+                                    </div>
+                                    <div class="p-6">
+                                        <p class="text-sm text-gray-500">
+                                            Specialized tax preparation, compliance, and advisory services for cryptocurrency investors, traders, and businesses.
+                                        </p>
+                                        <div class="flex flex-wrap gap-2 mt-4">
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Tax</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Compliance</span>
+                                            <span class="bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full">Advisory</span>
+                                        </div>
+                                        <div class="mt-6">
+                                            <a href="provider-detail.html?id=3" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
+                                                View Profile
+                                            </a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="p-6 border-t flex justify-between">
-                                <button class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition" onclick="restartQuiz()">
-                                    Restart Quiz
-                                </button>
-                                <a href="providers.html" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
-                                    View All Providers
+                            
+                            <div class="mt-12 text-center">
+                                <p class="text-gray-500 mb-6">Want to see more options?</p>
+                                <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                    Browse All Providers
                                 </a>
+                                <button id="retake-quiz" class="mt-4 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-white px-8 text-sm font-medium shadow-sm transition-colors hover:bg-gray-100 hover:text-gray-900 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-gray-950">
+                                    Retake Quiz
+                                </button>
                             </div>
-                        </div>
-                        
-                        <div class="text-center">
-                            <p class="text-sm text-gray-500">
-                                <strong>Disclaimer:</strong> CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
-                                Users are solely responsible for verifying the credentials and qualifications of any service provider.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -359,349 +665,130 @@
     </footer>
 
     <script>
-        // Quiz data
-        const quizData = {
-            Security: {
-                options: [
-                    { id: 'q2-security1', value: 'Wallet', label: 'Wallet Security & Recovery' },
-                    { id: 'q2-security2', value: 'Forensic', label: 'Forensic Analysis & Investigation' },
-                    { id: 'q2-security3', value: 'Audit', label: 'Security Audits & Consultation' },
-                    { id: 'q2-security4', value: 'Storage', label: 'Secure Storage Solutions' }
-                ]
-            },
-            Tax: {
-                options: [
-                    { id: 'q2-tax1', value: 'Filing', label: 'Crypto Tax Filing & Preparation' },
-                    { id: 'q2-tax2', value: 'Planning', label: 'Tax Planning & Strategy' },
-                    { id: 'q2-tax3', value: 'Business', label: 'Business Accounting & Bookkeeping' },
-                    { id: 'q2-tax4', value: 'Software', label: 'Tax Software & Tools' }
-                ]
-            },
-            Education: {
-                options: [
-                    { id: 'q2-edu1', value: 'Basics', label: 'Beginner Crypto Fundamentals' },
-                    { id: 'q2-edu2', value: 'DeFi', label: 'DeFi & Advanced Trading' },
-                    { id: 'q2-edu3', value: 'Security', label: 'Security Best Practices' },
-                    { id: 'q2-edu4', value: 'Analysis', label: 'Technical Analysis & Market Research' }
-                ]
-            },
-            Legal: {
-                options: [
-                    { id: 'q2-legal1', value: 'Compliance', label: 'Regulatory Compliance' },
-                    { id: 'q2-legal2', value: 'Business', label: 'Business Formation & Structure' },
-                    { id: 'q2-legal3', value: 'Estate', label: 'Estate Planning for Digital Assets' },
-                    { id: 'q2-legal4', value: 'Contracts', label: 'Contract Review & Development' }
-                ]
-            },
-            Development: {
-                options: [
-                    { id: 'q2-dev1', value: 'Smart', label: 'Smart Contract Development' },
-                    { id: 'q2-dev2', value: 'NFT', label: 'NFT Creation & Marketplace Integration' },
-                    { id: 'q2-dev3', value: 'Node', label: 'Node Setup & Maintenance' },
-                    { id: 'q2-dev4', value: 'Mining', label: 'Mining Setup & Optimization' }
-                ]
-            }
-        };
-        
-        // Provider data
-        const providers = [
-            {
-                id: 1,
-                name: "Alex Chen",
-                company: "CryptoSafe Solutions",
-                category: "Security",
-                subcategory: "Wallet Security",
-                rating: 4.9,
-                reviews: 127,
-                description: "Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.",
-                location: "Remote (US-based)"
-            },
-            {
-                id: 2,
-                name: "Sarah Johnson",
-                company: "Crypto Tax Pros",
-                category: "Tax",
-                subcategory: "Crypto Taxation",
-                rating: 4.8,
-                reviews: 93,
-                description: "CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.",
-                location: "New York, NY (Remote Available)"
-            },
-            {
-                id: 3,
-                name: "Michael Rodriguez",
-                company: "BlockEd Academy",
-                category: "Education",
-                subcategory: "Beginner Courses",
-                rating: 4.7,
-                reviews: 215,
-                description: "Blockchain educator with a passion for making crypto accessible to beginners. Creator of the 'Crypto Fundamentals' course series.",
-                location: "Remote"
-            },
-            {
-                id: 4,
-                name: "Jessica Lee",
-                company: "Crypto Legal Advisors",
-                category: "Legal",
-                subcategory: "Regulatory Compliance",
-                rating: 4.9,
-                reviews: 78,
-                description: "Attorney specializing in cryptocurrency regulations and compliance. Helping businesses navigate the evolving legal landscape of digital assets.",
-                location: "San Francisco, CA (Remote Available)"
-            },
-            {
-                id: 5,
-                name: "David Kim",
-                company: "CryptoDevs",
-                category: "Development",
-                subcategory: "Smart Contracts",
-                rating: 4.8,
-                reviews: 64,
-                description: "Blockchain developer with expertise in Ethereum and Solana smart contracts. Focused on security-first development practices.",
-                location: "Remote"
-            },
-            {
-                id: 6,
-                name: "Emma Wilson",
-                company: "Crypto Business Solutions",
-                category: "Business",
-                subcategory: "Payment Integration",
-                rating: 4.7,
-                reviews: 52,
-                description: "Consultant specializing in helping businesses integrate cryptocurrency payment solutions. Expert in merchant services and payment processors.",
-                location: "Chicago, IL (Remote Available)"
-            },
-            {
-                id: 7,
-                name: "Robert Taylor",
-                company: "Secure Node Hosting",
-                category: "Technical",
-                subcategory: "Node Operation",
-                rating: 4.6,
-                reviews: 41,
-                description: "Technical specialist in setting up and maintaining cryptocurrency nodes. Expertise in staking, validation, and node security.",
-                location: "Remote"
-            },
-            {
-                id: 8,
-                name: "Olivia Martinez",
-                company: "CryptoTax Simplified",
-                category: "Tax",
-                subcategory: "Tax Software",
-                rating: 4.5,
-                reviews: 89,
-                description: "Creator of user-friendly crypto tax software designed for both beginners and experienced traders. Simplifying tax compliance since 2019.",
-                location: "Austin, TX (Remote Available)"
-            },
-            {
-                id: 9,
-                name: "James Wilson",
-                company: "Blockchain Forensics",
-                category: "Security",
-                subcategory: "Forensic Analysis",
-                rating: 4.9,
-                reviews: 37,
-                description: "Specialist in blockchain forensics and transaction analysis. Helping recover funds and investigate suspicious activities on the blockchain.",
-                location: "Remote (US-based)"
-            },
-            {
-                id: 10,
-                name: "Sophia Garcia",
-                company: "DeFi Educators",
-                category: "Education",
-                subcategory: "DeFi Training",
-                rating: 4.7,
-                reviews: 112,
-                description: "Educator specializing in decentralized finance (DeFi) protocols and strategies. Making complex DeFi concepts accessible to everyone.",
-                location: "Remote"
-            }
-        ];
-        
-        // Quiz state
-        let currentQuestion = 1;
-        const answers = {
-            q1: '',
-            q2: '',
-            q3: '',
-            q4: ''
-        };
-        
-        // Update progress bar
-        function updateProgress(questionNumber) {
-            const progress = (questionNumber / 4) * 100;
-            document.getElementById('progress-bar').style.width = `${progress}%`;
-            document.getElementById('progress-percentage').textContent = `${Math.round(progress)}% completed`;
-            document.getElementById('question-number').textContent = `Question ${questionNumber} of 4`;
-        }
-        
-        // Show next question
-        function nextQuestion(questionNumber) {
-            // Validate current question has an answer
-            const currentQuestionName = `q${questionNumber}`;
-            const selectedOption = document.querySelector(`input[name="${currentQuestionName}"]:checked`);
+        document.addEventListener('DOMContentLoaded', function() {
+            // Quiz variables
+            const quizIntro = document.getElementById('quiz-intro');
+            const quizQuestions = document.getElementById('quiz-questions');
+            const quizResults = document.getElementById('quiz-results');
+            const startQuizButton = document.getElementById('start-quiz');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const retakeQuizButton = document.getElementById('retake-quiz');
+            const currentQuestionSpan = document.getElementById('current-question');
+            const totalQuestionsSpan = document.getElementById('total-questions');
+            const progressPercentSpan = document.getElementById('progress-percent');
+            const progressFill = document.querySelector('.progress-fill');
             
-            if (!selectedOption) {
-                alert('Please select an option to continue.');
-                return;
-            }
+            const questions = document.querySelectorAll('.question');
+            const totalQuestions = questions.length;
+            let currentQuestionIndex = 0;
             
-            // Save answer
-            answers[currentQuestionName] = selectedOption.value;
+            // Set total questions
+            totalQuestionsSpan.textContent = totalQuestions;
             
-            // If moving from Q1 to Q2, populate Q2 options based on Q1 answer
-            if (questionNumber === 1) {
-                populateQ2Options(answers.q1);
-            }
-            
-            // Hide current question, show next
-            document.getElementById(`question-${questionNumber}`).classList.remove('active');
-            document.getElementById(`question-${questionNumber + 1}`).classList.add('active');
-            
-            // Update progress
-            currentQuestion = questionNumber + 1;
-            updateProgress(currentQuestion);
-        }
-        
-        // Show previous question
-        function previousQuestion(questionNumber) {
-            document.getElementById(`question-${questionNumber}`).classList.remove('active');
-            document.getElementById(`question-${questionNumber - 1}`).classList.add('active');
-            
-            currentQuestion = questionNumber - 1;
-            updateProgress(currentQuestion);
-        }
-        
-        // Populate Q2 options based on Q1 answer
-        function populateQ2Options(category) {
-            const optionsContainer = document.getElementById('q2-options');
-            optionsContainer.innerHTML = '';
-            
-            const options = quizData[category].options;
-            options.forEach(option => {
-                const optionDiv = document.createElement('div');
-                optionDiv.className = 'flex items-center space-x-2';
-                optionDiv.innerHTML = `
-                    <input type="radio" id="${option.id}" name="q2" value="${option.value}" class="h-4 w-4 text-primary border-gray-300 focus:ring-primary">
-                    <label for="${option.id}" class="text-sm font-medium text-gray-700 cursor-pointer">${option.label}</label>
-                `;
-                optionsContainer.appendChild(optionDiv);
-            });
-        }
-        
-        // Show results
-        function showResults() {
-            // Validate Q4 has an answer
-            const selectedOption = document.querySelector('input[name="q4"]:checked');
-            if (!selectedOption) {
-                alert('Please select an option to continue.');
-                return;
-            }
-            
-            // Save answer
-            answers.q4 = selectedOption.value;
-            
-            // Hide quiz, show results
-            document.getElementById('quiz-container').style.display = 'none';
-            document.getElementById('results-container').classList.add('active');
-            
-            // Generate results
-            generateResults();
-        }
-        
-        // Generate results
-        function generateResults() {
-            const resultsContainer = document.getElementById('results-list');
-            resultsContainer.innerHTML = '';
-            
-            // Filter providers based on answers
-            let matchedProviders = providers.filter(provider => {
-                // Match by primary category
-                return provider.category === answers.q1;
+            // Start quiz
+            startQuizButton.addEventListener('click', function() {
+                quizIntro.classList.add('hidden');
+                quizQuestions.classList.remove('hidden');
+                showQuestion(0);
             });
             
-            // If no exact matches, show providers from all categories
-            if (matchedProviders.length === 0) {
-                matchedProviders = providers.slice(0, 3);
+            // Previous button
+            prevButton.addEventListener('click', function() {
+                if (currentQuestionIndex > 0) {
+                    showQuestion(currentQuestionIndex - 1);
+                }
+            });
+            
+            // Next button
+            nextButton.addEventListener('click', function() {
+                if (currentQuestionIndex < totalQuestions - 1) {
+                    showQuestion(currentQuestionIndex + 1);
+                } else {
+                    // Show results
+                    quizQuestions.classList.add('hidden');
+                    quizResults.classList.remove('hidden');
+                }
+            });
+            
+            // Retake quiz
+            retakeQuizButton.addEventListener('click', function() {
+                quizResults.classList.add('hidden');
+                quizIntro.classList.remove('hidden');
+                resetQuiz();
+            });
+            
+            // Show question
+            function showQuestion(index) {
+                // Hide all questions
+                questions.forEach(question => {
+                    question.classList.add('hidden');
+                });
+                
+                // Show current question
+                questions[index].classList.remove('hidden');
+                
+                // Update current question index
+                currentQuestionIndex = index;
+                
+                // Update progress
+                currentQuestionSpan.textContent = currentQuestionIndex + 1;
+                const progressPercent = Math.round(((currentQuestionIndex + 1) / totalQuestions) * 100);
+                progressPercentSpan.textContent = progressPercent + '%';
+                progressFill.style.width = progressPercent + '%';
+                
+                // Update buttons
+                prevButton.disabled = currentQuestionIndex === 0;
+                nextButton.textContent = currentQuestionIndex === totalQuestions - 1 ? 'See Results' : 'Next';
             }
             
-            // Sort by rating
-            matchedProviders.sort((a, b) => b.rating - a.rating);
-            
-            // Take top 3
-            matchedProviders = matchedProviders.slice(0, 3);
-            
-            // Create result items
-            matchedProviders.forEach(provider => {
-                const resultDiv = document.createElement('div');
-                resultDiv.className = 'flex items-start space-x-4 p-4 border rounded-lg';
-                resultDiv.innerHTML = `
-                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center flex-shrink-0">
-                        <span class="text-lg font-bold text-primary">${provider.name.charAt(0)}</span>
-                    </div>
-                    <div class="space-y-1">
-                        <h3 class="font-semibold">${provider.name}</h3>
-                        <p class="text-sm text-gray-500">${provider.company}</p>
-                        <div class="flex items-center space-x-1">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                            </svg>
-                            <span class="text-sm font-medium">${provider.rating}</span>
-                            <span class="text-sm text-gray-500">(${provider.reviews} reviews)</span>
-                        </div>
-                        <p class="text-sm">${provider.description}</p>
-                        <div class="pt-2">
-                            <a href="provider-detail.html?id=${provider.id}" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                View Profile
-                            </a>
-                        </div>
-                    </div>
-                `;
-                resultsContainer.appendChild(resultDiv);
-            });
-            
-            // Add recommendation text
-            const recommendationDiv = document.createElement('div');
-            recommendationDiv.className = 'mt-6 p-4 bg-primary-light rounded-lg';
-            recommendationDiv.innerHTML = `
-                <h4 class="font-semibold text-primary">Recommendation</h4>
-                <p class="mt-2 text-sm">Based on your ${answers.q3} experience level and preference for ${answers.q4.toLowerCase()} services, we recommend exploring these providers who specialize in ${answers.q1.toLowerCase()} services, particularly in ${answers.q2.toLowerCase()}.</p>
-                <p class="mt-2 text-sm">For the best results, we suggest contacting multiple providers to compare their services and find the best fit for your specific needs.</p>
-            `;
-            resultsContainer.appendChild(recommendationDiv);
-        }
-        
-        // Restart quiz
-        function restartQuiz() {
-            // Reset answers
-            for (let key in answers) {
-                answers[key] = '';
+            // Reset quiz
+            function resetQuiz() {
+                currentQuestionIndex = 0;
+                
+                // Reset selected options
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.classList.remove('selected');
+                    option.querySelector('.option-selected').classList.add('hidden');
+                });
             }
             
-            // Reset radio buttons
-            const radioButtons = document.querySelectorAll('input[type="radio"]');
-            radioButtons.forEach(button => {
-                button.checked = false;
+            // Option selection
+            document.querySelectorAll('.quiz-option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Get all options in the same question
+                    const questionOptions = this.closest('.question').querySelectorAll('.quiz-option');
+                    
+                    // Remove selected class from all options
+                    questionOptions.forEach(opt => {
+                        opt.classList.remove('selected');
+                        opt.querySelector('.option-selected').classList.add('hidden');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    this.querySelector('.option-selected').classList.remove('hidden');
+                });
             });
             
-            // Hide results, show quiz
-            document.getElementById('results-container').classList.remove('active');
-            document.getElementById('quiz-container').style.display = 'block';
-            
-            // Show first question, hide others
-            document.querySelectorAll('.question-container').forEach(container => {
-                container.classList.remove('active');
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
             });
-            document.getElementById('question-1').classList.add('active');
             
-            // Reset progress
-            currentQuestion = 1;
-            updateProgress(currentQuestion);
-        }
-        
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('theme-toggle');
-        themeToggle.addEventListener('click', function() {
-            document.body.classList.toggle('dark-mode');
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
         });
     </script>
 </body>
