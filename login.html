@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - CryptoMall</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+        
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #111827;
+        }
+        
+        .dark-mode .text-gray-900 {
+            color: #f9fafb;
+        }
+        
+        .dark-mode .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .border {
+            border-color: #374151;
+        }
+        
+        .dark-mode .bg-gray-50,
+        .dark-mode .bg-gray-100,
+        .dark-mode .bg-gray-200 {
+            background-color: #1f2937;
+        }
+        
+        .dark-mode .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode input,
+        .dark-mode select,
+        .dark-mode textarea {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #e5e7eb;
+        }
+        
+        .dark-mode input::placeholder,
+        .dark-mode select::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #9ca3af;
+        }
+        
+        .dark-mode label {
+            color: #e5e7eb;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="join.html" class="text-sm font-medium text-primary hover:underline">Join</a>
+                    <div id="auth-section">
+                        <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
+                    </div>
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="w-full py-12 md:py-24 lg:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md mx-auto">
+                    <div class="text-center mb-8">
+                        <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">Log in to CryptoMall</h1>
+                        <p class="mt-4 text-gray-500">
+                            Access your account to save preferences and track your progress.
+                        </p>
+                    </div>
+                    
+                    <div class="bg-white p-8 rounded-lg shadow-sm border">
+                        <form id="login-form" class="space-y-6">
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" id="email" name="email" class="w-full px-3 py-2 border rounded-md" placeholder="admin@admin.com" value="admin@admin.com" required>
+                            </div>
+                            
+                            <div>
+                                <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                                <input type="password" id="password" name="password" class="w-full px-3 py-2 border rounded-md" placeholder="admin" value="admin" required>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center">
+                                    <input type="checkbox" id="remember" name="remember" class="h-4 w-4 border-gray-300 rounded">
+                                    <label for="remember" class="ml-2 block text-sm text-gray-700">Remember me</label>
+                                </div>
+                                
+                                <a href="#" class="text-sm text-primary hover:underline">Forgot password?</a>
+                            </div>
+                            
+                            <div>
+                                <button type="submit" class="w-full inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                    Sign in
+                                </button>
+                            </div>
+                        </form>
+                        
+                        <div class="mt-6 text-center">
+                            <p class="text-sm text-gray-500">
+                                Don't have an account? <a href="join.html" class="text-primary hover:underline">Join as a provider</a>
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div id="login-success" class="bg-white p-8 rounded-lg shadow-sm border mt-6 hidden">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
+                            <h2 class="text-xl font-bold mb-2">Login Successful!</h2>
+                            <p class="text-gray-500 mb-4">
+                                You are now logged in as <span class="font-medium text-primary">Admin</span>.
+                            </p>
+                            <a href="index.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                Go to Homepage
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Crypto Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is already logged in
+            const isLoggedIn = localStorage.getItem('cryptomall_logged_in');
+            if (isLoggedIn === 'true') {
+                document.getElementById('login-form').classList.add('hidden');
+                document.getElementById('login-success').classList.remove('hidden');
+                updateAuthSection();
+            }
+            
+            // Login form submission
+            const loginForm = document.getElementById('login-form');
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple validation for demo credentials
+                if (email === 'admin@admin.com' && password === 'admin') {
+                    // Store login state
+                    localStorage.setItem('cryptomall_logged_in', 'true');
+                    localStorage.setItem('cryptomall_user', 'Admin');
+                    
+                    // Show success message
+                    loginForm.classList.add('hidden');
+                    document.getElementById('login-success').classList.remove('hidden');
+                    
+                    // Update auth section
+                    updateAuthSection();
+                } else {
+                    alert('Invalid credentials. Please use admin@admin.com / admin for this demo.');
+                }
+            });
+            
+            // Update auth section based on login state
+            function updateAuthSection() {
+                const authSection = document.getElementById('auth-section');
+                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
+                const username = localStorage.getItem('cryptomall_user') || 'User';
+                
+                if (isLoggedIn) {
+                    authSection.innerHTML = `
+                        <div class="relative group">
+                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
+                                ${username}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add logout functionality
+                    setTimeout(() => {
+                        const logoutButton = document.getElementById('logout-button');
+                        if (logoutButton) {
+                            logoutButton.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                localStorage.removeItem('cryptomall_logged_in');
+                                localStorage.removeItem('cryptomall_user');
+                                window.location.href = 'index.html';
+                            });
+                        }
+                    }, 100);
+                } else {
+                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
+                }
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Update auth section on page load
+            updateAuthSection();
+        });
+    </script>
+</body>
+</html>

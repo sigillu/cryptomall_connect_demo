@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - CryptoMall</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+        
+        /* Dark mode styles */
+        .dark-mode {
+            background-color: #1f2937;
+            color: #f9fafb;
+        }
+        
+        .dark-mode .bg-white {
+            background-color: #111827;
+        }
+        
+        .dark-mode .text-gray-900 {
+            color: #f9fafb;
+        }
+        
+        .dark-mode .text-gray-500 {
+            color: #9ca3af;
+        }
+        
+        .dark-mode .text-gray-700 {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .border {
+            border-color: #374151;
+        }
+        
+        .dark-mode .bg-gray-50,
+        .dark-mode .bg-gray-100,
+        .dark-mode .bg-gray-200 {
+            background-color: #1f2937;
+        }
+        
+        .dark-mode .shadow-sm {
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark-mode input,
+        .dark-mode select,
+        .dark-mode textarea {
+            background-color: #374151;
+            border-color: #4b5563;
+            color: #e5e7eb;
+        }
+        
+        .dark-mode input::placeholder,
+        .dark-mode select::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #9ca3af;
+        }
+        
+        .dark-mode label {
+            color: #e5e7eb;
+        }
+        
+        .dark-mode .bg-yellow-50 {
+            background-color: #2d2b17;
+        }
+        
+        .dark-mode .text-yellow-800 {
+            color: #fcd34d;
+        }
+        
+        .dark-mode .border-yellow-300 {
+            border-color: #78350f;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                    <a href="admin.html" class="text-sm font-medium text-primary">Admin</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <div id="auth-section">
+                        <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
+                    </div>
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="w-full py-12 md:py-24 lg:py-32">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-6xl mx-auto">
+                    <div id="login-required" class="hidden">
+                        <div class="bg-yellow-50 border-l-4 border-yellow-300 p-4 mb-8">
+                            <div class="flex">
+                                <div class="flex-shrink-0">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-800">
+                                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
+                                        <line x1="12" y1="9" x2="12" y2="13"></line>
+                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <p class="text-sm text-yellow-800">
+                                        You must be logged in as an administrator to access this page.
+                                        <a href="login.html" class="font-medium underline">Log in now</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="admin-dashboard" class="hidden">
+                        <div class="text-center mb-8">
+                            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">Admin Dashboard</h1>
+                            <p class="mt-4 text-gray-500">
+                                Manage provider applications and platform settings.
+                            </p>
+                        </div>
+                        
+                        <!-- Dashboard Navigation -->
+                        <div class="bg-white p-4 rounded-lg shadow-sm border mb-8">
+                            <div class="flex flex-wrap gap-4">
+                                <button class="tab-button px-4 py-2 rounded-md bg-primary text-white" data-tab="pending-applications">
+                                    Pending Applications
+                                </button>
+                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="approved-providers">
+                                    Approved Providers
+                                </button>
+                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="site-settings">
+                                    Site Settings
+                                </button>
+                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="user-management">
+                                    User Management
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Pending Applications Tab -->
+                        <div id="pending-applications" class="tab-content">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h2 class="text-xl font-bold mb-4">Pending Provider Applications</h2>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200" id="pending-applications-table">
+                                            <!-- Sample pending applications will be loaded here -->
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">Crypto Security Solutions</div>
+                                                            <div class="text-sm text-gray-500">United States</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Security & Protection</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">John Smith</div>
+                                                    <div class="text-sm text-gray-500">john@example.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 17, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
+                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
+                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">Blockchain Academy</div>
+                                                            <div class="text-sm text-gray-500">Canada</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Education & Training</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">Sarah Johnson</div>
+                                                    <div class="text-sm text-gray-500">sarah@example.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 16, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
+                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
+                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">Crypto Tax Experts</div>
+                                                            <div class="text-sm text-gray-500">United Kingdom</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Tax & Accounting</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-900">Michael Brown</div>
+                                                    <div class="text-sm text-gray-500">michael@example.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 15, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
+                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
+                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="mt-4 flex justify-between">
+                                    <div class="text-sm text-gray-500">
+                                        Showing <span class="font-medium">3</span> pending applications
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Previous</button>
+                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Approved Providers Tab -->
+                        <div id="approved-providers" class="tab-content hidden">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h2 class="text-xl font-bold mb-4">Approved Providers</h2>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approved On</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <!-- Sample approved providers -->
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">CryptoGuard Solutions</div>
+                                                            <div class="text-sm text-gray-500">United States</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Security & Protection</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 10, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
+                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">Blockchain Developers Inc</div>
+                                                            <div class="text-sm text-gray-500">Canada</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Development & Implementation</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 8, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
+                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="flex items-center">
+                                                        <div>
+                                                            <div class="text-sm font-medium text-gray-900">Crypto Legal Advisors</div>
+                                                            <div class="text-sm text-gray-500">United Kingdom</div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Legal Services</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Suspended</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                    May 5, 2025
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                    <button class="text-green-600 hover:text-green-900 mr-3">Activate</button>
+                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="mt-4 flex justify-between">
+                                    <div class="text-sm text-gray-500">
+                                        Showing <span class="font-medium">3</span> of <span class="font-medium">12</span> providers
+                                    </div>
+                                    <div class="flex space-x-2">
+                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Previous</button>
+                                        <button class="px-3 py-1 border rounded text-sm text-primary hover:bg-gray-50">Next</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Site Settings Tab -->
+                        <div id="site-settings" class="tab-content hidden">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h2 class="text-xl font-bold mb-4">Site Settings</h2>
+                                
+                                <form class="space-y-6">
+                                    <div>
+                                        <h3 class="text-lg font-medium mb-3">General Settings</h3>
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                            <div>
+                                                <label for="site_name" class="block text-sm font-medium text-gray-700 mb-1">Site Name</label>
+                                                <input type="text" id="site_name" name="site_name" class="w-full px-3 py-2 border rounded-md" value="CryptoMall">
+                                            </div>
+                                            
+                                            <div>
+                                                <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">Contact Email</label>
+                                                <input type="email" id="contact_email" name="contact_email" class="w-full px-3 py-2 border rounded-md" value="info@cryptomall.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-medium mb-3">Provider Settings</h3>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label for="auto_approve" class="flex items-center">
+                                                    <input type="checkbox" id="auto_approve" name="auto_approve" class="h-4 w-4 border-gray-300 rounded">
+                                                    <span class="ml-2 text-sm text-gray-700">Auto-approve new provider applications</span>
+                                                </label>
+                                            </div>
+                                            
+                                            <div>
+                                                <label for="featured_limit" class="block text-sm font-medium text-gray-700 mb-1">Featured Providers Limit</label>
+                                                <input type="number" id="featured_limit" name="featured_limit" class="w-full px-3 py-2 border rounded-md" value="6">
+                                            </div>
+                                            
+                                            <div>
+                                                <label for="categories" class="block text-sm font-medium text-gray-700 mb-1">Provider Categories</label>
+                                                <textarea id="categories" name="categories" rows="4" class="w-full px-3 py-2 border rounded-md">Education & Training
+Security & Protection
+Development & Implementation
+Tax & Accounting
+Legal Services
+Business Consulting
+Hardware & Equipment</textarea>
+                                                <p class="text-xs text-gray-500 mt-1">One category per line</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        <h3 class="text-lg font-medium mb-3">Content Settings</h3>
+                                        <div class="space-y-4">
+                                            <div>
+                                                <label for="enable_blog" class="flex items-center">
+                                                    <input type="checkbox" id="enable_blog" name="enable_blog" class="h-4 w-4 border-gray-300 rounded" checked>
+                                                    <span class="ml-2 text-sm text-gray-700">Enable Education Hub</span>
+                                                </label>
+                                            </div>
+                                            
+                                            <div>
+                                                <label for="enable_quiz" class="flex items-center">
+                                                    <input type="checkbox" id="enable_quiz" name="enable_quiz" class="h-4 w-4 border-gray-300 rounded" checked>
+                                                    <span class="ml-2 text-sm text-gray-700">Enable Matching Quiz</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="pt-4">
+                                        <button type="submit" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                            Save Settings
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- User Management Tab -->
+                        <div id="user-management" class="tab-content hidden">
+                            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                                <h2 class="text-xl font-bold mb-4">User Management</h2>
+                                
+                                <div class="overflow-x-auto">
+                                    <table class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-50">
+                                            <tr>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="bg-white divide-y divide-gray-200">
+                                            <!-- Sample users -->
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">Admin User</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">admin@admin.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Administrator</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">john@example.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Moderator</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
+                                                    <button class="text-red-600 hover:text-red-900">Delete</button>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <div class="text-sm text-gray-500">sarah@example.com</div>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">User</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Suspended</span>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
+                                                    <button class="text-green-600 hover:text-green-900 mr-3">Activate</button>
+                                                    <button class="text-red-600 hover:text-red-900">Delete</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <div class="mt-6">
+                                    <button class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        Add New User
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Crypto Basics
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Security Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in as admin
+            const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
+            const username = localStorage.getItem('cryptomall_user');
+            
+            if (isLoggedIn && username === 'Admin') {
+                document.getElementById('login-required').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+            } else {
+                document.getElementById('login-required').classList.remove('hidden');
+                document.getElementById('admin-dashboard').classList.add('hidden');
+            }
+            
+            // Tab switching functionality
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabName = this.getAttribute('data-tab');
+                    
+                    // Update button styles
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('bg-primary', 'text-white');
+                        btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    });
+                    
+                    this.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                    this.classList.add('bg-primary', 'text-white');
+                    
+                    // Show selected tab content
+                    tabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    
+                    document.getElementById(tabName).classList.remove('hidden');
+                });
+            });
+            
+            // Update auth section based on login state
+            function updateAuthSection() {
+                const authSection = document.getElementById('auth-section');
+                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
+                const username = localStorage.getItem('cryptomall_user') || 'User';
+                
+                if (isLoggedIn) {
+                    authSection.innerHTML = `
+                        <div class="relative group">
+                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
+                                ${username}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add logout functionality
+                    setTimeout(() => {
+                        const logoutButton = document.getElementById('logout-button');
+                        if (logoutButton) {
+                            logoutButton.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                localStorage.removeItem('cryptomall_logged_in');
+                                localStorage.removeItem('cryptomall_user');
+                                window.location.href = 'index.html';
+                            });
+                        }
+                    }, 100);
+                } else {
+                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
+                }
+            }
+            
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Update auth section on page load
+            updateAuthSection();
+            
+            // Check for user application data
+            const applicationData = localStorage.getItem('cryptomall_provider_application');
+            if (applicationData) {
+                const application = JSON.parse(applicationData);
+                const applicationDate = localStorage.getItem('cryptomall_application_date');
+                
+                // In a real implementation, we would display this data in the pending applications table
+                console.log('User application data:', application);
+                console.log('Application date:', applicationDate);
+            }
+        });
+    </script>
+</body>
+</html>
