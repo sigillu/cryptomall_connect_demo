@@ -23,12 +23,26 @@
             transform: translateY(-5px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
+        
+        /* Filter accordion */
+        .filter-accordion {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .filter-accordion.collapsed {
+            max-height: 0;
+        }
+        
+        .filter-accordion.expanded {
+            max-height: 1000px;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version f)
+        (version g)
     </div>
     
     <!-- Navigation -->
@@ -112,10 +126,105 @@
                             </select>
                         </div>
                     </div>
-                    <div class="mt-4 flex justify-end">
+                    
+                    <!-- Advanced Filters Toggle -->
+                    <div class="mt-4 flex justify-between items-center">
+                        <button id="advanced-filters-toggle" class="text-sm text-primary flex items-center">
+                            <span>Advanced Filters</span>
+                            <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transform transition-transform">
+                                <path d="m6 9 6 6 6-6"/>
+                            </svg>
+                        </button>
                         <button id="apply-filters" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
                             Apply Filters
                         </button>
+                    </div>
+                    
+                    <!-- Advanced Filters Section -->
+                    <div id="advanced-filters" class="filter-accordion collapsed mt-4 pt-4 border-t">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="specialization" class="block text-sm font-medium text-gray-700 mb-1">Specialization</label>
+                                <select id="specialization" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Any Specialization</option>
+                                    <option value="Wallet Security">Wallet Security</option>
+                                    <option value="Crypto Taxation">Crypto Taxation</option>
+                                    <option value="Beginner Courses">Beginner Courses</option>
+                                    <option value="Regulatory Compliance">Regulatory Compliance</option>
+                                    <option value="Smart Contracts">Smart Contracts</option>
+                                    <option value="Payment Integration">Payment Integration</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">Experience Level</label>
+                                <select id="experience" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Any Experience</option>
+                                    <option value="Beginner">Beginner-Friendly</option>
+                                    <option value="Intermediate">Intermediate</option>
+                                    <option value="Advanced">Advanced</option>
+                                    <option value="Expert">Expert</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="rating" class="block text-sm font-medium text-gray-700 mb-1">Minimum Rating</label>
+                                <select id="rating" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">Any Rating</option>
+                                    <option value="4.5">4.5+ Stars</option>
+                                    <option value="4">4+ Stars</option>
+                                    <option value="3.5">3.5+ Stars</option>
+                                    <option value="3">3+ Stars</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Services Offered</label>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-consulting" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-consulting" class="ml-2 text-sm text-gray-700">Consulting</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-training" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-training" class="ml-2 text-sm text-gray-700">Training</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-implementation" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-implementation" class="ml-2 text-sm text-gray-700">Implementation</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-support" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-support" class="ml-2 text-sm text-gray-700">Support</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-audit" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-audit" class="ml-2 text-sm text-gray-700">Audit</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="service-development" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="service-development" class="ml-2 text-sm text-gray-700">Development</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Additional Filters</label>
+                                <div class="space-y-2">
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="filter-remote" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="filter-remote" class="ml-2 text-sm text-gray-700">Remote Available</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="filter-verified" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="filter-verified" class="ml-2 text-sm text-gray-700">Verified Providers Only</label>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <input type="checkbox" id="filter-availability" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
+                                        <label for="filter-availability" class="ml-2 text-sm text-gray-700">Available for New Clients</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -314,154 +423,75 @@
                 image: "E"
             }
         ];
-
-        // Function to create provider cards
+        
+        // Function to create provider card
         function createProviderCard(provider) {
-            const card = document.createElement('div');
-            card.className = 'bg-white p-6 rounded-lg shadow-sm border transition card-hover';
-            
-            // Create initial letter avatar
-            const avatarBgColors = {
-                'A': 'bg-blue-100 text-blue-600',
-                'S': 'bg-green-100 text-green-600',
-                'M': 'bg-purple-100 text-purple-600',
-                'J': 'bg-pink-100 text-pink-600',
-                'D': 'bg-yellow-100 text-yellow-600',
-                'E': 'bg-red-100 text-red-600'
-            };
-            
-            const avatarColor = avatarBgColors[provider.image] || 'bg-gray-100 text-gray-600';
-            
-            card.innerHTML = `
-                <div class="flex items-center mb-4">
-                    <div class="w-12 h-12 ${avatarColor} rounded-full flex items-center justify-center mr-4">
-                        <span class="text-lg font-bold">${provider.image}</span>
+            return `
+                <div class="bg-white p-6 rounded-lg shadow-sm border transition card-hover">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mr-4">
+                            <span class="text-xl font-bold text-primary">${provider.image}</span>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">${provider.name}</h3>
+                            <p class="text-sm text-gray-500">${provider.company}</p>
+                        </div>
                     </div>
-                    <div>
-                        <h3 class="font-bold">${provider.company}</h3>
-                        <p class="text-sm text-gray-500">${provider.category} - ${provider.subcategory}</p>
+                    <div class="mb-4">
+                        <span class="inline-block bg-primary-light text-primary text-xs px-2 py-1 rounded-full mb-2">${provider.category}</span>
+                        <span class="inline-block bg-gray-100 text-gray-800 text-xs px-2 py-1 rounded-full mb-2 ml-1">${provider.subcategory}</span>
                     </div>
-                </div>
-                <p class="text-sm text-gray-500 mb-4">
-                    ${provider.description}
-                </p>
-                <div class="flex items-center mb-2">
-                    <div class="flex text-yellow-400">
-                        ${createStarRating(provider.rating)}
+                    <p class="text-sm text-gray-500 mb-4">
+                        ${provider.description}
+                    </p>
+                    <div class="flex items-center mb-4">
+                        <div class="flex text-yellow-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                            </svg>
+                            <span class="ml-1 text-sm text-gray-700">${provider.rating} (${provider.reviews} reviews)</span>
+                        </div>
                     </div>
-                    <span class="text-sm text-gray-500 ml-2">${provider.rating} (${provider.reviews} reviews)</span>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        ${provider.location}
+                    </div>
+                    <a href="provider-detail.html?id=${provider.id}" class="block text-center bg-white border border-primary text-primary px-4 py-2 rounded-md text-sm font-medium hover:bg-primary hover:text-white transition">
+                        View Profile
+                    </a>
                 </div>
-                <div class="text-sm text-gray-500 mb-4">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    ${provider.location}
-                </div>
-                <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                    View Profile
-                </a>
             `;
-            
-            return card;
         }
         
-        // Function to create star rating
-        function createStarRating(rating) {
-            let stars = '';
-            const fullStars = Math.floor(rating);
-            const hasHalfStar = rating % 1 >= 0.5;
-            
-            for (let i = 0; i < 5; i++) {
-                if (i < fullStars) {
-                    stars += `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    `;
-                } else if (i === fullStars && hasHalfStar) {
-                    stars += `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-                            <defs>
-                                <linearGradient id="half-star" x1="0%" y1="0%" x2="100%" y2="0%">
-                                    <stop offset="50%" stop-color="currentColor"></stop>
-                                    <stop offset="50%" stop-color="transparent" stop-opacity="1"></stop>
-                                </linearGradient>
-                            </defs>
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#half-star)" stroke="currentColor" stroke-width="1"></polygon>
-                        </svg>
-                    `;
+        // Populate providers grid
+        const providersGrid = document.getElementById('providers-grid');
+        if (providersGrid) {
+            allProviders.forEach(provider => {
+                providersGrid.innerHTML += createProviderCard(provider);
+            });
+        }
+        
+        // Advanced filters toggle
+        const advancedFiltersToggle = document.getElementById('advanced-filters-toggle');
+        const advancedFilters = document.getElementById('advanced-filters');
+        const toggleIcon = document.getElementById('toggle-icon');
+        
+        if (advancedFiltersToggle && advancedFilters && toggleIcon) {
+            advancedFiltersToggle.addEventListener('click', function() {
+                if (advancedFilters.classList.contains('collapsed')) {
+                    advancedFilters.classList.remove('collapsed');
+                    advancedFilters.classList.add('expanded');
+                    toggleIcon.classList.add('rotate-180');
                 } else {
-                    stars += `
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
-                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                        </svg>
-                    `;
+                    advancedFilters.classList.remove('expanded');
+                    advancedFilters.classList.add('collapsed');
+                    toggleIcon.classList.remove('rotate-180');
                 }
-            }
-            
-            return stars;
+            });
         }
-        
-        // Populate provider grid
-        document.addEventListener('DOMContentLoaded', function() {
-            const providersGrid = document.getElementById('providers-grid');
-            
-            if (providersGrid) {
-                allProviders.forEach(provider => {
-                    providersGrid.appendChild(createProviderCard(provider));
-                });
-            }
-            
-            // Filter functionality
-            const categorySelect = document.getElementById('category');
-            const locationSelect = document.getElementById('location');
-            const searchInput = document.getElementById('search');
-            const applyFiltersBtn = document.getElementById('apply-filters');
-            const resultsCount = document.getElementById('results-count');
-            
-            if (applyFiltersBtn) {
-                applyFiltersBtn.addEventListener('click', function() {
-                    const category = categorySelect.value.toLowerCase();
-                    const location = locationSelect.value.toLowerCase();
-                    const searchTerm = searchInput.value.toLowerCase();
-                    
-                    let filteredProviders = allProviders;
-                    
-                    // Filter by category
-                    if (category) {
-                        filteredProviders = filteredProviders.filter(provider => 
-                            provider.category.toLowerCase().includes(category)
-                        );
-                    }
-                    
-                    // Filter by location
-                    if (location) {
-                        filteredProviders = filteredProviders.filter(provider => 
-                            provider.location.toLowerCase().includes(location)
-                        );
-                    }
-                    
-                    // Filter by search term
-                    if (searchTerm) {
-                        filteredProviders = filteredProviders.filter(provider => 
-                            provider.name.toLowerCase().includes(searchTerm) || 
-                            provider.company.toLowerCase().includes(searchTerm) ||
-                            provider.description.toLowerCase().includes(searchTerm)
-                        );
-                    }
-                    
-                    // Update results count
-                    resultsCount.textContent = `Showing ${filteredProviders.length} of ${allProviders.length} providers`;
-                    
-                    // Clear and repopulate grid
-                    providersGrid.innerHTML = '';
-                    filteredProviders.forEach(provider => {
-                        providersGrid.appendChild(createProviderCard(provider));
-                    });
-                });
-            }
-        });
     </script>
 </body>
 </html>
