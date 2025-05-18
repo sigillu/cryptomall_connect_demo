@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Join as Provider - CryptoMall</title>
+    <title>CryptoMall - Join as Provider</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles */
@@ -31,10 +31,8 @@
             color: #f9fafb;
         }
         
-        .dark-mode .text-gray-500 {
-            color: #9ca3af;
-        }
-        
+        .dark-mode .text-gray-500,
+        .dark-mode .text-gray-600,
         .dark-mode .text-gray-700 {
             color: #e5e7eb;
         }
@@ -51,24 +49,6 @@
         
         .dark-mode .shadow-sm {
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        .dark-mode input,
-        .dark-mode select,
-        .dark-mode textarea {
-            background-color: #374151;
-            border-color: #4b5563;
-            color: #e5e7eb;
-        }
-        
-        .dark-mode input::placeholder,
-        .dark-mode select::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #9ca3af;
-        }
-        
-        .dark-mode label {
-            color: #e5e7eb;
         }
     </style>
 </head>
@@ -111,247 +91,523 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <section class="w-full py-12 md:py-24 lg:py-32">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-3xl mx-auto">
-                    <div id="registration-form-container">
-                        <div class="text-center mb-8">
-                            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">Join CryptoMall as a Provider</h1>
-                            <p class="mt-4 text-gray-500">
-                                Apply to be listed in our directory of trusted crypto service providers.
-                            </p>
-                        </div>
-                        
-                        <div class="bg-white p-8 rounded-lg shadow-sm border">
-                            <form id="provider-registration-form" class="space-y-6">
-                                <!-- Company Information -->
-                                <div>
-                                    <h2 class="text-xl font-bold mb-4">Company Information</h2>
-                                    
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label for="company_name" class="block text-sm font-medium text-gray-700 mb-1">Company Name *</label>
-                                            <input type="text" id="company_name" name="company_name" class="w-full px-3 py-2 border rounded-md" required>
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="website" class="block text-sm font-medium text-gray-700 mb-1">Website URL *</label>
-                                            <input type="url" id="website" name="website" class="w-full px-3 py-2 border rounded-md" required>
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="year_founded" class="block text-sm font-medium text-gray-700 mb-1">Year Founded</label>
-                                            <input type="number" id="year_founded" name="year_founded" class="w-full px-3 py-2 border rounded-md" min="1990" max="2025">
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="company_size" class="block text-sm font-medium text-gray-700 mb-1">Company Size</label>
-                                            <select id="company_size" name="company_size" class="w-full px-3 py-2 border rounded-md">
-                                                <option value="">Select size</option>
-                                                <option value="1-10">1-10 employees</option>
-                                                <option value="11-50">11-50 employees</option>
-                                                <option value="51-200">51-200 employees</option>
-                                                <option value="201-500">201-500 employees</option>
-                                                <option value="501+">501+ employees</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-4">
-                                        <label for="company_description" class="block text-sm font-medium text-gray-700 mb-1">Company Description *</label>
-                                        <textarea id="company_description" name="company_description" rows="4" class="w-full px-3 py-2 border rounded-md" required></textarea>
-                                        <p class="text-xs text-gray-500 mt-1">Briefly describe your company and its mission (max 500 characters).</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Services Information -->
-                                <div>
-                                    <h2 class="text-xl font-bold mb-4">Services Information</h2>
-                                    
-                                    <div>
-                                        <label for="primary_category" class="block text-sm font-medium text-gray-700 mb-1">Primary Service Category *</label>
-                                        <select id="primary_category" name="primary_category" class="w-full px-3 py-2 border rounded-md" required>
-                                            <option value="">Select category</option>
-                                            <option value="education">Education & Training</option>
-                                            <option value="security">Security & Protection</option>
-                                            <option value="development">Development & Implementation</option>
-                                            <option value="tax">Tax & Accounting</option>
-                                            <option value="legal">Legal Services</option>
-                                            <option value="consulting">Business Consulting</option>
-                                            <option value="hardware">Hardware & Equipment</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mt-4">
-                                        <label class="block text-sm font-medium text-gray-700 mb-1">Specializations *</label>
-                                        <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_blockchain" name="specializations[]" value="blockchain" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_blockchain" class="ml-2 block text-sm text-gray-700">Blockchain</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_wallets" name="specializations[]" value="wallets" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_wallets" class="ml-2 block text-sm text-gray-700">Wallets</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_security" name="specializations[]" value="security" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_security" class="ml-2 block text-sm text-gray-700">Security</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_defi" name="specializations[]" value="defi" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_defi" class="ml-2 block text-sm text-gray-700">DeFi</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_nft" name="specializations[]" value="nft" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_nft" class="ml-2 block text-sm text-gray-700">NFTs</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_tax" name="specializations[]" value="tax" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_tax" class="ml-2 block text-sm text-gray-700">Taxation</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_legal" name="specializations[]" value="legal" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_legal" class="ml-2 block text-sm text-gray-700">Legal</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_mining" name="specializations[]" value="mining" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_mining" class="ml-2 block text-sm text-gray-700">Mining</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input type="checkbox" id="spec_trading" name="specializations[]" value="trading" class="h-4 w-4 border-gray-300 rounded">
-                                                <label for="spec_trading" class="ml-2 block text-sm text-gray-700">Trading</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-4">
-                                        <label for="services_description" class="block text-sm font-medium text-gray-700 mb-1">Services Description *</label>
-                                        <textarea id="services_description" name="services_description" rows="4" class="w-full px-3 py-2 border rounded-md" required></textarea>
-                                        <p class="text-xs text-gray-500 mt-1">Describe the specific services you offer (max 1000 characters).</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Contact Information -->
-                                <div>
-                                    <h2 class="text-xl font-bold mb-4">Contact Information</h2>
-                                    
-                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                        <div>
-                                            <label for="contact_name" class="block text-sm font-medium text-gray-700 mb-1">Contact Name *</label>
-                                            <input type="text" id="contact_name" name="contact_name" class="w-full px-3 py-2 border rounded-md" required>
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">Contact Email *</label>
-                                            <input type="email" id="contact_email" name="contact_email" class="w-full px-3 py-2 border rounded-md" required>
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="contact_phone" class="block text-sm font-medium text-gray-700 mb-1">Contact Phone</label>
-                                            <input type="tel" id="contact_phone" name="contact_phone" class="w-full px-3 py-2 border rounded-md">
-                                        </div>
-                                        
-                                        <div>
-                                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Primary Location *</label>
-                                            <select id="location" name="location" class="w-full px-3 py-2 border rounded-md" required>
-                                                <option value="">Select location</option>
-                                                <option value="United States">United States</option>
-                                                <option value="Canada">Canada</option>
-                                                <option value="United Kingdom">United Kingdom</option>
-                                                <option value="European Union">European Union</option>
-                                                <option value="Asia">Asia</option>
-                                                <option value="Australia">Australia</option>
-                                                <option value="Other">Other</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <!-- Credentials & Experience -->
-                                <div>
-                                    <h2 class="text-xl font-bold mb-4">Credentials & Experience</h2>
-                                    
-                                    <div>
-                                        <label for="years_experience" class="block text-sm font-medium text-gray-700 mb-1">Years of Experience in Crypto *</label>
-                                        <select id="years_experience" name="years_experience" class="w-full px-3 py-2 border rounded-md" required>
-                                            <option value="">Select experience</option>
-                                            <option value="Less than 1 year">Less than 1 year</option>
-                                            <option value="1-3 years">1-3 years</option>
-                                            <option value="3-5 years">3-5 years</option>
-                                            <option value="5+ years">5+ years</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mt-4">
-                                        <label for="credentials" class="block text-sm font-medium text-gray-700 mb-1">Certifications & Credentials</label>
-                                        <textarea id="credentials" name="credentials" rows="3" class="w-full px-3 py-2 border rounded-md"></textarea>
-                                        <p class="text-xs text-gray-500 mt-1">List any relevant certifications, licenses, or credentials.</p>
-                                    </div>
-                                    
-                                    <div class="mt-4">
-                                        <label for="notable_clients" class="block text-sm font-medium text-gray-700 mb-1">Notable Clients or Projects</label>
-                                        <textarea id="notable_clients" name="notable_clients" rows="3" class="w-full px-3 py-2 border rounded-md"></textarea>
-                                        <p class="text-xs text-gray-500 mt-1">Share information about significant clients or projects (if applicable and not confidential).</p>
-                                    </div>
-                                </div>
-                                
-                                <!-- Terms & Submission -->
-                                <div>
-                                    <div class="flex items-start">
-                                        <div class="flex items-center h-5">
-                                            <input type="checkbox" id="terms_agree" name="terms_agree" class="h-4 w-4 border-gray-300 rounded" required>
-                                        </div>
-                                        <div class="ml-3 text-sm">
-                                            <label for="terms_agree" class="font-medium text-gray-700">I agree to the Terms of Service *</label>
-                                            <p class="text-gray-500">By submitting this application, I confirm that all information provided is accurate and I agree to CryptoMall's <a href="about.html#terms" class="text-primary hover:underline">Terms of Service</a> and <a href="about.html#privacy" class="text-primary hover:underline">Privacy Policy</a>.</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="mt-6">
-                                        <button type="submit" class="w-full inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                            Submit Application
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
+    <!-- Join Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold tracking-tighter">Join CryptoMall as a Provider</h1>
+                <p class="mt-2 text-gray-500">
+                    Apply to be listed in our directory of trusted crypto service providers
+                </p>
+            </div>
+            
+            <div id="application-form" class="bg-white p-8 rounded-lg shadow-sm border">
+                <form id="provider-form" class="space-y-8">
+                    <!-- Company Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Company Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="col-span-2">
+                                <label for="company-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="company-name"
+                                    name="company-name"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Website
+                                </label>
+                                <input
+                                    type="url"
+                                    id="website"
+                                    name="website"
+                                    placeholder="https://"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="year-founded" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Year Founded
+                                </label>
+                                <input
+                                    type="number"
+                                    id="year-founded"
+                                    name="year-founded"
+                                    min="1990"
+                                    max="2025"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="company-size" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Size
+                                </label>
+                                <select
+                                    id="company-size"
+                                    name="company-size"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                >
+                                    <option value="">Select size</option>
+                                    <option value="1">Solo practitioner</option>
+                                    <option value="2-10">2-10 employees</option>
+                                    <option value="11-50">11-50 employees</option>
+                                    <option value="51-200">51-200 employees</option>
+                                    <option value="201+">201+ employees</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Primary Location *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    placeholder="City, Country"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div class="col-span-2">
+                                <label for="company-description" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Description *
+                                </label>
+                                <textarea
+                                    id="company-description"
+                                    name="company-description"
+                                    rows="4"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                ></textarea>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Briefly describe your company and the services you provide (max 500 characters)
+                                </p>
+                            </div>
                         </div>
                     </div>
                     
-                    <!-- Success Message (Hidden by Default) -->
-                    <div id="registration-success" class="bg-white p-8 rounded-lg shadow-sm border mt-6 hidden">
-                        <div class="text-center">
-                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
+                    <!-- Services Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Services & Expertise</h2>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Primary Category *
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-security"
+                                        name="primary-category"
+                                        value="security"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                        required
+                                    />
+                                    <label for="category-security" class="ml-2 block text-sm text-gray-700">
+                                        Security & Protection
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-tax"
+                                        name="primary-category"
+                                        value="tax"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-tax" class="ml-2 block text-sm text-gray-700">
+                                        Tax & Accounting
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-legal"
+                                        name="primary-category"
+                                        value="legal"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-legal" class="ml-2 block text-sm text-gray-700">
+                                        Legal Services
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-development"
+                                        name="primary-category"
+                                        value="development"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-development" class="ml-2 block text-sm text-gray-700">
+                                        Development & Technical
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-education"
+                                        name="primary-category"
+                                        value="education"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-education" class="ml-2 block text-sm text-gray-700">
+                                        Education & Training
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-business"
+                                        name="primary-category"
+                                        value="business"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-business" class="ml-2 block text-sm text-gray-700">
+                                        Business Integration
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-hardware"
+                                        name="primary-category"
+                                        value="hardware"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-hardware" class="ml-2 block text-sm text-gray-700">
+                                        Hardware & Devices
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-other"
+                                        name="primary-category"
+                                        value="other"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-other" class="ml-2 block text-sm text-gray-700">
+                                        Other
+                                    </label>
+                                </div>
                             </div>
-                            <h2 class="text-2xl font-bold mb-2">Application Submitted!</h2>
-                            <p class="text-gray-500 mb-6">
-                                Thank you for applying to join CryptoMall as a service provider. Your application has been received and is pending review.
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Specializations (Select up to 5) *
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-wallet"
+                                        name="specializations"
+                                        value="wallet-security"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-wallet" class="ml-2 block text-sm text-gray-700">
+                                        Wallet Security
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-keys"
+                                        name="specializations"
+                                        value="private-keys"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-keys" class="ml-2 block text-sm text-gray-700">
+                                        Private Keys
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-tax"
+                                        name="specializations"
+                                        value="crypto-tax"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-tax" class="ml-2 block text-sm text-gray-700">
+                                        Crypto Tax
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-forensics"
+                                        name="specializations"
+                                        value="forensics"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-forensics" class="ml-2 block text-sm text-gray-700">
+                                        Forensics
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-recovery"
+                                        name="specializations"
+                                        value="recovery"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-recovery" class="ml-2 block text-sm text-gray-700">
+                                        Recovery
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-compliance"
+                                        name="specializations"
+                                        value="compliance"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-compliance" class="ml-2 block text-sm text-gray-700">
+                                        Compliance
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-smart-contracts"
+                                        name="specializations"
+                                        value="smart-contracts"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-smart-contracts" class="ml-2 block text-sm text-gray-700">
+                                        Smart Contracts
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-defi"
+                                        name="specializations"
+                                        value="defi"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-defi" class="ml-2 block text-sm text-gray-700">
+                                        DeFi
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="spec-nft"
+                                        name="specializations"
+                                        value="nft"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="spec-nft" class="ml-2 block text-sm text-gray-700">
+                                        NFTs
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">
+                                Years of Experience in Crypto *
+                            </label>
+                            <select
+                                id="experience"
+                                name="experience"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                required
+                            >
+                                <option value="">Select experience</option>
+                                <option value="<1">Less than 1 year</option>
+                                <option value="1-3">1-3 years</option>
+                                <option value="3-5">3-5 years</option>
+                                <option value="5-10">5-10 years</option>
+                                <option value="10+">10+ years</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="certifications" class="block text-sm font-medium text-gray-700 mb-1">
+                                Relevant Certifications or Credentials
+                            </label>
+                            <textarea
+                                id="certifications"
+                                name="certifications"
+                                rows="3"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                            ></textarea>
+                            <p class="mt-1 text-sm text-gray-500">
+                                List any relevant certifications, licenses, or credentials
                             </p>
-                            <div class="bg-gray-50 p-4 rounded-lg mb-6">
-                                <h3 class="font-medium mb-2">What happens next?</h3>
-                                <ol class="text-sm text-gray-500 text-left list-decimal pl-5 space-y-2">
-                                    <li>Our team will review your application (typically within 3-5 business days)</li>
-                                    <li>We may contact you for additional information or verification</li>
-                                    <li>Once approved, your profile will be published in our directory</li>
-                                    <li>You'll receive login credentials to manage your provider profile</li>
-                                </ol>
-                            </div>
-                            <a href="index.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                Return to Homepage
-                            </a>
                         </div>
                     </div>
-                </div>
+                    
+                    <!-- Contact Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Contact Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Contact Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="contact-name"
+                                    name="contact-name"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="contact-title" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Job Title
+                                </label>
+                                <input
+                                    type="text"
+                                    id="contact-title"
+                                    name="contact-title"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Email Address *
+                                </label>
+                                <input
+                                    type="email"
+                                    id="contact-email"
+                                    name="contact-email"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="contact-phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="contact-phone"
+                                    name="contact-phone"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Additional Information</h2>
+                        
+                        <div class="mb-6">
+                            <label for="how-heard" class="block text-sm font-medium text-gray-700 mb-1">
+                                How did you hear about CryptoMall?
+                            </label>
+                            <select
+                                id="how-heard"
+                                name="how-heard"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                            >
+                                <option value="">Select option</option>
+                                <option value="search">Search Engine</option>
+                                <option value="social">Social Media</option>
+                                <option value="referral">Referral</option>
+                                <option value="advertisement">Advertisement</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-1">
+                                Additional Information
+                            </label>
+                            <textarea
+                                id="additional-info"
+                                name="additional-info"
+                                rows="3"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                            ></textarea>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Any additional information you'd like to share about your services
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Terms and Conditions -->
+                    <div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input
+                                    id="terms"
+                                    name="terms"
+                                    type="checkbox"
+                                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    required
+                                />
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">
+                                    I agree to the Terms and Conditions *
+                                </label>
+                                <p class="text-gray-500">
+                                    By submitting this application, I confirm that all information provided is accurate and complete. I understand that CryptoMall will review my application and may request additional information or verification.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div>
+                        <button
+                            type="submit"
+                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        >
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
             </div>
-        </section>
+            
+            <!-- Success Message (Hidden by Default) -->
+            <div id="success-message" class="bg-white p-8 rounded-lg shadow-sm border text-center hidden">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mx-auto mb-4">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+                <h2 class="text-2xl font-bold mb-2">Application Submitted!</h2>
+                <p class="text-gray-600 mb-6">
+                    Thank you for applying to join CryptoMall as a service provider. We've received your application and will review it shortly.
+                </p>
+                <p class="text-gray-600 mb-6">
+                    Our team typically reviews applications within 3-5 business days. We'll contact you via email with any questions or to confirm your listing.
+                </p>
+                <a href="index.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                    Return to Homepage
+                </a>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t bg-white">
+    <footer class="w-full border-t bg-white mt-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -435,28 +691,40 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Provider registration form submission
-            const registrationForm = document.getElementById('provider-registration-form');
-            registrationForm.addEventListener('submit', function(e) {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
+            }
+            
+            // Form submission
+            const providerForm = document.getElementById('provider-form');
+            const applicationForm = document.getElementById('application-form');
+            const successMessage = document.getElementById('success-message');
+            
+            providerForm.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                // In a real implementation, we would send the form data to a server
-                // For this demo, we'll just show the success message
-                document.getElementById('registration-form-container').classList.add('hidden');
-                document.getElementById('registration-success').classList.remove('hidden');
+                // In a real implementation, this would send the form data to a server
+                // For demo purposes, we'll just show the success message
+                applicationForm.classList.add('hidden');
+                successMessage.classList.remove('hidden');
                 
-                // Store application in localStorage for demo purposes
-                const formData = new FormData(registrationForm);
-                const applicationData = {};
-                
-                formData.forEach((value, key) => {
-                    applicationData[key] = value;
-                });
-                
-                // Store application data
-                localStorage.setItem('cryptomall_provider_application', JSON.stringify(applicationData));
-                localStorage.setItem('cryptomall_application_date', new Date().toISOString());
-                localStorage.setItem('cryptomall_application_status', 'pending');
+                // Scroll to top to show success message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
             
             // Update auth section based on login state
@@ -497,25 +765,6 @@
                 } else {
                     authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
                 }
-            }
-            
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
             }
             
             // Update auth section on page load

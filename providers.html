@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Provider Directory - CryptoMall</title>
+    <title>CryptoMall - Provider Directory</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles */
@@ -16,40 +16,6 @@
         
         /* Transitions */
         .transition { transition: all 0.3s ease; }
-        
-        /* Card hover effect */
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Range slider styling */
-        .range-slider {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: #d7dce1;
-            outline: none;
-        }
-        
-        .range-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #6366f1;
-            cursor: pointer;
-        }
-        
-        .range-slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: #6366f1;
-            cursor: pointer;
-        }
         
         /* Dark mode styles */
         .dark-mode {
@@ -65,10 +31,8 @@
             color: #f9fafb;
         }
         
-        .dark-mode .text-gray-500 {
-            color: #9ca3af;
-        }
-        
+        .dark-mode .text-gray-500,
+        .dark-mode .text-gray-600,
         .dark-mode .text-gray-700 {
             color: #e5e7eb;
         }
@@ -87,42 +51,37 @@
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         }
         
-        /* Improved dark mode form elements */
-        .dark-mode input,
-        .dark-mode select {
-            background-color: #374151;
-            color: #f9fafb;
-            border-color: #4b5563;
+        /* Range slider styles */
+        input[type="range"] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e5e7eb;
+            outline: none;
         }
         
-        .dark-mode input::placeholder {
-            color: #9ca3af;
-        }
-        
-        .dark-mode .range-slider {
+        .dark-mode input[type="range"] {
             background: #4b5563;
         }
         
-        .dark-mode label.text-gray-700 {
-            color: #e5e7eb;
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
         }
         
-        .dark-mode .text-sm.font-medium.text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .text-sm.text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        /* Fix for form labels in dark mode */
-        .dark-mode label.block.text-sm.font-medium.text-gray-700 {
-            color: #e5e7eb !important;
-        }
-
-        /* Hide provider cards that don't match filters */
-        .provider-card.hidden-card {
-            display: none;
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            border: none;
         }
     </style>
 </head>
@@ -137,12 +96,16 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="providers.html" class="text-sm font-medium text-primary">Directory</a>
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
                     <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
                     <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
                     <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
                 </nav>
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-4">
+                    <a href="join.html" class="text-sm font-medium text-primary hover:underline">Join</a>
+                    <div id="auth-section">
+                        <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
+                    </div>
                     <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <circle cx="12" cy="12" r="4"></circle>
@@ -162,122 +125,113 @@
     </header>
 
     <!-- Main Content -->
-    <main>
-        <section class="w-full py-12 md:py-24">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex flex-col items-center justify-center space-y-4 text-center mb-12">
-                    <div class="space-y-2">
-                        <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Crypto Service Provider Directory</h1>
-                        <p class="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                            Browse our curated list of vetted crypto service providers across various specialties.
-                        </p>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col md:flex-row gap-8">
+            <!-- Filters Sidebar -->
+            <div class="w-full md:w-1/4">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-bold">Filters</h2>
+                        <button id="reset-filters" class="text-sm text-primary hover:underline">Reset All</button>
                     </div>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                    <!-- Filters Sidebar -->
-                    <div class="lg:col-span-1">
-                        <div class="sticky top-24 border rounded-lg bg-white p-6 shadow-sm">
-                            <div class="flex justify-between items-center mb-4">
-                                <h2 class="text-xl font-bold">Filters</h2>
-                                <button id="reset-filters" class="text-sm text-primary hover:underline">Reset All</button>
-                            </div>
-                            
-                            <!-- Search -->
-                            <div class="mb-6">
-                                <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
-                                <div class="relative">
-                                    <input type="text" id="search" placeholder="Search providers..." class="w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400">
-                                            <circle cx="11" cy="11" r="8"></circle>
-                                            <path d="m21 21-4.3-4.3"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Basic Filters -->
-                            <div class="mb-6">
-                                <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
-                                <select id="category" class="w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                                    <option value="">All Categories</option>
-                                    <option value="security">Security</option>
-                                    <option value="tax">Tax & Accounting</option>
-                                    <option value="legal">Legal</option>
-                                    <option value="education">Education</option>
-                                    <option value="development">Development</option>
-                                    <option value="business">Business Integration</option>
-                                    <option value="hardware">Hardware & Security</option>
-                                </select>
-                            </div>
-                            
-                            <div class="mb-6">
-                                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
-                                <select id="location" class="w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                                    <option value="">All Locations</option>
-                                    <option value="us">United States</option>
-                                    <option value="ca">Canada</option>
-                                    <option value="uk">United Kingdom</option>
-                                    <option value="eu">European Union</option>
-                                    <option value="as">Asia</option>
-                                    <option value="au">Australia</option>
-                                    <option value="remote">Remote Only</option>
-                                </select>
-                            </div>
-                            
-                            <!-- Advanced Filters Toggle -->
-                            <div class="mb-4">
-                                <button id="advanced-filters-toggle" class="flex items-center text-sm text-primary hover:underline">
-                                    <span>Advanced Filters</span>
-                                    <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transform transition-transform">
-                                        <path d="m6 9 6 6 6-6"></path>
+                    
+                    <div class="space-y-6">
+                        <!-- Search -->
+                        <div>
+                            <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                            <div class="relative">
+                                <input type="text" id="search" placeholder="Search providers..." class="w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary">
+                                <button class="absolute right-3 top-2.5 text-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3"></path>
                                     </svg>
                                 </button>
                             </div>
+                        </div>
+                        
+                        <!-- Category -->
+                        <div>
+                            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <select id="category" class="w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary">
+                                <option value="">All Categories</option>
+                                <option value="security">Security & Protection</option>
+                                <option value="tax">Tax & Accounting</option>
+                                <option value="education">Education & Training</option>
+                                <option value="development">Development & Integration</option>
+                                <option value="legal">Legal Services</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="hardware">Hardware & Security Devices</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Location -->
+                        <div>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                            <select id="location" class="w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary">
+                                <option value="">All Locations</option>
+                                <option value="remote">Remote / Virtual</option>
+                                <option value="usa">United States</option>
+                                <option value="canada">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="eu">European Union</option>
+                                <option value="asia">Asia</option>
+                                <option value="australia">Australia</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Advanced Filters Toggle -->
+                        <div>
+                            <button id="advanced-filters-toggle" class="flex items-center text-primary hover:underline">
+                                <span>Advanced Filters</span>
+                                <svg id="advanced-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
+                            </button>
                             
-                            <!-- Advanced Filters (Hidden by Default) -->
-                            <div id="advanced-filters" class="hidden space-y-6 pt-2 border-t">
-                                <!-- Specializations -->
+                            <!-- Advanced Filters Content -->
+                            <div id="advanced-filters" class="mt-4 space-y-6 hidden">
+                                <!-- Specialization -->
                                 <div>
                                     <label for="specialization" class="block text-sm font-medium text-gray-700 mb-1">Specialization</label>
-                                    <select id="specialization" class="w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+                                    <select id="specialization" class="w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary">
                                         <option value="">All Specializations</option>
                                         <option value="wallet-security">Wallet Security</option>
-                                        <option value="key-recovery">Key Recovery</option>
-                                        <option value="forensic-analysis">Forensic Analysis</option>
+                                        <option value="private-keys">Private Key Management</option>
+                                        <option value="forensic">Forensic Analysis</option>
                                         <option value="tax-planning">Tax Planning</option>
-                                        <option value="tax-reporting">Tax Reporting</option>
-                                        <option value="audit-defense">Audit Defense</option>
                                         <option value="compliance">Regulatory Compliance</option>
-                                        <option value="contract-review">Smart Contract Review</option>
-                                        <option value="ico-consulting">ICO/STO Consulting</option>
-                                        <option value="beginner-education">Beginner Education</option>
-                                        <option value="advanced-trading">Advanced Trading</option>
-                                        <option value="defi-strategies">DeFi Strategies</option>
-                                        <option value="dapp-development">dApp Development</option>
-                                        <option value="blockchain-integration">Blockchain Integration</option>
-                                        <option value="wallet-development">Wallet Development</option>
-                                        <option value="payment-processing">Payment Processing</option>
+                                        <option value="audits">Security Audits</option>
+                                        <option value="smart-contracts">Smart Contracts</option>
+                                        <option value="defi">DeFi Integration</option>
+                                        <option value="nft">NFT Development</option>
+                                        <option value="exchange">Exchange Integration</option>
+                                        <option value="custody">Custody Solutions</option>
+                                        <option value="mining">Mining Operations</option>
+                                        <option value="staking">Staking Services</option>
+                                        <option value="kyc-aml">KYC/AML Solutions</option>
+                                        <option value="payment">Payment Processing</option>
+                                        <option value="legal-compliance">Legal Compliance</option>
+                                        <option value="estate-planning">Estate Planning</option>
+                                        <option value="business-integration">Business Integration</option>
                                         <option value="hardware-wallets">Hardware Wallets</option>
-                                        <option value="cold-storage">Cold Storage Solutions</option>
-                                        <option value="mining-setup">Mining Setup</option>
-                                        <option value="node-operation">Node Operation</option>
                                     </select>
                                 </div>
                                 
                                 <!-- Services -->
                                 <div>
                                     <label for="services" class="block text-sm font-medium text-gray-700 mb-1">Services Offered</label>
-                                    <select id="services" class="w-full rounded-md border border-gray-200 py-2 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
+                                    <select id="services" class="w-full px-4 py-2 border rounded-md focus:ring-primary focus:border-primary">
                                         <option value="">All Services</option>
                                         <option value="consulting">Consulting</option>
                                         <option value="implementation">Implementation</option>
-                                        <option value="training">Training & Workshops</option>
-                                        <option value="ongoing-support">Ongoing Support</option>
-                                        <option value="emergency-assistance">Emergency Assistance</option>
-                                        <option value="auditing">Auditing & Review</option>
-                                        <option value="development">Custom Development</option>
+                                        <option value="training">Training</option>
+                                        <option value="support">Ongoing Support</option>
+                                        <option value="audit">Auditing</option>
+                                        <option value="development">Development</option>
+                                        <option value="integration">Integration</option>
+                                        <option value="recovery">Recovery Services</option>
+                                        <option value="legal">Legal Services</option>
                                     </select>
                                 </div>
                                 
@@ -286,36 +240,36 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Experience Level</label>
                                     <div class="space-y-2">
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="exp-1-3" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="exp-1-3" class="experience-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="exp-1-3" class="ml-2 text-sm text-gray-700">1-3 years</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="exp-3-5" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="exp-3-5" class="experience-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="exp-3-5" class="ml-2 text-sm text-gray-700">3-5 years</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="exp-5-plus" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="exp-5-plus" class="experience-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="exp-5-plus" class="ml-2 text-sm text-gray-700">5+ years</label>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- Rating Slider -->
+                                <!-- Minimum Rating -->
                                 <div>
-                                    <div class="flex justify-between items-center mb-2">
-                                        <label for="rating-slider" class="block text-sm font-medium text-gray-700">Minimum Rating</label>
-                                        <span id="rating-value" class="text-sm text-gray-500">3.0+</span>
+                                    <label for="min-rating" class="block text-sm font-medium text-gray-700 mb-1">Minimum Rating</label>
+                                    <div class="flex items-center">
+                                        <input type="range" id="min-rating" min="1" max="5" step="0.1" value="1" class="w-full">
+                                        <span id="rating-value" class="ml-2 text-sm font-medium text-gray-700">1.0</span>
                                     </div>
-                                    <input type="range" id="rating-slider" min="1" max="5" step="0.1" value="3" class="range-slider">
                                 </div>
                                 
-                                <!-- Reviews Count Slider -->
+                                <!-- Minimum Reviews -->
                                 <div>
-                                    <div class="flex justify-between items-center mb-2">
-                                        <label for="reviews-slider" class="block text-sm font-medium text-gray-700">Minimum Reviews</label>
-                                        <span id="reviews-value" class="text-sm text-gray-500">10+</span>
+                                    <label for="min-reviews" class="block text-sm font-medium text-gray-700 mb-1">Minimum Reviews</label>
+                                    <div class="flex items-center">
+                                        <input type="range" id="min-reviews" min="0" max="100" step="5" value="0" class="w-full">
+                                        <span id="reviews-value" class="ml-2 text-sm font-medium text-gray-700">0</span>
                                     </div>
-                                    <input type="range" id="reviews-slider" min="0" max="100" step="5" value="10" class="range-slider">
                                 </div>
                                 
                                 <!-- Availability -->
@@ -323,435 +277,679 @@
                                     <label class="block text-sm font-medium text-gray-700 mb-2">Availability</label>
                                     <div class="space-y-2">
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="avail-weekends" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="avail-weekends" class="availability-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="avail-weekends" class="ml-2 text-sm text-gray-700">Weekends</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="avail-evenings" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="avail-evenings" class="availability-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="avail-evenings" class="ml-2 text-sm text-gray-700">Evenings</label>
                                         </div>
                                         <div class="flex items-center">
-                                            <input type="checkbox" id="avail-emergency" class="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary">
+                                            <input type="checkbox" id="avail-emergency" class="availability-checkbox h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
                                             <label for="avail-emergency" class="ml-2 text-sm text-gray-700">Emergency Support</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!-- Apply Filters Button -->
-                            <div class="mt-6">
-                                <button id="apply-filters" class="w-full inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
-                                    Apply Filters
-                                </button>
+                        </div>
+                        
+                        <!-- Apply Filters Button -->
+                        <button id="apply-filters" class="w-full bg-primary text-white py-2 px-4 rounded-md hover:bg-primary/90 transition">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Providers List -->
+            <div class="w-full md:w-3/4">
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+                        <h1 class="text-2xl font-bold mb-2 md:mb-0">Provider Directory</h1>
+                        <div class="flex items-center">
+                            <span class="text-sm text-gray-500 mr-2">Sort by:</span>
+                            <select id="sort-by" class="px-3 py-1 border rounded-md focus:ring-primary focus:border-primary text-sm">
+                                <option value="rating">Highest Rating</option>
+                                <option value="reviews">Most Reviews</option>
+                                <option value="experience">Most Experienced</option>
+                                <option value="name">Name (A-Z)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <p id="provider-count" class="text-sm text-gray-500 mb-6">Showing 20 providers</p>
+                    
+                    <div id="providers-container" class="space-y-6">
+                        <!-- Provider Card 1 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="security" 
+                             data-location="usa" 
+                             data-name="CryptoGuard Solutions" 
+                             data-rating="5.0" 
+                             data-reviews="48" 
+                             data-experience="7" 
+                             data-specialization="wallet-security,private-keys,audits" 
+                             data-services="consulting,implementation,audit" 
+                             data-availability="weekends,emergency">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">CryptoGuard Solutions</h3>
+                                        <span class="text-sm text-gray-500">USA</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Security & Protection • 7 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Specializing in wallet security, private key management, and fraud prevention for individuals and businesses.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">5.0 (48 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Private Keys</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Audits</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 2 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="tax" 
+                             data-location="remote" 
+                             data-name="Crypto Tax Experts" 
+                             data-rating="4.8" 
+                             data-reviews="36" 
+                             data-experience="5" 
+                             data-specialization="tax-planning,compliance,legal-compliance" 
+                             data-services="consulting,support" 
+                             data-availability="weekends">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">Crypto Tax Experts</h3>
+                                        <span class="text-sm text-gray-500">Remote</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Tax & Accounting • 5 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Specialized accounting services for crypto investors and businesses, focusing on tax compliance and optimization.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.8 (36 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Planning</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Compliance</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Legal</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 3 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="education" 
+                             data-location="uk" 
+                             data-name="Blockchain Academy" 
+                             data-rating="4.9" 
+                             data-reviews="52" 
+                             data-experience="6" 
+                             data-specialization="smart-contracts,defi,nft" 
+                             data-services="training,consulting" 
+                             data-availability="evenings,weekends">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">Blockchain Academy</h3>
+                                        <span class="text-sm text-gray-500">UK</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Education & Training • 6 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Comprehensive crypto education for beginners and advanced users, offering courses, workshops, and personalized training.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.9 (52 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Smart Contracts</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 4 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="development" 
+                             data-location="eu" 
+                             data-name="CryptoDevs Pro" 
+                             data-rating="4.7" 
+                             data-reviews="41" 
+                             data-experience="8" 
+                             data-specialization="smart-contracts,defi,exchange" 
+                             data-services="development,implementation,consulting" 
+                             data-availability="emergency">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                            <path d="M18 20V6a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v14"></path>
+                                            <path d="M2 20h20"></path>
+                                            <path d="M14 12v.01"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">CryptoDevs Pro</h3>
+                                        <span class="text-sm text-gray-500">EU</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Development & Integration • 8 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Expert blockchain developers specializing in smart contracts, DeFi protocols, and exchange integrations.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.7 (41 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Smart Contracts</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Exchange</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 5 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="legal" 
+                             data-location="usa" 
+                             data-name="Crypto Legal Advisors" 
+                             data-rating="4.6" 
+                             data-reviews="29" 
+                             data-experience="4" 
+                             data-specialization="legal-compliance,kyc-aml,estate-planning" 
+                             data-services="consulting,legal" 
+                             data-availability="weekends">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
+                                            <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">Crypto Legal Advisors</h3>
+                                        <span class="text-sm text-gray-500">USA</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Legal Services • 4 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Specialized legal services for crypto businesses and investors, focusing on compliance, regulations, and risk management.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.6 (29 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Legal Compliance</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">KYC/AML</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Estate Planning</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 6 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="consulting" 
+                             data-location="canada" 
+                             data-name="Crypto Business Solutions" 
+                             data-rating="4.5" 
+                             data-reviews="33" 
+                             data-experience="6" 
+                             data-specialization="business-integration,payment,exchange" 
+                             data-services="consulting,implementation" 
+                             data-availability="evenings,emergency">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">Crypto Business Solutions</h3>
+                                        <span class="text-sm text-gray-500">Canada</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Consulting • 6 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Business integration specialists helping companies adopt cryptocurrency payment systems and blockchain technology.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.5 (33 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Business Integration</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Payment</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Exchange</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 7 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="hardware" 
+                             data-location="eu" 
+                             data-name="SecureWallet Pro" 
+                             data-rating="4.9" 
+                             data-reviews="45" 
+                             data-experience="5" 
+                             data-specialization="hardware-wallets,wallet-security,custody" 
+                             data-services="consulting,implementation,support" 
+                             data-availability="weekends,emergency">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">SecureWallet Pro</h3>
+                                        <span class="text-sm text-gray-500">EU</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Hardware & Security Devices • 5 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Specialists in hardware wallet solutions, secure storage devices, and physical security for cryptocurrency assets.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.9 (45 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Hardware Wallets</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Custody</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 8 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="security" 
+                             data-location="australia" 
+                             data-name="CryptoSafe Recovery" 
+                             data-rating="4.8" 
+                             data-reviews="27" 
+                             data-experience="4" 
+                             data-specialization="wallet-security,private-keys,recovery" 
+                             data-services="recovery,consulting" 
+                             data-availability="emergency">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">CryptoSafe Recovery</h3>
+                                        <span class="text-sm text-gray-500">Australia</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Security & Protection • 4 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Specialized in cryptocurrency recovery services, helping clients regain access to lost or inaccessible crypto assets.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.8 (27 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Private Keys</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Recovery</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 9 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="tax" 
+                             data-location="uk" 
+                             data-name="CryptoTax Solutions" 
+                             data-rating="4.7" 
+                             data-reviews="31" 
+                             data-experience="3" 
+                             data-specialization="tax-planning,compliance,reporting" 
+                             data-services="consulting,support" 
+                             data-availability="weekends">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">CryptoTax Solutions</h3>
+                                        <span class="text-sm text-gray-500">UK</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Tax & Accounting • 3 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        UK-based tax specialists focusing on cryptocurrency taxation, reporting, and compliance for individuals and businesses.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.7 (31 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Planning</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Compliance</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Reporting</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Provider Card 10 -->
+                        <div class="provider-card border rounded-lg p-4 hover:shadow-md transition" 
+                             data-category="education" 
+                             data-location="remote" 
+                             data-name="Crypto Learning Center" 
+                             data-rating="4.9" 
+                             data-reviews="58" 
+                             data-experience="7" 
+                             data-specialization="smart-contracts,defi,nft" 
+                             data-services="training,consulting" 
+                             data-availability="evenings,weekends">
+                            <div class="flex flex-col md:flex-row">
+                                <div class="md:w-1/4 mb-4 md:mb-0">
+                                    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="md:w-3/4">
+                                    <div class="flex justify-between">
+                                        <h3 class="text-lg font-bold">Crypto Learning Center</h3>
+                                        <span class="text-sm text-gray-500">Remote</span>
+                                    </div>
+                                    <p class="text-sm text-gray-500 mb-2">Education & Training • 7 years experience</p>
+                                    <p class="text-sm text-gray-600 mb-3">
+                                        Online education platform offering courses, workshops, and personalized training on all aspects of cryptocurrency.
+                                    </p>
+                                    <div class="flex items-center mb-3">
+                                        <div class="flex text-yellow-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                            </svg>
+                                        </div>
+                                        <span class="text-sm text-gray-500 ml-2">4.9 (58 reviews)</span>
+                                    </div>
+                                    <div class="flex flex-wrap gap-2 mb-4">
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Smart Contracts</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    </div>
+                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                        View Profile
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Provider Listings -->
-                    <div class="lg:col-span-3">
-                        <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
-                            <div class="mb-4 sm:mb-0">
-                                <p class="text-sm text-gray-500"><span id="provider-count">8</span> providers found</p>
-                            </div>
-                            <div class="flex items-center">
-                                <label for="sort" class="text-sm font-medium text-gray-700 mr-2">Sort by:</label>
-                                <select id="sort" class="rounded-md border border-gray-200 py-1.5 pl-3 pr-10 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary">
-                                    <option value="rating">Highest Rated</option>
-                                    <option value="reviews">Most Reviews</option>
-                                    <option value="experience">Most Experienced</option>
-                                    <option value="name">Name (A-Z)</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <div id="provider-container" class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <!-- Provider 1 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition" 
-                                 data-name="Alex Chen" 
-                                 data-company="CryptoSafe Solutions" 
-                                 data-rating="4.9" 
-                                 data-reviews="127" 
-                                 data-category="security" 
-                                 data-specialization="wallet-security" 
-                                 data-services="consulting,implementation,emergency-assistance" 
-                                 data-experience="6" 
-                                 data-location="us" 
-                                 data-availability="weekends,emergency">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">A</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Alex Chen</h3>
-                                    <p class="text-sm text-gray-500">CryptoSafe Solutions</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.9</span>
-                                        <span class="text-sm text-gray-500">(127 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Security
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Wallet Security
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 6+ years</span>
-                                        <a href="provider-detail.html?id=1" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 2 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Sarah Johnson" 
-                                 data-company="Crypto Tax Pros" 
-                                 data-rating="4.8" 
-                                 data-reviews="93" 
-                                 data-category="tax" 
-                                 data-specialization="tax-planning,tax-reporting" 
-                                 data-services="consulting,ongoing-support" 
-                                 data-experience="6" 
-                                 data-location="us" 
-                                 data-availability="evenings">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">S</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Sarah Johnson</h3>
-                                    <p class="text-sm text-gray-500">Crypto Tax Pros</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.8</span>
-                                        <span class="text-sm text-gray-500">(93 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Tax
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Tax Planning
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 6+ years</span>
-                                        <a href="provider-detail.html?id=2" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 3 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Michael Rodriguez" 
-                                 data-company="BlockEd Academy" 
-                                 data-rating="4.7" 
-                                 data-reviews="215" 
-                                 data-category="education" 
-                                 data-specialization="beginner-education" 
-                                 data-services="training,consulting" 
-                                 data-experience="5" 
-                                 data-location="remote" 
-                                 data-availability="weekends,evenings">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">M</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Michael Rodriguez</h3>
-                                    <p class="text-sm text-gray-500">BlockEd Academy</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.7</span>
-                                        <span class="text-sm text-gray-500">(215 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Education
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Beginner Courses
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Blockchain educator with a passion for making crypto accessible to beginners. Creator of the 'Crypto Fundamentals' course series.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 5+ years</span>
-                                        <a href="provider-detail.html?id=3" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 4 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Jessica Kim" 
-                                 data-company="Crypto Legal Advisors" 
-                                 data-rating="4.9" 
-                                 data-reviews="78" 
-                                 data-category="legal" 
-                                 data-specialization="compliance,contract-review" 
-                                 data-services="consulting,auditing" 
-                                 data-experience="4" 
-                                 data-location="us" 
-                                 data-availability="evenings">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">J</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Jessica Kim</h3>
-                                    <p class="text-sm text-gray-500">Crypto Legal Advisors</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.9</span>
-                                        <span class="text-sm text-gray-500">(78 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Legal
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Compliance
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Attorney specializing in cryptocurrency regulations and compliance. Helping businesses navigate the evolving legal landscape.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 4+ years</span>
-                                        <a href="provider-detail.html?id=4" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 5 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="David Patel" 
-                                 data-company="BlockChain Developers" 
-                                 data-rating="4.6" 
-                                 data-reviews="142" 
-                                 data-category="development" 
-                                 data-specialization="dapp-development,contract-review" 
-                                 data-services="development,consulting,implementation" 
-                                 data-experience="7" 
-                                 data-location="uk" 
-                                 data-availability="emergency">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">D</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">David Patel</h3>
-                                    <p class="text-sm text-gray-500">BlockChain Developers</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.6</span>
-                                        <span class="text-sm text-gray-500">(142 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Development
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Smart Contracts
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Full-stack blockchain developer specializing in smart contract development and dApp creation. Expert in Solidity and Web3.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 7+ years</span>
-                                        <a href="provider-detail.html?id=5" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 6 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Emma Wilson" 
-                                 data-company="Crypto Business Solutions" 
-                                 data-rating="4.7" 
-                                 data-reviews="89" 
-                                 data-category="business" 
-                                 data-specialization="payment-processing,blockchain-integration" 
-                                 data-services="consulting,implementation,training" 
-                                 data-experience="5" 
-                                 data-location="ca" 
-                                 data-availability="weekends">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">E</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Emma Wilson</h3>
-                                    <p class="text-sm text-gray-500">Crypto Business Solutions</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.7</span>
-                                        <span class="text-sm text-gray-500">(89 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Business
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Payment Integration
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Business consultant specializing in cryptocurrency payment integration and blockchain adoption strategies for enterprises.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 5+ years</span>
-                                        <a href="provider-detail.html?id=6" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 7 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Robert Thompson" 
-                                 data-company="Secure Crypto Storage" 
-                                 data-rating="4.8" 
-                                 data-reviews="156" 
-                                 data-category="hardware" 
-                                 data-specialization="cold-storage,hardware-wallets" 
-                                 data-services="consulting,implementation,ongoing-support" 
-                                 data-experience="8" 
-                                 data-location="us" 
-                                 data-availability="emergency,evenings">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">R</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Robert Thompson</h3>
-                                    <p class="text-sm text-gray-500">Secure Crypto Storage</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.8</span>
-                                        <span class="text-sm text-gray-500">(156 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Hardware
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            Cold Storage
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">Hardware security expert specializing in cold storage solutions and secure key management for high-value crypto holdings.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 8+ years</span>
-                                        <a href="provider-detail.html?id=7" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Provider 8 -->
-                            <div class="provider-card flex flex-col items-start border rounded-lg overflow-hidden shadow-sm bg-white card-hover transition"
-                                 data-name="Lisa Garcia" 
-                                 data-company="DeFi Advisors" 
-                                 data-rating="4.5" 
-                                 data-reviews="112" 
-                                 data-category="education" 
-                                 data-specialization="defi-strategies,advanced-trading" 
-                                 data-services="consulting,training" 
-                                 data-experience="4" 
-                                 data-location="remote" 
-                                 data-availability="weekends,evenings">
-                                <div class="w-full h-40 bg-gray-200 flex items-center justify-center">
-                                    <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                        <span class="text-2xl font-bold text-primary">L</span>
-                                    </div>
-                                </div>
-                                <div class="p-6 space-y-2 w-full">
-                                    <h3 class="text-xl font-bold">Lisa Garcia</h3>
-                                    <p class="text-sm text-gray-500">DeFi Advisors</p>
-                                    <div class="flex items-center space-x-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="text-yellow-500">
-                                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
-                                        </svg>
-                                        <span class="text-sm font-medium">4.5</span>
-                                        <span class="text-sm text-gray-500">(112 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-1 mt-2">
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-light text-primary">
-                                            Education
-                                        </span>
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                            DeFi Strategies
-                                        </span>
-                                    </div>
-                                    <p class="text-sm">DeFi specialist providing education and guidance on yield farming, liquidity provision, and other decentralized finance strategies.</p>
-                                    <div class="flex justify-between items-center w-full pt-2">
-                                        <span class="text-xs text-gray-500">Experience: 4+ years</span>
-                                        <a href="provider-detail.html?id=8" class="inline-flex items-center justify-center rounded-md border border-gray-200 bg-white px-4 py-2 text-sm font-medium hover:bg-gray-100 transition">
-                                            View Profile
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Pagination -->
-                        <div class="mt-8 flex justify-center">
-                            <nav class="flex items-center space-x-1">
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
-                                        <path d="m15 18-6-6 6-6"></path>
-                                    </svg>
-                                    Previous
-                                </a>
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium bg-primary text-white">1</a>
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
-                                <span class="inline-flex items-center justify-center px-3 py-2 text-sm text-gray-500">...</span>
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">8</a>
-                                <a href="#" class="inline-flex items-center justify-center rounded-md border border-gray-200 px-3 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50">
-                                    Next
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                        <path d="m9 18 6-6-6-6"></path>
-                                    </svg>
-                                </a>
-                            </nav>
-                        </div>
+                    <!-- Pagination -->
+                    <div class="mt-8 flex justify-center">
+                        <nav class="flex items-center space-x-2">
+                            <button class="inline-flex h-8 w-8 items-center justify-center rounded border text-sm disabled:opacity-50">
+                                <span class="sr-only">Previous</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m15 18-6-6 6-6"></path>
+                                </svg>
+                            </button>
+                            <button class="inline-flex h-8 w-8 items-center justify-center rounded border bg-primary text-sm font-medium text-white">1</button>
+                            <button class="inline-flex h-8 w-8 items-center justify-center rounded border text-sm">2</button>
+                            <button class="inline-flex h-8 w-8 items-center justify-center rounded border text-sm">3</button>
+                            <button class="inline-flex h-8 w-8 items-center justify-center rounded border text-sm">
+                                <span class="sr-only">Next</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="m9 18 6-6-6-6"></path>
+                                </svg>
+                            </button>
+                        </nav>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <!-- Footer -->
@@ -839,236 +1037,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Advanced filters toggle
-            const advancedFiltersToggle = document.getElementById('advanced-filters-toggle');
-            const advancedFilters = document.getElementById('advanced-filters');
-            const toggleIcon = document.getElementById('toggle-icon');
-            
-            advancedFiltersToggle.addEventListener('click', function() {
-                advancedFilters.classList.toggle('hidden');
-                toggleIcon.classList.toggle('rotate-180');
-            });
-            
-            // Rating slider
-            const ratingSlider = document.getElementById('rating-slider');
-            const ratingValue = document.getElementById('rating-value');
-            
-            ratingSlider.addEventListener('input', function() {
-                ratingValue.textContent = this.value + '+';
-            });
-            
-            // Reviews slider
-            const reviewsSlider = document.getElementById('reviews-slider');
-            const reviewsValue = document.getElementById('reviews-value');
-            
-            reviewsSlider.addEventListener('input', function() {
-                reviewsValue.textContent = this.value + '+';
-            });
-            
-            // Provider data and filtering
-            const providerCards = document.querySelectorAll('.provider-card');
-            const providerCount = document.getElementById('provider-count');
-            const searchInput = document.getElementById('search');
-            const categorySelect = document.getElementById('category');
-            const locationSelect = document.getElementById('location');
-            const specializationSelect = document.getElementById('specialization');
-            const servicesSelect = document.getElementById('services');
-            const exp13Checkbox = document.getElementById('exp-1-3');
-            const exp35Checkbox = document.getElementById('exp-3-5');
-            const exp5plusCheckbox = document.getElementById('exp-5-plus');
-            const availWeekendsCheckbox = document.getElementById('avail-weekends');
-            const availEveningsCheckbox = document.getElementById('avail-evenings');
-            const availEmergencyCheckbox = document.getElementById('avail-emergency');
-            const sortSelect = document.getElementById('sort');
-            const applyFiltersButton = document.getElementById('apply-filters');
-            const resetFiltersButton = document.getElementById('reset-filters');
-            
-            // Apply filters function
-            function applyFilters() {
-                const searchTerm = searchInput.value.toLowerCase();
-                const category = categorySelect.value;
-                const location = locationSelect.value;
-                const specialization = specializationSelect.value;
-                const services = servicesSelect.value;
-                const minRating = parseFloat(ratingSlider.value);
-                const minReviews = parseInt(reviewsSlider.value);
-                
-                // Experience level filters
-                const expFilters = [];
-                if (exp13Checkbox.checked) expFilters.push('1-3');
-                if (exp35Checkbox.checked) expFilters.push('3-5');
-                if (exp5plusCheckbox.checked) expFilters.push('5+');
-                
-                // Availability filters
-                const availFilters = [];
-                if (availWeekendsCheckbox.checked) availFilters.push('weekends');
-                if (availEveningsCheckbox.checked) availFilters.push('evenings');
-                if (availEmergencyCheckbox.checked) availFilters.push('emergency');
-                
-                let visibleCount = 0;
-                
-                // Filter each provider card
-                providerCards.forEach(card => {
-                    const name = card.getAttribute('data-name').toLowerCase();
-                    const company = card.getAttribute('data-company').toLowerCase();
-                    const cardCategory = card.getAttribute('data-category');
-                    const cardLocation = card.getAttribute('data-location');
-                    const cardSpecializations = card.getAttribute('data-specialization').split(',');
-                    const cardServices = card.getAttribute('data-services').split(',');
-                    const cardRating = parseFloat(card.getAttribute('data-rating'));
-                    const cardReviews = parseInt(card.getAttribute('data-reviews'));
-                    const cardExperience = parseInt(card.getAttribute('data-experience'));
-                    const cardAvailability = card.getAttribute('data-availability').split(',');
-                    
-                    // Check if card matches all filters
-                    let isVisible = true;
-                    
-                    // Search term filter
-                    if (searchTerm && !name.includes(searchTerm) && !company.includes(searchTerm)) {
-                        isVisible = false;
-                    }
-                    
-                    // Category filter
-                    if (category && cardCategory !== category) {
-                        isVisible = false;
-                    }
-                    
-                    // Location filter
-                    if (location && cardLocation !== location) {
-                        isVisible = false;
-                    }
-                    
-                    // Specialization filter
-                    if (specialization && !cardSpecializations.includes(specialization)) {
-                        isVisible = false;
-                    }
-                    
-                    // Services filter
-                    if (services && !cardServices.includes(services)) {
-                        isVisible = false;
-                    }
-                    
-                    // Rating filter
-                    if (cardRating < minRating) {
-                        isVisible = false;
-                    }
-                    
-                    // Reviews filter
-                    if (cardReviews < minReviews) {
-                        isVisible = false;
-                    }
-                    
-                    // Experience level filter
-                    if (expFilters.length > 0) {
-                        let matchesExp = false;
-                        if (expFilters.includes('1-3') && cardExperience >= 1 && cardExperience <= 3) matchesExp = true;
-                        if (expFilters.includes('3-5') && cardExperience >= 3 && cardExperience <= 5) matchesExp = true;
-                        if (expFilters.includes('5+') && cardExperience >= 5) matchesExp = true;
-                        
-                        if (!matchesExp) isVisible = false;
-                    }
-                    
-                    // Availability filter
-                    if (availFilters.length > 0) {
-                        let matchesAvail = false;
-                        for (const avail of availFilters) {
-                            if (cardAvailability.includes(avail)) {
-                                matchesAvail = true;
-                                break;
-                            }
-                        }
-                        
-                        if (!matchesAvail) isVisible = false;
-                    }
-                    
-                    // Update card visibility
-                    if (isVisible) {
-                        card.classList.remove('hidden-card');
-                        visibleCount++;
-                    } else {
-                        card.classList.add('hidden-card');
-                    }
-                });
-                
-                // Update provider count
-                providerCount.textContent = visibleCount;
-            }
-            
-            // Sort providers function
-            function sortProviders() {
-                const sortBy = sortSelect.value;
-                const container = document.getElementById('provider-container');
-                const cards = Array.from(providerCards);
-                
-                // Sort cards based on selected criteria
-                cards.sort((a, b) => {
-                    if (sortBy === 'rating') {
-                        return parseFloat(b.getAttribute('data-rating')) - parseFloat(a.getAttribute('data-rating'));
-                    } else if (sortBy === 'reviews') {
-                        return parseInt(b.getAttribute('data-reviews')) - parseInt(a.getAttribute('data-reviews'));
-                    } else if (sortBy === 'experience') {
-                        return parseInt(b.getAttribute('data-experience')) - parseInt(a.getAttribute('data-experience'));
-                    } else if (sortBy === 'name') {
-                        return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
-                    }
-                    return 0;
-                });
-                
-                // Reorder cards in the DOM
-                cards.forEach(card => {
-                    container.appendChild(card);
-                });
-            }
-            
-            // Reset filters function
-            function resetFilters() {
-                searchInput.value = '';
-                categorySelect.selectedIndex = 0;
-                locationSelect.selectedIndex = 0;
-                specializationSelect.selectedIndex = 0;
-                servicesSelect.selectedIndex = 0;
-                
-                exp13Checkbox.checked = false;
-                exp35Checkbox.checked = false;
-                exp5plusCheckbox.checked = false;
-                
-                availWeekendsCheckbox.checked = false;
-                availEveningsCheckbox.checked = false;
-                availEmergencyCheckbox.checked = false;
-                
-                ratingSlider.value = 3;
-                ratingValue.textContent = '3.0+';
-                
-                reviewsSlider.value = 10;
-                reviewsValue.textContent = '10+';
-                
-                // Show all provider cards
-                providerCards.forEach(card => {
-                    card.classList.remove('hidden-card');
-                });
-                
-                // Reset provider count
-                providerCount.textContent = providerCards.length;
-            }
-            
-            // Event listeners
-            applyFiltersButton.addEventListener('click', function() {
-                applyFilters();
-                sortProviders();
-            });
-            
-            resetFiltersButton.addEventListener('click', function() {
-                resetFilters();
-                sortProviders();
-            });
-            
-            sortSelect.addEventListener('change', function() {
-                sortProviders();
-            });
-            
-            // Initial sort
-            sortProviders();
-            
             // Theme toggle functionality
             const themeToggle = document.getElementById('theme-toggle');
             themeToggle.addEventListener('click', function() {
@@ -1087,6 +1055,253 @@
             if (savedTheme === 'dark') {
                 document.body.classList.add('dark-mode');
             }
+            
+            // Advanced filters toggle
+            const advancedFiltersToggle = document.getElementById('advanced-filters-toggle');
+            const advancedFilters = document.getElementById('advanced-filters');
+            const advancedIcon = document.getElementById('advanced-icon');
+            
+            advancedFiltersToggle.addEventListener('click', function() {
+                advancedFilters.classList.toggle('hidden');
+                // Rotate icon when expanded
+                if (advancedFilters.classList.contains('hidden')) {
+                    advancedIcon.innerHTML = '<path d="m6 9 6 6 6-6"></path>';
+                } else {
+                    advancedIcon.innerHTML = '<path d="m18 15-6-6-6 6"></path>';
+                }
+            });
+            
+            // Range slider value display
+            const ratingSlider = document.getElementById('min-rating');
+            const ratingValue = document.getElementById('rating-value');
+            const reviewsSlider = document.getElementById('min-reviews');
+            const reviewsValue = document.getElementById('reviews-value');
+            
+            ratingSlider.addEventListener('input', function() {
+                ratingValue.textContent = parseFloat(this.value).toFixed(1);
+            });
+            
+            reviewsSlider.addEventListener('input', function() {
+                reviewsValue.textContent = this.value;
+            });
+            
+            // Provider filtering functionality
+            const searchInput = document.getElementById('search');
+            const categorySelect = document.getElementById('category');
+            const locationSelect = document.getElementById('location');
+            const specializationSelect = document.getElementById('specialization');
+            const servicesSelect = document.getElementById('services');
+            const experienceCheckboxes = document.querySelectorAll('.experience-checkbox');
+            const availabilityCheckboxes = document.querySelectorAll('.availability-checkbox');
+            const applyFiltersButton = document.getElementById('apply-filters');
+            const resetFiltersButton = document.getElementById('reset-filters');
+            const sortBySelect = document.getElementById('sort-by');
+            const providerCards = document.querySelectorAll('.provider-card');
+            const providerCount = document.getElementById('provider-count');
+            const providersContainer = document.getElementById('providers-container');
+            
+            // Apply filters function
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const categoryFilter = categorySelect.value;
+                const locationFilter = locationSelect.value;
+                const specializationFilter = specializationSelect.value;
+                const servicesFilter = servicesSelect.value;
+                
+                // Get selected experience levels
+                const experienceFilters = [];
+                experienceCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        if (checkbox.id === 'exp-1-3') experienceFilters.push('1-3');
+                        if (checkbox.id === 'exp-3-5') experienceFilters.push('3-5');
+                        if (checkbox.id === 'exp-5-plus') experienceFilters.push('5+');
+                    }
+                });
+                
+                // Get selected availability options
+                const availabilityFilters = [];
+                availabilityCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        if (checkbox.id === 'avail-weekends') availabilityFilters.push('weekends');
+                        if (checkbox.id === 'avail-evenings') availabilityFilters.push('evenings');
+                        if (checkbox.id === 'avail-emergency') availabilityFilters.push('emergency');
+                    }
+                });
+                
+                // Get minimum rating and reviews
+                const minRating = parseFloat(ratingSlider.value);
+                const minReviews = parseInt(reviewsSlider.value);
+                
+                // Filter providers
+                let visibleCount = 0;
+                let filteredProviders = [];
+                
+                providerCards.forEach(card => {
+                    const name = card.dataset.name.toLowerCase();
+                    const category = card.dataset.category;
+                    const location = card.dataset.location;
+                    const specializations = card.dataset.specialization.split(',');
+                    const services = card.dataset.services.split(',');
+                    const experience = parseInt(card.dataset.experience);
+                    const rating = parseFloat(card.dataset.rating);
+                    const reviews = parseInt(card.dataset.reviews);
+                    const availability = card.dataset.availability.split(',');
+                    
+                    // Check if card matches all filters
+                    let matchesSearch = searchTerm === '' || name.includes(searchTerm);
+                    let matchesCategory = categoryFilter === '' || category === categoryFilter;
+                    let matchesLocation = locationFilter === '' || location === locationFilter;
+                    let matchesSpecialization = specializationFilter === '' || specializations.includes(specializationFilter);
+                    let matchesServices = servicesFilter === '' || services.includes(servicesFilter);
+                    
+                    // Experience filter logic
+                    let matchesExperience = experienceFilters.length === 0;
+                    if (!matchesExperience) {
+                        if (experienceFilters.includes('1-3') && experience >= 1 && experience <= 3) matchesExperience = true;
+                        if (experienceFilters.includes('3-5') && experience >= 3 && experience <= 5) matchesExperience = true;
+                        if (experienceFilters.includes('5+') && experience > 5) matchesExperience = true;
+                    }
+                    
+                    // Availability filter logic
+                    let matchesAvailability = availabilityFilters.length === 0;
+                    if (!matchesAvailability) {
+                        let hasAllRequired = true;
+                        for (let filter of availabilityFilters) {
+                            if (!availability.includes(filter)) {
+                                hasAllRequired = false;
+                                break;
+                            }
+                        }
+                        matchesAvailability = hasAllRequired;
+                    }
+                    
+                    // Rating and reviews filters
+                    let matchesRating = rating >= minRating;
+                    let matchesReviews = reviews >= minReviews;
+                    
+                    // Show/hide card based on all filters
+                    if (matchesSearch && matchesCategory && matchesLocation && 
+                        matchesSpecialization && matchesServices && matchesExperience && 
+                        matchesAvailability && matchesRating && matchesReviews) {
+                        card.style.display = 'block';
+                        visibleCount++;
+                        filteredProviders.push(card);
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+                
+                // Update provider count
+                providerCount.textContent = `Showing ${visibleCount} provider${visibleCount !== 1 ? 's' : ''}`;
+                
+                // Sort the filtered providers
+                sortProviders(filteredProviders);
+            }
+            
+            // Sort providers function
+            function sortProviders(providers) {
+                const sortBy = sortBySelect.value;
+                
+                providers.sort((a, b) => {
+                    if (sortBy === 'rating') {
+                        return parseFloat(b.dataset.rating) - parseFloat(a.dataset.rating);
+                    } else if (sortBy === 'reviews') {
+                        return parseInt(b.dataset.reviews) - parseInt(a.dataset.reviews);
+                    } else if (sortBy === 'experience') {
+                        return parseInt(b.dataset.experience) - parseInt(a.dataset.experience);
+                    } else if (sortBy === 'name') {
+                        return a.dataset.name.localeCompare(b.dataset.name);
+                    }
+                    return 0;
+                });
+                
+                // Reorder the DOM elements
+                providers.forEach(provider => {
+                    providersContainer.appendChild(provider);
+                });
+            }
+            
+            // Reset filters function
+            function resetFilters() {
+                searchInput.value = '';
+                categorySelect.value = '';
+                locationSelect.value = '';
+                specializationSelect.value = '';
+                servicesSelect.value = '';
+                
+                // Reset checkboxes
+                experienceCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                availabilityCheckboxes.forEach(checkbox => {
+                    checkbox.checked = false;
+                });
+                
+                // Reset sliders
+                ratingSlider.value = 1;
+                ratingValue.textContent = '1.0';
+                
+                reviewsSlider.value = 0;
+                reviewsValue.textContent = '0';
+                
+                // Apply the reset filters
+                applyFilters();
+            }
+            
+            // Event listeners
+            applyFiltersButton.addEventListener('click', applyFilters);
+            resetFiltersButton.addEventListener('click', resetFilters);
+            sortBySelect.addEventListener('change', function() {
+                const visibleProviders = Array.from(providerCards).filter(card => card.style.display !== 'none');
+                sortProviders(visibleProviders);
+            });
+            
+            // Initial sort and filter
+            applyFilters();
+            
+            // Update auth section based on login state
+            function updateAuthSection() {
+                const authSection = document.getElementById('auth-section');
+                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
+                const username = localStorage.getItem('cryptomall_user') || 'User';
+                
+                if (isLoggedIn) {
+                    authSection.innerHTML = `
+                        <div class="relative group">
+                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
+                                ${username}
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
+                                    <path d="m6 9 6 6 6-6"></path>
+                                </svg>
+                            </button>
+                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
+                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+                            </div>
+                        </div>
+                    `;
+                    
+                    // Add logout functionality
+                    setTimeout(() => {
+                        const logoutButton = document.getElementById('logout-button');
+                        if (logoutButton) {
+                            logoutButton.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                localStorage.removeItem('cryptomall_logged_in');
+                                localStorage.removeItem('cryptomall_user');
+                                window.location.href = 'index.html';
+                            });
+                        }
+                    }, 100);
+                } else {
+                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
+                }
+            }
+            
+            // Update auth section on page load
+            updateAuthSection();
         });
     </script>
 </body>

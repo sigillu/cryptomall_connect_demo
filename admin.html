@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - CryptoMall</title>
+    <title>CryptoMall - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         /* Custom styles */
@@ -31,10 +31,8 @@
             color: #f9fafb;
         }
         
-        .dark-mode .text-gray-500 {
-            color: #9ca3af;
-        }
-        
+        .dark-mode .text-gray-500,
+        .dark-mode .text-gray-600,
         .dark-mode .text-gray-700 {
             color: #e5e7eb;
         }
@@ -53,34 +51,10 @@
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         }
         
-        .dark-mode input,
-        .dark-mode select,
-        .dark-mode textarea {
-            background-color: #374151;
-            border-color: #4b5563;
-            color: #e5e7eb;
-        }
-        
-        .dark-mode input::placeholder,
-        .dark-mode select::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #9ca3af;
-        }
-        
-        .dark-mode label {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .bg-yellow-50 {
-            background-color: #2d2b17;
-        }
-        
-        .dark-mode .text-yellow-800 {
-            color: #fcd34d;
-        }
-        
-        .dark-mode .border-yellow-300 {
-            border-color: #78350f;
+        /* Tab styles */
+        .tab-active {
+            color: #6366f1;
+            border-color: #6366f1;
         }
     </style>
 </head>
@@ -99,9 +73,9 @@
                     <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
                     <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
                     <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
-                    <a href="admin.html" class="text-sm font-medium text-primary">Admin</a>
                 </nav>
                 <div class="flex items-center gap-4">
+                    <a href="join.html" class="text-sm font-medium text-primary hover:underline">Join</a>
                     <div id="auth-section">
                         <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
                     </div>
@@ -123,442 +97,590 @@
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
-        <section class="w-full py-12 md:py-24 lg:py-32">
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="max-w-6xl mx-auto">
-                    <div id="login-required" class="hidden">
-                        <div class="bg-yellow-50 border-l-4 border-yellow-300 p-4 mb-8">
-                            <div class="flex">
-                                <div class="flex-shrink-0">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-800">
-                                        <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path>
-                                        <line x1="12" y1="9" x2="12" y2="13"></line>
-                                        <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                                    </svg>
-                                </div>
-                                <div class="ml-3">
-                                    <p class="text-sm text-yellow-800">
-                                        You must be logged in as an administrator to access this page.
-                                        <a href="login.html" class="font-medium underline">Log in now</a>
-                                    </p>
-                                </div>
+    <!-- Admin Dashboard Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex items-center justify-between mb-8">
+                <h1 class="text-3xl font-bold tracking-tighter">Admin Dashboard</h1>
+                <div class="flex items-center gap-2">
+                    <span class="text-sm font-medium text-gray-500">Welcome, Admin</span>
+                </div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="border-b mb-6">
+                <div class="flex -mb-px">
+                    <button class="tab-button tab-active px-4 py-2 border-b-2 text-sm font-medium" data-tab="applications">
+                        Provider Applications
+                    </button>
+                    <button class="tab-button px-4 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500" data-tab="providers">
+                        Manage Providers
+                    </button>
+                    <button class="tab-button px-4 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500" data-tab="settings">
+                        Site Settings
+                    </button>
+                    <button class="tab-button px-4 py-2 border-b-2 border-transparent text-sm font-medium text-gray-500" data-tab="users">
+                        User Management
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content" id="applications-tab">
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                    <h2 class="text-xl font-bold mb-4">Pending Applications</h2>
+                    <p class="text-gray-500 mb-4">Review and approve new provider applications</p>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Company
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Category
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Location
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Submitted
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    CryptoSecure Solutions
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    contact@cryptosecure.example
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            Security
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        New York, USA
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        May 16, 2025
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">View</button>
+                                        <button class="text-green-600 hover:text-green-800 mr-3">Approve</button>
+                                        <button class="text-red-600 hover:text-red-800">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    Blockchain Tax Experts
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    info@bctax.example
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Tax
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        Chicago, USA
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        May 15, 2025
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">View</button>
+                                        <button class="text-green-600 hover:text-green-800 mr-3">Approve</button>
+                                        <button class="text-red-600 hover:text-red-800">Reject</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    DeFi Development Co
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    hello@defidevelopment.example
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                            Development
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        San Francisco, USA
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        May 14, 2025
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">View</button>
+                                        <button class="text-green-600 hover:text-green-800 mr-3">Approve</button>
+                                        <button class="text-red-600 hover:text-red-800">Reject</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content hidden" id="providers-tab">
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-xl font-bold">Approved Providers</h2>
+                            <p class="text-gray-500">Manage existing providers in the directory</p>
+                        </div>
+                        <div>
+                            <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary/90">
+                                Add New Provider
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <input type="text" placeholder="Search providers..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <select class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">All Categories</option>
+                                    <option value="security">Security</option>
+                                    <option value="tax">Tax</option>
+                                    <option value="legal">Legal</option>
+                                    <option value="development">Development</option>
+                                    <option value="education">Education</option>
+                                </select>
                             </div>
                         </div>
                     </div>
                     
-                    <div id="admin-dashboard" class="hidden">
-                        <div class="text-center mb-8">
-                            <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">Admin Dashboard</h1>
-                            <p class="mt-4 text-gray-500">
-                                Manage provider applications and platform settings.
-                            </p>
-                        </div>
-                        
-                        <!-- Dashboard Navigation -->
-                        <div class="bg-white p-4 rounded-lg shadow-sm border mb-8">
-                            <div class="flex flex-wrap gap-4">
-                                <button class="tab-button px-4 py-2 rounded-md bg-primary text-white" data-tab="pending-applications">
-                                    Pending Applications
-                                </button>
-                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="approved-providers">
-                                    Approved Providers
-                                </button>
-                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="site-settings">
-                                    Site Settings
-                                </button>
-                                <button class="tab-button px-4 py-2 rounded-md bg-gray-100 text-gray-700 hover:bg-gray-200" data-tab="user-management">
-                                    User Management
-                                </button>
-                            </div>
-                        </div>
-                        
-                        <!-- Pending Applications Tab -->
-                        <div id="pending-applications" class="tab-content">
-                            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                                <h2 class="text-xl font-bold mb-4">Pending Provider Applications</h2>
-                                
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Contact</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Submitted</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-white divide-y divide-gray-200" id="pending-applications-table">
-                                            <!-- Sample pending applications will be loaded here -->
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">Crypto Security Solutions</div>
-                                                            <div class="text-sm text-gray-500">United States</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Security & Protection</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">John Smith</div>
-                                                    <div class="text-sm text-gray-500">john@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 17, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
-                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
-                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">Blockchain Academy</div>
-                                                            <div class="text-sm text-gray-500">Canada</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Education & Training</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">Sarah Johnson</div>
-                                                    <div class="text-sm text-gray-500">sarah@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 16, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
-                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
-                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">Crypto Tax Experts</div>
-                                                            <div class="text-sm text-gray-500">United Kingdom</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Tax & Accounting</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-900">Michael Brown</div>
-                                                    <div class="text-sm text-gray-500">michael@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 15, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">View</button>
-                                                    <button class="text-green-600 hover:text-green-900 mr-3">Approve</button>
-                                                    <button class="text-red-600 hover:text-red-900">Reject</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div class="mt-4 flex justify-between">
-                                    <div class="text-sm text-gray-500">
-                                        Showing <span class="font-medium">3</span> pending applications
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Previous</button>
-                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Next</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Approved Providers Tab -->
-                        <div id="approved-providers" class="tab-content hidden">
-                            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                                <h2 class="text-xl font-bold mb-4">Approved Providers</h2>
-                                
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Approved On</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            <!-- Sample approved providers -->
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">CryptoGuard Solutions</div>
-                                                            <div class="text-sm text-gray-500">United States</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Security & Protection</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 10, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
-                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">Blockchain Developers Inc</div>
-                                                            <div class="text-sm text-gray-500">Canada</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Development & Implementation</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 8, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
-                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="flex items-center">
-                                                        <div>
-                                                            <div class="text-sm font-medium text-gray-900">Crypto Legal Advisors</div>
-                                                            <div class="text-sm text-gray-500">United Kingdom</div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">Legal Services</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Suspended</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                    May 5, 2025
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                    <button class="text-green-600 hover:text-green-900 mr-3">Activate</button>
-                                                    <button class="text-red-600 hover:text-red-900">Remove</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div class="mt-4 flex justify-between">
-                                    <div class="text-sm text-gray-500">
-                                        Showing <span class="font-medium">3</span> of <span class="font-medium">12</span> providers
-                                    </div>
-                                    <div class="flex space-x-2">
-                                        <button class="px-3 py-1 border rounded text-sm text-gray-500 hover:bg-gray-50" disabled>Previous</button>
-                                        <button class="px-3 py-1 border rounded text-sm text-primary hover:bg-gray-50">Next</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Site Settings Tab -->
-                        <div id="site-settings" class="tab-content hidden">
-                            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                                <h2 class="text-xl font-bold mb-4">Site Settings</h2>
-                                
-                                <form class="space-y-6">
-                                    <div>
-                                        <h3 class="text-lg font-medium mb-3">General Settings</h3>
-                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Company
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Category
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Rating
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
                                             <div>
-                                                <label for="site_name" class="block text-sm font-medium text-gray-700 mb-1">Site Name</label>
-                                                <input type="text" id="site_name" name="site_name" class="w-full px-3 py-2 border rounded-md" value="CryptoMall">
-                                            </div>
-                                            
-                                            <div>
-                                                <label for="contact_email" class="block text-sm font-medium text-gray-700 mb-1">Contact Email</label>
-                                                <input type="email" id="contact_email" name="contact_email" class="w-full px-3 py-2 border rounded-md" value="info@cryptomall.com">
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    Crypto Wallet Rescue
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    support@walletrescue.example
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 class="text-lg font-medium mb-3">Provider Settings</h3>
-                                        <div class="space-y-4">
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            Security
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">4.8/5</div>
+                                        <div class="text-sm text-gray-500">24 reviews</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-yellow-600 hover:text-yellow-800 mr-3">Suspend</button>
+                                        <button class="text-red-600 hover:text-red-800">Remove</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
                                             <div>
-                                                <label for="auto_approve" class="flex items-center">
-                                                    <input type="checkbox" id="auto_approve" name="auto_approve" class="h-4 w-4 border-gray-300 rounded">
-                                                    <span class="ml-2 text-sm text-gray-700">Auto-approve new provider applications</span>
-                                                </label>
-                                            </div>
-                                            
-                                            <div>
-                                                <label for="featured_limit" class="block text-sm font-medium text-gray-700 mb-1">Featured Providers Limit</label>
-                                                <input type="number" id="featured_limit" name="featured_limit" class="w-full px-3 py-2 border rounded-md" value="6">
-                                            </div>
-                                            
-                                            <div>
-                                                <label for="categories" class="block text-sm font-medium text-gray-700 mb-1">Provider Categories</label>
-                                                <textarea id="categories" name="categories" rows="4" class="w-full px-3 py-2 border rounded-md">Education & Training
-Security & Protection
-Development & Implementation
-Tax & Accounting
-Legal Services
-Business Consulting
-Hardware & Equipment</textarea>
-                                                <p class="text-xs text-gray-500 mt-1">One category per line</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div>
-                                        <h3 class="text-lg font-medium mb-3">Content Settings</h3>
-                                        <div class="space-y-4">
-                                            <div>
-                                                <label for="enable_blog" class="flex items-center">
-                                                    <input type="checkbox" id="enable_blog" name="enable_blog" class="h-4 w-4 border-gray-300 rounded" checked>
-                                                    <span class="ml-2 text-sm text-gray-700">Enable Education Hub</span>
-                                                </label>
-                                            </div>
-                                            
-                                            <div>
-                                                <label for="enable_quiz" class="flex items-center">
-                                                    <input type="checkbox" id="enable_quiz" name="enable_quiz" class="h-4 w-4 border-gray-300 rounded" checked>
-                                                    <span class="ml-2 text-sm text-gray-700">Enable Matching Quiz</span>
-                                                </label>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    Crypto Tax Pros
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    info@cryptotaxpros.example
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    
-                                    <div class="pt-4">
-                                        <button type="submit" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                            Save Settings
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Tax
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">4.6/5</div>
+                                        <div class="text-sm text-gray-500">42 reviews</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-yellow-600 hover:text-yellow-800 mr-3">Suspend</button>
+                                        <button class="text-red-600 hover:text-red-800">Remove</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="flex items-center">
+                                            <div>
+                                                <div class="text-sm font-medium text-gray-900">
+                                                    Blockchain Legal Group
+                                                </div>
+                                                <div class="text-sm text-gray-500">
+                                                    contact@bclegal.example
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Legal
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-900">4.9/5</div>
+                                        <div class="text-sm text-gray-500">18 reviews</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
+                                            Featured
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-yellow-600 hover:text-yellow-800 mr-3">Suspend</button>
+                                        <button class="text-red-600 hover:text-red-800">Remove</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            Showing 1-3 of 24 providers
                         </div>
-                        
-                        <!-- User Management Tab -->
-                        <div id="user-management" class="tab-content hidden">
-                            <div class="bg-white p-6 rounded-lg shadow-sm border">
-                                <h2 class="text-xl font-bold mb-4">User Management</h2>
-                                
-                                <div class="overflow-x-auto">
-                                    <table class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50">
-                                            <tr>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-                                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="bg-white divide-y divide-gray-200">
-                                            <!-- Sample users -->
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">Admin User</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-500">admin@admin.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">Administrator</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">John Smith</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-500">john@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">Moderator</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Active</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                    <button class="text-yellow-600 hover:text-yellow-900 mr-3">Suspend</button>
-                                                    <button class="text-red-600 hover:text-red-900">Delete</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <div class="text-sm text-gray-500">sarah@example.com</div>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">User</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Suspended</span>
-                                                </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <button class="text-primary hover:text-indigo-900 mr-3">Edit</button>
-                                                    <button class="text-green-600 hover:text-green-900 mr-3">Activate</button>
-                                                    <button class="text-red-600 hover:text-red-900">Delete</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <div class="mt-6">
-                                    <button class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                        Add New User
-                                    </button>
-                                </div>
-                            </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Previous</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm bg-primary text-white">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Next</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+            
+            <div class="tab-content hidden" id="settings-tab">
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                    <h2 class="text-xl font-bold mb-4">Site Settings</h2>
+                    <p class="text-gray-500 mb-6">Configure platform settings and preferences</p>
+                    
+                    <div class="space-y-6">
+                        <div>
+                            <h3 class="text-lg font-medium mb-3">General Settings</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="site-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Site Name
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="site-name"
+                                        name="site-name"
+                                        value="CryptoMall"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
+                                        Contact Email
+                                    </label>
+                                    <input
+                                        type="email"
+                                        id="contact-email"
+                                        name="contact-email"
+                                        value="admin@cryptomall.example"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-3">Provider Settings</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-700">Auto-approve new providers</h4>
+                                        <p class="text-sm text-gray-500">Automatically approve new provider applications</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" value="" class="sr-only peer">
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-700">Enable provider reviews</h4>
+                                        <p class="text-sm text-gray-500">Allow users to leave reviews for providers</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="text-sm font-medium text-gray-700">Moderate reviews</h4>
+                                        <p class="text-sm text-gray-500">Require admin approval for user reviews</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <label class="relative inline-flex items-center cursor-pointer">
+                                            <input type="checkbox" value="" class="sr-only peer" checked>
+                                            <div class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"></div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-medium mb-3">Email Settings</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label for="smtp-host" class="block text-sm font-medium text-gray-700 mb-1">
+                                        SMTP Host
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="smtp-host"
+                                        name="smtp-host"
+                                        value="smtp.example.com"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    />
+                                </div>
+                                <div>
+                                    <label for="smtp-port" class="block text-sm font-medium text-gray-700 mb-1">
+                                        SMTP Port
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="smtp-port"
+                                        name="smtp-port"
+                                        value="587"
+                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4 border-t">
+                            <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary/90">
+                                Save Settings
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tab-content hidden" id="users-tab">
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <h2 class="text-xl font-bold">User Management</h2>
+                            <p class="text-gray-500">Manage user accounts and permissions</p>
+                        </div>
+                        <div>
+                            <button class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary/90">
+                                Add New User
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <div class="flex gap-4">
+                            <div class="flex-1">
+                                <input type="text" placeholder="Search users..." class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                            </div>
+                            <div>
+                                <select class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                    <option value="">All Roles</option>
+                                    <option value="admin">Admin</option>
+                                    <option value="moderator">Moderator</option>
+                                    <option value="user">User</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Name
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Email
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Role
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Status
+                                    </th>
+                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Actions
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">Admin User</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500">admin@admin.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-purple-100 text-purple-800">
+                                            Admin
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Disable</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">John Smith</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500">john@example.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            Moderator
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Disable</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm font-medium text-gray-900">Sarah Johnson</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <div class="text-sm text-gray-500">sarah@example.com</div>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-gray-100 text-gray-800">
+                                            User
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            Active
+                                        </span>
+                                    </td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                        <button class="text-primary hover:text-primary/80 mr-3">Edit</button>
+                                        <button class="text-red-600 hover:text-red-800">Disable</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div class="mt-4 flex items-center justify-between">
+                        <div class="text-sm text-gray-500">
+                            Showing 1-3 of 12 users
+                        </div>
+                        <div class="flex gap-2">
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Previous</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm bg-primary text-white">1</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">2</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">3</button>
+                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Next</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t bg-white">
+    <footer class="w-full border-t bg-white mt-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -642,41 +764,49 @@ Hardware & Equipment</textarea>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Check if user is logged in as admin
-            const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-            const username = localStorage.getItem('cryptomall_user');
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            themeToggle.addEventListener('click', function() {
+                document.body.classList.toggle('dark-mode');
+                
+                // Store the theme preference
+                if (document.body.classList.contains('dark-mode')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
             
-            if (isLoggedIn && username === 'Admin') {
-                document.getElementById('login-required').classList.add('hidden');
-                document.getElementById('admin-dashboard').classList.remove('hidden');
-            } else {
-                document.getElementById('login-required').classList.remove('hidden');
-                document.getElementById('admin-dashboard').classList.add('hidden');
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-mode');
             }
             
-            // Tab switching functionality
+            // Tab functionality
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
             
             tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabName = this.getAttribute('data-tab');
-                    
-                    // Update button styles
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
                     tabButtons.forEach(btn => {
-                        btn.classList.remove('bg-primary', 'text-white');
-                        btn.classList.add('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
+                        btn.classList.remove('tab-active');
+                        btn.classList.add('border-transparent', 'text-gray-500');
                     });
                     
-                    this.classList.remove('bg-gray-100', 'text-gray-700', 'hover:bg-gray-200');
-                    this.classList.add('bg-primary', 'text-white');
+                    // Add active class to clicked button
+                    button.classList.add('tab-active');
+                    button.classList.remove('border-transparent', 'text-gray-500');
                     
-                    // Show selected tab content
+                    // Hide all tab contents
                     tabContents.forEach(content => {
                         content.classList.add('hidden');
                     });
                     
-                    document.getElementById(tabName).classList.remove('hidden');
+                    // Show the corresponding tab content
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
                 });
             });
             
@@ -720,37 +850,13 @@ Hardware & Equipment</textarea>
                 }
             }
             
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
             // Update auth section on page load
             updateAuthSection();
             
-            // Check for user application data
-            const applicationData = localStorage.getItem('cryptomall_provider_application');
-            if (applicationData) {
-                const application = JSON.parse(applicationData);
-                const applicationDate = localStorage.getItem('cryptomall_application_date');
-                
-                // In a real implementation, we would display this data in the pending applications table
-                console.log('User application data:', application);
-                console.log('Application date:', applicationDate);
+            // Redirect to login if not logged in
+            const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
+            if (!isLoggedIn) {
+                window.location.href = 'login.html';
             }
         });
     </script>
