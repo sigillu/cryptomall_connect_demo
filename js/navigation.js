@@ -6,22 +6,22 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Dark mode toggle
     const themeToggle = document.getElementById('theme-toggle');
-    const htmlElement = document.documentElement;
+    const body = document.body;
     
     // Check for saved theme preference or respect OS preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        htmlElement.classList.add('dark');
+        body.classList.add('dark-mode');
     }
     
     // Theme toggle click handler
     if (themeToggle) {
         themeToggle.addEventListener('click', function() {
-            if (htmlElement.classList.contains('dark')) {
-                htmlElement.classList.remove('dark');
+            if (body.classList.contains('dark-mode')) {
+                body.classList.remove('dark-mode');
                 localStorage.setItem('theme', 'light');
             } else {
-                htmlElement.classList.add('dark');
+                body.classList.add('dark-mode');
                 localStorage.setItem('theme', 'dark');
             }
         });
@@ -52,15 +52,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create dropdown menu
         const dropdownMenu = document.createElement('div');
-        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden';
+        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white dark-mode:bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden';
         dropdownMenu.id = 'admin-dropdown-menu';
         
         // Add dropdown items
         dropdownMenu.innerHTML = `
-            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Profile</a>
-            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Admin Dashboard</a>' : ''}
-            <a href="profile.html#settings" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Settings</a>
-            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Log out</button>
+            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Profile</a>
+            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Admin Dashboard</a>' : ''}
+            <a href="profile.html#settings" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Settings</a>
+            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Log out</button>
         `;
         
         // Append dropdown elements
@@ -76,14 +76,42 @@ document.addEventListener('DOMContentLoaded', function() {
         const adminDropdownMenu = document.getElementById('admin-dropdown-menu');
         
         if (adminDropdownButton && adminDropdownMenu) {
+            // Fix for dropdown hover behavior
+            let isDropdownOpen = false;
+            
             adminDropdownButton.addEventListener('click', function(e) {
                 e.stopPropagation();
-                adminDropdownMenu.classList.toggle('hidden');
+                isDropdownOpen = !isDropdownOpen;
+                if (isDropdownOpen) {
+                    adminDropdownMenu.classList.remove('hidden');
+                } else {
+                    adminDropdownMenu.classList.add('hidden');
+                }
+            });
+            
+            // Keep dropdown open when hovering over menu
+            adminDropdownMenu.addEventListener('mouseenter', function() {
+                isDropdownOpen = true;
+                adminDropdownMenu.classList.remove('hidden');
+            });
+            
+            adminDropdownMenu.addEventListener('mouseleave', function() {
+                if (!adminDropdownButton.matches(':hover')) {
+                    isDropdownOpen = false;
+                    adminDropdownMenu.classList.add('hidden');
+                }
+            });
+            
+            adminDropdownButton.addEventListener('mouseenter', function() {
+                if (isDropdownOpen) {
+                    adminDropdownMenu.classList.remove('hidden');
+                }
             });
             
             // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
-                if (adminDropdownButton && !adminDropdownButton.contains(e.target)) {
+                if (adminDropdownButton && !adminDropdownButton.contains(e.target) && !adminDropdownMenu.contains(e.target)) {
+                    isDropdownOpen = false;
                     adminDropdownMenu.classList.add('hidden');
                 }
             });
