@@ -62,18 +62,20 @@
 }
 
 /* Dropdown menus in dark mode */
-.dark-mode #user-dropdown {
+.dark-mode #admin-dropdown-menu {
     background-color: #1f2937;
     border-color: #374151;
 }
 
-.dark-mode #user-dropdown a {
-    color: #f9fafb;
+.dark-mode #admin-dropdown-menu a,
+.dark-mode #admin-dropdown-menu button {
+    color: #f9fafb !important;
 }
 
-.dark-mode #user-dropdown a:hover {
-    background-color: #374151;
-    color: #f9fafb;
+.dark-mode #admin-dropdown-menu a:hover,
+.dark-mode #admin-dropdown-menu button:hover {
+    background-color: #6366f1 !important;
+    color: #ffffff !important;
 }
 
 /* Card and container backgrounds */
