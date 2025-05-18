@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMall - Provider Directory</title>
+    <title>Provider Directory - CryptoMall</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/darkmode.css">
     <style>
@@ -18,34 +18,17 @@
         /* Transitions */
         .transition { transition: all 0.3s ease; }
         
-        /* Filter styles */
-        .filter-option {
-            transition: all 0.2s ease;
-        }
-        
-        .filter-option:hover {
-            border-color: #6366f1;
-            background-color: rgba(99, 102, 241, 0.05);
-        }
-        
-        .filter-option.selected {
-            border-color: #6366f1;
-            background-color: rgba(99, 102, 241, 0.1);
-        }
-        
-        .filter-option.selected .filter-check {
-            display: block;
-        }
-        
-        .filter-check {
-            display: none;
+        /* Card hover effect */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version e)
+        (version f)
     </div>
     
     <!-- Navigation -->
@@ -58,7 +41,7 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
+                    <a href="providers.html" class="text-sm font-medium text-primary">Directory</a>
                     <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
                     <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
                     <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
@@ -86,502 +69,82 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="w-full py-12 md:py-24 lg:py-32 bg-primary-light">
+    <!-- Main Content -->
+    <section class="w-full py-12 md:py-24 lg:py-32">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Crypto Service Provider Directory</h1>
-                <p class="mt-4 text-lg text-gray-500">
-                    Browse our curated list of trusted crypto service providers
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Directory Content -->
-    <section class="w-full py-12 md:py-24">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Filters -->
-            <div class="mb-8">
-                <h2 class="text-xl font-bold mb-4">Filter Providers</h2>
-                
-                <!-- Category Filter -->
-                <div class="mb-6">
-                    <h3 class="font-medium mb-2">Category</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="all">
-                            <span>All Categories</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="security">
-                            <span>Security & Protection</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="tax">
-                            <span>Tax & Accounting</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="legal">
-                            <span>Legal Services</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="education">
-                            <span>Education & Training</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="category" data-value="technical">
-                            <span>Technical Services</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
+            <div class="max-w-6xl mx-auto">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Provider Directory</h1>
+                    <p class="mt-4 text-gray-500">
+                        Browse and search our vetted crypto service providers across various specialties.
+                    </p>
                 </div>
                 
-                <!-- Experience Level Filter -->
-                <div class="mb-6">
-                    <h3 class="font-medium mb-2">Experience Level</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="experience" data-value="all">
-                            <span>All Levels</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="experience" data-value="beginner">
-                            <span>Beginner-Friendly</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="experience" data-value="intermediate">
-                            <span>Intermediate</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="experience" data-value="advanced">
-                            <span>Advanced</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Location Filter -->
-                <div class="mb-6">
-                    <h3 class="font-medium mb-2">Location</h3>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="location" data-value="all">
-                            <span>All Locations</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="location" data-value="remote">
-                            <span>Remote Only</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="location" data-value="us">
-                            <span>United States</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="location" data-value="europe">
-                            <span>Europe</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="filter-option border p-3 rounded-lg cursor-pointer flex justify-between items-center" data-filter="location" data-value="asia">
-                            <span>Asia</span>
-                            <div class="filter-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Search -->
-                <div class="mb-6">
-                    <h3 class="font-medium mb-2">Search</h3>
-                    <div class="flex">
-                        <input type="text" id="provider-search" placeholder="Search by name or keyword..." class="flex-1 p-2 border rounded-l">
-                        <button id="search-button" class="bg-primary text-white px-4 py-2 rounded-r">Search</button>
-                    </div>
-                </div>
-                
-                <!-- Active Filters -->
-                <div id="active-filters" class="hidden">
-                    <h3 class="font-medium mb-2">Active Filters</h3>
-                    <div id="filter-tags" class="flex flex-wrap gap-2 mb-2"></div>
-                    <button id="clear-filters" class="text-primary text-sm hover:underline">Clear All Filters</button>
-                </div>
-            </div>
-            
-            <!-- Results Count -->
-            <div class="mb-6 flex justify-between items-center">
-                <div>
-                    <span id="results-count">124</span> providers found
-                </div>
-                <div class="flex items-center">
-                    <label for="sort-by" class="mr-2 text-sm">Sort by:</label>
-                    <select id="sort-by" class="p-2 border rounded">
-                        <option value="rating">Rating (High to Low)</option>
-                        <option value="name">Name (A-Z)</option>
-                        <option value="newest">Newest First</option>
-                    </select>
-                </div>
-            </div>
-            
-            <!-- Provider Listings -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-                <!-- Provider 1 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="security" data-experience="beginner,intermediate,advanced" data-location="remote,us">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
-                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
+                <!-- Search and Filter Section -->
+                <div class="mb-8 p-6 border rounded-lg shadow-sm bg-white">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                            <input type="text" id="search" placeholder="Search by name or company" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
                         </div>
                         <div>
-                            <h3 class="font-bold">CryptoGuard Solutions</h3>
-                            <p class="text-sm text-gray-500">Security & Protection</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Specializing in wallet security, private key management, and fraud prevention for individuals and businesses.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">5.0 (48 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Key Management</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Fraud Prevention</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
-                </div>
-                
-                <!-- Provider 2 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="tax" data-experience="intermediate,advanced" data-location="us,europe">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
-                                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                            </svg>
+                            <label for="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <select id="category" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                <option value="">All Categories</option>
+                                <option value="Security">Security & Protection</option>
+                                <option value="Tax">Tax & Accounting</option>
+                                <option value="Education">Education & Learning</option>
+                                <option value="Legal">Legal Assistance</option>
+                                <option value="Development">Development & Technical</option>
+                                <option value="Business">Business Integration</option>
+                            </select>
                         </div>
                         <div>
-                            <h3 class="font-bold">Crypto Tax Experts</h3>
-                            <p class="text-sm text-gray-500">Tax & Accounting</p>
+                            <label for="location" class="block text-sm font-medium text-gray-700 mb-1">Location</label>
+                            <select id="location" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary">
+                                <option value="">All Locations</option>
+                                <option value="Remote">Remote Only</option>
+                                <option value="New York">New York</option>
+                                <option value="San Francisco">San Francisco</option>
+                                <option value="Chicago">Chicago</option>
+                                <option value="Austin">Austin</option>
+                                <option value="Miami">Miami</option>
+                            </select>
                         </div>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Specialized accounting services for crypto investors and businesses, focusing on tax compliance and optimization.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">4.8 (36 reviews)</span>
+                    <div class="mt-4 flex justify-end">
+                        <button id="apply-filters" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
+                            Apply Filters
+                        </button>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Compliance</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Planning</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Accounting</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
                 </div>
                 
-                <!-- Provider 3 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="education" data-experience="beginner,intermediate" data-location="remote">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
-                                <path d="M12 20h9"></path>
-                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Blockchain Academy</h3>
-                            <p class="text-sm text-gray-500">Education & Training</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Comprehensive crypto education for beginners and advanced users, offering courses, workshops, and personalized training.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">4.9 (52 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Courses</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Workshops</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Personalized Training</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
+                <!-- Results Section -->
+                <div id="results-count" class="mb-4 text-sm text-gray-500">
+                    Showing all 20 providers
                 </div>
                 
-                <!-- Provider 4 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="legal" data-experience="intermediate,advanced" data-location="us,europe">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Crypto Legal Advisors</h3>
-                            <p class="text-sm text-gray-500">Legal Services</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Specialized legal services for crypto businesses and investors, including regulatory compliance and contract review.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">4.7 (29 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Regulatory Compliance</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Contract Review</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Legal Guidance</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
+                <div id="providers-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Provider cards will be dynamically populated here -->
                 </div>
                 
-                <!-- Provider 5 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="technical" data-experience="advanced" data-location="remote,asia">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
-                                <path d="M16 18 22 12 16 6"></path>
-                                <path d="M8 6 2 12 8 18"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Blockchain Developers Hub</h3>
-                            <p class="text-sm text-gray-500">Technical Services</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Expert blockchain development services, including smart contract development, auditing, and dApp creation.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">4.6 (41 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Smart Contracts</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">dApp Development</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Auditing</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
+                <!-- Pagination -->
+                <div class="mt-8 flex justify-center">
+                    <nav class="inline-flex rounded-md shadow">
+                        <a href="#" class="inline-flex items-center px-3 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            Previous
+                        </a>
+                        <a href="#" class="inline-flex items-center px-3 py-2 border-t border-b border-gray-300 bg-white text-sm font-medium text-primary">
+                            1
+                        </a>
+                        <a href="#" class="inline-flex items-center px-3 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            2
+                        </a>
+                        <a href="#" class="inline-flex items-center px-3 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50">
+                            Next
+                        </a>
+                    </nav>
                 </div>
-                
-                <!-- Provider 6 -->
-                <div class="provider-card bg-white p-6 rounded-lg shadow-sm border" data-category="security" data-experience="beginner,intermediate" data-location="remote,us">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
-                                <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-bold">Crypto Security Experts</h3>
-                            <p class="text-sm text-gray-500">Security & Protection</p>
-                        </div>
-                    </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Comprehensive security services for crypto holders, including security audits, recovery services, and educational workshops.
-                    </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">4.9 (33 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security Audits</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Recovery Services</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Workshops</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Pagination -->
-            <div class="flex justify-center">
-                <nav class="inline-flex">
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center rounded-l-md border border-r-0 text-gray-500 hover:bg-gray-50">
-                        <span class="sr-only">Previous</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m15 18-6-6 6-6"></path>
-                        </svg>
-                    </a>
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center border border-r-0 bg-primary text-white">1</a>
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center border border-r-0 text-gray-500 hover:bg-gray-50">2</a>
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center border border-r-0 text-gray-500 hover:bg-gray-50">3</a>
-                    <span class="inline-flex h-10 items-center justify-center border border-r-0 px-3 text-gray-500">...</span>
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center border border-r-0 text-gray-500 hover:bg-gray-50">8</a>
-                    <a href="#" class="inline-flex h-10 w-10 items-center justify-center border text-gray-500 hover:bg-gray-50 rounded-r-md">
-                        <span class="sr-only">Next</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="m9 18 6-6-6-6"></path>
-                        </svg>
-                    </a>
-                </nav>
             </div>
         </div>
     </section>
@@ -674,213 +237,230 @@
         </div>
     </footer>
 
-    <!-- Scripts -->
     <script src="js/navigation.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Filter functionality
-            const filterOptions = document.querySelectorAll('.filter-option');
-            const providerCards = document.querySelectorAll('.provider-card');
-            const activeFilters = document.getElementById('active-filters');
-            const filterTags = document.getElementById('filter-tags');
-            const clearFiltersBtn = document.getElementById('clear-filters');
-            const resultsCount = document.getElementById('results-count');
+        // Provider data
+        const allProviders = [
+            {
+                id: 1,
+                name: "Alex Chen",
+                company: "CryptoSafe Solutions",
+                category: "Security",
+                subcategory: "Wallet Security",
+                rating: 4.9,
+                reviews: 127,
+                description: "Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.",
+                location: "Remote (US-based)",
+                image: "A"
+            },
+            {
+                id: 2,
+                name: "Sarah Johnson",
+                company: "Crypto Tax Pros",
+                category: "Tax",
+                subcategory: "Crypto Taxation",
+                rating: 4.8,
+                reviews: 93,
+                description: "CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.",
+                location: "New York, NY (Remote Available)",
+                image: "S"
+            },
+            {
+                id: 3,
+                name: "Michael Rodriguez",
+                company: "BlockEd Academy",
+                category: "Education",
+                subcategory: "Beginner Courses",
+                rating: 4.7,
+                reviews: 215,
+                description: "Blockchain educator with a passion for making crypto accessible to beginners. Creator of the 'Crypto Fundamentals' course series.",
+                location: "Remote",
+                image: "M"
+            },
+            {
+                id: 4,
+                name: "Jessica Lee",
+                company: "Crypto Legal Advisors",
+                category: "Legal",
+                subcategory: "Regulatory Compliance",
+                rating: 4.9,
+                reviews: 78,
+                description: "Attorney specializing in cryptocurrency regulations and compliance. Helping businesses navigate the evolving legal landscape of digital assets.",
+                location: "San Francisco, CA (Remote Available)",
+                image: "J"
+            },
+            {
+                id: 5,
+                name: "David Kim",
+                company: "CryptoDevs",
+                category: "Development",
+                subcategory: "Smart Contracts",
+                rating: 4.8,
+                reviews: 64,
+                description: "Blockchain developer with expertise in Ethereum and Solana smart contracts. Focused on security-first development practices.",
+                location: "Remote",
+                image: "D"
+            },
+            {
+                id: 6,
+                name: "Emma Wilson",
+                company: "Crypto Business Solutions",
+                category: "Business",
+                subcategory: "Payment Integration",
+                rating: 4.7,
+                reviews: 52,
+                description: "Consultant specializing in helping businesses integrate cryptocurrency payment solutions. Expert in merchant services and payment processors.",
+                location: "Chicago, IL (Remote Available)",
+                image: "E"
+            }
+        ];
+
+        // Function to create provider cards
+        function createProviderCard(provider) {
+            const card = document.createElement('div');
+            card.className = 'bg-white p-6 rounded-lg shadow-sm border transition card-hover';
             
-            // Store active filters
-            const filters = {
-                category: 'all',
-                experience: 'all',
-                location: 'all'
+            // Create initial letter avatar
+            const avatarBgColors = {
+                'A': 'bg-blue-100 text-blue-600',
+                'S': 'bg-green-100 text-green-600',
+                'M': 'bg-purple-100 text-purple-600',
+                'J': 'bg-pink-100 text-pink-600',
+                'D': 'bg-yellow-100 text-yellow-600',
+                'E': 'bg-red-100 text-red-600'
             };
             
-            // Initialize with "All" options selected
-            document.querySelectorAll('.filter-option[data-value="all"]').forEach(option => {
-                option.classList.add('selected');
-            });
+            const avatarColor = avatarBgColors[provider.image] || 'bg-gray-100 text-gray-600';
             
-            // Filter option click handler
-            filterOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const filterType = this.getAttribute('data-filter');
-                    const filterValue = this.getAttribute('data-value');
-                    
-                    // Deselect other options in the same filter group
-                    document.querySelectorAll(`.filter-option[data-filter="${filterType}"]`).forEach(opt => {
-                        opt.classList.remove('selected');
-                    });
-                    
-                    // Select clicked option
-                    this.classList.add('selected');
-                    
-                    // Update filters
-                    filters[filterType] = filterValue;
-                    
-                    // Apply filters
-                    applyFilters();
-                    
-                    // Update filter tags
-                    updateFilterTags();
-                });
-            });
+            card.innerHTML = `
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 ${avatarColor} rounded-full flex items-center justify-center mr-4">
+                        <span class="text-lg font-bold">${provider.image}</span>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">${provider.company}</h3>
+                        <p class="text-sm text-gray-500">${provider.category} - ${provider.subcategory}</p>
+                    </div>
+                </div>
+                <p class="text-sm text-gray-500 mb-4">
+                    ${provider.description}
+                </p>
+                <div class="flex items-center mb-2">
+                    <div class="flex text-yellow-400">
+                        ${createStarRating(provider.rating)}
+                    </div>
+                    <span class="text-sm text-gray-500 ml-2">${provider.rating} (${provider.reviews} reviews)</span>
+                </div>
+                <div class="text-sm text-gray-500 mb-4">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline-block mr-1">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    ${provider.location}
+                </div>
+                <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                    View Profile
+                </a>
+            `;
             
-            // Clear filters button
-            clearFiltersBtn.addEventListener('click', function() {
-                // Reset filters
-                Object.keys(filters).forEach(key => {
-                    filters[key] = 'all';
-                });
-                
-                // Reset UI
-                filterOptions.forEach(option => {
-                    option.classList.remove('selected');
-                });
-                
-                document.querySelectorAll('.filter-option[data-value="all"]').forEach(option => {
-                    option.classList.add('selected');
-                });
-                
-                // Apply filters
-                applyFilters();
-                
-                // Hide active filters
-                activeFilters.classList.add('hidden');
-                filterTags.innerHTML = '';
-            });
+            return card;
+        }
+        
+        // Function to create star rating
+        function createStarRating(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
             
-            // Search functionality
-            const searchInput = document.getElementById('provider-search');
-            const searchButton = document.getElementById('search-button');
-            
-            searchButton.addEventListener('click', function() {
-                applyFilters();
-            });
-            
-            searchInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    applyFilters();
-                }
-            });
-            
-            // Apply filters to provider cards
-            function applyFilters() {
-                const searchTerm = searchInput.value.toLowerCase();
-                let visibleCount = 0;
-                
-                providerCards.forEach(card => {
-                    const category = card.getAttribute('data-category');
-                    const experience = card.getAttribute('data-experience');
-                    const location = card.getAttribute('data-location');
-                    const cardText = card.textContent.toLowerCase();
-                    
-                    // Check if card matches all filters
-                    const matchesCategory = filters.category === 'all' || category.includes(filters.category);
-                    const matchesExperience = filters.experience === 'all' || experience.includes(filters.experience);
-                    const matchesLocation = filters.location === 'all' || location.includes(filters.location);
-                    const matchesSearch = searchTerm === '' || cardText.includes(searchTerm);
-                    
-                    if (matchesCategory && matchesExperience && matchesLocation && matchesSearch) {
-                        card.style.display = '';
-                        visibleCount++;
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-                
-                // Update results count
-                resultsCount.textContent = visibleCount;
-            }
-            
-            // Update filter tags
-            function updateFilterTags() {
-                // Clear existing tags
-                filterTags.innerHTML = '';
-                
-                // Check if any non-default filters are active
-                const hasActiveFilters = Object.values(filters).some(value => value !== 'all');
-                
-                if (hasActiveFilters) {
-                    activeFilters.classList.remove('hidden');
-                    
-                    // Create tags for active filters
-                    Object.entries(filters).forEach(([type, value]) => {
-                        if (value !== 'all') {
-                            const tag = document.createElement('div');
-                            tag.className = 'bg-primary-light text-primary px-3 py-1 rounded-full text-sm flex items-center';
-                            
-                            // Format filter type and value for display
-                            const typeDisplay = type.charAt(0).toUpperCase() + type.slice(1);
-                            const valueDisplay = value.charAt(0).toUpperCase() + value.slice(1);
-                            
-                            tag.innerHTML = `
-                                ${typeDisplay}: ${valueDisplay}
-                                <button class="ml-2 focus:outline-none" data-filter-type="${type}">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                                    </svg>
-                                </button>
-                            `;
-                            
-                            // Add click handler to remove tag
-                            tag.querySelector('button').addEventListener('click', function() {
-                                const filterType = this.getAttribute('data-filter-type');
-                                
-                                // Reset filter
-                                filters[filterType] = 'all';
-                                
-                                // Update UI
-                                document.querySelectorAll(`.filter-option[data-filter="${filterType}"]`).forEach(opt => {
-                                    opt.classList.remove('selected');
-                                });
-                                
-                                document.querySelector(`.filter-option[data-filter="${filterType}"][data-value="all"]`).classList.add('selected');
-                                
-                                // Apply filters
-                                applyFilters();
-                                
-                                // Update filter tags
-                                updateFilterTags();
-                            });
-                            
-                            filterTags.appendChild(tag);
-                        }
-                    });
+            for (let i = 0; i < 5; i++) {
+                if (i < fullStars) {
+                    stars += `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    `;
+                } else if (i === fullStars && hasHalfStar) {
+                    stars += `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+                            <defs>
+                                <linearGradient id="half-star" x1="0%" y1="0%" x2="100%" y2="0%">
+                                    <stop offset="50%" stop-color="currentColor"></stop>
+                                    <stop offset="50%" stop-color="transparent" stop-opacity="1"></stop>
+                                </linearGradient>
+                            </defs>
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" fill="url(#half-star)" stroke="currentColor" stroke-width="1"></polygon>
+                        </svg>
+                    `;
                 } else {
-                    activeFilters.classList.add('hidden');
+                    stars += `
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    `;
                 }
             }
             
-            // Sort functionality
-            const sortSelect = document.getElementById('sort-by');
+            return stars;
+        }
+        
+        // Populate provider grid
+        document.addEventListener('DOMContentLoaded', function() {
+            const providersGrid = document.getElementById('providers-grid');
             
-            sortSelect.addEventListener('change', function() {
-                const sortValue = this.value;
-                const cardsArray = Array.from(providerCards);
-                
-                // Sort cards based on selected option
-                cardsArray.sort((a, b) => {
-                    if (sortValue === 'rating') {
-                        // Extract rating from text (e.g., "4.9 (52 reviews)" -> 4.9)
-                        const ratingA = parseFloat(a.querySelector('.text-yellow-400 + span').textContent.match(/\d+\.\d+/)[0]);
-                        const ratingB = parseFloat(b.querySelector('.text-yellow-400 + span').textContent.match(/\d+\.\d+/)[0]);
-                        return ratingB - ratingA; // High to low
-                    } else if (sortValue === 'name') {
-                        const nameA = a.querySelector('h3').textContent;
-                        const nameB = b.querySelector('h3').textContent;
-                        return nameA.localeCompare(nameB); // A-Z
-                    } else if (sortValue === 'newest') {
-                        // For demo purposes, just reverse the current order
-                        return -1;
+            if (providersGrid) {
+                allProviders.forEach(provider => {
+                    providersGrid.appendChild(createProviderCard(provider));
+                });
+            }
+            
+            // Filter functionality
+            const categorySelect = document.getElementById('category');
+            const locationSelect = document.getElementById('location');
+            const searchInput = document.getElementById('search');
+            const applyFiltersBtn = document.getElementById('apply-filters');
+            const resultsCount = document.getElementById('results-count');
+            
+            if (applyFiltersBtn) {
+                applyFiltersBtn.addEventListener('click', function() {
+                    const category = categorySelect.value.toLowerCase();
+                    const location = locationSelect.value.toLowerCase();
+                    const searchTerm = searchInput.value.toLowerCase();
+                    
+                    let filteredProviders = allProviders;
+                    
+                    // Filter by category
+                    if (category) {
+                        filteredProviders = filteredProviders.filter(provider => 
+                            provider.category.toLowerCase().includes(category)
+                        );
                     }
-                    return 0;
+                    
+                    // Filter by location
+                    if (location) {
+                        filteredProviders = filteredProviders.filter(provider => 
+                            provider.location.toLowerCase().includes(location)
+                        );
+                    }
+                    
+                    // Filter by search term
+                    if (searchTerm) {
+                        filteredProviders = filteredProviders.filter(provider => 
+                            provider.name.toLowerCase().includes(searchTerm) || 
+                            provider.company.toLowerCase().includes(searchTerm) ||
+                            provider.description.toLowerCase().includes(searchTerm)
+                        );
+                    }
+                    
+                    // Update results count
+                    resultsCount.textContent = `Showing ${filteredProviders.length} of ${allProviders.length} providers`;
+                    
+                    // Clear and repopulate grid
+                    providersGrid.innerHTML = '';
+                    filteredProviders.forEach(provider => {
+                        providersGrid.appendChild(createProviderCard(provider));
+                    });
                 });
-                
-                // Reorder cards in the DOM
-                const container = providerCards[0].parentNode;
-                cardsArray.forEach(card => {
-                    container.appendChild(card);
-                });
-            });
+            }
         });
     </script>
 </body>
