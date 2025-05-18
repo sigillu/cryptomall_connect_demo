@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoMall - About Us</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
     <style>
         /* Custom styles */
         .bg-primary { background-color: #6366f1; }
@@ -16,40 +17,6 @@
         
         /* Transitions */
         .transition { transition: all 0.3s ease; }
-        
-        /* Dark mode styles */
-        .dark-mode {
-            background-color: #1f2937;
-            color: #f9fafb;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: #111827;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .dark-mode .text-gray-500,
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .border {
-            border-color: #374151;
-        }
-        
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100,
-        .dark-mode .bg-gray-200 {
-            background-color: #1f2937;
-        }
-        
-        .dark-mode .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -91,34 +58,35 @@
         </div>
     </header>
 
-    <!-- About Content -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="max-w-4xl mx-auto">
-            <div class="text-center mb-12">
-                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">About CryptoMall</h1>
+    <!-- Hero Section -->
+    <section class="w-full py-12 md:py-24 lg:py-32 bg-primary-light">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">About CryptoMall</h1>
                 <p class="mt-4 text-lg text-gray-500">
-                    Connecting users with trusted crypto service providers and resources
+                    Our mission is to make the cryptocurrency space more accessible, secure, and trustworthy for everyone.
                 </p>
             </div>
-            
-            <!-- About Section -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border mb-10">
-                <h2 class="text-2xl font-bold mb-6">Our Mission</h2>
-                <p class="text-gray-600 mb-6">
-                    CryptoMall was founded with a simple mission: to create a trusted platform that connects individuals and businesses with qualified cryptocurrency service providers. We believe that access to reliable expertise is essential for safely navigating the complex world of digital assets.
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="w-full py-12 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6">Our Story</h2>
+                <p class="text-gray-500 mb-6">
+                    CryptoMall was founded in 2023 by a team of cryptocurrency enthusiasts who recognized a significant gap in the market: while cryptocurrency adoption was growing rapidly, finding trustworthy service providers remained challenging for many users.
                 </p>
-                <p class="text-gray-600 mb-6">
-                    In an industry that's rapidly evolving and often challenging to navigate, we provide a curated marketplace where users can find vetted professionals across various crypto-related fields—from security specialists and tax experts to educators and developers.
+                <p class="text-gray-500 mb-6">
+                    Our founders experienced firsthand the difficulties of navigating the crypto landscape, from securing digital assets to understanding tax implications. They realized that connecting users with vetted, qualified service providers could solve many of the pain points in the crypto ecosystem.
                 </p>
-                <p class="text-gray-600">
-                    Our platform is designed to simplify the process of finding the right service provider for your specific needs, whether you're a crypto beginner looking for educational resources or an experienced user seeking specialized technical assistance.
+                <p class="text-gray-500 mb-10">
+                    Today, CryptoMall serves as a bridge between individuals and businesses seeking crypto-related services and the qualified professionals who can provide them. Our platform combines rigorous vetting processes with personalized matching to ensure users find the right providers for their specific needs.
                 </p>
-            </div>
-            
-            <!-- Team Section -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border mb-10">
-                <h2 class="text-2xl font-bold mb-6">Our Team</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <h2 class="text-3xl font-bold mb-6" id="team">Our Team</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
                     <!-- Team Member 1 -->
                     <div class="text-center">
                         <div class="w-32 h-32 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
@@ -127,11 +95,8 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold">Sarah Chen</h3>
+                        <h3 class="font-bold">Sarah Chen</h3>
                         <p class="text-sm text-gray-500">CEO & Co-Founder</p>
-                        <p class="text-sm text-gray-600 mt-2">
-                            Former fintech executive with 10+ years experience in digital payments and blockchain technology.
-                        </p>
                     </div>
                     
                     <!-- Team Member 2 -->
@@ -142,11 +107,8 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold">Marcus Johnson</h3>
+                        <h3 class="font-bold">Michael Rodriguez</h3>
                         <p class="text-sm text-gray-500">CTO & Co-Founder</p>
-                        <p class="text-sm text-gray-600 mt-2">
-                            Blockchain developer and security expert with experience at leading cryptocurrency projects.
-                        </p>
                     </div>
                     
                     <!-- Team Member 3 -->
@@ -157,87 +119,111 @@
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
                         </div>
-                        <h3 class="text-lg font-bold">Elena Rodriguez</h3>
+                        <h3 class="font-bold">Aisha Patel</h3>
                         <p class="text-sm text-gray-500">Head of Provider Relations</p>
-                        <p class="text-sm text-gray-600 mt-2">
-                            Specializes in vetting and onboarding qualified service providers to ensure platform quality.
-                        </p>
                     </div>
                 </div>
-            </div>
-            
-            <!-- How We Work Section -->
-            <div class="bg-white p-8 rounded-lg shadow-sm border mb-10">
-                <h2 class="text-2xl font-bold mb-6">How We Work</h2>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">Provider Vetting</h3>
-                        <p class="text-gray-600">
-                            All service providers on CryptoMall undergo a thorough vetting process that includes credential verification, background checks, and client reference reviews. We only accept providers who meet our strict standards for expertise, professionalism, and ethical conduct.
-                        </p>
+                
+                <h2 class="text-3xl font-bold mb-6">Our Values</h2>
+                <div class="space-y-6 mb-10">
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Trust & Transparency</h3>
+                            <p class="text-gray-500">We believe in building trust through transparency. All service providers on our platform undergo thorough vetting, and we clearly communicate our standards and processes.</p>
+                        </div>
                     </div>
                     
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">Matching System</h3>
-                        <p class="text-gray-600">
-                            Our proprietary matching algorithm helps connect users with the most suitable service providers based on their specific needs, preferences, and circumstances. The quiz-based system considers factors like expertise required, budget, location preferences, and experience level.
-                        </p>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">Security & Privacy</h3>
+                            <p class="text-gray-500">We prioritize the security and privacy of our users and providers. We implement robust data protection measures and never share sensitive information without explicit consent.</p>
+                        </div>
                     </div>
                     
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">Educational Resources</h3>
-                        <p class="text-gray-600">
-                            We believe in empowering users with knowledge. That's why we provide a comprehensive library of educational resources created by experts in the field, covering everything from basic cryptocurrency concepts to advanced security practices.
-                        </p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-lg font-bold mb-2">User Privacy</h3>
-                        <p class="text-gray-600">
-                            We take user privacy seriously. CryptoMall is designed to connect users with providers while maintaining appropriate privacy safeguards. We never sell user data to third parties and implement industry-standard security measures to protect all information on our platform.
-                        </p>
+                    <div class="flex items-start">
+                        <div class="flex-shrink-0 w-10 h-10 bg-primary-light rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M8 14s1.5 2 4 2 4-2 4-2"></path>
+                                <line x1="9" y1="9" x2="9.01" y2="9"></line>
+                                <line x1="15" y1="9" x2="15.01" y2="9"></line>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold">User-Centric Approach</h3>
+                            <p class="text-gray-500">Everything we do is designed with our users in mind. We continuously gather feedback and improve our platform to better serve the needs of both users and service providers.</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Terms and Privacy Section -->
-            <div id="terms" class="bg-white p-8 rounded-lg shadow-sm border mb-10">
-                <h2 class="text-2xl font-bold mb-6">Terms of Service</h2>
-                <p class="text-gray-600 mb-4">
-                    By using CryptoMall, you agree to the following terms and conditions:
+                
+                <h2 class="text-3xl font-bold mb-6" id="careers">Careers</h2>
+                <p class="text-gray-500 mb-6">
+                    We're always looking for talented individuals who are passionate about cryptocurrency and share our mission of making the crypto space more accessible and trustworthy.
                 </p>
-                <ul class="list-disc pl-6 text-gray-600 space-y-2 mb-6">
-                    <li>CryptoMall is a platform that connects users with service providers but is not itself a provider of crypto services.</li>
-                    <li>We do not endorse or guarantee the services of any provider listed on our platform.</li>
-                    <li>Users are responsible for conducting their own due diligence before engaging with any service provider.</li>
-                    <li>CryptoMall does not provide financial, investment, legal, tax, or accounting advice.</li>
-                    <li>We reserve the right to remove any provider from our platform at our discretion.</li>
-                    <li>Users must be at least 18 years old to use our services.</li>
-                </ul>
-                <p class="text-gray-600">
-                    For the complete terms of service, please contact us directly.
+                <p class="text-gray-500 mb-10">
+                    If you're interested in joining our team, please check back soon for open positions or send your resume to careers@cryptomall.com.
                 </p>
-            </div>
-            
-            <div id="privacy" class="bg-white p-8 rounded-lg shadow-sm border">
-                <h2 class="text-2xl font-bold mb-6">Privacy Policy</h2>
-                <p class="text-gray-600 mb-4">
-                    CryptoMall is committed to protecting your privacy:
+                
+                <h2 class="text-3xl font-bold mb-6" id="contact">Contact Us</h2>
+                <p class="text-gray-500 mb-6">
+                    Have questions or feedback? We'd love to hear from you!
                 </p>
-                <ul class="list-disc pl-6 text-gray-600 space-y-2 mb-6">
-                    <li>We collect only the information necessary to provide our services.</li>
-                    <li>Personal information is never sold to third parties.</li>
-                    <li>We use industry-standard security measures to protect your data.</li>
-                    <li>You have the right to access, correct, or delete your personal information.</li>
-                    <li>We use cookies to enhance your experience on our platform.</li>
-                    <li>We may share anonymized, aggregated data for analytical purposes.</li>
-                </ul>
-                <p class="text-gray-600">
-                    For the complete privacy policy, please contact us directly.
+                <div class="bg-white p-6 rounded-lg shadow-sm border mb-10">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
+                                <input type="text" class="w-full p-2 border rounded">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                                <input type="email" class="w-full p-2 border rounded">
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" class="w-full p-2 border rounded">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea class="w-full p-2 border rounded" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 transition">Send Message</button>
+                    </form>
+                </div>
+                
+                <h2 class="text-3xl font-bold mb-6" id="terms">Terms of Service</h2>
+                <p class="text-gray-500 mb-6">
+                    By using the CryptoMall platform, you agree to abide by our Terms of Service. These terms outline the rules and regulations for the use of our website and services.
+                </p>
+                <p class="text-gray-500 mb-10">
+                    Please note that CryptoMall is a platform that connects users with service providers. We do not provide financial, investment, legal, tax, or accounting advice. Users are solely responsible for verifying the credentials and qualifications of any service provider they choose to work with.
+                </p>
+                
+                <h2 class="text-3xl font-bold mb-6" id="privacy">Privacy Policy</h2>
+                <p class="text-gray-500 mb-6">
+                    At CryptoMall, we take your privacy seriously. Our Privacy Policy outlines how we collect, use, and protect your personal information.
+                </p>
+                <p class="text-gray-500 mb-6">
+                    We only collect information that is necessary to provide our services, and we never share your personal data with third parties without your explicit consent. You have the right to access, modify, or delete your personal information at any time.
+                </p>
+                <p class="text-gray-500 mb-10">
+                    For more information about our privacy practices, please contact us at privacy@cryptomall.com.
                 </p>
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <footer class="w-full border-t bg-white">
@@ -273,18 +259,23 @@
                     <h3 class="text-sm font-semibold mb-4">Resources</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Crypto Basics
+                            <a href="education.html#guides" class="text-sm text-gray-500 hover:text-primary">
+                                Guides
                             </a>
                         </li>
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Security Guides
+                            <a href="education.html#articles" class="text-sm text-gray-500 hover:text-primary">
+                                Articles
                             </a>
                         </li>
                         <li>
                             <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
                                 Glossary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#faq" class="text-sm text-gray-500 hover:text-primary">
+                                FAQ
                             </a>
                         </li>
                     </ul>
@@ -322,70 +313,7 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
-            // Update auth section based on login state
-            function updateAuthSection() {
-                const authSection = document.getElementById('auth-section');
-                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-                const username = localStorage.getItem('cryptomall_user') || 'User';
-                
-                if (isLoggedIn) {
-                    authSection.innerHTML = `
-                        <div class="relative group">
-                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
-                                ${username}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                    <path d="m6 9 6 6 6-6"></path>
-                                </svg>
-                            </button>
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add logout functionality
-                    setTimeout(() => {
-                        const logoutButton = document.getElementById('logout-button');
-                        if (logoutButton) {
-                            logoutButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                localStorage.removeItem('cryptomall_logged_in');
-                                localStorage.removeItem('cryptomall_user');
-                                window.location.href = 'index.html';
-                            });
-                        }
-                    }, 100);
-                } else {
-                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
-                }
-            }
-            
-            // Update auth section on page load
-            updateAuthSection();
-        });
-    </script>
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
 </body>
 </html>

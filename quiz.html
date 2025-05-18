@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoMall - Find Your Crypto Match</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
     <style>
         /* Custom styles */
         .bg-primary { background-color: #6366f1; }
@@ -16,59 +17,6 @@
         
         /* Transitions */
         .transition { transition: all 0.3s ease; }
-        
-        /* Dark mode styles */
-        .dark-mode {
-            background-color: #1f2937;
-            color: #f9fafb;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: #111827;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .dark-mode .text-gray-500,
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .border {
-            border-color: #374151;
-        }
-        
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100,
-        .dark-mode .bg-gray-200 {
-            background-color: #1f2937;
-        }
-        
-        .dark-mode .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Fix for input fields in dark mode */
-        .dark-mode input[type="email"],
-        .dark-mode input[type="password"],
-        .dark-mode input[type="text"],
-        .dark-mode input[type="number"],
-        .dark-mode input[type="url"],
-        .dark-mode input[type="tel"],
-        .dark-mode select,
-        .dark-mode textarea {
-            background-color: #374151;
-            color: #f9fafb;
-            border-color: #4b5563;
-        }
-        
-        .dark-mode input::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #9ca3af;
-        }
         
         /* Quiz styles */
         .quiz-option {
@@ -100,11 +48,10 @@
             overflow: hidden;
         }
         
-        .progress-fill {
+        .progress-bar-fill {
             height: 100%;
             background-color: #6366f1;
             border-radius: 4px;
-            transition: width 0.3s ease;
         }
     </style>
 </head>
@@ -148,473 +95,460 @@
     </header>
 
     <!-- Quiz Content -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="max-w-3xl mx-auto">
-            <div class="mb-8">
-                <h1 class="text-3xl font-bold tracking-tighter mb-2">Find Your Crypto Match</h1>
-                <p class="text-lg text-gray-600">
-                    Answer a few questions to find the right crypto service providers for your needs.
-                </p>
-            </div>
-            
-            <!-- Quiz Progress -->
-            <div class="mb-8">
-                <div class="flex items-center justify-between mb-2">
-                    <span class="text-sm font-medium" id="progress-text">Question 1 of 5</span>
-                    <span class="text-sm font-medium" id="progress-percent">20%</span>
+    <section class="w-full py-12 md:py-24">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-8">
+                    <h1 class="text-3xl font-bold">Find Your Crypto Match</h1>
+                    <p class="mt-2 text-gray-500">
+                        Answer a few questions to get matched with the right crypto service providers for your needs.
+                    </p>
                 </div>
-                <div class="progress-bar">
-                    <div class="progress-fill" style="width: 20%"></div>
-                </div>
-            </div>
-            
-            <!-- Quiz Questions Container -->
-            <div id="quiz-container">
-                <!-- Question 1 -->
-                <div class="quiz-question" id="question-1">
-                    <h2 class="text-xl font-semibold mb-4">What's your primary interest in cryptocurrency?</h2>
-                    <div class="space-y-3">
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="security">
-                            <div>
-                                <h3 class="font-medium">Security & Protection</h3>
-                                <p class="text-sm text-gray-500 mt-1">Securing assets, protecting wallets, preventing fraud</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="tax">
-                            <div>
-                                <h3 class="font-medium">Tax & Accounting</h3>
-                                <p class="text-sm text-gray-500 mt-1">Tax planning, compliance, financial reporting</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="legal">
-                            <div>
-                                <h3 class="font-medium">Legal Services</h3>
-                                <p class="text-sm text-gray-500 mt-1">Regulatory compliance, contracts, legal advice</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="development">
-                            <div>
-                                <h3 class="font-medium">Development & Technical</h3>
-                                <p class="text-sm text-gray-500 mt-1">Smart contracts, dApp development, blockchain integration</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="business">
-                            <div>
-                                <h3 class="font-medium">Business Integration</h3>
-                                <p class="text-sm text-gray-500 mt-1">Accepting crypto payments, business strategy, implementation</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
+                
+                <!-- Progress Bar -->
+                <div class="mb-8">
+                    <div class="flex justify-between text-sm text-gray-500 mb-2">
+                        <span>Question <span id="current-question">1</span> of <span id="total-questions">5</span></span>
+                        <span id="progress-percent">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-bar-fill" style="width: 20%"></div>
                     </div>
                 </div>
                 
-                <!-- Question 2 (Hidden initially) -->
-                <div class="quiz-question hidden" id="question-2">
-                    <h2 class="text-xl font-semibold mb-4">What's your experience level with cryptocurrency?</h2>
-                    <div class="space-y-3">
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="beginner">
-                            <div>
-                                <h3 class="font-medium">Beginner</h3>
-                                <p class="text-sm text-gray-500 mt-1">New to crypto, need guidance on fundamentals</p>
+                <!-- Quiz Questions -->
+                <div class="bg-white p-8 rounded-lg shadow-sm border">
+                    <!-- Question 1 -->
+                    <div class="quiz-question" id="question-1">
+                        <h2 class="text-xl font-bold mb-4">What are you looking for help with?</h2>
+                        <div class="space-y-4">
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="security">
+                                <div>
+                                    <h3 class="font-medium">Security & Protection</h3>
+                                    <p class="text-sm text-gray-500">Wallet security, fraud prevention, asset protection</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
                             </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="tax">
+                                <div>
+                                    <h3 class="font-medium">Tax & Accounting</h3>
+                                    <p class="text-sm text-gray-500">Tax planning, compliance, reporting</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="intermediate">
-                            <div>
-                                <h3 class="font-medium">Intermediate</h3>
-                                <p class="text-sm text-gray-500 mt-1">Familiar with basics, looking to expand knowledge</p>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="education">
+                                <div>
+                                    <h3 class="font-medium">Education & Training</h3>
+                                    <p class="text-sm text-gray-500">Courses, workshops, personalized training</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
                             </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="technical">
+                                <div>
+                                    <h3 class="font-medium">Technical Services</h3>
+                                    <p class="text-sm text-gray-500">Development, integration, infrastructure</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
                             </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="advanced">
-                            <div>
-                                <h3 class="font-medium">Advanced</h3>
-                                <p class="text-sm text-gray-500 mt-1">Experienced user, seeking specialized services</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Question 3 (Hidden initially) -->
-                <div class="quiz-question hidden" id="question-3">
-                    <h2 class="text-xl font-semibold mb-4">What type of service are you looking for?</h2>
-                    <div class="space-y-3">
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="one-time">
-                            <div>
-                                <h3 class="font-medium">One-time Consultation</h3>
-                                <p class="text-sm text-gray-500 mt-1">Single session to address specific questions</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="ongoing">
-                            <div>
-                                <h3 class="font-medium">Ongoing Support</h3>
-                                <p class="text-sm text-gray-500 mt-1">Regular assistance and continuous guidance</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="legal">
+                                <div>
+                                    <h3 class="font-medium">Legal Services</h3>
+                                    <p class="text-sm text-gray-500">Compliance, contracts, regulatory guidance</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
                             </div>
                         </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="project">
-                            <div>
-                                <h3 class="font-medium">Project Implementation</h3>
-                                <p class="text-sm text-gray-500 mt-1">Complete development or implementation of a specific project</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="education">
-                            <div>
-                                <h3 class="font-medium">Education & Training</h3>
-                                <p class="text-sm text-gray-500 mt-1">Learning resources, workshops, or training sessions</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Question 4 (Hidden initially) -->
-                <div class="quiz-question hidden" id="question-4">
-                    <h2 class="text-xl font-semibold mb-4">What's your preferred provider location?</h2>
-                    <div class="space-y-3">
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="local">
-                            <div>
-                                <h3 class="font-medium">Local (In my city/region)</h3>
-                                <p class="text-sm text-gray-500 mt-1">Providers in your immediate geographic area</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="national">
-                            <div>
-                                <h3 class="font-medium">National (In my country)</h3>
-                                <p class="text-sm text-gray-500 mt-1">Providers anywhere in your country</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="remote">
-                            <div>
-                                <h3 class="font-medium">Remote Only</h3>
-                                <p class="text-sm text-gray-500 mt-1">Providers who work remotely, location doesn't matter</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="any">
-                            <div>
-                                <h3 class="font-medium">No Preference</h3>
-                                <p class="text-sm text-gray-500 mt-1">Open to providers from any location</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Question 5 (Hidden initially) -->
-                <div class="quiz-question hidden" id="question-5">
-                    <h2 class="text-xl font-semibold mb-4">What's your budget range?</h2>
-                    <div class="space-y-3">
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="low">
-                            <div>
-                                <h3 class="font-medium">$0 - $500</h3>
-                                <p class="text-sm text-gray-500 mt-1">Basic services and consultations</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="medium">
-                            <div>
-                                <h3 class="font-medium">$500 - $2,000</h3>
-                                <p class="text-sm text-gray-500 mt-1">Intermediate services and ongoing support</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="high">
-                            <div>
-                                <h3 class="font-medium">$2,000 - $10,000</h3>
-                                <p class="text-sm text-gray-500 mt-1">Comprehensive projects and specialized services</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="enterprise">
-                            <div>
-                                <h3 class="font-medium">$10,000+</h3>
-                                <p class="text-sm text-gray-500 mt-1">Enterprise-level solutions and major implementations</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="flexible">
-                            <div>
-                                <h3 class="font-medium">Flexible / Not Sure</h3>
-                                <p class="text-sm text-gray-500 mt-1">Open to discussing options based on needs</p>
-                            </div>
-                            <div class="quiz-check text-primary">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Results (Hidden initially) -->
-                <div class="quiz-question hidden" id="quiz-results">
-                    <div class="text-center mb-8">
-                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-light text-primary mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M20 6 9 17l-5-5"></path>
-                            </svg>
-                        </div>
-                        <h2 class="text-2xl font-bold mb-2">We've Found Your Matches!</h2>
-                        <p class="text-gray-600">
-                            Based on your needs, here are the crypto service providers we recommend.
-                        </p>
                     </div>
                     
-                    <div class="space-y-6" id="results-container">
-                        <!-- Result 1 -->
-                        <div class="border rounded-lg overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-semibold">CryptoGuard Security</h3>
-                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • New York, USA</p>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-500 mr-1">★</span>
-                                        <span class="font-medium">4.8</span>
-                                        <span class="text-gray-500 text-sm ml-1">(24 reviews)</span>
-                                    </div>
+                    <!-- Question 2 (Hidden initially) -->
+                    <div class="quiz-question hidden" id="question-2">
+                        <h2 class="text-xl font-bold mb-4">What is your experience level with cryptocurrency?</h2>
+                        <div class="space-y-4">
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="beginner">
+                                <div>
+                                    <h3 class="font-medium">Beginner</h3>
+                                    <p class="text-sm text-gray-500">New to crypto or just getting started</p>
                                 </div>
-                                <p class="text-gray-700 mb-4">
-                                    Specializing in wallet security, fraud prevention, and crypto asset protection. 
-                                    Our team of certified security experts helps individuals and businesses 
-                                    secure their digital assets with customized security solutions.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Wallet Security</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Fraud Prevention</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Asset Protection</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Audits</span>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="text-sm text-gray-500">
-                                        <span class="inline-block mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                                            </svg>
-                                            5+ years experience
-                                        </span>
-                                        <span class="inline-block">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                                                <path d="M3 9h18"></path>
-                                                <path d="M9 21V9"></path>
-                                            </svg>
-                                            Available for remote work
-                                        </span>
-                                    </div>
-                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="intermediate">
+                                <div>
+                                    <h3 class="font-medium">Intermediate</h3>
+                                    <p class="text-sm text-gray-500">Familiar with basics, some experience</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="advanced">
+                                <div>
+                                    <h3 class="font-medium">Advanced</h3>
+                                    <p class="text-sm text-gray-500">Experienced user with deep knowledge</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="business">
+                                <div>
+                                    <h3 class="font-medium">Business User</h3>
+                                    <p class="text-sm text-gray-500">Representing a company or organization</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
-                        
-                        <!-- Result 2 -->
-                        <div class="border rounded-lg overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-start justify-between mb-4">
-                                    <div>
-                                        <h3 class="text-xl font-semibold">Blockchain Defenders</h3>
-                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • Remote</p>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-500 mr-1">★</span>
-                                        <span class="font-medium">4.7</span>
-                                        <span class="text-gray-500 text-sm ml-1">(19 reviews)</span>
-                                    </div>
+                    </div>
+                    
+                    <!-- Question 3 (Hidden initially) -->
+                    <div class="quiz-question hidden" id="question-3">
+                        <h2 class="text-xl font-bold mb-4">What is your budget range?</h2>
+                        <div class="space-y-4">
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="low">
+                                <div>
+                                    <h3 class="font-medium">$0 - $500</h3>
+                                    <p class="text-sm text-gray-500">Basic services and consultations</p>
                                 </div>
-                                <p class="text-gray-700 mb-4">
-                                    We provide comprehensive security solutions for cryptocurrency holders and businesses. 
-                                    Our services include security assessments, implementation of protection measures, 
-                                    and ongoing monitoring to prevent unauthorized access and theft.
-                                </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Assessments</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Monitoring Solutions</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Theft Prevention</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Recovery Services</span>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
                                 </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="text-sm text-gray-500">
-                                        <span class="inline-block mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                                            </svg>
-                                            3-5 years experience
-                                        </span>
-                                        <span class="inline-block">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                                                <path d="M3 9h18"></path>
-                                                <path d="M9 21V9"></path>
-                                            </svg>
-                                            24/7 emergency support
-                                        </span>
-                                    </div>
-                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="medium">
+                                <div>
+                                    <h3 class="font-medium">$500 - $2,000</h3>
+                                    <p class="text-sm text-gray-500">Comprehensive services and ongoing support</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="high">
+                                <div>
+                                    <h3 class="font-medium">$2,000+</h3>
+                                    <p class="text-sm text-gray-500">Premium services and enterprise solutions</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="flexible">
+                                <div>
+                                    <h3 class="font-medium">Flexible / Not Sure</h3>
+                                    <p class="text-sm text-gray-500">Depends on the specific services needed</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    
+                    <!-- Question 4 (Hidden initially) -->
+                    <div class="quiz-question hidden" id="question-4">
+                        <h2 class="text-xl font-bold mb-4">How soon do you need assistance?</h2>
+                        <div class="space-y-4">
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="immediate">
+                                <div>
+                                    <h3 class="font-medium">Immediately</h3>
+                                    <p class="text-sm text-gray-500">Urgent need for assistance</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="soon">
+                                <div>
+                                    <h3 class="font-medium">Within 1-2 weeks</h3>
+                                    <p class="text-sm text-gray-500">Planning to start soon</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="month">
+                                <div>
+                                    <h3 class="font-medium">Within a month</h3>
+                                    <p class="text-sm text-gray-500">In the planning phase</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="exploring">
+                                <div>
+                                    <h3 class="font-medium">Just exploring options</h3>
+                                    <p class="text-sm text-gray-500">Researching for future needs</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Question 5 (Hidden initially) -->
+                    <div class="quiz-question hidden" id="question-5">
+                        <h2 class="text-xl font-bold mb-4">Do you prefer working with providers in a specific location?</h2>
+                        <div class="space-y-4">
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="local">
+                                <div>
+                                    <h3 class="font-medium">Local (in-person)</h3>
+                                    <p class="text-sm text-gray-500">Prefer face-to-face meetings</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="remote">
+                                <div>
+                                    <h3 class="font-medium">Remote (virtual)</h3>
+                                    <p class="text-sm text-gray-500">Happy to work online with anyone</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="hybrid">
+                                <div>
+                                    <h3 class="font-medium">Hybrid approach</h3>
+                                    <p class="text-sm text-gray-500">Mix of in-person and virtual</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="quiz-option border p-4 rounded-lg cursor-pointer flex justify-between items-center" data-value="no-preference">
+                                <div>
+                                    <h3 class="font-medium">No preference</h3>
+                                    <p class="text-sm text-gray-500">Open to any arrangement</p>
+                                </div>
+                                <div class="quiz-check text-primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M20 6 9 17l-5-5"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Results (Hidden initially) -->
+                    <div class="quiz-question hidden" id="results">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                            </div>
+                            <h2 class="text-2xl font-bold">We've Found Your Matches!</h2>
+                            <p class="text-gray-500 mt-2">
+                                Based on your needs, here are the providers we recommend:
+                            </p>
+                        </div>
                         
-                        <!-- Result 3 -->
-                        <div class="border rounded-lg overflow-hidden">
-                            <div class="p-6">
-                                <div class="flex items-start justify-between mb-4">
+                        <div class="space-y-6">
+                            <!-- Match 1 -->
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                        </svg>
+                                    </div>
                                     <div>
-                                        <h3 class="text-xl font-semibold">Secure Wallet Advisors</h3>
-                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • Chicago, USA</p>
-                                    </div>
-                                    <div class="flex items-center">
-                                        <span class="text-yellow-500 mr-1">★</span>
-                                        <span class="font-medium">4.6</span>
-                                        <span class="text-gray-500 text-sm ml-1">(15 reviews)</span>
+                                        <h3 class="font-bold">CryptoGuard Solutions</h3>
+                                        <p class="text-sm text-gray-500">Security & Protection</p>
                                     </div>
                                 </div>
-                                <p class="text-gray-700 mb-4">
-                                    Focused on hardware wallet setup, secure key management, and backup solutions. 
-                                    We help clients implement best practices for securing their crypto assets 
-                                    with an emphasis on education and practical security measures.
+                                <p class="text-sm text-gray-500 mb-4">
+                                    Specializing in wallet security, private key management, and fraud prevention for individuals and businesses.
                                 </p>
-                                <div class="flex flex-wrap gap-2 mb-4">
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Hardware Wallets</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Key Management</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Backup Solutions</span>
-                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Training</span>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <div class="text-sm text-gray-500">
-                                        <span class="inline-block mr-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
-                                            </svg>
-                                            3-5 years experience
-                                        </span>
-                                        <span class="inline-block">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
-                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                                                <path d="M3 9h18"></path>
-                                                <path d="M9 21V9"></path>
-                                            </svg>
-                                            Weekend availability
-                                        </span>
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
                                     </div>
-                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
+                                    <span class="text-sm text-gray-500 ml-2">5.0 (48 reviews)</span>
                                 </div>
+                                <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                    View Profile
+                                </a>
+                            </div>
+                            
+                            <!-- Match 2 -->
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold">Crypto Tax Experts</h3>
+                                        <p class="text-sm text-gray-500">Tax & Accounting</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-4">
+                                    Specialized accounting services for crypto investors and businesses, focusing on tax compliance and optimization.
+                                </p>
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm text-gray-500 ml-2">4.8 (36 reviews)</span>
+                                </div>
+                                <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                    View Profile
+                                </a>
+                            </div>
+                            
+                            <!-- Match 3 -->
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center mb-4">
+                                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                            <path d="M12 20h9"></path>
+                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold">Blockchain Academy</h3>
+                                        <p class="text-sm text-gray-500">Education & Training</p>
+                                    </div>
+                                </div>
+                                <p class="text-sm text-gray-500 mb-4">
+                                    Comprehensive crypto education for beginners and advanced users, offering courses, workshops, and personalized training.
+                                </p>
+                                <div class="flex items-center mb-4">
+                                    <div class="flex text-yellow-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                                        </svg>
+                                    </div>
+                                    <span class="text-sm text-gray-500 ml-2">4.9 (52 reviews)</span>
+                                </div>
+                                <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                                    View Profile
+                                </a>
                             </div>
                         </div>
                         
                         <div class="mt-8 text-center">
-                            <a href="providers.html" class="px-6 py-3 bg-primary text-white rounded-md font-medium">
+                            <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
                                 View All Providers
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <!-- Quiz Navigation -->
-            <div class="mt-8 flex justify-between">
-                <button id="prev-button" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium hidden">
-                    Previous
-                </button>
-                <button id="next-button" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">
-                    Next
-                </button>
+                
+                <!-- Navigation Buttons -->
+                <div class="mt-8 flex justify-between">
+                    <button id="prev-btn" class="inline-flex h-10 items-center justify-center rounded-md border border-gray-300 bg-white px-4 text-sm font-medium text-gray-700 shadow-sm transition-colors hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary opacity-50 cursor-not-allowed" disabled>
+                        Previous
+                    </button>
+                    <button id="next-btn" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                        Next
+                    </button>
+                </div>
             </div>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
-    <footer class="w-full border-t bg-white mt-12">
+    <footer class="w-full border-t bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -647,18 +581,23 @@
                     <h3 class="text-sm font-semibold mb-4">Resources</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Crypto Basics
+                            <a href="education.html#guides" class="text-sm text-gray-500 hover:text-primary">
+                                Guides
                             </a>
                         </li>
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Security Guides
+                            <a href="education.html#articles" class="text-sm text-gray-500 hover:text-primary">
+                                Articles
                             </a>
                         </li>
                         <li>
                             <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
                                 Glossary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#faq" class="text-sm text-gray-500 hover:text-primary">
+                                FAQ
                             </a>
                         </li>
                     </ul>
@@ -696,68 +635,45 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
-            // Quiz functionality
-            const quizOptions = document.querySelectorAll('.quiz-option');
-            const nextButton = document.getElementById('next-button');
-            const prevButton = document.getElementById('prev-button');
-            const progressText = document.getElementById('progress-text');
-            const progressPercent = document.getElementById('progress-percent');
-            const progressFill = document.querySelector('.progress-fill');
-            
+            // Quiz variables
             let currentQuestion = 1;
             const totalQuestions = 5;
-            let answers = {};
+            const answers = {};
             
-            // Option selection
+            // DOM elements
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const currentQuestionEl = document.getElementById('current-question');
+            const progressPercentEl = document.getElementById('progress-percent');
+            const progressBarFill = document.querySelector('.progress-bar-fill');
+            
+            // Initialize quiz options
+            const quizOptions = document.querySelectorAll('.quiz-option');
             quizOptions.forEach(option => {
                 option.addEventListener('click', function() {
-                    // Remove selected class from all options in the same question
-                    const questionId = this.closest('.quiz-question').id;
-                    document.querySelectorAll(`#${questionId} .quiz-option`).forEach(opt => {
+                    // Remove selected class from siblings
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.quiz-option').forEach(opt => {
                         opt.classList.remove('selected');
                     });
                     
                     // Add selected class to clicked option
                     this.classList.add('selected');
                     
-                    // Store the answer
-                    const questionNumber = questionId.split('-')[1];
-                    const answerValue = this.getAttribute('data-value');
-                    answers[questionNumber] = answerValue;
+                    // Store answer
+                    const questionId = parent.parentElement.id;
+                    const value = this.getAttribute('data-value');
+                    answers[questionId] = value;
                 });
             });
             
-            // Next button
-            nextButton.addEventListener('click', function() {
+            // Next button click handler
+            nextBtn.addEventListener('click', function() {
                 if (currentQuestion < totalQuestions) {
-                    // Check if an option is selected
-                    const selectedOption = document.querySelector(`#question-${currentQuestion} .quiz-option.selected`);
-                    if (!selectedOption) {
-                        alert('Please select an option before proceeding.');
-                        return;
-                    }
-                    
                     // Hide current question
                     document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
                     
@@ -767,44 +683,35 @@
                     
                     // Update progress
                     updateProgress();
-                    
-                    // Show previous button
-                    prevButton.classList.remove('hidden');
-                } else {
-                    // Check if an option is selected for the last question
-                    const selectedOption = document.querySelector(`#question-${currentQuestion} .quiz-option.selected`);
-                    if (!selectedOption) {
-                        alert('Please select an option before proceeding.');
-                        return;
-                    }
-                    
+                } else if (currentQuestion === totalQuestions) {
                     // Hide last question
                     document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
                     
                     // Show results
-                    document.getElementById('quiz-results').classList.remove('hidden');
+                    document.getElementById('results').classList.remove('hidden');
                     
                     // Update button text
-                    this.textContent = 'View All Providers';
-                    this.addEventListener('click', function() {
+                    nextBtn.textContent = 'Finish';
+                    nextBtn.addEventListener('click', function() {
                         window.location.href = 'providers.html';
-                    }, { once: true });
-                    
-                    // Hide previous button
-                    prevButton.classList.add('hidden');
+                    });
                     
                     // Update progress to 100%
-                    progressText.textContent = 'Complete!';
-                    progressPercent.textContent = '100%';
-                    progressFill.style.width = '100%';
+                    currentQuestionEl.textContent = totalQuestions;
+                    progressPercentEl.textContent = '100%';
+                    progressBarFill.style.width = '100%';
                 }
             });
             
-            // Previous button
-            prevButton.addEventListener('click', function() {
+            // Previous button click handler
+            prevBtn.addEventListener('click', function() {
                 if (currentQuestion > 1) {
                     // Hide current question
-                    document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                    if (currentQuestion <= totalQuestions) {
+                        document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                    } else {
+                        document.getElementById('results').classList.add('hidden');
+                    }
                     
                     // Show previous question
                     currentQuestion--;
@@ -813,81 +720,29 @@
                     // Update progress
                     updateProgress();
                     
-                    // Hide previous button if on first question
-                    if (currentQuestion === 1) {
-                        prevButton.classList.add('hidden');
+                    // Reset next button if coming back from results
+                    if (nextBtn.textContent === 'Finish') {
+                        nextBtn.textContent = 'Next';
                     }
                 }
             });
             
             // Update progress indicators
             function updateProgress() {
-                const progress = (currentQuestion / totalQuestions) * 100;
-                progressText.textContent = `Question ${currentQuestion} of ${totalQuestions}`;
-                progressPercent.textContent = `${progress}%`;
-                progressFill.style.width = `${progress}%`;
-            }
-            
-            // Update auth section based on login state
-            function updateAuthSection() {
-                const authSection = document.getElementById('auth-section');
-                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-                const username = localStorage.getItem('cryptomall_user') || 'User';
+                currentQuestionEl.textContent = currentQuestion;
+                const percent = Math.round((currentQuestion / totalQuestions) * 100);
+                progressPercentEl.textContent = `${percent}%`;
+                progressBarFill.style.width = `${percent}%`;
                 
-                if (isLoggedIn) {
-                    authSection.innerHTML = `
-                        <div class="relative inline-block text-left">
-                            <button id="user-menu-button" class="flex items-center text-sm font-medium text-primary hover:underline">
-                                ${username}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                    <path d="m6 9 6 6 6-6"></path>
-                                </svg>
-                            </button>
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add dropdown toggle functionality
-                    setTimeout(() => {
-                        const userMenuButton = document.getElementById('user-menu-button');
-                        const userDropdown = document.getElementById('user-dropdown');
-                        const logoutButton = document.getElementById('logout-button');
-                        
-                        if (userMenuButton && userDropdown) {
-                            userMenuButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                userDropdown.classList.toggle('hidden');
-                            });
-                            
-                            // Close dropdown when clicking outside
-                            document.addEventListener('click', function(e) {
-                                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
-                                    userDropdown.classList.add('hidden');
-                                }
-                            });
-                        }
-                        
-                        if (logoutButton) {
-                            logoutButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                localStorage.removeItem('cryptomall_logged_in');
-                                localStorage.removeItem('cryptomall_user');
-                                window.location.href = 'index.html';
-                            });
-                        }
-                    }, 100);
+                // Enable/disable prev button
+                if (currentQuestion > 1) {
+                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    prevBtn.disabled = false;
                 } else {
-                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
+                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                    prevBtn.disabled = true;
                 }
             }
-            
-            // Update auth section on page load
-            updateAuthSection();
         });
     </script>
 </body>
