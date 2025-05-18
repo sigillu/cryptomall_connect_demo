@@ -50,17 +50,17 @@ document.addEventListener('DOMContentLoaded', function() {
             </svg>
         `;
         
-        // Create dropdown menu
+        // Create dropdown menu with improved styling for both light and dark modes
         const dropdownMenu = document.createElement('div');
-        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white dark-mode:bg-gray-800 rounded-md shadow-lg py-1 z-50 hidden';
+        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden border border-gray-200';
         dropdownMenu.id = 'admin-dropdown-menu';
         
-        // Add dropdown items
+        // Add dropdown items with improved hover states
         dropdownMenu.innerHTML = `
-            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Profile</a>
-            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Admin Dashboard</a>' : ''}
-            <a href="profile.html#settings" class="block px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Settings</a>
-            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark-mode:text-gray-200 hover:bg-primary hover:text-white">Log out</button>
+            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Profile</a>
+            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Admin Dashboard</a>' : ''}
+            <a href="profile.html#settings" class="block px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Settings</a>
+            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-primary hover:text-white transition-colors">Log out</button>
         `;
         
         // Append dropdown elements
@@ -89,24 +89,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
             
+            // Keep dropdown open when hovering over button or menu
+            adminDropdownButton.addEventListener('mouseenter', function() {
+                adminDropdownMenu.classList.remove('hidden');
+                isDropdownOpen = true;
+            });
+            
             // Keep dropdown open when hovering over menu
             adminDropdownMenu.addEventListener('mouseenter', function() {
-                isDropdownOpen = true;
                 adminDropdownMenu.classList.remove('hidden');
+                isDropdownOpen = true;
             });
             
-            adminDropdownMenu.addEventListener('mouseleave', function() {
-                if (!adminDropdownButton.matches(':hover')) {
-                    isDropdownOpen = false;
-                    adminDropdownMenu.classList.add('hidden');
-                }
-            });
+            // Combined mouseleave handler for both button and menu
+            const handleMouseLeave = function() {
+                setTimeout(function() {
+                    // Only hide if neither the button nor menu are being hovered
+                    if (!adminDropdownButton.matches(':hover') && !adminDropdownMenu.matches(':hover')) {
+                        adminDropdownMenu.classList.add('hidden');
+                        isDropdownOpen = false;
+                    }
+                }, 50); // Small delay to ensure accurate hover state detection
+            };
             
-            adminDropdownButton.addEventListener('mouseenter', function() {
-                if (isDropdownOpen) {
-                    adminDropdownMenu.classList.remove('hidden');
-                }
-            });
+            adminDropdownButton.addEventListener('mouseleave', handleMouseLeave);
+            adminDropdownMenu.addEventListener('mouseleave', handleMouseLeave);
             
             // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
