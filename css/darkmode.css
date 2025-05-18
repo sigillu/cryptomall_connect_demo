@@ -1,0 +1,149 @@
+/**
+ * CryptoMall Dark Mode Styles
+ * Standardized dark mode styling for consistent appearance across all pages
+ */
+
+/* Base dark mode styles */
+.dark-mode {
+    background-color: #1f2937;
+    color: #f9fafb;
+}
+
+/* Background colors */
+.dark-mode .bg-white {
+    background-color: #111827;
+}
+
+.dark-mode .bg-gray-50,
+.dark-mode .bg-gray-100,
+.dark-mode .bg-gray-200 {
+    background-color: #1f2937;
+}
+
+/* Text colors */
+.dark-mode .text-gray-900 {
+    color: #f9fafb;
+}
+
+.dark-mode .text-gray-500,
+.dark-mode .text-gray-600,
+.dark-mode .text-gray-700 {
+    color: #e5e7eb;
+}
+
+/* Border colors */
+.dark-mode .border {
+    border-color: #374151;
+}
+
+/* Shadow adjustments */
+.dark-mode .shadow-sm {
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Form elements in dark mode */
+.dark-mode input[type="email"],
+.dark-mode input[type="password"],
+.dark-mode input[type="text"],
+.dark-mode input[type="number"],
+.dark-mode input[type="url"],
+.dark-mode input[type="tel"],
+.dark-mode input[type="date"],
+.dark-mode select,
+.dark-mode textarea {
+    background-color: #374151;
+    color: #f9fafb;
+    border-color: #4b5563;
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+    color: #9ca3af;
+}
+
+/* Dropdown menus in dark mode */
+.dark-mode #user-dropdown {
+    background-color: #1f2937;
+    border-color: #374151;
+}
+
+.dark-mode #user-dropdown a {
+    color: #f9fafb;
+}
+
+.dark-mode #user-dropdown a:hover {
+    background-color: #374151;
+    color: #f9fafb;
+}
+
+/* Card and container backgrounds */
+.dark-mode .bg-white {
+    background-color: #111827;
+}
+
+/* Button styles in dark mode */
+.dark-mode button.bg-gray-100 {
+    background-color: #374151;
+}
+
+.dark-mode button.hover\:bg-gray-200:hover {
+    background-color: #4b5563;
+}
+
+/* Quiz options in dark mode */
+.dark-mode .quiz-option {
+    border-color: #4b5563;
+}
+
+.dark-mode .quiz-option:hover {
+    background-color: rgba(99, 102, 241, 0.1);
+    border-color: #6366f1;
+}
+
+.dark-mode .quiz-option.selected {
+    background-color: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+}
+
+/* Table styles in dark mode */
+.dark-mode table th,
+.dark-mode table td {
+    border-color: #4b5563;
+}
+
+.dark-mode table thead th {
+    background-color: #374151;
+}
+
+.dark-mode table tbody tr:hover {
+    background-color: #374151;
+}
+
+/* Filter panels in dark mode */
+.dark-mode .filter-panel {
+    background-color: #111827;
+    border-color: #374151;
+}
+
+.dark-mode .filter-panel label {
+    color: #e5e7eb;
+}
+
+/* Range sliders in dark mode */
+.dark-mode input[type="range"] {
+    background-color: #4b5563;
+}
+
+.dark-mode input[type="range"]::-webkit-slider-thumb {
+    background-color: #6366f1;
+}
+
+/* Checkboxes in dark mode */
+.dark-mode input[type="checkbox"] {
+    border-color: #4b5563;
+}
+
+.dark-mode input[type="checkbox"]:checked {
+    background-color: #6366f1;
+    border-color: #6366f1;
+}
