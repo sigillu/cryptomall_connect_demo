@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoMall - Admin Dashboard</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
     <style>
         /* Custom styles */
         .bg-primary { background-color: #6366f1; }
@@ -17,67 +18,30 @@
         /* Transitions */
         .transition { transition: all 0.3s ease; }
         
-        /* Dark mode styles */
-        .dark-mode {
-            background-color: #1f2937;
-            color: #f9fafb;
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            transition: all 0.3s ease;
         }
         
-        .dark-mode .bg-white {
-            background-color: #111827;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .dark-mode .text-gray-500,
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .border {
-            border-color: #374151;
-        }
-        
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100,
-        .dark-mode .bg-gray-200 {
-            background-color: #1f2937;
-        }
-        
-        .dark-mode .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Fix for input fields in dark mode */
-        .dark-mode input[type="email"],
-        .dark-mode input[type="password"],
-        .dark-mode input[type="text"],
-        .dark-mode input[type="number"],
-        .dark-mode input[type="url"],
-        .dark-mode input[type="tel"],
-        .dark-mode select,
-        .dark-mode textarea {
-            background-color: #374151;
-            color: #f9fafb;
-            border-color: #4b5563;
-        }
-        
-        .dark-mode input::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #9ca3af;
-        }
-        
-        /* Tab styles */
-        .tab-active {
-            border-bottom: 2px solid #6366f1;
-            color: #6366f1;
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 0;
+                overflow: hidden;
+            }
+            
+            .sidebar.open {
+                width: 250px;
+            }
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version d)
+    </div>
+    
     <!-- Navigation -->
     <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -116,1096 +80,318 @@
         </div>
     </header>
 
-    <!-- Admin Dashboard Content -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="max-w-6xl mx-auto">
-            <div class="flex items-center justify-between mb-8">
-                <h1 class="text-3xl font-bold tracking-tighter">Admin Dashboard</h1>
-                <div class="flex items-center gap-2">
-                    <span class="text-sm text-gray-500">Welcome, Admin</span>
-                </div>
+    <!-- Admin Dashboard -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="sidebar bg-white border-r shadow-sm pt-6 hidden md:block">
+            <div class="px-4 mb-6">
+                <h2 class="text-lg font-bold">Admin Dashboard</h2>
+                <p class="text-sm text-gray-500">Manage your platform</p>
+            </div>
+            <nav class="space-y-1">
+                <a href="#" class="flex items-center px-4 py-2 bg-primary-light text-primary border-r-2 border-primary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <rect width="18" height="18" x="3" y="3" rx="2" ry="2"></rect>
+                        <line x1="3" x2="21" y1="9" y2="9"></line>
+                        <line x1="9" x2="9" y1="21" y2="9"></line>
+                    </svg>
+                    Dashboard
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Providers
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                    Users
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+                    Content
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <path d="M12 20h9"></path>
+                        <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                    </svg>
+                    Quiz
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                    </svg>
+                    Messages
+                </a>
+                <a href="#" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-3">
+                        <circle cx="12" cy="12" r="3"></circle>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                    </svg>
+                    Settings
+                </a>
+            </nav>
+        </aside>
+        
+        <!-- Mobile sidebar toggle -->
+        <button id="sidebar-toggle" class="md:hidden fixed bottom-4 right-4 z-50 bg-primary text-white p-3 rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="3" x2="21" y1="12" y2="12"></line>
+                <line x1="3" x2="21" y1="6" y2="6"></line>
+                <line x1="3" x2="21" y1="18" y2="18"></line>
+            </svg>
+        </button>
+        
+        <!-- Main Content -->
+        <main class="flex-1 p-6">
+            <div class="mb-6">
+                <h1 class="text-2xl font-bold">Dashboard</h1>
+                <p class="text-gray-500">Welcome back, Admin!</p>
             </div>
             
-            <!-- Dashboard Tabs -->
-            <div class="border-b mb-8">
-                <div class="flex -mb-px">
-                    <button class="tab-button tab-active px-4 py-2 text-sm font-medium" data-tab="applications">
-                        Provider Applications
-                    </button>
-                    <button class="tab-button px-4 py-2 text-sm font-medium text-gray-500" data-tab="providers">
-                        Manage Providers
-                    </button>
-                    <button class="tab-button px-4 py-2 text-sm font-medium text-gray-500" data-tab="settings">
-                        Site Settings
-                    </button>
-                    <button class="tab-button px-4 py-2 text-sm font-medium text-gray-500" data-tab="users">
-                        User Management
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Tab Content -->
-            <div class="tab-content" id="applications-tab">
-                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+            <!-- Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">Pending Applications</h2>
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm text-gray-500">5 applications pending review</span>
+                        <h3 class="font-medium text-gray-500">Total Providers</h3>
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
                         </div>
                     </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Company
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Category
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Location
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Submitted
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    CryptoSecure Solutions
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    John Smith
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Security & Protection</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">New York, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 15, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">Review</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    BlockTax Advisors
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Sarah Johnson
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Tax & Accounting</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Chicago, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 14, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">Review</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    CryptoLaw Partners
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Michael Chen
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Legal Services</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">San Francisco, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 13, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">Review</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    DeFi Developers Inc.
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Alex Rodriguez
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Development & Technical</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Austin, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 12, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">Review</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Crypto Academy
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Emily Wilson
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Education & Training</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Boston, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 11, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">Review</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="flex items-baseline">
+                        <h2 class="text-3xl font-bold">124</h2>
+                        <span class="ml-2 text-sm text-green-500">+8% from last month</span>
                     </div>
                 </div>
                 
                 <div class="bg-white p-6 rounded-lg shadow-sm border">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">Recently Approved</h2>
+                        <h3 class="font-medium text-gray-500">Active Users</h3>
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
                     </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Company
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Category
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Location
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Approved
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Blockchain Business Solutions
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    David Kim
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Business Integration</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Seattle, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 10, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Secure Wallet Hardware
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Lisa Thompson
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Hardware & Devices</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Denver, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 9, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">View</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Smart Contract Auditors
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    Robert Garcia
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Security & Protection</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Miami, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 8, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Approved
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline">View</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="flex items-baseline">
+                        <h2 class="text-3xl font-bold">3,521</h2>
+                        <span class="ml-2 text-sm text-green-500">+12% from last month</span>
                     </div>
                 </div>
-            </div>
-            
-            <div class="tab-content hidden" id="providers-tab">
-                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
                     <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">Active Providers</h2>
-                        <div class="flex items-center gap-2">
-                            <input type="text" placeholder="Search providers..." class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm">
-                            <button class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">Search</button>
+                        <h3 class="font-medium text-gray-500">Quiz Completions</h3>
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+                            </svg>
                         </div>
                     </div>
-                    
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Company
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Category
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Location
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Rating
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <!-- Provider rows would be dynamically generated here -->
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    CryptoGuard Security
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: PRV-001
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Security & Protection</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">New York, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">4.8/5.0 (24 reviews)</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Crypto Tax Experts
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: PRV-002
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Tax & Accounting</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Chicago, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">4.9/5.0 (37 reviews)</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Blockchain Developers Guild
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: PRV-003
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Development & Technical</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">San Francisco, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">4.7/5.0 (19 reviews)</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Crypto Legal Advisors
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: PRV-004
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Legal Services</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Washington DC, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">4.6/5.0 (12 reviews)</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Crypto Business Integrators
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: PRV-005
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Business Integration</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Austin, USA</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">4.5/5.0 (8 reviews)</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Under Review
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="flex items-baseline">
+                        <h2 class="text-3xl font-bold">1,842</h2>
+                        <span class="ml-2 text-sm text-green-500">+5% from last month</span>
                     </div>
-                    
-                    <div class="mt-4 flex items-center justify-between">
-                        <div class="text-sm text-gray-500">
-                            Showing 1-5 of 25 providers
+                </div>
+                
+                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-medium text-gray-500">Provider Connections</h3>
+                        <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
+                                <path d="M9 18V5l12-2v13"></path>
+                                <circle cx="6" cy="18" r="3"></circle>
+                                <circle cx="18" cy="16" r="3"></circle>
+                            </svg>
                         </div>
-                        <div class="flex items-center gap-2">
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Previous</button>
-                            <button class="px-3 py-1 bg-primary text-white rounded-md text-sm">1</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">2</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">3</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Next</button>
-                        </div>
+                    </div>
+                    <div class="flex items-baseline">
+                        <h2 class="text-3xl font-bold">756</h2>
+                        <span class="ml-2 text-sm text-green-500">+15% from last month</span>
                     </div>
                 </div>
             </div>
             
-            <div class="tab-content hidden" id="settings-tab">
-                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
-                    <h2 class="text-xl font-bold mb-4">Site Settings</h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h3 class="text-lg font-semibold mb-3">General Settings</h3>
-                            <div class="space-y-4">
+            <!-- Recent Activity -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
+                <h2 class="text-lg font-bold mb-4">Recent Activity</h2>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full">
+                        <thead>
+                            <tr class="border-b">
+                                <th class="text-left py-3 px-4 font-medium text-gray-500">User</th>
+                                <th class="text-left py-3 px-4 font-medium text-gray-500">Action</th>
+                                <th class="text-left py-3 px-4 font-medium text-gray-500">Date</th>
+                                <th class="text-left py-3 px-4 font-medium text-gray-500">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="border-b">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full mr-3"></div>
+                                        <span>John Smith</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">Completed quiz</td>
+                                <td class="py-3 px-4">May 18, 2025</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full mr-3"></div>
+                                        <span>Sarah Johnson</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">Connected with provider</td>
+                                <td class="py-3 px-4">May 17, 2025</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs">Connected</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full mr-3"></div>
+                                        <span>Michael Brown</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">Registered account</td>
+                                <td class="py-3 px-4">May 17, 2025</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-purple-100 text-purple-800 rounded-full text-xs">New User</span>
+                                </td>
+                            </tr>
+                            <tr class="border-b">
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full mr-3"></div>
+                                        <span>Crypto Security LLC</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">Provider registration</td>
+                                <td class="py-3 px-4">May 16, 2025</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs">Pending Review</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 px-4">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-gray-200 rounded-full mr-3"></div>
+                                        <span>Emily Wilson</span>
+                                    </div>
+                                </td>
+                                <td class="py-3 px-4">Updated profile</td>
+                                <td class="py-3 px-4">May 16, 2025</td>
+                                <td class="py-3 px-4">
+                                    <span class="px-2 py-1 bg-green-100 text-green-800 rounded-full text-xs">Completed</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 text-right">
+                    <a href="#" class="text-primary text-sm hover:underline">View all activity →</a>
+                </div>
+            </div>
+            
+            <!-- Provider Verification Requests -->
+            <div class="bg-white p-6 rounded-lg shadow-sm border">
+                <h2 class="text-lg font-bold mb-4">Provider Verification Requests</h2>
+                <div class="space-y-4">
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-200 rounded-full mr-4"></div>
                                 <div>
-                                    <label for="site-name" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Site Name
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="site-name"
-                                        name="site-name"
-                                        value="CryptoMall"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    />
-                                </div>
-                                <div>
-                                    <label for="site-description" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Site Description
-                                    </label>
-                                    <textarea
-                                        id="site-description"
-                                        name="site-description"
-                                        rows="3"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    >Connecting you with trusted crypto service providers and resources.</textarea>
-                                </div>
-                                <div>
-                                    <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Contact Email
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="contact-email"
-                                        name="contact-email"
-                                        value="contact@cryptomall.com"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    />
+                                    <h3 class="font-bold">Blockchain Tax Advisors</h3>
+                                    <p class="text-sm text-gray-500">Tax & Accounting</p>
                                 </div>
                             </div>
-                        </div>
-                        
-                        <div>
-                            <h3 class="text-lg font-semibold mb-3">Provider Settings</h3>
-                            <div class="space-y-4">
-                                <div>
-                                    <label for="auto-approve" class="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            id="auto-approve"
-                                            name="auto-approve"
-                                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                        />
-                                        <span class="ml-2 text-sm text-gray-700">Auto-approve new providers</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label for="require-verification" class="flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            id="require-verification"
-                                            name="require-verification"
-                                            checked
-                                            class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                        />
-                                        <span class="ml-2 text-sm text-gray-700">Require email verification</span>
-                                    </label>
-                                </div>
-                                <div>
-                                    <label for="max-categories" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Max Categories Per Provider
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="max-categories"
-                                        name="max-categories"
-                                        value="3"
-                                        min="1"
-                                        max="10"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    />
-                                </div>
-                                <div>
-                                    <label for="max-specializations" class="block text-sm font-medium text-gray-700 mb-1">
-                                        Max Specializations Per Provider
-                                    </label>
-                                    <input
-                                        type="number"
-                                        id="max-specializations"
-                                        name="max-specializations"
-                                        value="5"
-                                        min="1"
-                                        max="20"
-                                        class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                                    />
-                                </div>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200">Approve</button>
+                                <button class="px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200">Reject</button>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-6">
-                        <button class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">
-                            Save Settings
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="tab-content hidden" id="users-tab">
-                <div class="bg-white p-6 rounded-lg shadow-sm border mb-6">
-                    <div class="flex items-center justify-between mb-4">
-                        <h2 class="text-xl font-bold">User Management</h2>
-                        <div class="flex items-center gap-2">
-                            <input type="text" placeholder="Search users..." class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm">
-                            <button class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">Search</button>
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-200 rounded-full mr-4"></div>
+                                <div>
+                                    <h3 class="font-bold">Crypto Security Solutions</h3>
+                                    <p class="text-sm text-gray-500">Security & Protection</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200">Approve</button>
+                                <button class="px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200">Reject</button>
+                            </div>
                         </div>
                     </div>
                     
-                    <div class="overflow-x-auto">
-                        <table class="min-w-full divide-y divide-gray-200">
-                            <thead class="bg-gray-50">
-                                <tr>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Name
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Email
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Role
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Joined
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Status
-                                    </th>
-                                    <th scope="col" class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody class="bg-white divide-y divide-gray-200">
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Admin User
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: USR-001
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">admin@admin.com</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Administrator</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Jan 1, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    John Smith
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: USR-002
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">john.smith@example.com</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Provider</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Feb 15, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Sarah Johnson
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: USR-003
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">sarah.johnson@example.com</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Provider</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Mar 10, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Michael Chen
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: USR-004
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">michael.chen@example.com</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Provider</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Apr 5, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                            Active
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    Emily Wilson
-                                                </div>
-                                                <div class="text-sm text-gray-500">
-                                                    ID: USR-005
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">emily.wilson@example.com</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">User</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">May 1, 2025</div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">
-                                            Pending
-                                        </span>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" class="text-primary hover:underline mr-3">Edit</a>
-                                        <a href="#" class="text-red-600 hover:underline">Suspend</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="mt-4 flex items-center justify-between">
-                        <div class="text-sm text-gray-500">
-                            Showing 1-5 of 12 users
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Previous</button>
-                            <button class="px-3 py-1 bg-primary text-white rounded-md text-sm">1</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">2</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">3</button>
-                            <button class="px-3 py-1 border border-gray-300 rounded-md text-sm">Next</button>
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-gray-200 rounded-full mr-4"></div>
+                                <div>
+                                    <h3 class="font-bold">DeFi Legal Advisors</h3>
+                                    <p class="text-sm text-gray-500">Legal Services</p>
+                                </div>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button class="px-3 py-1 bg-green-100 text-green-800 rounded hover:bg-green-200">Approve</button>
+                                <button class="px-3 py-1 bg-red-100 text-red-800 rounded hover:bg-red-200">Reject</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="mt-4 text-right">
+                    <a href="#" class="text-primary text-sm hover:underline">View all requests →</a>
+                </div>
             </div>
-        </div>
-    </main>
+        </main>
+    </div>
 
-    <!-- Footer -->
-    <footer class="w-full border-t bg-white mt-12">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
-                    <p class="text-sm text-gray-500">
-                        Connecting you with trusted crypto service providers and resources.
-                    </p>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4">Services</h3>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
-                                Provider Directory
-                            </a>
-                        </li>
-                        <li>
-                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
-                                Matching Quiz
-                            </a>
-                        </li>
-                        <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Educational Resources
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Crypto Basics
-                            </a>
-                        </li>
-                        <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Security Guides
-                            </a>
-                        </li>
-                        <li>
-                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
-                                Glossary
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
-                                Terms of Service
-                            </a>
-                        </li>
-                        <li>
-                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
-                                Privacy Policy
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="mt-10 pt-6 border-t">
-                <p class="text-sm text-gray-500 text-center">
-                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
-                </p>
-                <p class="text-xs text-gray-500 text-center mt-2">
-                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
-                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
-                </p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
+            // Mobile sidebar toggle
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.querySelector('.sidebar');
             
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
-            // Tab switching functionality
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    // Remove active class from all buttons
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('tab-active');
-                        btn.classList.add('text-gray-500');
-                    });
-                    
-                    // Add active class to clicked button
-                    this.classList.add('tab-active');
-                    this.classList.remove('text-gray-500');
-                    
-                    // Hide all tab contents
-                    tabContents.forEach(content => {
-                        content.classList.add('hidden');
-                    });
-                    
-                    // Show the corresponding tab content
-                    const tabId = this.getAttribute('data-tab');
-                    document.getElementById(`${tabId}-tab`).classList.remove('hidden');
+            if (sidebarToggle && sidebar) {
+                sidebarToggle.addEventListener('click', function() {
+                    sidebar.classList.toggle('hidden');
+                    sidebar.classList.toggle('block');
                 });
-            });
-            
-            // Update auth section based on login state
-            function updateAuthSection() {
-                const authSection = document.getElementById('auth-section');
-                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-                const username = localStorage.getItem('cryptomall_user') || 'User';
-                
-                if (isLoggedIn) {
-                    authSection.innerHTML = `
-                        <div class="relative inline-block text-left">
-                            <button id="user-menu-button" class="flex items-center text-sm font-medium text-primary hover:underline">
-                                ${username}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                    <path d="m6 9 6 6 6-6"></path>
-                                </svg>
-                            </button>
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add dropdown toggle functionality
-                    setTimeout(() => {
-                        const userMenuButton = document.getElementById('user-menu-button');
-                        const userDropdown = document.getElementById('user-dropdown');
-                        const logoutButton = document.getElementById('logout-button');
-                        
-                        if (userMenuButton && userDropdown) {
-                            userMenuButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                userDropdown.classList.toggle('hidden');
-                            });
-                            
-                            // Close dropdown when clicking outside
-                            document.addEventListener('click', function(e) {
-                                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
-                                    userDropdown.classList.add('hidden');
-                                }
-                            });
-                        }
-                        
-                        if (logoutButton) {
-                            logoutButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                localStorage.removeItem('cryptomall_logged_in');
-                                localStorage.removeItem('cryptomall_user');
-                                window.location.href = 'index.html';
-                            });
-                        }
-                    }, 100);
-                } else {
-                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
-                }
-            }
-            
-            // Update auth section on page load
-            updateAuthSection();
-            
-            // Check if user is logged in, if not redirect to login page
-            const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-            if (!isLoggedIn) {
-                window.location.href = 'login.html';
             }
         });
     </script>

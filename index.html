@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CryptoMall - Connect with Trusted Crypto Service Providers</title>
+    <title>CryptoMall - Find Trusted Crypto Service Providers</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/darkmode.css">
     <style>
@@ -17,9 +17,20 @@
         
         /* Transitions */
         .transition { transition: all 0.3s ease; }
+        
+        /* Hero section */
+        .hero-pattern {
+            background-color: #f9fafb;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version d)
+    </div>
+    
     <!-- Navigation -->
     <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -59,69 +70,43 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="w-full py-12 md:py-24 lg:py-32 bg-primary-light">
+    <section class="w-full py-12 md:py-24 lg:py-32 hero-pattern">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
-                        Connect with Trusted Crypto Service Providers
-                    </h1>
-                    <p class="mt-4 text-lg text-gray-500">
-                        Find vetted professionals for all your cryptocurrency needs - from security and tax help to education and technical services.
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="space-y-6">
+                    <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Find Trusted Crypto Service Providers</h1>
+                    <p class="text-lg text-gray-500">
+                        Connect with vetted professionals for all your cryptocurrency needs, from security and tax services to education and technical support.
                     </p>
-                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                        <a href="quiz.html" class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Take Matching Quiz
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="quiz.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                            Take the Quiz
                         </a>
-                        <a href="providers.html" class="inline-flex h-12 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                        <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
                             Browse Directory
                         </a>
                     </div>
                 </div>
-                <div class="flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div class="absolute -top-10 -right-10 w-32 h-32 bg-primary-light rounded-full"></div>
-                        <div class="absolute -bottom-10 -left-10 w-32 h-32 bg-primary-light rounded-full"></div>
-                        <div class="relative bg-white p-8 rounded-lg shadow-lg border">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                                        <path d="M12 12v6"></path>
-                                        <path d="M12 6v2"></path>
-                                        <circle cx="12" cy="12" r="10"></circle>
+                <div class="flex items-center justify-center">
+                    <div class="relative">
+                        <div class="absolute -left-4 -top-4 h-72 w-72 rounded-full bg-primary/10"></div>
+                        <div class="absolute -bottom-4 -right-4 h-72 w-72 rounded-full bg-primary/10"></div>
+                        <div class="relative h-80 w-80 rounded-full bg-white p-6 shadow-lg flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="flex justify-center mb-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                                        <path d="M12 12m-10 0a10 10 0 1 0 20 0a10 10 0 1 0 -20 0"></path>
+                                        <path d="M16 8l-4 4l-4 -4"></path>
+                                        <path d="M12 16l0 -8"></path>
                                     </svg>
                                 </div>
+                                <h3 class="text-xl font-bold">3 Simple Steps</h3>
+                                <ul class="mt-4 space-y-2 text-sm text-gray-500">
+                                    <li>1. Take our matching quiz</li>
+                                    <li>2. Get personalized recommendations</li>
+                                    <li>3. Connect with trusted providers</li>
+                                </ul>
                             </div>
-                            <h2 class="text-2xl font-bold text-center mb-4">How CryptoMall Works</h2>
-                            <ul class="space-y-4">
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                        <span class="text-primary font-medium">1</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-medium">Take our matching quiz</h3>
-                                        <p class="text-sm text-gray-500">Answer a few questions about your needs and preferences</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                        <span class="text-primary font-medium">2</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-medium">Get matched with providers</h3>
-                                        <p class="text-sm text-gray-500">We'll recommend the best providers for your specific requirements</p>
-                                    </div>
-                                </li>
-                                <li class="flex items-start">
-                                    <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                        <span class="text-primary font-medium">3</span>
-                                    </div>
-                                    <div>
-                                        <h3 class="font-medium">Connect directly</h3>
-                                        <p class="text-sm text-gray-500">Reach out to providers and start working together</p>
-                                    </div>
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
@@ -129,19 +114,72 @@
         </div>
     </section>
 
-    <!-- Featured Providers Section -->
+    <!-- Features Section -->
+    <section class="w-full py-12 md:py-24 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Why Choose CryptoMall?</h2>
+                <p class="mt-4 text-lg text-gray-500">
+                    We connect you with the right crypto service providers for your specific needs
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Vetted Providers</h3>
+                    <p class="text-gray-500">
+                        All service providers undergo thorough verification of credentials, experience, and client satisfaction to ensure quality and trustworthiness.
+                    </p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                            <path d="M12 2a10 10 0 1 0 10 10H12V2Z"></path>
+                            <path d="M12 12 2.1 9.2a10 10 0 0 0 19.8 0L12 12Z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Personalized Matching</h3>
+                    <p class="text-gray-500">
+                        Our intelligent quiz helps match you with service providers that best fit your specific needs, experience level, and preferences.
+                    </p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="w-12 h-12 bg-primary-light rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Educational Resources</h3>
+                    <p class="text-gray-500">
+                        Access a wealth of educational content to help you navigate the crypto landscape, from beginner guides to advanced topics.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
     <section class="w-full py-12 md:py-24">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">Featured Providers</h2>
+                <h2 class="text-3xl font-bold">Browse by Category</h2>
                 <p class="mt-4 text-lg text-gray-500">
-                    Discover top-rated crypto service providers in various categories
+                    Explore our directory of crypto service providers by specialty
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Provider Card 1 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Category 1 -->
+                <a href="providers.html?category=security" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
@@ -149,92 +187,45 @@
                                 <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="font-bold">CryptoGuard Solutions</h3>
-                            <p class="text-sm text-gray-500">Security & Protection</p>
-                        </div>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Security & Protection</h3>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Specializing in wallet security, private key management, and fraud prevention for individuals and businesses.
+                    <p class="text-gray-500">
+                        Wallet security, fraud prevention, asset protection, and recovery services.
                     </p>
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                        </div>
-                        <span class="text-sm text-gray-500 ml-2">5.0 (48 reviews)</span>
-                    </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Fraud Prevention</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Audits</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
-                </div>
+                </a>
                 
-                <!-- Provider Card 2 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                <!-- Category 2 -->
+                <a href="providers.html?category=tax" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
                                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="font-bold">Crypto Tax Experts</h3>
-                            <p class="text-sm text-gray-500">Tax & Accounting</p>
-                        </div>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Tax & Accounting</h3>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Specialized accounting services for crypto investors and businesses, focusing on tax compliance and optimization.
+                    <p class="text-gray-500">
+                        Tax planning, compliance, reporting, and accounting services for crypto assets.
                     </p>
+                </a>
+                
+                <!-- Category 3 -->
+                <a href="providers.html?category=legal" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
                     <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                             </svg>
                         </div>
-                        <span class="text-sm text-gray-500 ml-2">4.8 (36 reviews)</span>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Legal Services</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Planning</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Compliance</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Reporting</span>
-                    </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
-                </div>
+                    <p class="text-gray-500">
+                        Regulatory compliance, contract review, and legal guidance for crypto businesses and individuals.
+                    </p>
+                </a>
                 
-                <!-- Provider Card 3 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
+                <!-- Category 4 -->
+                <a href="providers.html?category=education" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
                     <div class="flex items-center mb-4">
                         <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
@@ -242,198 +233,170 @@
                                 <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
                             </svg>
                         </div>
-                        <div>
-                            <h3 class="font-bold">Blockchain Academy</h3>
-                            <p class="text-sm text-gray-500">Education & Training</p>
-                        </div>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Education & Training</h3>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Comprehensive crypto education for beginners and advanced users, offering courses, workshops, and personalized training.
+                    <p class="text-gray-500">
+                        Courses, workshops, coaching, and personalized training for all experience levels.
                     </p>
+                </a>
+                
+                <!-- Category 5 -->
+                <a href="providers.html?category=technical" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
                     <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                            </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
+                                <path d="M16 18 22 12 16 6"></path>
+                                <path d="M8 6 2 12 8 18"></path>
                             </svg>
                         </div>
-                        <span class="text-sm text-gray-500 ml-2">4.9 (52 reviews)</span>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Technical Services</h3>
                     </div>
-                    <div class="flex flex-wrap gap-2 mb-4">
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Courses</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Workshops</span>
-                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Certification</span>
+                    <p class="text-gray-500">
+                        Development, integration, infrastructure setup, and technical consulting.
+                    </p>
+                </a>
+                
+                <!-- Category 6 -->
+                <a href="providers.html?category=advisory" class="group block bg-white p-6 rounded-lg shadow-sm border transition hover:shadow-md">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold group-hover:text-primary transition">Advisory & Consulting</h3>
                     </div>
-                    <a href="provider-detail.html" class="inline-flex h-10 w-full items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                        View Profile
-                    </a>
-                </div>
+                    <p class="text-gray-500">
+                        Strategic guidance, investment advice, and business consulting for crypto ventures.
+                    </p>
+                </a>
             </div>
-            
-            <div class="mt-8 text-center">
-                <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+            <div class="text-center mt-8">
+                <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
                     View All Providers
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="w-full py-12 md:py-24 bg-primary-light">
+    <!-- Testimonials Section -->
+    <section class="w-full py-12 md:py-24 bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">Crypto Education Hub</h2>
+                <h2 class="text-3xl font-bold">What Our Users Say</h2>
                 <p class="mt-4 text-lg text-gray-500">
-                    Learn about cryptocurrency concepts, security best practices, and more
+                    Hear from people who found the perfect crypto service providers through CryptoMall
                 </p>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Education Card 1 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
-                                <path d="M12 2v20"></path>
-                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold">Crypto Basics</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        New to cryptocurrency? Start here with our beginner-friendly guides covering the fundamentals.
+                    <p class="text-gray-500 mb-6">
+                        "The matching quiz connected me with a crypto tax expert who saved me thousands of dollars. The personalized approach made all the difference."
                     </p>
-                    <a href="education.html#guides" class="text-primary text-sm font-medium hover:underline">Learn more →</a>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-bold">Michael T.</h4>
+                            <p class="text-sm text-gray-500">Crypto Investor</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Education Card 2 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-red-600">
-                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold">Security Guides</h3>
+                <!-- Testimonial 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Protect your crypto assets with our comprehensive security guides and best practices.
+                    <p class="text-gray-500 mb-6">
+                        "As a business owner accepting crypto payments, finding a knowledgeable legal advisor through CryptoMall helped us navigate complex regulations with confidence."
                     </p>
-                    <a href="education.html#guides" class="text-primary text-sm font-medium hover:underline">Learn more →</a>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-bold">Sarah K.</h4>
+                            <p class="text-sm text-gray-500">Business Owner</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Education Card 3 -->
-                <div class="bg-white p-6 rounded-lg shadow-sm border">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
-                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-                            </svg>
-                        </div>
-                        <h3 class="font-bold">Glossary</h3>
+                <!-- Testimonial 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg">
+                    <div class="flex text-yellow-400 mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
                     </div>
-                    <p class="text-sm text-gray-500 mb-4">
-                        Confused by crypto terminology? Our glossary explains all the key terms in simple language.
+                    <p class="text-gray-500 mb-6">
+                        "I was new to crypto and needed help securing my assets. The security consultant I found through CryptoMall provided clear guidance that a beginner like me could understand."
                     </p>
-                    <a href="education.html#glossary" class="text-primary text-sm font-medium hover:underline">Learn more →</a>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-gray-300 rounded-full mr-3"></div>
+                        <div>
+                            <h4 class="font-bold">David L.</h4>
+                            <p class="text-sm text-gray-500">Crypto Beginner</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="mt-8 text-center">
-                <a href="education.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                    Explore Education Hub
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="w-full py-12 md:py-24">
+    <!-- CTA Section -->
+    <section class="w-full py-12 md:py-24 bg-primary-light">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl">About CryptoMall</h2>
-                    <p class="mt-4 text-lg text-gray-500">
-                        CryptoMall is a trusted platform connecting individuals and businesses with qualified cryptocurrency service providers. Our mission is to make the crypto space more accessible and secure for everyone.
-                    </p>
-                    <div class="mt-6 space-y-4">
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">Vetted Providers</h3>
-                                <p class="text-sm text-gray-500">We carefully review each service provider's credentials, experience, and client feedback.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">Personalized Matching</h3>
-                                <p class="text-sm text-gray-500">Our quiz-based matching system helps you find the right providers for your specific needs.</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="flex-shrink-0 w-6 h-6 bg-primary-light rounded-full flex items-center justify-center mr-3 mt-0.5">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                                    <path d="M20 6 9 17l-5-5"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-medium">Educational Resources</h3>
-                                <p class="text-sm text-gray-500">Access comprehensive guides and resources to help you navigate the crypto space safely.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-8">
-                        <a href="about.html" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Learn More About Us
-                        </a>
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <div class="relative w-full max-w-md">
-                        <div class="absolute -top-10 -left-10 w-32 h-32 bg-primary-light rounded-full"></div>
-                        <div class="absolute -bottom-10 -right-10 w-32 h-32 bg-primary-light rounded-full"></div>
-                        <div class="relative bg-white p-8 rounded-lg shadow-lg border">
-                            <div class="flex justify-center mb-6">
-                                <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
-                                        <circle cx="9" cy="7" r="4"></circle>
-                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                                    </svg>
-                                </div>
-                            </div>
-                            <h2 class="text-2xl font-bold text-center mb-4">Join Our Network</h2>
-                            <p class="text-center text-gray-500 mb-6">
-                                Are you a crypto service provider? Join our network to connect with clients looking for your expertise.
-                            </p>
-                            <a href="join.html" class="inline-flex h-10 w-full items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                Apply as a Provider
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-3xl font-bold">Ready to Find Your Crypto Match?</h2>
+                <p class="mt-4 text-lg text-gray-500 mb-8">
+                    Take our quick matching quiz to get personalized recommendations for your crypto needs.
+                </p>
+                <a href="quiz.html" class="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                    Start the Quiz
+                </a>
             </div>
         </div>
     </section>

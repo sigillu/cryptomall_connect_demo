@@ -43,6 +43,11 @@
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version d)
+    </div>
+    
     <!-- Navigation -->
     <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,7 +99,7 @@
     </section>
 
     <!-- Education Content -->
-    <section class="w-full py-12 md:py-24">
+    <section class="w-full py-12 md:py-24" id="filter-section">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <!-- Tag Filtering -->
             <div class="mb-8">
@@ -620,160 +625,6 @@
 
     <!-- Scripts -->
     <script src="js/navigation.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Tab functionality
-            const tabButtons = document.querySelectorAll('.tab-btn');
-            const tabPanes = document.querySelectorAll('.tab-pane');
-            
-            tabButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    
-                    // Hide all tab panes
-                    tabPanes.forEach(pane => {
-                        pane.classList.add('hidden');
-                    });
-                    
-                    // Show selected tab pane
-                    document.getElementById(tabId).classList.remove('hidden');
-                    
-                    // Update active tab button
-                    tabButtons.forEach(btn => {
-                        btn.classList.remove('tab-active');
-                    });
-                    this.classList.add('tab-active');
-                    
-                    // Update URL hash
-                    window.location.hash = tabId;
-                });
-            });
-            
-            // Check for URL hash on page load
-            if (window.location.hash) {
-                const hash = window.location.hash.substring(1);
-                const tabButton = document.querySelector(`.tab-btn[data-tab="${hash}"]`);
-                if (tabButton) {
-                    tabButton.click();
-                }
-            }
-            
-            // Tag filtering functionality
-            const tags = document.querySelectorAll('.tag');
-            const contentItems = document.querySelectorAll('.content-item');
-            const clearTagsButton = document.getElementById('clear-tags');
-            const activeFilters = document.getElementById('active-filters');
-            const filterCount = document.getElementById('filter-count');
-            
-            let selectedTags = [];
-            
-            // Tag click handler
-            tags.forEach(tag => {
-                tag.addEventListener('click', function() {
-                    const tagValue = this.getAttribute('data-tag');
-                    
-                    if (this.classList.contains('selected')) {
-                        // Remove tag from selection
-                        this.classList.remove('selected');
-                        selectedTags = selectedTags.filter(tag => tag !== tagValue);
-                    } else {
-                        // Add tag to selection
-                        this.classList.add('selected');
-                        selectedTags.push(tagValue);
-                    }
-                    
-                    // Update filter count
-                    filterCount.textContent = selectedTags.length;
-                    
-                    // Show/hide active filters indicator
-                    if (selectedTags.length > 0) {
-                        activeFilters.classList.remove('hidden');
-                    } else {
-                        activeFilters.classList.add('hidden');
-                    }
-                    
-                    // Filter content items
-                    filterContent();
-                });
-            });
-            
-            // Clear tags button
-            clearTagsButton.addEventListener('click', function() {
-                tags.forEach(tag => {
-                    tag.classList.remove('selected');
-                });
-                selectedTags = [];
-                activeFilters.classList.add('hidden');
-                
-                // Show all content items
-                contentItems.forEach(item => {
-                    item.style.display = '';
-                });
-            });
-            
-            // Filter content based on selected tags
-            function filterContent() {
-                if (selectedTags.length === 0) {
-                    // Show all items if no tags selected
-                    contentItems.forEach(item => {
-                        item.style.display = '';
-                    });
-                    return;
-                }
-                
-                contentItems.forEach(item => {
-                    const itemTags = item.getAttribute('data-tags').split(' ');
-                    
-                    // Check if item has all selected tags (exact match)
-                    const hasAllTags = selectedTags.every(tag => itemTags.includes(tag));
-                    
-                    // Check if item has any selected tags (partial match)
-                    const hasAnyTag = selectedTags.some(tag => itemTags.includes(tag));
-                    
-                    if (hasAllTags) {
-                        // Exact matches appear first with no special styling
-                        item.style.display = '';
-                        item.style.order = '1';
-                    } else if (hasAnyTag) {
-                        // Partial matches appear after exact matches with slightly faded styling
-                        item.style.display = '';
-                        item.style.order = '2';
-                    } else {
-                        // Hide items with no matching tags
-                        item.style.display = 'none';
-                    }
-                });
-            }
-            
-            // Glossary search functionality
-            const glossarySearch = document.getElementById('glossary-search');
-            if (glossarySearch) {
-                glossarySearch.addEventListener('input', function() {
-                    const searchTerm = this.value.toLowerCase();
-                    const glossaryItems = document.querySelectorAll('.glossary-section h3');
-                    
-                    glossaryItems.forEach(item => {
-                        const term = item.textContent.toLowerCase();
-                        const section = item.closest('.glossary-section');
-                        
-                        if (term.includes(searchTerm)) {
-                            item.parentElement.style.display = '';
-                            section.style.display = '';
-                        } else {
-                            item.parentElement.style.display = 'none';
-                        }
-                    });
-                    
-                    // Hide section headers if all items in section are hidden
-                    document.querySelectorAll('.glossary-section').forEach(section => {
-                        const visibleItems = section.querySelectorAll('div[style=""]').length;
-                        if (visibleItems === 0) {
-                            section.style.display = 'none';
-                        }
-                    });
-                });
-            }
-        });
-    </script>
+    <script src="js/education.js"></script>
 </body>
 </html>
