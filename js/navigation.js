@@ -15,15 +15,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Theme toggle click handler
-    themeToggle?.addEventListener('click', function() {
-        if (htmlElement.classList.contains('dark')) {
-            htmlElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-        } else {
-            htmlElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-        }
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                htmlElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    }
     
     // Authentication handling
     const authSection = document.getElementById('auth-section');
@@ -55,9 +57,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Add dropdown items
         dropdownMenu.innerHTML = `
-            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Profile</a>
-            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Admin Dashboard</a>' : ''}
-            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700">Log out</button>
+            <a href="profile.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Profile</a>
+            ${userRole === 'admin' ? '<a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Admin Dashboard</a>' : ''}
+            <a href="profile.html#settings" class="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Settings</a>
+            <button id="logout-button" class="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:text-white dark:hover:text-white hover:bg-primary dark:hover:bg-primary">Log out</button>
         `;
         
         // Append dropdown elements
@@ -72,25 +75,29 @@ document.addEventListener('DOMContentLoaded', function() {
         const adminDropdownButton = document.getElementById('admin-dropdown-button');
         const adminDropdownMenu = document.getElementById('admin-dropdown-menu');
         
-        adminDropdownButton.addEventListener('click', function(e) {
-            e.stopPropagation();
-            adminDropdownMenu.classList.toggle('hidden');
-        });
-        
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!adminDropdownButton.contains(e.target)) {
-                adminDropdownMenu.classList.add('hidden');
+        if (adminDropdownButton && adminDropdownMenu) {
+            adminDropdownButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                adminDropdownMenu.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (adminDropdownButton && !adminDropdownButton.contains(e.target)) {
+                    adminDropdownMenu.classList.add('hidden');
+                }
+            });
+            
+            // Logout functionality
+            const logoutButton = document.getElementById('logout-button');
+            if (logoutButton) {
+                logoutButton.addEventListener('click', function() {
+                    localStorage.removeItem('isLoggedIn');
+                    localStorage.removeItem('userRole');
+                    window.location.reload();
+                });
             }
-        });
-        
-        // Logout functionality
-        const logoutButton = document.getElementById('logout-button');
-        logoutButton.addEventListener('click', function() {
-            localStorage.removeItem('isLoggedIn');
-            localStorage.removeItem('userRole');
-            window.location.reload();
-        });
+        }
     }
     
     // Login form handling
