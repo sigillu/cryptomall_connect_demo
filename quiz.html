@@ -50,6 +50,62 @@
         .dark-mode .shadow-sm {
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         }
+        
+        /* Fix for input fields in dark mode */
+        .dark-mode input[type="email"],
+        .dark-mode input[type="password"],
+        .dark-mode input[type="text"],
+        .dark-mode input[type="number"],
+        .dark-mode input[type="url"],
+        .dark-mode input[type="tel"],
+        .dark-mode select,
+        .dark-mode textarea {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        .dark-mode input::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #9ca3af;
+        }
+        
+        /* Quiz styles */
+        .quiz-option {
+            transition: all 0.2s ease;
+        }
+        
+        .quiz-option:hover {
+            border-color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.05);
+        }
+        
+        .quiz-option.selected {
+            border-color: #6366f1;
+            background-color: rgba(99, 102, 241, 0.1);
+        }
+        
+        .quiz-option.selected .quiz-check {
+            display: block;
+        }
+        
+        .quiz-check {
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 8px;
+            background-color: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: #6366f1;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -91,488 +147,474 @@
         </div>
     </header>
 
-    <!-- Quiz Section -->
+    <!-- Quiz Content -->
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="max-w-3xl mx-auto">
-            <div class="text-center mb-8">
-                <h1 class="text-3xl font-bold tracking-tighter sm:text-4xl">Find Your Crypto Match</h1>
-                <p class="mt-4 text-lg text-gray-500">
-                    Answer a few questions to get matched with the right crypto service providers for your needs
+            <div class="mb-8">
+                <h1 class="text-3xl font-bold tracking-tighter mb-2">Find Your Crypto Match</h1>
+                <p class="text-lg text-gray-600">
+                    Answer a few questions to find the right crypto service providers for your needs.
                 </p>
             </div>
             
-            <!-- Quiz Container -->
-            <div id="quiz-container" class="bg-white p-8 rounded-lg shadow-sm border">
+            <!-- Quiz Progress -->
+            <div class="mb-8">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-sm font-medium" id="progress-text">Question 1 of 5</span>
+                    <span class="text-sm font-medium" id="progress-percent">20%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 20%"></div>
+                </div>
+            </div>
+            
+            <!-- Quiz Questions Container -->
+            <div id="quiz-container">
                 <!-- Question 1 -->
-                <div id="question-1" class="question-slide">
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium text-gray-500">Question 1 of 5</span>
-                            <span class="text-sm font-medium text-primary">20%</span>
+                <div class="quiz-question" id="question-1">
+                    <h2 class="text-xl font-semibold mb-4">What's your primary interest in cryptocurrency?</h2>
+                    <div class="space-y-3">
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="security">
+                            <div>
+                                <h3 class="font-medium">Security & Protection</h3>
+                                <p class="text-sm text-gray-500 mt-1">Securing assets, protecting wallets, preventing fraud</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary rounded-full h-2" style="width: 20%"></div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="tax">
+                            <div>
+                                <h3 class="font-medium">Tax & Accounting</h3>
+                                <p class="text-sm text-gray-500 mt-1">Tax planning, compliance, financial reporting</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold mb-4">What's your primary interest in cryptocurrency?</h2>
-                    
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q1" value="investment" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Investment & Trading</span>
-                                <span class="block text-sm text-gray-500">I want to invest in crypto assets or actively trade</span>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="legal">
+                            <div>
+                                <h3 class="font-medium">Legal Services</h3>
+                                <p class="text-sm text-gray-500 mt-1">Regulatory compliance, contracts, legal advice</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q1" value="security" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Security & Protection</span>
-                                <span class="block text-sm text-gray-500">I need help securing my crypto assets</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q1" value="tax" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Tax & Accounting</span>
-                                <span class="block text-sm text-gray-500">I need help with crypto taxes and reporting</span>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="development">
+                            <div>
+                                <h3 class="font-medium">Development & Technical</h3>
+                                <p class="text-sm text-gray-500 mt-1">Smart contracts, dApp development, blockchain integration</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q1" value="business" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Business Integration</span>
-                                <span class="block text-sm text-gray-500">I want to integrate crypto into my business</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q1" value="education" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Education & Learning</span>
-                                <span class="block text-sm text-gray-500">I want to learn more about cryptocurrency</span>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="business">
+                            <div>
+                                <h3 class="font-medium">Business Integration</h3>
+                                <p class="text-sm text-gray-500 mt-1">Accepting crypto payments, business strategy, implementation</p>
                             </div>
-                        </label>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-end">
-                        <button id="next-1" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Next Question
-                        </button>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Question 2 -->
-                <div id="question-2" class="question-slide hidden">
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium text-gray-500">Question 2 of 5</span>
-                            <span class="text-sm font-medium text-primary">40%</span>
+                <!-- Question 2 (Hidden initially) -->
+                <div class="quiz-question hidden" id="question-2">
+                    <h2 class="text-xl font-semibold mb-4">What's your experience level with cryptocurrency?</h2>
+                    <div class="space-y-3">
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="beginner">
+                            <div>
+                                <h3 class="font-medium">Beginner</h3>
+                                <p class="text-sm text-gray-500 mt-1">New to crypto, need guidance on fundamentals</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary rounded-full h-2" style="width: 40%"></div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="intermediate">
+                            <div>
+                                <h3 class="font-medium">Intermediate</h3>
+                                <p class="text-sm text-gray-500 mt-1">Familiar with basics, looking to expand knowledge</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold mb-4">What's your experience level with cryptocurrency?</h2>
-                    
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q2" value="beginner" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Beginner</span>
-                                <span class="block text-sm text-gray-500">I'm new to cryptocurrency</span>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="advanced">
+                            <div>
+                                <h3 class="font-medium">Advanced</h3>
+                                <p class="text-sm text-gray-500 mt-1">Experienced user, seeking specialized services</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q2" value="intermediate" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Intermediate</span>
-                                <span class="block text-sm text-gray-500">I have some experience with crypto</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q2" value="advanced" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Advanced</span>
-                                <span class="block text-sm text-gray-500">I'm very familiar with cryptocurrency</span>
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-between">
-                        <button id="prev-2" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Previous
-                        </button>
-                        <button id="next-2" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Next Question
-                        </button>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Question 3 -->
-                <div id="question-3" class="question-slide hidden">
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium text-gray-500">Question 3 of 5</span>
-                            <span class="text-sm font-medium text-primary">60%</span>
+                <!-- Question 3 (Hidden initially) -->
+                <div class="quiz-question hidden" id="question-3">
+                    <h2 class="text-xl font-semibold mb-4">What type of service are you looking for?</h2>
+                    <div class="space-y-3">
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="one-time">
+                            <div>
+                                <h3 class="font-medium">One-time Consultation</h3>
+                                <p class="text-sm text-gray-500 mt-1">Single session to address specific questions</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary rounded-full h-2" style="width: 60%"></div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="ongoing">
+                            <div>
+                                <h3 class="font-medium">Ongoing Support</h3>
+                                <p class="text-sm text-gray-500 mt-1">Regular assistance and continuous guidance</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold mb-4">What specific services are you looking for?</h2>
-                    <p class="text-sm text-gray-500 mb-4">Select all that apply</p>
-                    
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="checkbox" name="q3" value="wallet" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            <div class="ml-3">
-                                <span class="block font-medium">Wallet Security & Management</span>
-                                <span class="block text-sm text-gray-500">Help with securing crypto wallets and assets</span>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="project">
+                            <div>
+                                <h3 class="font-medium">Project Implementation</h3>
+                                <p class="text-sm text-gray-500 mt-1">Complete development or implementation of a specific project</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="checkbox" name="q3" value="tax" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            <div class="ml-3">
-                                <span class="block font-medium">Tax Planning & Reporting</span>
-                                <span class="block text-sm text-gray-500">Assistance with crypto taxes and compliance</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="checkbox" name="q3" value="education" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            <div class="ml-3">
-                                <span class="block font-medium">Education & Training</span>
-                                <span class="block text-sm text-gray-500">Learning resources and personalized training</span>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="education">
+                            <div>
+                                <h3 class="font-medium">Education & Training</h3>
+                                <p class="text-sm text-gray-500 mt-1">Learning resources, workshops, or training sessions</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="checkbox" name="q3" value="development" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            <div class="ml-3">
-                                <span class="block font-medium">Development & Integration</span>
-                                <span class="block text-sm text-gray-500">Technical implementation and development services</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="checkbox" name="q3" value="legal" class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded">
-                            <div class="ml-3">
-                                <span class="block font-medium">Legal & Compliance</span>
-                                <span class="block text-sm text-gray-500">Legal advice and regulatory compliance</span>
-                            </div>
-                        </label>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-between">
-                        <button id="prev-3" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Previous
-                        </button>
-                        <button id="next-3" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Next Question
-                        </button>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Question 4 -->
-                <div id="question-4" class="question-slide hidden">
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium text-gray-500">Question 4 of 5</span>
-                            <span class="text-sm font-medium text-primary">80%</span>
+                <!-- Question 4 (Hidden initially) -->
+                <div class="quiz-question hidden" id="question-4">
+                    <h2 class="text-xl font-semibold mb-4">What's your preferred provider location?</h2>
+                    <div class="space-y-3">
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="local">
+                            <div>
+                                <h3 class="font-medium">Local (In my city/region)</h3>
+                                <p class="text-sm text-gray-500 mt-1">Providers in your immediate geographic area</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary rounded-full h-2" style="width: 80%"></div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="national">
+                            <div>
+                                <h3 class="font-medium">National (In my country)</h3>
+                                <p class="text-sm text-gray-500 mt-1">Providers anywhere in your country</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold mb-4">Do you prefer working with providers remotely or locally?</h2>
-                    
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q4" value="remote" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Remote / Virtual</span>
-                                <span class="block text-sm text-gray-500">I prefer working with providers online</span>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="remote">
+                            <div>
+                                <h3 class="font-medium">Remote Only</h3>
+                                <p class="text-sm text-gray-500 mt-1">Providers who work remotely, location doesn't matter</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q4" value="local" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Local / In-person</span>
-                                <span class="block text-sm text-gray-500">I prefer working with providers in my area</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q4" value="both" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">No Preference</span>
-                                <span class="block text-sm text-gray-500">I'm open to both remote and local providers</span>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="any">
+                            <div>
+                                <h3 class="font-medium">No Preference</h3>
+                                <p class="text-sm text-gray-500 mt-1">Open to providers from any location</p>
                             </div>
-                        </label>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-between">
-                        <button id="prev-4" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Previous
-                        </button>
-                        <button id="next-4" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Next Question
-                        </button>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Question 5 -->
-                <div id="question-5" class="question-slide hidden">
-                    <div class="mb-6">
-                        <div class="flex justify-between mb-2">
-                            <span class="text-sm font-medium text-gray-500">Question 5 of 5</span>
-                            <span class="text-sm font-medium text-primary">100%</span>
+                <!-- Question 5 (Hidden initially) -->
+                <div class="quiz-question hidden" id="question-5">
+                    <h2 class="text-xl font-semibold mb-4">What's your budget range?</h2>
+                    <div class="space-y-3">
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="low">
+                            <div>
+                                <h3 class="font-medium">$0 - $500</h3>
+                                <p class="text-sm text-gray-500 mt-1">Basic services and consultations</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full bg-gray-200 rounded-full h-2">
-                            <div class="bg-primary rounded-full h-2" style="width: 100%"></div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="medium">
+                            <div>
+                                <h3 class="font-medium">$500 - $2,000</h3>
+                                <p class="text-sm text-gray-500 mt-1">Intermediate services and ongoing support</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <h2 class="text-xl font-bold mb-4">What's your budget range for crypto services?</h2>
-                    
-                    <div class="space-y-4">
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q5" value="low" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">$0 - $500</span>
-                                <span class="block text-sm text-gray-500">Limited budget</span>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="high">
+                            <div>
+                                <h3 class="font-medium">$2,000 - $10,000</h3>
+                                <p class="text-sm text-gray-500 mt-1">Comprehensive projects and specialized services</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q5" value="medium" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">$500 - $2,000</span>
-                                <span class="block text-sm text-gray-500">Moderate budget</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q5" value="high" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">$2,000+</span>
-                                <span class="block text-sm text-gray-500">Higher budget</span>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="enterprise">
+                            <div>
+                                <h3 class="font-medium">$10,000+</h3>
+                                <p class="text-sm text-gray-500 mt-1">Enterprise-level solutions and major implementations</p>
                             </div>
-                        </label>
-                        
-                        <label class="flex items-center p-4 border rounded-lg cursor-pointer hover:border-primary transition">
-                            <input type="radio" name="q5" value="unsure" class="h-4 w-4 text-primary focus:ring-primary border-gray-300">
-                            <div class="ml-3">
-                                <span class="block font-medium">Not Sure</span>
-                                <span class="block text-sm text-gray-500">I need to discuss options first</span>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
                             </div>
-                        </label>
-                    </div>
-                    
-                    <div class="mt-8 flex justify-between">
-                        <button id="prev-5" class="inline-flex h-10 items-center justify-center rounded-md border border-primary bg-white px-8 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            Previous
-                        </button>
-                        <button id="submit-quiz" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            See My Matches
-                        </button>
+                        </div>
+                        <div class="quiz-option border rounded-lg p-4 cursor-pointer flex items-center justify-between" data-value="flexible">
+                            <div>
+                                <h3 class="font-medium">Flexible / Not Sure</h3>
+                                <p class="text-sm text-gray-500 mt-1">Open to discussing options based on needs</p>
+                            </div>
+                            <div class="quiz-check text-primary">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M20 6 9 17l-5-5"></path>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- Results -->
-                <div id="quiz-results" class="hidden">
+                <!-- Results (Hidden initially) -->
+                <div class="quiz-question hidden" id="quiz-results">
                     <div class="text-center mb-8">
-                        <div class="w-16 h-16 bg-primary-light rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
+                        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-light text-primary mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M20 6 9 17l-5-5"></path>
                             </svg>
                         </div>
-                        <h2 class="text-2xl font-bold mb-2">Your Matches Are Ready!</h2>
-                        <p class="text-gray-500">Based on your answers, we've found these providers that match your needs</p>
+                        <h2 class="text-2xl font-bold mb-2">We've Found Your Matches!</h2>
+                        <p class="text-gray-600">
+                            Based on your needs, here are the crypto service providers we recommend.
+                        </p>
                     </div>
                     
-                    <div class="space-y-6">
-                        <!-- Match 1 -->
-                        <div class="border rounded-lg p-4 hover:shadow-md transition">
-                            <div class="flex flex-col md:flex-row">
-                                <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
-                                            <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
-                                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                                        </svg>
+                    <div class="space-y-6" id="results-container">
+                        <!-- Result 1 -->
+                        <div class="border rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-semibold">CryptoGuard Security</h3>
+                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • New York, USA</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-500 mr-1">★</span>
+                                        <span class="font-medium">4.8</span>
+                                        <span class="text-gray-500 text-sm ml-1">(24 reviews)</span>
                                     </div>
                                 </div>
-                                <div class="md:w-3/4">
-                                    <div class="flex justify-between">
-                                        <h3 class="text-lg font-bold">CryptoGuard Solutions</h3>
-                                        <span class="text-sm text-gray-500">98% Match</span>
+                                <p class="text-gray-700 mb-4">
+                                    Specializing in wallet security, fraud prevention, and crypto asset protection. 
+                                    Our team of certified security experts helps individuals and businesses 
+                                    secure their digital assets with customized security solutions.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Wallet Security</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Fraud Prevention</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Asset Protection</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Audits</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-gray-500">
+                                        <span class="inline-block mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                                            </svg>
+                                            5+ years experience
+                                        </span>
+                                        <span class="inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                                <path d="M3 9h18"></path>
+                                                <path d="M9 21V9"></path>
+                                            </svg>
+                                            Available for remote work
+                                        </span>
                                     </div>
-                                    <p class="text-sm text-gray-500 mb-2">Security & Protection • USA</p>
-                                    <p class="text-sm text-gray-600 mb-3">
-                                        Specializing in wallet security, private key management, and fraud prevention for individuals and businesses.
-                                    </p>
-                                    <div class="flex items-center mb-3">
-                                        <div class="flex text-yellow-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                        </div>
-                                        <span class="text-sm text-gray-500 ml-2">5.0 (48 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallet Security</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Private Keys</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Audits</span>
-                                    </div>
-                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                        View Profile
-                                    </a>
+                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Match 2 -->
-                        <div class="border rounded-lg p-4 hover:shadow-md transition">
-                            <div class="flex flex-col md:flex-row">
-                                <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
-                                            <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
-                                        </svg>
+                        <!-- Result 2 -->
+                        <div class="border rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Blockchain Defenders</h3>
+                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • Remote</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-500 mr-1">★</span>
+                                        <span class="font-medium">4.7</span>
+                                        <span class="text-gray-500 text-sm ml-1">(19 reviews)</span>
                                     </div>
                                 </div>
-                                <div class="md:w-3/4">
-                                    <div class="flex justify-between">
-                                        <h3 class="text-lg font-bold">Crypto Tax Experts</h3>
-                                        <span class="text-sm text-gray-500">92% Match</span>
+                                <p class="text-gray-700 mb-4">
+                                    We provide comprehensive security solutions for cryptocurrency holders and businesses. 
+                                    Our services include security assessments, implementation of protection measures, 
+                                    and ongoing monitoring to prevent unauthorized access and theft.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Assessments</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Monitoring Solutions</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Theft Prevention</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Recovery Services</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-gray-500">
+                                        <span class="inline-block mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                                            </svg>
+                                            3-5 years experience
+                                        </span>
+                                        <span class="inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                                <path d="M3 9h18"></path>
+                                                <path d="M9 21V9"></path>
+                                            </svg>
+                                            24/7 emergency support
+                                        </span>
                                     </div>
-                                    <p class="text-sm text-gray-500 mb-2">Tax & Accounting • Remote</p>
-                                    <p class="text-sm text-gray-600 mb-3">
-                                        Specialized accounting services for crypto investors and businesses, focusing on tax compliance and optimization.
-                                    </p>
-                                    <div class="flex items-center mb-3">
-                                        <div class="flex text-yellow-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="text-gray-300">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                        </div>
-                                        <span class="text-sm text-gray-500 ml-2">4.8 (36 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax Planning</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Compliance</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Reporting</span>
-                                    </div>
-                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                        View Profile
-                                    </a>
+                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
                                 </div>
                             </div>
                         </div>
                         
-                        <!-- Match 3 -->
-                        <div class="border rounded-lg p-4 hover:shadow-md transition">
-                            <div class="flex flex-col md:flex-row">
-                                <div class="md:w-1/4 mb-4 md:mb-0">
-                                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
-                                            <path d="M12 20h9"></path>
-                                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
-                                        </svg>
+                        <!-- Result 3 -->
+                        <div class="border rounded-lg overflow-hidden">
+                            <div class="p-6">
+                                <div class="flex items-start justify-between mb-4">
+                                    <div>
+                                        <h3 class="text-xl font-semibold">Secure Wallet Advisors</h3>
+                                        <p class="text-sm text-gray-500 mt-1">Security & Protection • Chicago, USA</p>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <span class="text-yellow-500 mr-1">★</span>
+                                        <span class="font-medium">4.6</span>
+                                        <span class="text-gray-500 text-sm ml-1">(15 reviews)</span>
                                     </div>
                                 </div>
-                                <div class="md:w-3/4">
-                                    <div class="flex justify-between">
-                                        <h3 class="text-lg font-bold">Blockchain Academy</h3>
-                                        <span class="text-sm text-gray-500">85% Match</span>
+                                <p class="text-gray-700 mb-4">
+                                    Focused on hardware wallet setup, secure key management, and backup solutions. 
+                                    We help clients implement best practices for securing their crypto assets 
+                                    with an emphasis on education and practical security measures.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Hardware Wallets</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Key Management</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Backup Solutions</span>
+                                    <span class="px-2 py-1 bg-gray-100 text-gray-800 text-xs rounded-full">Security Training</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-sm text-gray-500">
+                                        <span class="inline-block mr-4">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"></path>
+                                            </svg>
+                                            3-5 years experience
+                                        </span>
+                                        <span class="inline-block">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="inline mr-1">
+                                                <rect width="18" height="18" x="3" y="3" rx="2"></rect>
+                                                <path d="M3 9h18"></path>
+                                                <path d="M9 21V9"></path>
+                                            </svg>
+                                            Weekend availability
+                                        </span>
                                     </div>
-                                    <p class="text-sm text-gray-500 mb-2">Education & Training • UK</p>
-                                    <p class="text-sm text-gray-600 mb-3">
-                                        Comprehensive crypto education for beginners and advanced users, offering courses, workshops, and personalized training.
-                                    </p>
-                                    <div class="flex items-center mb-3">
-                                        <div class="flex text-yellow-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                                            </svg>
-                                        </div>
-                                        <span class="text-sm text-gray-500 ml-2">4.9 (52 reviews)</span>
-                                    </div>
-                                    <div class="flex flex-wrap gap-2 mb-4">
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Courses</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Workshops</span>
-                                        <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Certification</span>
-                                    </div>
-                                    <a href="provider-detail.html" class="inline-flex h-8 items-center justify-center rounded-md border border-primary bg-white px-4 text-sm font-medium text-primary shadow-sm transition-colors hover:bg-gray-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                                        View Profile
-                                    </a>
+                                    <a href="provider-detail.html" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">View Profile</a>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="mt-8 text-center">
-                        <p class="text-sm text-gray-500 mb-4">Want to see more providers that match your needs?</p>
-                        <a href="providers.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-                            View All Providers
-                        </a>
+                        
+                        <div class="mt-8 text-center">
+                            <a href="providers.html" class="px-6 py-3 bg-primary text-white rounded-md font-medium">
+                                View All Providers
+                            </a>
+                        </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Quiz Navigation -->
+            <div class="mt-8 flex justify-between">
+                <button id="prev-button" class="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium hidden">
+                    Previous
+                </button>
+                <button id="next-button" class="px-4 py-2 bg-primary text-white rounded-md text-sm font-medium">
+                    Next
+                </button>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t bg-white">
+    <footer class="w-full border-t bg-white mt-12">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -675,57 +717,116 @@
                 document.body.classList.add('dark-mode');
             }
             
-            // Quiz navigation
-            const questionSlides = document.querySelectorAll('.question-slide');
-            const quizResults = document.getElementById('quiz-results');
+            // Quiz functionality
+            const quizOptions = document.querySelectorAll('.quiz-option');
+            const nextButton = document.getElementById('next-button');
+            const prevButton = document.getElementById('prev-button');
+            const progressText = document.getElementById('progress-text');
+            const progressPercent = document.getElementById('progress-percent');
+            const progressFill = document.querySelector('.progress-fill');
             
-            // Next buttons
-            document.getElementById('next-1').addEventListener('click', function() {
-                questionSlides[0].classList.add('hidden');
-                questionSlides[1].classList.remove('hidden');
+            let currentQuestion = 1;
+            const totalQuestions = 5;
+            let answers = {};
+            
+            // Option selection
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options in the same question
+                    const questionId = this.closest('.quiz-question').id;
+                    document.querySelectorAll(`#${questionId} .quiz-option`).forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Store the answer
+                    const questionNumber = questionId.split('-')[1];
+                    const answerValue = this.getAttribute('data-value');
+                    answers[questionNumber] = answerValue;
+                });
             });
             
-            document.getElementById('next-2').addEventListener('click', function() {
-                questionSlides[1].classList.add('hidden');
-                questionSlides[2].classList.remove('hidden');
+            // Next button
+            nextButton.addEventListener('click', function() {
+                if (currentQuestion < totalQuestions) {
+                    // Check if an option is selected
+                    const selectedOption = document.querySelector(`#question-${currentQuestion} .quiz-option.selected`);
+                    if (!selectedOption) {
+                        alert('Please select an option before proceeding.');
+                        return;
+                    }
+                    
+                    // Hide current question
+                    document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                    
+                    // Show next question
+                    currentQuestion++;
+                    document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+                    
+                    // Update progress
+                    updateProgress();
+                    
+                    // Show previous button
+                    prevButton.classList.remove('hidden');
+                } else {
+                    // Check if an option is selected for the last question
+                    const selectedOption = document.querySelector(`#question-${currentQuestion} .quiz-option.selected`);
+                    if (!selectedOption) {
+                        alert('Please select an option before proceeding.');
+                        return;
+                    }
+                    
+                    // Hide last question
+                    document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                    
+                    // Show results
+                    document.getElementById('quiz-results').classList.remove('hidden');
+                    
+                    // Update button text
+                    this.textContent = 'View All Providers';
+                    this.addEventListener('click', function() {
+                        window.location.href = 'providers.html';
+                    }, { once: true });
+                    
+                    // Hide previous button
+                    prevButton.classList.add('hidden');
+                    
+                    // Update progress to 100%
+                    progressText.textContent = 'Complete!';
+                    progressPercent.textContent = '100%';
+                    progressFill.style.width = '100%';
+                }
             });
             
-            document.getElementById('next-3').addEventListener('click', function() {
-                questionSlides[2].classList.add('hidden');
-                questionSlides[3].classList.remove('hidden');
+            // Previous button
+            prevButton.addEventListener('click', function() {
+                if (currentQuestion > 1) {
+                    // Hide current question
+                    document.getElementById(`question-${currentQuestion}`).classList.add('hidden');
+                    
+                    // Show previous question
+                    currentQuestion--;
+                    document.getElementById(`question-${currentQuestion}`).classList.remove('hidden');
+                    
+                    // Update progress
+                    updateProgress();
+                    
+                    // Hide previous button if on first question
+                    if (currentQuestion === 1) {
+                        prevButton.classList.add('hidden');
+                    }
+                }
             });
             
-            document.getElementById('next-4').addEventListener('click', function() {
-                questionSlides[3].classList.add('hidden');
-                questionSlides[4].classList.remove('hidden');
-            });
-            
-            // Previous buttons
-            document.getElementById('prev-2').addEventListener('click', function() {
-                questionSlides[1].classList.add('hidden');
-                questionSlides[0].classList.remove('hidden');
-            });
-            
-            document.getElementById('prev-3').addEventListener('click', function() {
-                questionSlides[2].classList.add('hidden');
-                questionSlides[1].classList.remove('hidden');
-            });
-            
-            document.getElementById('prev-4').addEventListener('click', function() {
-                questionSlides[3].classList.add('hidden');
-                questionSlides[2].classList.remove('hidden');
-            });
-            
-            document.getElementById('prev-5').addEventListener('click', function() {
-                questionSlides[4].classList.add('hidden');
-                questionSlides[3].classList.remove('hidden');
-            });
-            
-            // Submit quiz
-            document.getElementById('submit-quiz').addEventListener('click', function() {
-                questionSlides[4].classList.add('hidden');
-                quizResults.classList.remove('hidden');
-            });
+            // Update progress indicators
+            function updateProgress() {
+                const progress = (currentQuestion / totalQuestions) * 100;
+                progressText.textContent = `Question ${currentQuestion} of ${totalQuestions}`;
+                progressPercent.textContent = `${progress}%`;
+                progressFill.style.width = `${progress}%`;
+            }
             
             // Update auth section based on login state
             function updateAuthSection() {
@@ -735,24 +836,42 @@
                 
                 if (isLoggedIn) {
                     authSection.innerHTML = `
-                        <div class="relative group">
-                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
+                        <div class="relative inline-block text-left">
+                            <button id="user-menu-button" class="flex items-center text-sm font-medium text-primary hover:underline">
                                 ${username}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
                                     <path d="m6 9 6 6 6-6"></path>
                                 </svg>
                             </button>
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
+                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
                                 <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                             </div>
                         </div>
                     `;
                     
-                    // Add logout functionality
+                    // Add dropdown toggle functionality
                     setTimeout(() => {
+                        const userMenuButton = document.getElementById('user-menu-button');
+                        const userDropdown = document.getElementById('user-dropdown');
                         const logoutButton = document.getElementById('logout-button');
+                        
+                        if (userMenuButton && userDropdown) {
+                            userMenuButton.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                userDropdown.classList.toggle('hidden');
+                            });
+                            
+                            // Close dropdown when clicking outside
+                            document.addEventListener('click', function(e) {
+                                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+                                    userDropdown.classList.add('hidden');
+                                }
+                            });
+                        }
+                        
                         if (logoutButton) {
                             logoutButton.addEventListener('click', function(e) {
                                 e.preventDefault();

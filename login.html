@@ -50,6 +50,25 @@
         .dark-mode .shadow-sm {
             box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         }
+        
+        /* Fix for input fields in dark mode */
+        .dark-mode input[type="email"],
+        .dark-mode input[type="password"],
+        .dark-mode input[type="text"],
+        .dark-mode input[type="number"],
+        .dark-mode input[type="url"],
+        .dark-mode input[type="tel"],
+        .dark-mode select,
+        .dark-mode textarea {
+            background-color: #374151;
+            color: #f9fafb;
+            border-color: #4b5563;
+        }
+        
+        .dark-mode input::placeholder,
+        .dark-mode textarea::placeholder {
+            color: #9ca3af;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
@@ -339,24 +358,42 @@
                 
                 if (isLoggedIn) {
                     authSection.innerHTML = `
-                        <div class="relative group">
-                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
+                        <div class="relative inline-block text-left">
+                            <button id="user-menu-button" class="flex items-center text-sm font-medium text-primary hover:underline">
                                 ${username}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
                                     <path d="m6 9 6 6 6-6"></path>
                                 </svg>
                             </button>
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
+                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
+                                <a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
                                 <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
                                 <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
                             </div>
                         </div>
                     `;
                     
-                    // Add logout functionality
+                    // Add dropdown toggle functionality
                     setTimeout(() => {
+                        const userMenuButton = document.getElementById('user-menu-button');
+                        const userDropdown = document.getElementById('user-dropdown');
                         const logoutButton = document.getElementById('logout-button');
+                        
+                        if (userMenuButton && userDropdown) {
+                            userMenuButton.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                userDropdown.classList.toggle('hidden');
+                            });
+                            
+                            // Close dropdown when clicking outside
+                            document.addEventListener('click', function(e) {
+                                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
+                                    userDropdown.classList.add('hidden');
+                                }
+                            });
+                        }
+                        
                         if (logoutButton) {
                             logoutButton.addEventListener('click', function(e) {
                                 e.preventDefault();
