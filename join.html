@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoMall - Join as Provider</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
     <style>
         /* Custom styles */
         .bg-primary { background-color: #6366f1; }
@@ -16,62 +17,14 @@
         
         /* Transitions */
         .transition { transition: all 0.3s ease; }
-        
-        /* Dark mode styles */
-        .dark-mode {
-            background-color: #1f2937;
-            color: #f9fafb;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: #111827;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .dark-mode .text-gray-500,
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .border {
-            border-color: #374151;
-        }
-        
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100,
-        .dark-mode .bg-gray-200 {
-            background-color: #1f2937;
-        }
-        
-        .dark-mode .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
-        }
-        
-        /* Fix for input fields in dark mode */
-        .dark-mode input[type="email"],
-        .dark-mode input[type="password"],
-        .dark-mode input[type="text"],
-        .dark-mode input[type="number"],
-        .dark-mode input[type="url"],
-        .dark-mode input[type="tel"],
-        .dark-mode select,
-        .dark-mode textarea {
-            background-color: #374151;
-            color: #f9fafb;
-            border-color: #4b5563;
-        }
-        
-        .dark-mode input::placeholder,
-        .dark-mode textarea::placeholder {
-            color: #9ca3af;
-        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version e)
+    </div>
+    
     <!-- Navigation -->
     <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -307,7 +260,7 @@
                                         class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
                                     />
                                     <label for="category-hardware" class="ml-2 block text-sm text-gray-700">
-                                        Hardware & Devices
+                                        Hardware & Wallets
                                     </label>
                                 </div>
                                 <div class="flex items-center">
@@ -327,151 +280,62 @@
                         
                         <div class="mb-6">
                             <label class="block text-sm font-medium text-gray-700 mb-2">
-                                Specializations (Select up to 5) *
+                                Experience Level *
                             </label>
                             <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="spec-wallet"
-                                        name="specializations"
-                                        value="wallet-security"
+                                        id="experience-beginner"
+                                        name="experience-level"
+                                        value="beginner"
                                         class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                                     />
-                                    <label for="spec-wallet" class="ml-2 block text-sm text-gray-700">
-                                        Wallet Security
+                                    <label for="experience-beginner" class="ml-2 block text-sm text-gray-700">
+                                        Beginner-Friendly
                                     </label>
                                 </div>
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="spec-keys"
-                                        name="specializations"
-                                        value="private-keys"
+                                        id="experience-intermediate"
+                                        name="experience-level"
+                                        value="intermediate"
                                         class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                                     />
-                                    <label for="spec-keys" class="ml-2 block text-sm text-gray-700">
-                                        Private Keys
+                                    <label for="experience-intermediate" class="ml-2 block text-sm text-gray-700">
+                                        Intermediate
                                     </label>
                                 </div>
                                 <div class="flex items-center">
                                     <input
                                         type="checkbox"
-                                        id="spec-tax"
-                                        name="specializations"
-                                        value="crypto-tax"
+                                        id="experience-advanced"
+                                        name="experience-level"
+                                        value="advanced"
                                         class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
                                     />
-                                    <label for="spec-tax" class="ml-2 block text-sm text-gray-700">
-                                        Crypto Tax
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-forensics"
-                                        name="specializations"
-                                        value="forensics"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-forensics" class="ml-2 block text-sm text-gray-700">
-                                        Forensics
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-recovery"
-                                        name="specializations"
-                                        value="recovery"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-recovery" class="ml-2 block text-sm text-gray-700">
-                                        Recovery
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-compliance"
-                                        name="specializations"
-                                        value="compliance"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-compliance" class="ml-2 block text-sm text-gray-700">
-                                        Compliance
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-smart-contracts"
-                                        name="specializations"
-                                        value="smart-contracts"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-smart-contracts" class="ml-2 block text-sm text-gray-700">
-                                        Smart Contracts
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-defi"
-                                        name="specializations"
-                                        value="defi"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-defi" class="ml-2 block text-sm text-gray-700">
-                                        DeFi
-                                    </label>
-                                </div>
-                                <div class="flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="spec-nft"
-                                        name="specializations"
-                                        value="nft"
-                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
-                                    />
-                                    <label for="spec-nft" class="ml-2 block text-sm text-gray-700">
-                                        NFTs
+                                    <label for="experience-advanced" class="ml-2 block text-sm text-gray-700">
+                                        Advanced
                                     </label>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="mb-6">
-                            <label for="experience" class="block text-sm font-medium text-gray-700 mb-1">
-                                Years of Experience in Crypto *
+                            <label for="services" class="block text-sm font-medium text-gray-700 mb-1">
+                                Key Services (comma separated) *
                             </label>
-                            <select
-                                id="experience"
-                                name="experience"
+                            <input
+                                type="text"
+                                id="services"
+                                name="services"
+                                placeholder="e.g., Wallet Security, Tax Planning, Smart Contract Development"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                                 required
-                            >
-                                <option value="">Select experience</option>
-                                <option value="<1">Less than 1 year</option>
-                                <option value="1-3">1-3 years</option>
-                                <option value="3-5">3-5 years</option>
-                                <option value="5-10">5-10 years</option>
-                                <option value="10+">10+ years</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="certifications" class="block text-sm font-medium text-gray-700 mb-1">
-                                Relevant Certifications or Credentials
-                            </label>
-                            <textarea
-                                id="certifications"
-                                name="certifications"
-                                rows="3"
-                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
-                            ></textarea>
+                            />
                             <p class="mt-1 text-sm text-gray-500">
-                                List any relevant certifications, licenses, or credentials
+                                List up to 5 key services you provide
                             </p>
                         </div>
                     </div>
@@ -492,7 +356,6 @@
                                     required
                                 />
                             </div>
-                            
                             <div>
                                 <label for="contact-title" class="block text-sm font-medium text-gray-700 mb-1">
                                     Job Title
@@ -504,7 +367,6 @@
                                     class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                                 />
                             </div>
-                            
                             <div>
                                 <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
                                     Email Address *
@@ -517,7 +379,6 @@
                                     required
                                 />
                             </div>
-                            
                             <div>
                                 <label for="contact-phone" class="block text-sm font-medium text-gray-700 mb-1">
                                     Phone Number
@@ -537,12 +398,12 @@
                         <h2 class="text-xl font-bold mb-4">Additional Information</h2>
                         
                         <div class="mb-6">
-                            <label for="how-heard" class="block text-sm font-medium text-gray-700 mb-1">
-                                How did you hear about CryptoMall?
+                            <label for="referral" class="block text-sm font-medium text-gray-700 mb-1">
+                                How did you hear about us?
                             </label>
                             <select
-                                id="how-heard"
-                                name="how-heard"
+                                id="referral"
+                                name="referral"
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                             >
                                 <option value="">Select option</option>
@@ -554,7 +415,7 @@
                             </select>
                         </div>
                         
-                        <div>
+                        <div class="mb-6">
                             <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-1">
                                 Additional Information
                             </label>
@@ -565,14 +426,11 @@
                                 class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
                             ></textarea>
                             <p class="mt-1 text-sm text-gray-500">
-                                Any additional information you'd like to share about your services
+                                Any other information you'd like to share about your services
                             </p>
                         </div>
-                    </div>
-                    
-                    <!-- Terms and Conditions -->
-                    <div>
-                        <div class="flex items-start">
+                        
+                        <div class="flex items-start mb-6">
                             <div class="flex items-center h-5">
                                 <input
                                     id="terms"
@@ -584,20 +442,20 @@
                             </div>
                             <div class="ml-3 text-sm">
                                 <label for="terms" class="font-medium text-gray-700">
-                                    I agree to the Terms and Conditions *
+                                    I agree to the <a href="about.html#terms" class="text-primary hover:underline">Terms of Service</a> and <a href="about.html#privacy" class="text-primary hover:underline">Privacy Policy</a> *
                                 </label>
                                 <p class="text-gray-500">
-                                    By submitting this application, I confirm that all information provided is accurate and complete. I understand that CryptoMall will review my application and may request additional information or verification.
+                                    By submitting this application, you agree to our verification process and listing policies.
                                 </p>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Submit Button -->
-                    <div>
+                    <div class="flex justify-end">
                         <button
                             type="submit"
-                            class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
                         >
                             Submit Application
                         </button>
@@ -605,20 +463,16 @@
                 </form>
             </div>
             
-            <!-- Success Message (Hidden by Default) -->
-            <div id="success-message" class="bg-white p-8 rounded-lg shadow-sm border text-center hidden">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500 mx-auto mb-4">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="hidden bg-green-50 p-8 rounded-lg shadow-sm border border-green-200 mt-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                 </svg>
-                <h2 class="text-2xl font-bold mb-2">Application Submitted!</h2>
-                <p class="text-gray-600 mb-6">
-                    Thank you for applying to join CryptoMall as a service provider. We've received your application and will review it shortly.
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Application Submitted!</h2>
+                <p class="text-green-700 mb-6">
+                    Thank you for applying to join CryptoMall. We'll review your application and get back to you within 3-5 business days.
                 </p>
-                <p class="text-gray-600 mb-6">
-                    Our team typically reviews applications within 3-5 business days. We'll contact you via email with any questions or to confirm your listing.
-                </p>
-                <a href="index.html" class="inline-flex h-10 items-center justify-center rounded-md bg-primary px-8 text-sm font-medium text-white shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
+                <a href="index.html" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
                     Return to Homepage
                 </a>
             </div>
@@ -626,7 +480,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="w-full border-t bg-white mt-12">
+    <footer class="w-full border-t bg-white">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
                 <div>
@@ -659,18 +513,23 @@
                     <h3 class="text-sm font-semibold mb-4">Resources</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Crypto Basics
+                            <a href="education.html#guides" class="text-sm text-gray-500 hover:text-primary">
+                                Guides
                             </a>
                         </li>
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Security Guides
+                            <a href="education.html#articles" class="text-sm text-gray-500 hover:text-primary">
+                                Articles
                             </a>
                         </li>
                         <li>
                             <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
                                 Glossary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#faq" class="text-sm text-gray-500 hover:text-primary">
+                                FAQ
                             </a>
                         </li>
                     </ul>
@@ -708,104 +567,29 @@
         </div>
     </footer>
 
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
-            // Form submission
+            // Form submission handler
             const providerForm = document.getElementById('provider-form');
             const applicationForm = document.getElementById('application-form');
             const successMessage = document.getElementById('success-message');
             
-            providerForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // In a real implementation, this would send the form data to a server
-                // For demo purposes, we'll just show the success message
-                applicationForm.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-                
-                // Scroll to top to show success message
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            });
-            
-            // Update auth section based on login state
-            function updateAuthSection() {
-                const authSection = document.getElementById('auth-section');
-                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-                const username = localStorage.getItem('cryptomall_user') || 'User';
-                
-                if (isLoggedIn) {
-                    authSection.innerHTML = `
-                        <div class="relative inline-block text-left">
-                            <button id="user-menu-button" class="flex items-center text-sm font-medium text-primary hover:underline">
-                                ${username}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                    <path d="m6 9 6 6 6-6"></path>
-                                </svg>
-                            </button>
-                            <div id="user-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 border">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="admin.html" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Admin Dashboard</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    `;
+            if (providerForm) {
+                providerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
                     
-                    // Add dropdown toggle functionality
-                    setTimeout(() => {
-                        const userMenuButton = document.getElementById('user-menu-button');
-                        const userDropdown = document.getElementById('user-dropdown');
-                        const logoutButton = document.getElementById('logout-button');
+                    // For demo purposes, just show success message
+                    if (applicationForm && successMessage) {
+                        applicationForm.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
                         
-                        if (userMenuButton && userDropdown) {
-                            userMenuButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                userDropdown.classList.toggle('hidden');
-                            });
-                            
-                            // Close dropdown when clicking outside
-                            document.addEventListener('click', function(e) {
-                                if (!userMenuButton.contains(e.target) && !userDropdown.contains(e.target)) {
-                                    userDropdown.classList.add('hidden');
-                                }
-                            });
-                        }
-                        
-                        if (logoutButton) {
-                            logoutButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                localStorage.removeItem('cryptomall_logged_in');
-                                localStorage.removeItem('cryptomall_user');
-                                window.location.href = 'index.html';
-                            });
-                        }
-                    }, 100);
-                } else {
-                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
-                }
+                        // Scroll to top to show success message
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
             }
-            
-            // Update auth section on page load
-            updateAuthSection();
         });
     </script>
 </body>
