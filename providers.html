@@ -42,7 +42,7 @@
 <body class="bg-gray-50 text-gray-900">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version g)
+        (version h)
     </div>
     
     <!-- Navigation -->
@@ -127,17 +127,34 @@
                         </div>
                     </div>
                     
-                    <!-- Advanced Filters Toggle -->
-                    <div class="mt-4 flex justify-between items-center">
-                        <button id="advanced-filters-toggle" class="text-sm text-primary flex items-center">
-                            <span>Advanced Filters</span>
-                            <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transform transition-transform">
-                                <path d="m6 9 6 6 6-6"/>
-                            </svg>
-                        </button>
-                        <button id="apply-filters" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
-                            Apply Filters
-                        </button>
+                    <!-- Sort Options -->
+                    <div class="mt-4 flex flex-wrap justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <label for="sort-by" class="text-sm font-medium text-gray-700">Sort by:</label>
+                            <select id="sort-by" class="px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm">
+                                <option value="relevance">Relevance</option>
+                                <option value="rating-high">Rating (High to Low)</option>
+                                <option value="rating-low">Rating (Low to High)</option>
+                                <option value="reviews-high">Most Reviews</option>
+                                <option value="name-asc">Name (A-Z)</option>
+                                <option value="name-desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        
+                        <div class="flex items-center space-x-2 mt-2 sm:mt-0">
+                            <button id="advanced-filters-toggle" class="text-sm text-primary flex items-center">
+                                <span>Advanced Filters</span>
+                                <svg id="toggle-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1 transform transition-transform">
+                                    <path d="m6 9 6 6 6-6"/>
+                                </svg>
+                            </button>
+                            <button id="reset-filters" class="text-sm text-gray-500 hover:text-primary">
+                                Reset Filters
+                            </button>
+                            <button id="apply-filters" class="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white hover:bg-indigo-600 transition">
+                                Apply Filters
+                            </button>
+                        </div>
                     </div>
                     
                     <!-- Advanced Filters Section -->
@@ -302,6 +319,11 @@
                             </a>
                         </li>
                         <li>
+                            <a href="education.html#videos" class="text-sm text-gray-500 hover:text-primary">
+                                Videos
+                            </a>
+                        </li>
+                        <li>
                             <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
                                 Glossary
                             </a>
@@ -348,7 +370,7 @@
 
     <script src="js/navigation.js"></script>
     <script>
-        // Provider data
+        // Provider data - expanded with more providers and attributes
         const allProviders = [
             {
                 id: 1,
@@ -360,7 +382,12 @@
                 reviews: 127,
                 description: "Specializing in crypto wallet security and recovery services. Helping users secure their assets and recover lost access since 2017.",
                 location: "Remote (US-based)",
-                image: "A"
+                image: "A",
+                experience: "Expert",
+                services: ["Consulting", "Implementation", "Support", "Audit"],
+                remote: true,
+                verified: true,
+                availability: true
             },
             {
                 id: 2,
@@ -372,7 +399,12 @@
                 reviews: 93,
                 description: "CPA with 6+ years specializing in cryptocurrency taxation. Helping traders and investors navigate complex tax reporting requirements.",
                 location: "New York, NY (Remote Available)",
-                image: "S"
+                image: "S",
+                experience: "Expert",
+                services: ["Consulting", "Implementation"],
+                remote: true,
+                verified: true,
+                availability: true
             },
             {
                 id: 3,
@@ -384,7 +416,12 @@
                 reviews: 215,
                 description: "Blockchain educator with a passion for making crypto accessible to beginners. Creator of the 'Crypto Fundamentals' course series.",
                 location: "Remote",
-                image: "M"
+                image: "M",
+                experience: "Intermediate",
+                services: ["Training", "Consulting"],
+                remote: true,
+                verified: true,
+                availability: false
             },
             {
                 id: 4,
@@ -396,7 +433,12 @@
                 reviews: 78,
                 description: "Attorney specializing in cryptocurrency regulations and compliance. Helping businesses navigate the evolving legal landscape of digital assets.",
                 location: "San Francisco, CA (Remote Available)",
-                image: "J"
+                image: "J",
+                experience: "Advanced",
+                services: ["Consulting", "Audit"],
+                remote: true,
+                verified: true,
+                availability: true
             },
             {
                 id: 5,
@@ -408,7 +450,12 @@
                 reviews: 64,
                 description: "Blockchain developer with expertise in Ethereum and Solana smart contracts. Focused on security-first development practices.",
                 location: "Remote",
-                image: "D"
+                image: "D",
+                experience: "Expert",
+                services: ["Development", "Audit", "Implementation"],
+                remote: true,
+                verified: true,
+                availability: true
             },
             {
                 id: 6,
@@ -420,7 +467,114 @@
                 reviews: 52,
                 description: "Consultant specializing in helping businesses integrate cryptocurrency payment solutions. Expert in merchant services and payment processors.",
                 location: "Chicago, IL (Remote Available)",
-                image: "E"
+                image: "E",
+                experience: "Advanced",
+                services: ["Consulting", "Implementation", "Support"],
+                remote: true,
+                verified: true,
+                availability: true
+            },
+            {
+                id: 7,
+                name: "Robert Taylor",
+                company: "Secure Block Consulting",
+                category: "Security",
+                subcategory: "Network Security",
+                rating: 4.6,
+                reviews: 41,
+                description: "Cybersecurity expert specializing in securing blockchain networks and crypto exchanges. Former security engineer at major exchanges.",
+                location: "Austin, TX",
+                image: "R",
+                experience: "Expert",
+                services: ["Consulting", "Audit", "Implementation"],
+                remote: false,
+                verified: true,
+                availability: true
+            },
+            {
+                id: 8,
+                name: "Lisa Wang",
+                company: "Crypto Tax Solutions",
+                category: "Tax",
+                subcategory: "Tax Planning",
+                rating: 4.5,
+                reviews: 37,
+                description: "Tax strategist focused on cryptocurrency tax optimization and compliance. Helping clients minimize tax liability while staying compliant.",
+                location: "Miami, FL",
+                image: "L",
+                experience: "Advanced",
+                services: ["Consulting", "Implementation"],
+                remote: false,
+                verified: false,
+                availability: true
+            },
+            {
+                id: 9,
+                name: "James Wilson",
+                company: "Crypto Academy",
+                category: "Education",
+                subcategory: "Advanced Trading",
+                rating: 4.3,
+                reviews: 89,
+                description: "Former institutional trader now teaching advanced cryptocurrency trading strategies. Specializes in technical analysis and risk management.",
+                location: "New York, NY",
+                image: "J",
+                experience: "Expert",
+                services: ["Training", "Consulting"],
+                remote: false,
+                verified: true,
+                availability: false
+            },
+            {
+                id: 10,
+                name: "Maria Garcia",
+                company: "Blockchain Legal Group",
+                category: "Legal",
+                subcategory: "Smart Contract Law",
+                rating: 4.7,
+                reviews: 28,
+                description: "Attorney specializing in smart contract law and decentralized autonomous organizations (DAOs). Helping projects navigate legal complexities.",
+                location: "Remote",
+                image: "M",
+                experience: "Intermediate",
+                services: ["Consulting", "Audit"],
+                remote: true,
+                verified: false,
+                availability: true
+            },
+            {
+                id: 11,
+                name: "Thomas Brown",
+                company: "DeFi Developers",
+                category: "Development",
+                subcategory: "DeFi Protocols",
+                rating: 4.9,
+                reviews: 32,
+                description: "Full-stack blockchain developer specializing in DeFi protocol development. Expert in Solidity, Rust, and Web3 integration.",
+                location: "Remote",
+                image: "T",
+                experience: "Expert",
+                services: ["Development", "Audit", "Implementation"],
+                remote: true,
+                verified: true,
+                availability: false
+            },
+            {
+                id: 12,
+                name: "Olivia Martinez",
+                company: "Crypto Business Advisors",
+                category: "Business",
+                subcategory: "Strategy",
+                rating: 4.4,
+                reviews: 19,
+                description: "Business strategist helping companies develop and implement blockchain and cryptocurrency strategies. Former fintech executive.",
+                location: "San Francisco, CA",
+                image: "O",
+                experience: "Advanced",
+                services: ["Consulting", "Training"],
+                remote: false,
+                verified: false,
+                availability: true
             }
         ];
         
@@ -466,32 +620,201 @@
             `;
         }
         
-        // Populate providers grid
-        const providersGrid = document.getElementById('providers-grid');
-        if (providersGrid) {
-            allProviders.forEach(provider => {
-                providersGrid.innerHTML += createProviderCard(provider);
-            });
-        }
-        
-        // Advanced filters toggle
-        const advancedFiltersToggle = document.getElementById('advanced-filters-toggle');
-        const advancedFilters = document.getElementById('advanced-filters');
-        const toggleIcon = document.getElementById('toggle-icon');
-        
-        if (advancedFiltersToggle && advancedFilters && toggleIcon) {
-            advancedFiltersToggle.addEventListener('click', function() {
-                if (advancedFilters.classList.contains('collapsed')) {
-                    advancedFilters.classList.remove('collapsed');
-                    advancedFilters.classList.add('expanded');
-                    toggleIcon.classList.add('rotate-180');
-                } else {
-                    advancedFilters.classList.remove('expanded');
-                    advancedFilters.classList.add('collapsed');
-                    toggleIcon.classList.remove('rotate-180');
+        // Function to filter providers based on selected criteria
+        function filterProviders() {
+            const searchTerm = document.getElementById('search').value.toLowerCase();
+            const category = document.getElementById('category').value;
+            const location = document.getElementById('location').value;
+            const specialization = document.getElementById('specialization').value;
+            const experience = document.getElementById('experience').value;
+            const rating = document.getElementById('rating').value;
+            
+            // Get checkbox values
+            const services = [];
+            if (document.getElementById('service-consulting').checked) services.push('Consulting');
+            if (document.getElementById('service-training').checked) services.push('Training');
+            if (document.getElementById('service-implementation').checked) services.push('Implementation');
+            if (document.getElementById('service-support').checked) services.push('Support');
+            if (document.getElementById('service-audit').checked) services.push('Audit');
+            if (document.getElementById('service-development').checked) services.push('Development');
+            
+            const remoteOnly = document.getElementById('filter-remote').checked;
+            const verifiedOnly = document.getElementById('filter-verified').checked;
+            const availableOnly = document.getElementById('filter-availability').checked;
+            
+            // Filter providers
+            const filteredProviders = allProviders.filter(provider => {
+                // Search term filter
+                if (searchTerm && !provider.name.toLowerCase().includes(searchTerm) && 
+                    !provider.company.toLowerCase().includes(searchTerm) && 
+                    !provider.description.toLowerCase().includes(searchTerm)) {
+                    return false;
                 }
+                
+                // Category filter
+                if (category && provider.category !== category) {
+                    return false;
+                }
+                
+                // Location filter
+                if (location && !provider.location.includes(location)) {
+                    return false;
+                }
+                
+                // Specialization filter
+                if (specialization && provider.subcategory !== specialization) {
+                    return false;
+                }
+                
+                // Experience filter
+                if (experience && provider.experience !== experience) {
+                    return false;
+                }
+                
+                // Rating filter
+                if (rating && provider.rating < parseFloat(rating)) {
+                    return false;
+                }
+                
+                // Services filter
+                if (services.length > 0 && !services.some(service => provider.services.includes(service))) {
+                    return false;
+                }
+                
+                // Remote filter
+                if (remoteOnly && !provider.remote) {
+                    return false;
+                }
+                
+                // Verified filter
+                if (verifiedOnly && !provider.verified) {
+                    return false;
+                }
+                
+                // Availability filter
+                if (availableOnly && !provider.availability) {
+                    return false;
+                }
+                
+                return true;
             });
+            
+            return filteredProviders;
         }
+        
+        // Function to sort providers
+        function sortProviders(providers) {
+            const sortBy = document.getElementById('sort-by').value;
+            
+            switch (sortBy) {
+                case 'rating-high':
+                    return [...providers].sort((a, b) => b.rating - a.rating);
+                case 'rating-low':
+                    return [...providers].sort((a, b) => a.rating - b.rating);
+                case 'reviews-high':
+                    return [...providers].sort((a, b) => b.reviews - a.reviews);
+                case 'name-asc':
+                    return [...providers].sort((a, b) => a.name.localeCompare(b.name));
+                case 'name-desc':
+                    return [...providers].sort((a, b) => b.name.localeCompare(a.name));
+                default:
+                    return providers; // Default is relevance, which is the original order
+            }
+        }
+        
+        // Function to update the providers grid
+        function updateProvidersGrid() {
+            const filteredProviders = filterProviders();
+            const sortedProviders = sortProviders(filteredProviders);
+            
+            const providersGrid = document.getElementById('providers-grid');
+            const resultsCount = document.getElementById('results-count');
+            
+            // Update results count
+            resultsCount.textContent = `Showing ${sortedProviders.length} of ${allProviders.length} providers`;
+            
+            // Clear current grid
+            providersGrid.innerHTML = '';
+            
+            // Add filtered and sorted providers
+            if (sortedProviders.length > 0) {
+                sortedProviders.forEach(provider => {
+                    providersGrid.innerHTML += createProviderCard(provider);
+                });
+            } else {
+                providersGrid.innerHTML = `
+                    <div class="col-span-1 md:col-span-2 lg:col-span-3 text-center py-8">
+                        <p class="text-gray-500">No providers match your current filters. Try adjusting your criteria.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Populate providers grid initially
+            updateProvidersGrid();
+            
+            // Apply filters button
+            const applyFiltersButton = document.getElementById('apply-filters');
+            if (applyFiltersButton) {
+                applyFiltersButton.addEventListener('click', updateProvidersGrid);
+            }
+            
+            // Reset filters button
+            const resetFiltersButton = document.getElementById('reset-filters');
+            if (resetFiltersButton) {
+                resetFiltersButton.addEventListener('click', function() {
+                    // Reset all form elements
+                    document.getElementById('search').value = '';
+                    document.getElementById('category').value = '';
+                    document.getElementById('location').value = '';
+                    document.getElementById('specialization').value = '';
+                    document.getElementById('experience').value = '';
+                    document.getElementById('rating').value = '';
+                    document.getElementById('sort-by').value = 'relevance';
+                    
+                    // Reset checkboxes
+                    document.getElementById('service-consulting').checked = false;
+                    document.getElementById('service-training').checked = false;
+                    document.getElementById('service-implementation').checked = false;
+                    document.getElementById('service-support').checked = false;
+                    document.getElementById('service-audit').checked = false;
+                    document.getElementById('service-development').checked = false;
+                    document.getElementById('filter-remote').checked = false;
+                    document.getElementById('filter-verified').checked = false;
+                    document.getElementById('filter-availability').checked = false;
+                    
+                    // Update grid with all providers
+                    updateProvidersGrid();
+                });
+            }
+            
+            // Sort by change handler
+            const sortBySelect = document.getElementById('sort-by');
+            if (sortBySelect) {
+                sortBySelect.addEventListener('change', updateProvidersGrid);
+            }
+            
+            // Advanced filters toggle
+            const advancedFiltersToggle = document.getElementById('advanced-filters-toggle');
+            const advancedFilters = document.getElementById('advanced-filters');
+            const toggleIcon = document.getElementById('toggle-icon');
+            
+            if (advancedFiltersToggle && advancedFilters && toggleIcon) {
+                advancedFiltersToggle.addEventListener('click', function() {
+                    if (advancedFilters.classList.contains('collapsed')) {
+                        advancedFilters.classList.remove('collapsed');
+                        advancedFilters.classList.add('expanded');
+                        toggleIcon.classList.add('rotate-180');
+                    } else {
+                        advancedFilters.classList.remove('expanded');
+                        advancedFilters.classList.add('collapsed');
+                        toggleIcon.classList.remove('rotate-180');
+                    }
+                });
+            }
+        });
     </script>
 </body>
 </html>
