@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CryptoMall - Article</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
     <style>
         /* Custom styles */
         .bg-primary { background-color: #6366f1; }
@@ -17,42 +18,59 @@
         /* Transitions */
         .transition { transition: all 0.3s ease; }
         
-        /* Dark mode styles */
-        .dark-mode {
-            background-color: #1f2937;
+        /* Article content styles */
+        .prose h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: #111827;
+        }
+        
+        .prose h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: #111827;
+        }
+        
+        .prose p {
+            margin-bottom: 1.25rem;
+            line-height: 1.7;
+        }
+        
+        .prose ul, .prose ol {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+        }
+        
+        .prose li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .prose ul {
+            list-style-type: disc;
+        }
+        
+        .prose ol {
+            list-style-type: decimal;
+        }
+        
+        /* Dark mode adjustments for article content */
+        .dark-mode .prose h2,
+        .dark-mode .prose h3 {
             color: #f9fafb;
-        }
-        
-        .dark-mode .bg-white {
-            background-color: #111827;
-        }
-        
-        .dark-mode .text-gray-900 {
-            color: #f9fafb;
-        }
-        
-        .dark-mode .text-gray-500,
-        .dark-mode .text-gray-600,
-        .dark-mode .text-gray-700 {
-            color: #e5e7eb;
-        }
-        
-        .dark-mode .border {
-            border-color: #374151;
-        }
-        
-        .dark-mode .bg-gray-50,
-        .dark-mode .bg-gray-100,
-        .dark-mode .bg-gray-200 {
-            background-color: #1f2937;
-        }
-        
-        .dark-mode .shadow-sm {
-            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version i)
+    </div>
+    
     <!-- Navigation -->
     <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -123,6 +141,7 @@
                     </p>
                     
                     <h2>What is a Blockchain?</h2>
+                    
                     <p>
                         A blockchain is a continuously growing list of records, called blocks, which are linked and secured using cryptography. Each block typically contains a cryptographic hash of the previous block, a timestamp, and transaction data. By design, a blockchain is resistant to modification of the data—once recorded, the data in a block cannot be altered retroactively without altering all subsequent blocks, which requires consensus of the network majority.
                     </p>
@@ -130,14 +149,17 @@
                     <h2>Key Components of Blockchain Technology</h2>
                     
                     <h3>1. Distributed Ledger</h3>
+                    
                     <p>
                         Unlike traditional databases that are centrally controlled, a blockchain's ledger is distributed across all participants (nodes) in the network. Each node maintains an identical copy of the ledger, which is updated through consensus when new transactions are added.
                     </p>
                     
                     <h3>2. Consensus Mechanisms</h3>
+                    
                     <p>
                         Consensus mechanisms are protocols that ensure all nodes in the network agree on the validity of transactions. The most well-known consensus mechanisms include:
                     </p>
+                    
                     <ul>
                         <li><strong>Proof of Work (PoW):</strong> Miners compete to solve complex mathematical puzzles, with the winner earning the right to add the next block and receive a reward. This is the mechanism used by Bitcoin.</li>
                         <li><strong>Proof of Stake (PoS):</strong> Validators are selected to create new blocks based on the number of coins they hold and are willing to "stake" as collateral. This is more energy-efficient than PoW.</li>
@@ -145,9 +167,11 @@
                     </ul>
                     
                     <h3>3. Cryptographic Hashing</h3>
+                    
                     <p>
                         Cryptographic hash functions convert data of any size into a fixed-size string of characters. In blockchain, hashing is used to:
                     </p>
+                    
                     <ul>
                         <li>Create a unique identifier for each block</li>
                         <li>Link blocks together in a chain</li>
@@ -156,9 +180,11 @@
                     </ul>
                     
                     <h3>4. Public and Private Keys</h3>
+                    
                     <p>
                         Blockchain uses public-key cryptography to secure transactions. Each user has a pair of keys:
                     </p>
+                    
                     <ul>
                         <li><strong>Public Key:</strong> Shared with others and used to identify the user's address</li>
                         <li><strong>Private Key:</strong> Kept secret and used to sign transactions, proving ownership</li>
@@ -179,16 +205,19 @@
                     <h2>Types of Blockchains</h2>
                     
                     <h3>Public Blockchains</h3>
+                    
                     <p>
                         Public blockchains are open to anyone, with all participants having equal rights to access, send transactions, and participate in the consensus process. Examples include Bitcoin and Ethereum.
                     </p>
                     
                     <h3>Private Blockchains</h3>
+                    
                     <p>
                         Private blockchains restrict access to specific participants, with permissions controlled by a central entity. These are often used by organizations for internal purposes.
                     </p>
                     
                     <h3>Consortium Blockchains</h3>
+                    
                     <p>
                         Consortium blockchains are partially decentralized, with consensus control distributed among a pre-selected group of nodes. These are common in business and inter-organizational settings.
                     </p>
@@ -196,26 +225,31 @@
                     <h2>Applications of Blockchain Technology</h2>
                     
                     <h3>Cryptocurrencies</h3>
+                    
                     <p>
                         The most well-known application of blockchain is cryptocurrencies like Bitcoin and Ethereum, which enable peer-to-peer digital transactions without intermediaries.
                     </p>
                     
                     <h3>Smart Contracts</h3>
+                    
                     <p>
                         Smart contracts are self-executing contracts with the terms directly written into code. They automatically enforce agreements when predetermined conditions are met, eliminating the need for intermediaries.
                     </p>
                     
                     <h3>Supply Chain Management</h3>
+                    
                     <p>
                         Blockchain can track the movement of goods, ensuring transparency and traceability throughout the supply chain, from production to delivery.
                     </p>
                     
                     <h3>Identity Verification</h3>
+                    
                     <p>
                         Blockchain-based identity systems can provide secure, self-sovereign identity management, giving individuals control over their personal data.
                     </p>
                     
                     <h3>Voting Systems</h3>
+                    
                     <p>
                         Blockchain can create transparent, tamper-proof voting systems that maintain voter privacy while ensuring the integrity of elections.
                     </p>
@@ -223,29 +257,35 @@
                     <h2>Challenges and Limitations</h2>
                     
                     <h3>Scalability</h3>
+                    
                     <p>
                         Many blockchains face challenges in processing large numbers of transactions quickly. Solutions like sharding, layer-2 protocols, and alternative consensus mechanisms are being developed to address this.
                     </p>
                     
                     <h3>Energy Consumption</h3>
+                    
                     <p>
                         Proof of Work blockchains, particularly Bitcoin, consume significant amounts of energy. This has led to environmental concerns and the development of more energy-efficient alternatives like Proof of Stake.
                     </p>
                     
                     <h3>Regulatory Uncertainty</h3>
+                    
                     <p>
                         The regulatory landscape for blockchain and cryptocurrencies is still evolving, creating uncertainty for businesses and users.
                     </p>
                     
                     <h3>Security Vulnerabilities</h3>
+                    
                     <p>
                         While the blockchain itself is secure, related systems like smart contracts and exchanges can have vulnerabilities that lead to hacks and thefts.
                     </p>
                     
                     <h2>The Future of Blockchain</h2>
+                    
                     <p>
                         Blockchain technology continues to evolve rapidly. Future developments may include:
                     </p>
+                    
                     <ul>
                         <li>Increased interoperability between different blockchains</li>
                         <li>More scalable and energy-efficient consensus mechanisms</li>
@@ -255,20 +295,35 @@
                     </ul>
                     
                     <h2>Conclusion</h2>
+                    
                     <p>
                         Blockchain technology represents a fundamental shift in how we record, verify, and exchange value. By providing a secure, transparent, and decentralized system for transactions, blockchain has the potential to transform numerous industries beyond finance. As the technology matures and overcomes its current limitations, we can expect to see increasingly innovative applications that leverage the unique properties of blockchain to solve complex problems and create new opportunities.
                     </p>
                 </div>
                 
                 <div class="mt-8 pt-6 border-t">
-                    <a href="education.html" class="inline-flex items-center text-sm text-primary hover:underline">
+                    <a href="education.html#guides" class="inline-flex items-center text-sm text-primary hover:underline">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1">
                             <path d="m15 18-6-6 6-6"></path>
                         </svg>
-                        Back to Education Hub
+                        Back to Guides
                     </a>
                 </div>
             </article>
+            
+            <div class="mt-8">
+                <h2 class="text-xl font-bold mb-4">Related Resources</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="article.html?id=crypto-security" class="bg-white p-4 rounded-lg shadow-sm border transition hover:shadow-md">
+                        <h3 class="font-bold mb-2">Crypto Security Best Practices</h3>
+                        <p class="text-sm text-gray-500">Learn how to protect your cryptocurrency investments with these essential security measures.</p>
+                    </a>
+                    <a href="article.html?id=defi-explained" class="bg-white p-4 rounded-lg shadow-sm border transition hover:shadow-md">
+                        <h3 class="font-bold mb-2">DeFi Explained: Beyond Traditional Finance</h3>
+                        <p class="text-sm text-gray-500">Explore how decentralized finance is revolutionizing financial services using blockchain technology.</p>
+                    </a>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -306,18 +361,28 @@
                     <h3 class="text-sm font-semibold mb-4">Resources</h3>
                     <ul class="space-y-2">
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Crypto Basics
+                            <a href="education.html#guides" class="text-sm text-gray-500 hover:text-primary">
+                                Guides
                             </a>
                         </li>
                         <li>
-                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
-                                Security Guides
+                            <a href="education.html#articles" class="text-sm text-gray-500 hover:text-primary">
+                                Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#videos" class="text-sm text-gray-500 hover:text-primary">
+                                Videos
                             </a>
                         </li>
                         <li>
                             <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
                                 Glossary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#faq" class="text-sm text-gray-500 hover:text-primary">
+                                FAQ
                             </a>
                         </li>
                     </ul>
@@ -355,96 +420,6 @@
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Theme toggle functionality
-            const themeToggle = document.getElementById('theme-toggle');
-            themeToggle.addEventListener('click', function() {
-                document.body.classList.toggle('dark-mode');
-                
-                // Store the theme preference
-                if (document.body.classList.contains('dark-mode')) {
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    localStorage.setItem('theme', 'light');
-                }
-            });
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-mode');
-            }
-            
-            // Get article ID from URL
-            const urlParams = new URLSearchParams(window.location.search);
-            const articleId = urlParams.get('id');
-            
-            // Load article content based on ID (in a real implementation, this would fetch from a database)
-            if (articleId) {
-                // This is a simplified example - in a real implementation, you would fetch the article data
-                // For now, we'll just update the title based on the ID
-                const articleTitles = {
-                    'securing-your-crypto-wallet': 'Securing Your Crypto Wallet: A Comprehensive Guide',
-                    'understanding-blockchain': 'Understanding Blockchain Technology',
-                    'crypto-tax-compliance': 'Crypto Tax Compliance Guide',
-                    'defi-fundamentals': 'DeFi Fundamentals: Getting Started with Decentralized Finance',
-                    'evolution-of-pos': 'The Evolution of Proof of Stake',
-                    'nfts-beyond-art': 'NFTs: Beyond Digital Art',
-                    'regulatory-landscape': 'The Regulatory Landscape of Cryptocurrency',
-                    'wallet-comparison': 'Hardware vs. Software Wallets: A Comparison',
-                    'bitcoin-energy-impact': 'The Energy Debate: Bitcoin\'s Environmental Impact'
-                };
-                
-                if (articleTitles[articleId]) {
-                    document.getElementById('article-title').textContent = articleTitles[articleId];
-                    // In a real implementation, you would also update the content, tags, etc.
-                }
-            }
-            
-            // Update auth section based on login state
-            function updateAuthSection() {
-                const authSection = document.getElementById('auth-section');
-                const isLoggedIn = localStorage.getItem('cryptomall_logged_in') === 'true';
-                const username = localStorage.getItem('cryptomall_user') || 'User';
-                
-                if (isLoggedIn) {
-                    authSection.innerHTML = `
-                        <div class="relative group">
-                            <button class="flex items-center text-sm font-medium text-primary hover:underline">
-                                ${username}
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-1">
-                                    <path d="m6 9 6 6 6-6"></path>
-                                </svg>
-                            </button>
-                            <div class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 hidden group-hover:block border">
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-                                <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-                                <a href="#" id="logout-button" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
-                            </div>
-                        </div>
-                    `;
-                    
-                    // Add logout functionality
-                    setTimeout(() => {
-                        const logoutButton = document.getElementById('logout-button');
-                        if (logoutButton) {
-                            logoutButton.addEventListener('click', function(e) {
-                                e.preventDefault();
-                                localStorage.removeItem('cryptomall_logged_in');
-                                localStorage.removeItem('cryptomall_user');
-                                window.location.href = 'index.html';
-                            });
-                        }
-                    }, 100);
-                } else {
-                    authSection.innerHTML = `<a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>`;
-                }
-            }
-            
-            // Update auth section on page load
-            updateAuthSection();
-        });
-    </script>
+    <script src="js/navigation.js"></script>
 </body>
 </html>
