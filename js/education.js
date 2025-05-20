@@ -1,6 +1,6 @@
 /**
  * CryptoMall Education Hub Script
- * Handles tab switching and scroll management for the Education Hub page
+ * Handles tab switching, filtering, and scroll management for the Education Hub page
  */
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle URL hash changes
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
-        if (hash && ['guides', 'articles', 'glossary', 'faq'].includes(hash)) {
+        if (hash && ['guides', 'articles', 'videos', 'glossary', 'faq'].includes(hash)) {
             // Activate the tab based on hash
             activateTab(hash);
             
@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // Filter items based on selected tags
             contentItems.forEach(item => {
                 const itemTags = item.getAttribute('data-tags').split(' ');
+                // Check if any of the selected tags match this item's tags
                 const hasMatchingTag = Array.from(selectedTags).some(tag => itemTags.includes(tag));
                 
                 if (hasMatchingTag) {
@@ -185,5 +186,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 section.style.display = sectionHasMatch ? '' : 'none';
             });
         });
+    }
+    
+    // Check if page was loaded with a direct link to the videos tab
+    if (window.location.href.includes('#videos')) {
+        // Activate videos tab
+        activateTab('videos');
+        
+        // Scroll to filter section
+        if (filterSection) {
+            setTimeout(() => {
+                filterSection.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
     }
 });
