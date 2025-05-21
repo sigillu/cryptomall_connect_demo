@@ -58,7 +58,7 @@
 <body class="bg-gray-50 text-gray-900">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version i)
+        (version b)
     </div>
     
     <!-- Navigation -->
@@ -657,10 +657,20 @@
                         currentQuestionEl.textContent = currentQuestion + 1;
                         progressPercentEl.textContent = `${progress}%`;
                         progressBarFill.style.width = `${progress}%`;
+                        
+                        // Scroll to the top of the quiz container to show the question and progress bar
+                        setTimeout(() => {
+                            progressSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
                     } else {
                         // Show results
                         progressSection.classList.add('hidden');
                         nextBtn.classList.add('hidden');
+                        
+                        // Scroll to the top of the results section
+                        setTimeout(() => {
+                            document.getElementById('quiz-container').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
                     }
                     
                     // Enable previous button
@@ -671,11 +681,6 @@
                     if (currentQuestion === totalQuestions) {
                         nextBtn.textContent = 'See Results';
                     }
-                    
-                    // Scroll to the top of the quiz container to show the question and progress bar
-                    setTimeout(() => {
-                        progressSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }, 100);
                 }
             });
             
