@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Create dropdown menu with improved styling for both light and dark modes
         const dropdownMenu = document.createElement('div');
-        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden border border-gray-200';
+        dropdownMenu.className = 'absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50 hidden border border-gray-200 dark-mode-dropdown';
         dropdownMenu.id = 'admin-dropdown-menu';
         
         // Add dropdown items with improved hover states
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         adminDropdownMenu.classList.add('hidden');
                         isDropdownOpen = false;
                     }
-                }, 50); // Small delay to ensure accurate hover state detection
+                }, 100); // Increased delay to ensure accurate hover state detection
             };
             
             adminDropdownButton.addEventListener('mouseleave', handleMouseLeave);

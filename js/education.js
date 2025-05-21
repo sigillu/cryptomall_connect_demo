@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeFilters = document.getElementById('active-filters');
     const filterCount = document.getElementById('filter-count');
     
-    if (tagContainer && clearTagsButton && contentItems) {
+    if (tagContainer && clearTagsButton && contentItems.length > 0) {
         const tags = tagContainer.querySelectorAll('.tag');
         const selectedTags = new Set();
         
@@ -134,26 +134,58 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Filter content based on selected tags
         function filterContent() {
+            // Count visible items for debugging
+            let visibleCount = 0;
+            
             if (selectedTags.size === 0) {
                 // Show all items if no tags selected
                 contentItems.forEach(item => {
                     item.style.display = '';
+                    visibleCount++;
                 });
+                console.log(`No filters applied. Showing all ${visibleCount} items.`);
                 return;
             }
             
             // Filter items based on selected tags
             contentItems.forEach(item => {
-                const itemTags = item.getAttribute('data-tags').split(' ');
+                const itemTagsAttr = item.getAttribute('data-tags');
+                
+                // Skip items without data-tags attribute
+                if (!itemTagsAttr) {
+                    item.style.display = 'none';
+                    return;
+                }
+                
+                const itemTags = itemTagsAttr.split(' ');
+                
                 // Check if any of the selected tags match this item's tags
                 const hasMatchingTag = Array.from(selectedTags).some(tag => itemTags.includes(tag));
                 
                 if (hasMatchingTag) {
                     item.style.display = '';
+                    visibleCount++;
                 } else {
                     item.style.display = 'none';
                 }
             });
+            
+            console.log(`Applied filters: ${Array.from(selectedTags).join(', ')}. Showing ${visibleCount} items.`);
+        }
+        
+        // Initial filter application (in case URL has hash parameters)
+        if (window.location.hash.includes('tag=')) {
+            const tagParam = new URLSearchParams(window.location.hash.substring(1)).get('tag');
+            if (tagParam) {
+                const tagElement = document.querySelector(`.tag[data-tag="${tagParam}"]`);
+                if (tagElement) {
+                    tagElement.classList.add('selected');
+                    selectedTags.add(tagParam);
+                    filterCount.textContent = '1';
+                    activeFilters.classList.remove('hidden');
+                    filterContent();
+                }
+            }
         }
     }
     
