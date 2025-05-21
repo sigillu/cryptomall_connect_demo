@@ -1,178 +1,150 @@
 /**
  * CryptoMall Dark Mode Styles
- * Standardized dark mode styling for consistent appearance across all pages
+ * Custom styles for dark mode appearance
  */
 
-/* Base dark mode styles */
-.dark-mode {
-    background-color: #1f2937;
-    color: #f9fafb;
+/* Dark mode base styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
 }
 
-/* Background colors */
-.dark-mode .bg-white {
-    background-color: #111827;
+/* Dark mode header */
+body.dark-mode header {
+    background-color: #1e1e1e;
+    border-color: #333;
 }
 
-.dark-mode .bg-gray-50,
-.dark-mode .bg-gray-100,
-.dark-mode .bg-gray-200 {
-    background-color: #1f2937;
+/* Dark mode footer */
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    border-color: #333;
 }
 
-/* Text colors */
-.dark-mode .text-gray-900 {
-    color: #f9fafb;
+/* Dark mode cards and containers */
+body.dark-mode .bg-white,
+body.dark-mode .bg-gray-50 {
+    background-color: #1e1e1e;
 }
 
-.dark-mode .text-gray-500,
-.dark-mode .text-gray-600,
-.dark-mode .text-gray-700 {
-    color: #e5e7eb;
+body.dark-mode .border {
+    border-color: #333;
 }
 
-/* Border colors */
-.dark-mode .border {
-    border-color: #374151;
+/* Dark mode text colors */
+body.dark-mode .text-gray-900 {
+    color: #e0e0e0;
 }
 
-/* Shadow adjustments */
-.dark-mode .shadow-sm {
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-500 {
+    color: #aaa;
 }
 
-/* Form elements in dark mode */
-.dark-mode input[type="email"],
-.dark-mode input[type="password"],
-.dark-mode input[type="text"],
-.dark-mode input[type="number"],
-.dark-mode input[type="url"],
-.dark-mode input[type="tel"],
-.dark-mode input[type="date"],
-.dark-mode select,
-.dark-mode textarea {
-    background-color: #374151;
-    color: #f9fafb;
-    border-color: #4b5563;
+/* Dark mode form elements */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
 }
 
-.dark-mode input::placeholder,
-.dark-mode textarea::placeholder {
-    color: #9ca3af;
+/* Dark mode buttons */
+body.dark-mode .bg-gray-100 {
+    background-color: #2a2a2a;
 }
 
-/* Dropdown menus in dark mode */
-.dark-mode #admin-dropdown-menu {
-    background-color: #1f2937;
-    border-color: #374151;
+body.dark-mode .hover\:bg-gray-100:hover {
+    background-color: #333;
 }
 
-.dark-mode #admin-dropdown-menu a,
-.dark-mode #admin-dropdown-menu button {
-    color: #f9fafb !important;
+body.dark-mode .hover\:bg-gray-50:hover {
+    background-color: #333;
 }
 
-.dark-mode #admin-dropdown-menu a:hover,
-.dark-mode #admin-dropdown-menu button:hover {
+/* Dark mode dropdown menu */
+body.dark-mode .dark-mode-dropdown {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .dark-mode-dropdown a,
+body.dark-mode .dark-mode-dropdown button {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .dark-mode-dropdown a:hover,
+body.dark-mode .dark-mode-dropdown button:hover {
     background-color: #6366f1 !important;
-    color: #ffffff !important;
+    color: white !important;
 }
 
-/* Card and container backgrounds */
-.dark-mode .bg-white {
-    background-color: #111827;
+/* Dark mode tags */
+body.dark-mode .tag {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #aaa;
 }
 
-/* Button styles in dark mode */
-.dark-mode button.bg-gray-100 {
-    background-color: #374151;
-}
-
-.dark-mode button.hover\:bg-gray-200:hover {
-    background-color: #4b5563;
-}
-
-/* Quiz options in dark mode */
-.dark-mode .quiz-option {
-    border-color: #4b5563;
-}
-
-.dark-mode .quiz-option:hover {
-    background-color: rgba(99, 102, 241, 0.1);
-    border-color: #6366f1;
-}
-
-.dark-mode .quiz-option.selected {
+body.dark-mode .tag:hover {
     background-color: rgba(99, 102, 241, 0.2);
     border-color: #6366f1;
 }
 
-/* Table styles in dark mode */
-.dark-mode table th,
-.dark-mode table td {
-    border-color: #4b5563;
-}
-
-.dark-mode table thead th {
-    background-color: #374151;
-}
-
-.dark-mode table tbody tr:hover {
-    background-color: #374151;
-}
-
-/* Filter panels in dark mode */
-.dark-mode .filter-panel {
-    background-color: #111827;
-    border-color: #374151;
-}
-
-.dark-mode .filter-panel label {
-    color: #e5e7eb;
-}
-
-/* Range sliders in dark mode */
-.dark-mode input[type="range"] {
-    background-color: #4b5563;
-}
-
-.dark-mode input[type="range"]::-webkit-slider-thumb {
+body.dark-mode .tag.selected {
     background-color: #6366f1;
+    color: white;
 }
 
-/* Checkboxes in dark mode */
-.dark-mode input[type="checkbox"] {
-    border-color: #4b5563;
+/* Dark mode hero section */
+body.dark-mode .bg-primary-light {
+    background-color: rgba(99, 102, 241, 0.15);
 }
 
-.dark-mode input[type="checkbox"]:checked {
-    background-color: #6366f1;
+/* Dark mode tabs */
+body.dark-mode .tab-btn {
+    color: #aaa;
+}
+
+body.dark-mode .tab-active {
+    color: #6366f1;
+}
+
+/* Dark mode glossary */
+body.dark-mode .glossary-section {
+    border-color: #333;
+}
+
+/* Dark mode FAQ */
+body.dark-mode .faq-item {
+    border-color: #333;
+}
+
+/* Dark mode provider cards */
+body.dark-mode .provider-card {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Dark mode quiz options */
+body.dark-mode .quiz-option {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode .quiz-option:hover {
+    background-color: rgba(99, 102, 241, 0.15);
     border-color: #6366f1;
 }
 
-/* Hero section in dark mode */
-.dark-mode .hero-pattern {
-    background-color: #111827;
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+body.dark-mode .quiz-option.selected {
+    background-color: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
 }
 
-/* Fix for hero section text in dark mode */
-.dark-mode .hero-pattern h1 {
-    color: #ffffff;
-}
-
-.dark-mode .hero-pattern p {
-    color: #e5e7eb;
-}
-
-/* Fix for admin dropdown in light mode */
-#admin-dropdown-menu a,
-#admin-dropdown-menu button {
-    color: #374151 !important;
-}
-
-#admin-dropdown-menu a:hover,
-#admin-dropdown-menu button:hover {
-    background-color: #6366f1 !important;
-    color: #ffffff !important;
+/* Dark mode progress bar */
+body.dark-mode .progress-bar {
+    background-color: #333;
 }
