@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle URL hash changes
     function handleHashChange() {
         const hash = window.location.hash.substring(1);
-        if (hash && ['guides', 'articles', 'videos', 'glossary', 'faq'].includes(hash)) {
+        if (hash && ['guides', 'articles', 'videos', 'books', 'glossary', 'faq'].includes(hash)) {
             // Activate the tab based on hash
             activateTab(hash);
             
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const activeFilters = document.getElementById('active-filters');
     const filterCount = document.getElementById('filter-count');
     
-    if (tagContainer && clearTagsButton && contentItems.length > 0) {
+    if (tagContainer && clearTagsButton) {
         const tags = tagContainer.querySelectorAll('.tag');
         const selectedTags = new Set();
         
@@ -103,13 +103,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 // Update filter count
-                filterCount.textContent = selectedTags.size;
+                if (filterCount) {
+                    filterCount.textContent = selectedTags.size;
+                }
                 
                 // Show/hide active filters indicator
-                if (selectedTags.size > 0) {
-                    activeFilters.classList.remove('hidden');
-                } else {
-                    activeFilters.classList.add('hidden');
+                if (activeFilters) {
+                    if (selectedTags.size > 0) {
+                        activeFilters.classList.remove('hidden');
+                    } else {
+                        activeFilters.classList.add('hidden');
+                    }
                 }
                 
                 // Filter content items
@@ -123,23 +127,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 tag.classList.remove('selected');
             });
             selectedTags.clear();
-            filterCount.textContent = '0';
-            activeFilters.classList.add('hidden');
+            
+            if (filterCount) {
+                filterCount.textContent = '0';
+            }
+            
+            if (activeFilters) {
+                activeFilters.classList.add('hidden');
+            }
             
             // Show all content items
-            contentItems.forEach(item => {
+            document.querySelectorAll('.content-item').forEach(item => {
                 item.style.display = '';
             });
         });
         
         // Filter content based on selected tags
         function filterContent() {
+            // Get all content items again to ensure we have the latest
+            const allContentItems = document.querySelectorAll('.content-item');
+            
             // Count visible items for debugging
             let visibleCount = 0;
             
             if (selectedTags.size === 0) {
                 // Show all items if no tags selected
-                contentItems.forEach(item => {
+                allContentItems.forEach(item => {
                     item.style.display = '';
                     visibleCount++;
                 });
@@ -148,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Filter items based on selected tags
-            contentItems.forEach(item => {
+            allContentItems.forEach(item => {
                 const itemTagsAttr = item.getAttribute('data-tags');
                 
                 // Skip items without data-tags attribute
@@ -181,8 +194,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (tagElement) {
                     tagElement.classList.add('selected');
                     selectedTags.add(tagParam);
-                    filterCount.textContent = '1';
-                    activeFilters.classList.remove('hidden');
+                    
+                    if (filterCount) {
+                        filterCount.textContent = '1';
+                    }
+                    
+                    if (activeFilters) {
+                        activeFilters.classList.remove('hidden');
+                    }
+                    
                     filterContent();
                 }
             }
@@ -220,16 +240,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Check if page was loaded with a direct link to the videos tab
-    if (window.location.href.includes('#videos')) {
-        // Activate videos tab
-        activateTab('videos');
-        
-        // Scroll to filter section
-        if (filterSection) {
-            setTimeout(() => {
-                filterSection.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+    // Check if page was loaded with a direct link to specific tabs
+    const hashLinks = ['videos', 'books'];
+    for (const link of hashLinks) {
+        if (window.location.href.includes(`#${link}`)) {
+            // Activate the tab
+            activateTab(link);
+            
+            // Scroll to filter section
+            if (filterSection) {
+                setTimeout(() => {
+                    filterSection.scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+            break;
         }
     }
 });
