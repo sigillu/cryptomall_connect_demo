@@ -71,12 +71,27 @@
             height: 200px;
             object-fit: cover;
         }
+        
+        /* Language indicator */
+        .language-indicator {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #6366f1;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            margin-left: 4px;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version c)
+        (version d)
     </div>
     
     <!-- Navigation -->
@@ -112,6 +127,16 @@
                             <path d="m19.07 4.93-1.41 1.41"></path>
                         </svg>
                     </button>
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="language-toggle" title="Toggle language">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m5 8 6 6"></path>
+                            <path d="m4 14 6-6 2-3"></path>
+                            <path d="M2 5h12"></path>
+                            <path d="M7 2h1"></path>
+                            <path d="m22 22-5-10-5 10"></path>
+                            <path d="M14 18h6"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -121,9 +146,17 @@
     <section class="w-full py-12 md:py-24 lg:py-32 bg-primary-light">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">Crypto Education Hub</h1>
+                <h1 class="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl">
+                    <span data-en="Crypto Education Hub">Crypto Education Hub</span>
+                    <span data-es="Centro Educativo de Criptomonedas" class="hidden">Centro Educativo de Criptomonedas</span>
+                </h1>
                 <p class="mt-4 text-lg text-gray-500">
-                    Learn about cryptocurrency concepts, security best practices, and more
+                    <span data-en="Learn about cryptocurrency concepts, security best practices, and more">
+                        Learn about cryptocurrency concepts, security best practices, and more
+                    </span>
+                    <span data-es="Aprende sobre conceptos de criptomonedas, mejores prácticas de seguridad y más" class="hidden">
+                        Aprende sobre conceptos de criptomonedas, mejores prácticas de seguridad y más
+                    </span>
                 </p>
             </div>
         </div>
@@ -135,37 +168,101 @@
             <!-- Tag Filtering -->
             <div class="mb-8">
                 <div class="flex items-center justify-between mb-4">
-                    <h2 class="text-xl font-bold">Filter by Topic</h2>
-                    <button id="clear-tags" class="text-sm text-primary hover:underline">Clear All</button>
+                    <h2 class="text-xl font-bold">
+                        <span data-en="Filter by Topic">Filter by Topic</span>
+                        <span data-es="Filtrar por Tema" class="hidden">Filtrar por Tema</span>
+                    </h2>
+                    <button id="clear-tags" class="text-sm text-primary hover:underline">
+                        <span data-en="Clear All">Clear All</span>
+                        <span data-es="Borrar Todo" class="hidden">Borrar Todo</span>
+                    </button>
                 </div>
                 <div class="flex flex-wrap gap-2" id="tag-container">
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="blockchain">Blockchain</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="security">Security</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="wallets">Wallets</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="defi">DeFi</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="nft">NFTs</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="mining">Mining</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="pow">Proof of Work</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="pos">Proof of Stake</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="tax">Taxes</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="regulation">Regulation</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="trading">Trading</span>
-                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="privacy">Privacy</span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="blockchain">
+                        <span data-en="Blockchain">Blockchain</span>
+                        <span data-es="Blockchain" class="hidden">Blockchain</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="security">
+                        <span data-en="Security">Security</span>
+                        <span data-es="Seguridad" class="hidden">Seguridad</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="wallets">
+                        <span data-en="Wallets">Wallets</span>
+                        <span data-es="Monederos" class="hidden">Monederos</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="defi">
+                        <span data-en="DeFi">DeFi</span>
+                        <span data-es="DeFi" class="hidden">DeFi</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="nft">
+                        <span data-en="NFTs">NFTs</span>
+                        <span data-es="NFTs" class="hidden">NFTs</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="mining">
+                        <span data-en="Mining">Mining</span>
+                        <span data-es="Minería" class="hidden">Minería</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="pow">
+                        <span data-en="Proof of Work">Proof of Work</span>
+                        <span data-es="Prueba de Trabajo" class="hidden">Prueba de Trabajo</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="pos">
+                        <span data-en="Proof of Stake">Proof of Stake</span>
+                        <span data-es="Prueba de Participación" class="hidden">Prueba de Participación</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="tax">
+                        <span data-en="Taxes">Taxes</span>
+                        <span data-es="Impuestos" class="hidden">Impuestos</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="regulation">
+                        <span data-en="Regulation">Regulation</span>
+                        <span data-es="Regulación" class="hidden">Regulación</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="trading">
+                        <span data-en="Trading">Trading</span>
+                        <span data-es="Trading" class="hidden">Trading</span>
+                    </span>
+                    <span class="tag px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600 border border-gray-200" data-tag="privacy">
+                        <span data-en="Privacy">Privacy</span>
+                        <span data-es="Privacidad" class="hidden">Privacidad</span>
+                    </span>
                 </div>
                 <div id="active-filters" class="mt-2 text-sm text-gray-500 hidden">
-                    <span>Active filters: <span id="filter-count">0</span></span>
+                    <span>
+                        <span data-en="Active filters:">Active filters:</span>
+                        <span data-es="Filtros activos:" class="hidden">Filtros activos:</span>
+                        <span id="filter-count">0</span>
+                    </span>
                 </div>
             </div>
             
             <!-- Tabs -->
             <div class="border-b mb-8">
                 <div class="flex overflow-x-auto">
-                    <button class="tab-btn px-4 py-2 font-medium tab-active" data-tab="guides">Guides</button>
-                    <button class="tab-btn px-4 py-2 font-medium" data-tab="articles">Articles</button>
-                    <button class="tab-btn px-4 py-2 font-medium" data-tab="videos">Videos</button>
-                    <button class="tab-btn px-4 py-2 font-medium" data-tab="books">Books</button>
-                    <button class="tab-btn px-4 py-2 font-medium" data-tab="glossary">Glossary</button>
-                    <button class="tab-btn px-4 py-2 font-medium" data-tab="faq">FAQ</button>
+                    <button class="tab-btn px-4 py-2 font-medium tab-active" data-tab="guides">
+                        <span data-en="Guides">Guides</span>
+                        <span data-es="Guías" class="hidden">Guías</span>
+                    </button>
+                    <button class="tab-btn px-4 py-2 font-medium" data-tab="articles">
+                        <span data-en="Articles">Articles</span>
+                        <span data-es="Artículos" class="hidden">Artículos</span>
+                    </button>
+                    <button class="tab-btn px-4 py-2 font-medium" data-tab="videos">
+                        <span data-en="Videos">Videos</span>
+                        <span data-es="Videos" class="hidden">Videos</span>
+                    </button>
+                    <button class="tab-btn px-4 py-2 font-medium" data-tab="books">
+                        <span data-en="Books">Books</span>
+                        <span data-es="Libros" class="hidden">Libros</span>
+                    </button>
+                    <button class="tab-btn px-4 py-2 font-medium" data-tab="glossary">
+                        <span data-en="Glossary">Glossary</span>
+                        <span data-es="Glosario" class="hidden">Glosario</span>
+                    </button>
+                    <button class="tab-btn px-4 py-2 font-medium" data-tab="faq">
+                        <span data-en="FAQ">FAQ</span>
+                        <span data-es="Preguntas Frecuentes" class="hidden">Preguntas Frecuentes</span>
+                    </button>
                 </div>
             </div>
             
@@ -174,8 +271,8 @@
                 <!-- Guides Tab -->
                 <div id="guides" class="tab-pane">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Guide 1 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="blockchain security wallets">
+                        <!-- Guide 1 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="blockchain security wallets" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
@@ -196,8 +293,30 @@
                             <a href="article.html?id=securing-crypto-wallet" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
                         
-                        <!-- Guide 2 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="blockchain pow mining">
+                        <!-- Guide 1 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="blockchain security wallets" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-blue-600">
+                                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">Asegurando Tu Monedero Crypto</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Aprende cómo proteger tus activos de criptomonedas con las mejores prácticas para la seguridad de monederos, incluyendo la gestión de claves privadas y opciones de monederos hardware.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Monederos</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                            </div>
+                            <a href="article.html?id=securing-crypto-wallet&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>
+                        
+                        <!-- Guide 2 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="blockchain pow mining" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
@@ -218,8 +337,30 @@
                             <a href="article.html?id=understanding-blockchain" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
                         
-                        <!-- Guide 3 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="tax regulation">
+                        <!-- Guide 2 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="blockchain pow mining" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-600">
+                                        <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                        <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">Entendiendo la Tecnología Blockchain</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Una guía completa sobre la tecnología blockchain, incluyendo cómo funciona, mecanismos de consenso y aplicaciones del mundo real más allá de las criptomonedas.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Prueba de Trabajo</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Minería</span>
+                            </div>
+                            <a href="article.html?id=understanding-blockchain&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>
+                        
+                        <!-- Guide 3 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="tax regulation" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
@@ -238,8 +379,40 @@
                             <a href="article.html?id=crypto-tax-compliance" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
                         
-                        <!-- Guide 4 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="defi wallets">
+                        <!-- Guide 3 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="tax regulation" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-yellow-600">
+                                        <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">Guía de Cumplimiento Fiscal para Criptomonedas</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Navega por el complejo mundo de la tributación de criptomonedas con nuestra guía paso a paso para reportar transacciones, calcular ganancias y mantener el cumplimiento fiscal.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Impuestos</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Regulación</span>
+                            </div>
+                            <a href="article.html?id=crypto-tax-compliance&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>
+                                </div>
+                                <h3 class="font-bold">Crypto Tax Compliance Guide</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Navigate the complex world of cryptocurrency taxation with our step-by-step guide to reporting crypto transactions, calculating gains, and staying compliant.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Regulation</span>
+                            </div>
+                            <a href="article.html?id=crypto-tax-compliance" class="text-primary text-sm font-medium hover:underline">Read more →</a>
+                        </div>
+                        
+                        <!-- Guide 4 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="defi wallets" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
@@ -258,8 +431,28 @@
                             <a href="article.html?id=defi-beginners" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
                         
-                        <!-- Guide 5 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="nft blockchain">
+                        <!-- Guide 4 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="defi wallets" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-purple-600">
+                                        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">DeFi para Principiantes</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Aprende los fundamentos de las Finanzas Descentralizadas (DeFi), incluyendo protocolos clave, yield farming, pools de liquidez y cómo participar de manera segura en este ecosistema emergente.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Monederos</span>
+                            </div>
+                            <a href="article.html?id=defi-beginners&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>
+                        
+                        <!-- Guide 5 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="nft blockchain" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-600">
@@ -276,11 +469,32 @@
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
                             </div>
-                            <a href="article.html?id=nft-marketplace-guide" class="text-primary text-sm font-medium hover:underline">Read more →</a>
+                            <a href="article.html?id=nft-marketplace" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
                         
-                        <!-- Guide 6 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="privacy security">
+                        <!-- Guide 5 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="nft blockchain" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-pink-600">
+                                        <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path>
+                                        <circle cx="12" cy="12" r="3"></circle>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">Guía de Mercados NFT</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Explora el mundo de los Tokens No Fungibles (NFTs), incluyendo cómo crear, comprar, vender e intercambiar coleccionables digitales en los mercados populares.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                            </div>
+                            <a href="article.html?id=nft-marketplace&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>
+
+                                <!-- Guide 6 - English -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="privacy security" data-lang="en">
                             <div class="flex items-center mb-4">
                                 <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
@@ -288,61 +502,680 @@
                                         <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                                     </svg>
                                 </div>
-                                <h3 class="font-bold">Privacy Coins Explained</h3>
+                                <h3 class="font-bold">Privacy and Security Best Practices</h3>
                             </div>
                             <p class="text-sm text-gray-500 mb-4">
-                                Understand privacy-focused cryptocurrencies, their underlying technologies, and the balance between financial privacy and regulatory compliance.
+                                Protect your digital identity and crypto assets with comprehensive privacy and security measures for cryptocurrency users.
                             </p>
                             <div class="flex flex-wrap gap-2 mb-4">
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Privacy</span>
                                 <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
                             </div>
-                            <a href="article.html?id=privacy-coins-explained" class="text-primary text-sm font-medium hover:underline">Read more →</a>
+                            <a href="article.html?id=privacy-security" class="text-primary text-sm font-medium hover:underline">Read more →</a>
                         </div>
-                    </div>
+                        
+                        <!-- Guide 6 - Spanish -->
+                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item hidden" data-tags="privacy security" data-lang="es">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center mr-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-indigo-600">
+                                        <rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                                    </svg>
+                                </div>
+                                <h3 class="font-bold">Mejores Prácticas de Privacidad y Seguridad</h3>
+                            </div>
+                            <p class="text-sm text-gray-500 mb-4">
+                                Protege tu identidad digital y activos cripto con medidas integrales de privacidad y seguridad para usuarios de criptomonedas.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Privacidad</span>
+                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                            </div>
+                            <a href="article.html?id=privacy-security&lang=es" class="text-primary text-sm font-medium hover:underline">Leer más →</a>
+                        </div>                    </div>
                 </div>
                 
                 <!-- Articles Tab -->
                 <div id="articles" class="tab-pane hidden">
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                        <!-- Article 1 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="blockchain pos">
-                            <div class="mb-4">
-                                <h3 class="font-bold mb-2">The Evolution of Consensus Mechanisms</h3>
-                                <p class="text-sm text-gray-500">
-                                    From Proof of Work to Proof of Stake and beyond, how blockchain consensus mechanisms are evolving for scalability and sustainability.
+                        <!-- Article 1 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item" data-tags="blockchain security" data-lang="en">
+                            <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Blockchain Security" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">The Future of Blockchain Security</h3>
+                                <p class="text-sm text-gray-600 mb-2">By Alex Johnson • May 15, 2023</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    An in-depth look at emerging security challenges and solutions in the blockchain ecosystem as adoption continues to grow.
                                 </p>
-                            </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Proof of Stake</span>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <a href="article.html?id=consensus-mechanisms" class="text-primary text-sm font-medium hover:underline">Read more →</a>
-                                <span class="text-xs text-gray-400">May 15, 2025</span>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <a href="article.html?id=blockchain-security-future" class="text-primary text-sm font-medium hover:underline">Read article →</a>
                             </div>
                         </div>
                         
-                        <!-- Article 2 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="defi trading">
-                            <div class="mb-4">
-                                <h3 class="font-bold mb-2">DeFi Yield Strategies for 2025</h3>
-                                <p class="text-sm text-gray-500">
-                                    Exploring the latest yield farming strategies, risks, and opportunities in the evolving DeFi landscape.
+                        <!-- Article 1 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item hidden" data-tags="blockchain security" data-lang="es">
+                            <img src="https://images.unsplash.com/photo-1639762681057-408e52192e55?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Seguridad Blockchain" class="w-full h-48 object-cover">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">El Futuro de la Seguridad Blockchain</h3>
+                                <p class="text-sm text-gray-600 mb-2">Por Alex Johnson • 15 de Mayo, 2023</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Un análisis profundo de los desafíos y soluciones de seguridad emergentes en el ecosistema blockchain a medida que la adopción continúa creciendo.
                                 </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <a href="article.html?id=blockchain-security-future&lang=es" class="text-primary text-sm font-medium hover:underline">Leer artículo →</a>
                             </div>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
-                                <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Trading</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Videos Tab -->
+                <div id="videos" class="tab-pane hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Video 1 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item" data-tags="blockchain security" data-lang="en">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/SSo_EIwHSd4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
-                            <div class="flex justify-between items-center">
-                                <a href="article.html?id=defi-yield-strategies" class="text-primary text-sm font-medium hover:underline">Read more →</a>
-                                <span class="text-xs text-gray-400">May 10, 2025</span>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">Blockchain Explained</h3>
+                                <p class="text-sm text-gray-600 mb-2">By CryptoMall • 10:25</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A clear and concise explanation of blockchain technology and how it powers cryptocurrencies.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
                             </div>
                         </div>
                         
-                        <!-- Article 3 -->
-                        <div class="bg-white p-6 rounded-lg shadow-sm border content-item" data-tags="regulation tax">
+                        <!-- Video 1 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item hidden" data-tags="blockchain security" data-lang="es">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/gVUcA3YLfFI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">Blockchain Explicado</h3>
+                                <p class="text-sm text-gray-600 mb-2">Por CryptoMall • 9:45</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una explicación clara y concisa de la tecnología blockchain y cómo impulsa las criptomonedas.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Video 2 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item" data-tags="defi wallets" data-lang="en">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/H-O3r2YMWJ4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">DeFi Explained: The Future of Finance</h3>
+                                <p class="text-sm text-gray-600 mb-2">By CryptoMall • 12:18</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Learn about Decentralized Finance (DeFi) and how it's revolutionizing traditional financial systems.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallets</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Video 2 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden content-item hidden" data-tags="defi wallets" data-lang="es">
+                            <div class="video-container">
+                                <iframe src="https://www.youtube.com/embed/HLqIh61vKm8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1">DeFi Explicado: El Futuro de las Finanzas</h3>
+                                <p class="text-sm text-gray-600 mb-2">Por CryptoMall • 11:45</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Aprende sobre las Finanzas Descentralizadas (DeFi) y cómo están revolucionando los sistemas financieros tradicionales.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Monederos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Books Tab -->
+                <div id="books" class="tab-pane hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Book 1 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain security" data-lang="en">
+                            <img src="images/books/mastering_bitcoin.jpg" alt="Mastering Bitcoin" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Mastering Bitcoin</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Andreas M. Antonopoulos</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    The definitive guide to the Bitcoin protocol, explaining the technical foundations of Bitcoin and how to develop Bitcoin-related applications.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$39.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 1 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="blockchain security" data-lang="es">
+                            <img src="images/books/es/mastering_bitcoin.jpg" alt="Dominando Bitcoin" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Dominando Bitcoin</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Andreas M. Antonopoulos</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    La guía definitiva del protocolo Bitcoin, explicando los fundamentos técnicos de Bitcoin y cómo desarrollar aplicaciones relacionadas con Bitcoin.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€36.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Book 2 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain defi" data-lang="en">
+                            <img src="images/books/infinite_machine.jpg" alt="The Infinite Machine" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">The Infinite Machine</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Camila Russo</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    The captivating story of Ethereum, the second-largest cryptocurrency, and how it's transforming the internet and traditional finance.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$24.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 2 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="blockchain defi" data-lang="es">
+                            <img src="images/books/es/infinite_machine.jpg" alt="La Máquina Infinita" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">La Máquina Infinita</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Camila Russo</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    La fascinante historia de Ethereum, la segunda criptomoneda más grande, y cómo está transformando internet y las finanzas tradicionales.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€22.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Book 3 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="defi trading" data-lang="en">
+                            <img src="images/books/defi_future.jpg" alt="DeFi and the Future of Finance" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">DeFi and the Future of Finance</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Campbell R. Harvey</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    An in-depth exploration of Decentralized Finance and how it's disrupting traditional financial systems with innovative solutions.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Trading</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$29.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 3 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="defi trading" data-lang="es">
+                            <img src="images/books/es/defi_future.jpg" alt="DeFi y el Futuro de las Finanzas" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">DeFi y el Futuro de las Finanzas</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Campbell R. Harvey</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una exploración profunda de las Finanzas Descentralizadas y cómo están interrumpiendo los sistemas financieros tradicionales con soluciones innovadoras.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Trading</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€27.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Book 4 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="wallets security" data-lang="en">
+                            <img src="images/books/crypto_inheritance.jpg" alt="Cryptoasset Inheritance Planning" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Cryptoasset Inheritance Planning</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Pamela Morgan</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A practical guide to creating a secure inheritance plan for your cryptocurrency assets, ensuring they're accessible to your heirs.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallets</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$19.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 4 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="wallets security" data-lang="es">
+                            <img src="images/books/es/crypto_inheritance.jpg" alt="Planificación de Herencia de Criptoactivos" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Planificación de Herencia de Criptoactivos</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Pamela Morgan</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía práctica para crear un plan de herencia seguro para tus activos de criptomonedas, asegurando que sean accesibles para tus herederos.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Monederos</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€18.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Book 5 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="nft blockchain" data-lang="en">
+                            <img src="images/books/nft_handbook.jpg" alt="The NFT Handbook" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">The NFT Handbook</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Matt Fortnow & QuHarrison Terry</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A comprehensive guide to creating, selling, and collecting non-fungible tokens in the growing digital art and collectibles market.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$22.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 5 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="nft blockchain" data-lang="es">
+                            <img src="images/books/es/nft_handbook.jpg" alt="El Manual de NFT" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">El Manual de NFT</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Matt Fortnow & QuHarrison Terry</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía completa para crear, vender y coleccionar tokens no fungibles en el creciente mercado de arte digital y coleccionables.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€20.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Books Tab -->
+                <div id="books" class="tab-pane hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Book 1 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain security" data-lang="en">
+                            <img src="images/books/mastering_bitcoin.jpg" alt="Mastering Bitcoin" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Mastering Bitcoin</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Andreas M. Antonopoulos</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    The definitive guide to the Bitcoin protocol, explaining the technical foundations of Bitcoin and how to develop Bitcoin-related applications.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$39.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 1 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="blockchain security" data-lang="es">
+                            <img src="images/books/es/mastering_bitcoin.jpg" alt="Dominando Bitcoin" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Dominando Bitcoin</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Andreas M. Antonopoulos</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    La guía definitiva del protocolo Bitcoin, explicando los fundamentos técnicos de Bitcoin y cómo desarrollar aplicaciones relacionadas con Bitcoin.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€36.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 2 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain defi" data-lang="en">
+                            <img src="images/books/infinite_machine.jpg" alt="The Infinite Machine" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">The Infinite Machine</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Camila Russo</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    The captivating story of Ethereum, the second-largest cryptocurrency, and how it's transforming the internet and traditional finance.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$24.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 2 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="blockchain defi" data-lang="es">
+                            <img src="images/books/es/infinite_machine.jpg" alt="La Máquina Infinita" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">La Máquina Infinita</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Camila Russo</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    La fascinante historia de Ethereum, la segunda criptomoneda más grande, y cómo está transformando internet y las finanzas tradicionales.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€22.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 3 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="defi trading" data-lang="en">
+                            <img src="images/books/defi_future.jpg" alt="DeFi and the Future of Finance" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">DeFi and the Future of Finance</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Campbell R. Harvey</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    An in-depth exploration of Decentralized Finance and how it's disrupting traditional financial systems with innovative solutions.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Trading</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$29.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 3 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="defi trading" data-lang="es">
+                            <img src="images/books/es/defi_future.jpg" alt="DeFi y el Futuro de las Finanzas" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">DeFi y el Futuro de las Finanzas</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Campbell R. Harvey</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una exploración profunda de las Finanzas Descentralizadas y cómo están interrumpiendo los sistemas financieros tradicionales con soluciones innovadoras.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">DeFi</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Trading</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€27.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 4 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="wallets security" data-lang="en">
+                            <img src="images/books/crypto_inheritance.jpg" alt="Cryptoasset Inheritance Planning" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Cryptoasset Inheritance Planning</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Pamela Morgan</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A practical guide to creating a secure inheritance plan for your cryptocurrency assets, ensuring they're accessible to your heirs.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Wallets</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$19.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 4 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="wallets security" data-lang="es">
+                            <img src="images/books/es/crypto_inheritance.jpg" alt="Planificación de Herencia de Criptoactivos" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Planificación de Herencia de Criptoactivos</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Pamela Morgan</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía práctica para crear un plan de herencia seguro para tus activos de criptomonedas, asegurando que sean accesibles para tus herederos.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Monederos</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€18.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 5 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="nft blockchain" data-lang="en">
+                            <img src="images/books/nft_handbook.jpg" alt="The NFT Handbook" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">The NFT Handbook</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Matt Fortnow & QuHarrison Terry</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A comprehensive guide to creating, selling, and collecting non-fungible tokens in the growing digital art and collectibles market.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$22.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 5 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="nft blockchain" data-lang="es">
+                            <img src="images/books/es/nft_handbook.jpg" alt="El Manual de NFT" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">El Manual de NFT</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Matt Fortnow & QuHarrison Terry</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía completa para crear, vender y coleccionar tokens no fungibles en el creciente mercado de arte digital y coleccionables.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">NFT</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Blockchain</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€20.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 6 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="tax regulation" data-lang="en">
+                            <img src="images/books/crypto_taxes.jpg" alt="Crypto Taxes Made Simple" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Crypto Taxes Made Simple</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Crypto Tax Girl</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A straightforward guide to understanding cryptocurrency taxation, reporting requirements, and strategies to legally minimize your tax burden.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Tax</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Regulation</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$18.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 6 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="tax regulation" data-lang="es">
+                            <img src="images/books/es/crypto_taxes.jpg" alt="Impuestos Cripto Simplificados" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Impuestos Cripto Simplificados</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Crypto Tax Girl</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía directa para entender la tributación de criptomonedas, requisitos de informes y estrategias para minimizar legalmente tu carga fiscal.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Impuestos</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Regulación</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€17.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 7 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="mining pow" data-lang="en">
+                            <img src="images/books/crypto_mining.jpg" alt="Cryptocurrency Mining" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Cryptocurrency Mining</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By Devan Hansel</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    A practical guide to setting up and optimizing cryptocurrency mining operations, from hardware selection to pool mining strategies.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Mining</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Proof of Work</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$24.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 7 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="mining pow" data-lang="es">
+                            <img src="images/books/es/crypto_mining.jpg" alt="Minería de Criptomonedas" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Minería de Criptomonedas</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por Devan Hansel</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía práctica para configurar y optimizar operaciones de minería de criptomonedas, desde la selección de hardware hasta estrategias de minería en pool.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Minería</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Prueba de Trabajo</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€22.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 8 - English -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="privacy security" data-lang="en">
+                            <img src="images/books/privacy_security.jpg" alt="Privacy and Security in the Crypto Age" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Privacy and Security in the Crypto Age</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">By CryptoMall Press</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    An essential guide to maintaining privacy and security in the cryptocurrency ecosystem, including best practices for transactions and storage.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Privacy</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Security</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">$27.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">View on Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Book 8 - Spanish -->
+                        <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item hidden" data-tags="privacy security" data-lang="es">
+                            <img src="images/books/es/privacy_security.jpg" alt="Privacidad y Seguridad en la Era Cripto" class="w-full border-b">
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-1 book-title">Privacidad y Seguridad en la Era Cripto</h3>
+                                <p class="text-sm text-gray-600 mb-2 book-author">Por CryptoMall Press</p>
+                                <p class="text-sm text-gray-500 mb-3">
+                                    Una guía esencial para mantener la privacidad y seguridad en el ecosistema de criptomonedas, incluyendo mejores prácticas para transacciones y almacenamiento.
+                                </p>
+                                <div class="flex flex-wrap gap-2 mb-3">
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Privacidad</span>
+                                    <span class="px-2 py-1 bg-gray-100 rounded-full text-xs text-gray-600">Seguridad</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="font-bold text-primary book-price">€25.99</span>
+                                    <a href="#" class="text-sm text-primary hover:underline">Ver en Amazon →</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                             <div class="mb-4">
                                 <h3 class="font-bold mb-2">Global Crypto Regulation Trends</h3>
                                 <p class="text-sm text-gray-500">
@@ -528,7 +1361,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Book 1 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain security">
-                            <img src="https://m.media-amazon.com/images/I/41-3BrGqCeL._SY445_SX342_.jpg" alt="Mastering Bitcoin" class="w-full border-b">
+                            <img src="images/books/mastering_bitcoin.jpg" alt="Mastering Bitcoin" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">Mastering Bitcoin</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Andreas M. Antonopoulos</p>
@@ -548,7 +1381,7 @@
                         
                         <!-- Book 2 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="blockchain defi">
-                            <img src="https://m.media-amazon.com/images/I/41mME0Nzl0L._SY445_SX342_.jpg" alt="The Infinite Machine" class="w-full border-b">
+                            <img src="images/books/infinite_machine.jpg" alt="The Infinite Machine" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">The Infinite Machine</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Camila Russo</p>
@@ -568,7 +1401,7 @@
                         
                         <!-- Book 3 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="defi trading">
-                            <img src="https://m.media-amazon.com/images/I/41vC+V5lCsL._SY445_SX342_.jpg" alt="DeFi and the Future of Finance" class="w-full border-b">
+                            <img src="images/books/defi_future.jpg" alt="DeFi and the Future of Finance" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">DeFi and the Future of Finance</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Campbell R. Harvey</p>
@@ -588,7 +1421,7 @@
                         
                         <!-- Book 4 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="wallets security">
-                            <img src="https://m.media-amazon.com/images/I/51RLvTJH7dL._SY445_SX342_.jpg" alt="Cryptoasset Inheritance Planning" class="w-full border-b">
+                            <img src="images/books/crypto_inheritance.jpg" alt="Cryptoasset Inheritance Planning" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">Cryptoasset Inheritance Planning</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Pamela Morgan</p>
@@ -608,7 +1441,7 @@
                         
                         <!-- Book 5 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="nft blockchain">
-                            <img src="https://m.media-amazon.com/images/I/41SZyCn-X0L._SY445_SX342_.jpg" alt="The NFT Handbook" class="w-full border-b">
+                            <img src="images/books/nft_handbook.jpg" alt="The NFT Handbook" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">The NFT Handbook</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Matt Fortnow & QuHarrison Terry</p>
@@ -628,7 +1461,7 @@
                         
                         <!-- Book 6 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="tax regulation">
-                            <img src="https://m.media-amazon.com/images/I/41Vw+YlG0HL._SY445_SX342_.jpg" alt="Crypto Taxes Made Simple" class="w-full border-b">
+                            <img src="images/books/crypto_taxes.jpg" alt="Crypto Taxes Made Simple" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">Crypto Taxes Made Simple</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Crypto Tax Girl</p>
@@ -648,7 +1481,7 @@
                         
                         <!-- Book 7 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="mining pow">
-                            <img src="https://m.media-amazon.com/images/I/41+XbIxQALL._SY445_SX342_.jpg" alt="Cryptocurrency Mining" class="w-full border-b">
+                            <img src="images/books/crypto_mining.jpg" alt="Cryptocurrency Mining" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">Cryptocurrency Mining</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By Devan Hansel</p>
@@ -668,7 +1501,7 @@
                         
                         <!-- Book 8 -->
                         <div class="bg-white rounded-lg shadow-sm border overflow-hidden book-card content-item" data-tags="privacy security">
-                            <img src="https://m.media-amazon.com/images/I/41+8+KKHNLL._SY445_SX342_.jpg" alt="Privacy and Security in the Crypto Age" class="w-full border-b">
+                            <img src="images/books/privacy_security.jpg" alt="Privacy and Security in the Crypto Age" class="w-full border-b">
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-1 book-title">Privacy and Security in the Crypto Age</h3>
                                 <p class="text-sm text-gray-600 mb-2 book-author">By CryptoMall Press</p>
@@ -879,8 +1712,10 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
+    <!-- Include JavaScript -->
     <script src="js/navigation.js"></script>
     <script src="js/education.js"></script>
+    <script src="js/book-images.js"></script>
+    <script src="js/darkmode.js"></script>
 </body>
 </html>
