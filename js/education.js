@@ -1,259 +1,169 @@
-/**
- * CryptoMall Education Hub Script
- * Handles tab switching, filtering, and scroll management for the Education Hub page
- */
-
+// Language and filtering functionality
 document.addEventListener('DOMContentLoaded', function() {
-    // Get tab buttons and content panes
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabPanes = document.querySelectorAll('.tab-pane');
-    const filterSection = document.getElementById('filter-section');
+    // Check for saved language preference
+    const currentLang = localStorage.getItem('language') || 'en';
     
-    // Function to activate a specific tab
-    function activateTab(tabId) {
-        // Hide all tab panes
-        tabPanes.forEach(pane => {
-            pane.classList.add('hidden');
+    // Set initial language state
+    document.documentElement.setAttribute('lang', currentLang);
+    document.body.setAttribute('data-language', currentLang);
+    updateLanguageContent(currentLang);
+    
+    // Language toggle functionality
+    const languageToggle = document.getElementById('language-toggle');
+    if (languageToggle) {
+        languageToggle.addEventListener('click', function() {
+            const newLang = document.body.getAttribute('data-language') === 'en' ? 'es' : 'en';
+            document.documentElement.setAttribute('lang', newLang);
+            document.body.setAttribute('data-language', newLang);
+            localStorage.setItem('language', newLang);
+            updateLanguageContent(newLang);
         });
-        
-        // Deactivate all tab buttons
-        tabButtons.forEach(btn => {
-            btn.classList.remove('tab-active');
-        });
-        
-        // Show the selected tab pane
-        const selectedPane = document.getElementById(tabId);
-        if (selectedPane) {
-            selectedPane.classList.remove('hidden');
-        }
-        
-        // Activate the corresponding tab button
-        const selectedButton = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-        if (selectedButton) {
-            selectedButton.classList.add('tab-active');
-        }
     }
     
-    // Handle tab button clicks
+    // Function to update content based on language
+    function updateLanguageContent(lang) {
+        const elements = document.querySelectorAll('[data-en], [data-es]');
+        
+        elements.forEach(element => {
+            if (element.hasAttribute(`data-${lang}`)) {
+                element.innerHTML = element.getAttribute(`data-${lang}`);
+            }
+        });
+        
+        // Update book images for the Books section
+        const bookImages = document.querySelectorAll('.book-card img');
+        bookImages.forEach(img => {
+            const src = img.getAttribute('src');
+            if (src && src.includes('images/books/')) {
+                if (lang === 'es' && !src.includes('/es/')) {
+                    img.setAttribute('src', src.replace('images/books/', 'images/books/es/'));
+                } else if (lang === 'en' && src.includes('/es/')) {
+                    img.setAttribute('src', src.replace('images/books/es/', 'images/books/'));
+                }
+            }
+        });
+        
+        // Update language-specific content items
+        const contentItems = document.querySelectorAll('.content-item');
+        contentItems.forEach(item => {
+            if (item.hasAttribute('data-lang')) {
+                const itemLang = item.getAttribute('data-lang');
+                if (itemLang === lang) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            }
+        });
+        
+        // Update language indicator in UI
+        const langIndicator = document.getElementById('current-language');
+        if (langIndicator) {
+            langIndicator.textContent = lang === 'en' ? 'EN' : 'ES';
+        }
+        
+        // Apply active filters after language change
+        applyActiveFilters();
+    }
+    
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    
     tabButtons.forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            const tabId = this.getAttribute('data-tab');
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and panes
+            tabButtons.forEach(btn => btn.classList.remove('tab-active'));
+            tabPanes.forEach(pane => pane.classList.add('hidden'));
             
-            // Save current scroll position
-            const currentScrollY = window.scrollY;
+            // Add active class to clicked button and corresponding pane
+            button.classList.add('tab-active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId).classList.remove('hidden');
             
-            // Activate the tab
-            activateTab(tabId);
-            
-            // Restore scroll position
-            window.scrollTo(0, currentScrollY);
-            
-            // Update URL hash without scrolling
-            history.pushState(null, null, `#${tabId}`);
+            // Apply active filters to the newly visible tab
+            applyActiveFilters();
         });
     });
     
-    // Handle URL hash changes
-    function handleHashChange() {
-        const hash = window.location.hash.substring(1);
-        if (hash && ['guides', 'articles', 'videos', 'books', 'glossary', 'faq'].includes(hash)) {
-            // Activate the tab based on hash
-            activateTab(hash);
-            
-            // Scroll to filter section
-            if (filterSection) {
-                setTimeout(() => {
-                    filterSection.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            }
-        }
-    }
-    
-    // Initial hash handling
-    handleHashChange();
-    
-    // Listen for hash changes
-    window.addEventListener('hashchange', handleHashChange);
-    
     // Tag filtering functionality
-    const tagContainer = document.getElementById('tag-container');
+    const tags = document.querySelectorAll('.tag');
     const clearTagsButton = document.getElementById('clear-tags');
-    const contentItems = document.querySelectorAll('.content-item');
-    const activeFilters = document.getElementById('active-filters');
-    const filterCount = document.getElementById('filter-count');
+    const activeFiltersElement = document.getElementById('active-filters');
+    const filterCountElement = document.getElementById('filter-count');
+    let activeFilters = [];
     
-    if (tagContainer && clearTagsButton) {
-        const tags = tagContainer.querySelectorAll('.tag');
-        const selectedTags = new Set();
-        
-        // Tag click handler
-        tags.forEach(tag => {
-            tag.addEventListener('click', function() {
-                const tagValue = this.getAttribute('data-tag');
-                
-                if (this.classList.contains('selected')) {
-                    // Deselect tag
-                    this.classList.remove('selected');
-                    selectedTags.delete(tagValue);
-                } else {
-                    // Select tag
-                    this.classList.add('selected');
-                    selectedTags.add(tagValue);
-                }
-                
-                // Update filter count
-                if (filterCount) {
-                    filterCount.textContent = selectedTags.size;
-                }
-                
-                // Show/hide active filters indicator
-                if (activeFilters) {
-                    if (selectedTags.size > 0) {
-                        activeFilters.classList.remove('hidden');
-                    } else {
-                        activeFilters.classList.add('hidden');
-                    }
-                }
-                
-                // Filter content items
-                filterContent();
-            });
-        });
-        
-        // Clear tags button
-        clearTagsButton.addEventListener('click', function() {
-            tags.forEach(tag => {
+    tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const tagName = tag.getAttribute('data-tag');
+            
+            if (tag.classList.contains('selected')) {
+                // Remove from active filters
                 tag.classList.remove('selected');
-            });
-            selectedTags.clear();
-            
-            if (filterCount) {
-                filterCount.textContent = '0';
+                activeFilters = activeFilters.filter(filter => filter !== tagName);
+            } else {
+                // Add to active filters
+                tag.classList.add('selected');
+                activeFilters.push(tagName);
             }
             
-            if (activeFilters) {
-                activeFilters.classList.add('hidden');
-            }
-            
-            // Show all content items
-            document.querySelectorAll('.content-item').forEach(item => {
-                item.style.display = '';
-            });
+            applyActiveFilters();
         });
+    });
+    
+    clearTagsButton.addEventListener('click', () => {
+        tags.forEach(tag => tag.classList.remove('selected'));
+        activeFilters = [];
+        applyActiveFilters();
+    });
+    
+    function applyActiveFilters() {
+        const currentLang = document.body.getAttribute('data-language') || 'en';
+        const contentItems = document.querySelectorAll('.content-item');
         
-        // Filter content based on selected tags
-        function filterContent() {
-            // Get all content items again to ensure we have the latest
-            const allContentItems = document.querySelectorAll('.content-item');
-            
-            // Count visible items for debugging
-            let visibleCount = 0;
-            
-            if (selectedTags.size === 0) {
-                // Show all items if no tags selected
-                allContentItems.forEach(item => {
-                    item.style.display = '';
-                    visibleCount++;
-                });
-                console.log(`No filters applied. Showing all ${visibleCount} items.`);
-                return;
+        // Update filter count and visibility
+        filterCountElement.textContent = activeFilters.length;
+        if (activeFilters.length > 0) {
+            activeFiltersElement.classList.remove('hidden');
+        } else {
+            activeFiltersElement.classList.add('hidden');
+        }
+        
+        // Apply filters to content items
+        contentItems.forEach(item => {
+            // First check language
+            if (item.hasAttribute('data-lang')) {
+                const itemLang = item.getAttribute('data-lang');
+                if (itemLang !== currentLang) {
+                    item.classList.add('hidden');
+                    return; // Skip further processing for items in wrong language
+                }
             }
             
-            // Filter items based on selected tags
-            allContentItems.forEach(item => {
-                const itemTagsAttr = item.getAttribute('data-tags');
-                
-                // Skip items without data-tags attribute
-                if (!itemTagsAttr) {
-                    item.style.display = 'none';
-                    return;
-                }
-                
-                const itemTags = itemTagsAttr.split(' ');
-                
-                // Check if any of the selected tags match this item's tags
-                const hasMatchingTag = Array.from(selectedTags).some(tag => itemTags.includes(tag));
+            // Then apply tag filters if any are active
+            if (activeFilters.length > 0) {
+                const itemTags = item.getAttribute('data-tags')?.split(' ') || [];
+                const hasMatchingTag = activeFilters.some(filter => itemTags.includes(filter));
                 
                 if (hasMatchingTag) {
-                    item.style.display = '';
-                    visibleCount++;
+                    item.classList.remove('hidden');
                 } else {
-                    item.style.display = 'none';
+                    item.classList.add('hidden');
                 }
-            });
-            
-            console.log(`Applied filters: ${Array.from(selectedTags).join(', ')}. Showing ${visibleCount} items.`);
-        }
-        
-        // Initial filter application (in case URL has hash parameters)
-        if (window.location.hash.includes('tag=')) {
-            const tagParam = new URLSearchParams(window.location.hash.substring(1)).get('tag');
-            if (tagParam) {
-                const tagElement = document.querySelector(`.tag[data-tag="${tagParam}"]`);
-                if (tagElement) {
-                    tagElement.classList.add('selected');
-                    selectedTags.add(tagParam);
-                    
-                    if (filterCount) {
-                        filterCount.textContent = '1';
-                    }
-                    
-                    if (activeFilters) {
-                        activeFilters.classList.remove('hidden');
-                    }
-                    
-                    filterContent();
+            } else {
+                // No active filters, show all items in current language
+                if (!item.hasAttribute('data-lang') || item.getAttribute('data-lang') === currentLang) {
+                    item.classList.remove('hidden');
                 }
             }
-        }
-    }
-    
-    // Glossary search functionality
-    const glossarySearch = document.getElementById('glossary-search');
-    const glossarySections = document.querySelectorAll('.glossary-section');
-    
-    if (glossarySearch && glossarySections.length > 0) {
-        glossarySearch.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase().trim();
-            
-            glossarySections.forEach(section => {
-                const terms = section.querySelectorAll('h3');
-                let sectionHasMatch = false;
-                
-                terms.forEach(term => {
-                    const termText = term.textContent.toLowerCase();
-                    const termDefinition = term.nextElementSibling.textContent.toLowerCase();
-                    const termContainer = term.parentElement;
-                    
-                    if (termText.includes(searchTerm) || termDefinition.includes(searchTerm)) {
-                        termContainer.style.display = '';
-                        sectionHasMatch = true;
-                    } else {
-                        termContainer.style.display = 'none';
-                    }
-                });
-                
-                // Show/hide entire section based on matches
-                section.style.display = sectionHasMatch ? '' : 'none';
-            });
         });
     }
     
-    // Check if page was loaded with a direct link to specific tabs
-    const hashLinks = ['videos', 'books'];
-    for (const link of hashLinks) {
-        if (window.location.href.includes(`#${link}`)) {
-            // Activate the tab
-            activateTab(link);
-            
-            // Scroll to filter section
-            if (filterSection) {
-                setTimeout(() => {
-                    filterSection.scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            }
-            break;
-        }
-    }
+    // Initialize the UI
+    // Show the first tab by default
+    tabButtons[0].classList.add('tab-active');
+    tabPanes[0].classList.remove('hidden');
+    
+    // Apply initial language and filters
+    updateLanguageContent(currentLang);
 });
