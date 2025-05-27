@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-language="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,10 +25,10 @@
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body class="bg-gray-50 text-gray-900" data-language="en">
     <!-- Version Label -->
     <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
-        (version c)
+        (version d)
     </div>
     
     <!-- Navigation -->
@@ -41,15 +41,19 @@
                     </a>
                 </div>
                 <nav class="hidden md:flex items-center gap-6">
-                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
-                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
-                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
-                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary" data-en="Directory" data-es="Directorio">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary" data-en="Take Quiz" data-es="Realizar Cuestionario">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary" data-en="Learn" data-es="Aprender">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary" data-en="About" data-es="Acerca de">About</a>
                 </nav>
                 <div class="flex items-center gap-4">
-                    <a href="join.html" class="text-sm font-medium text-primary hover:underline">Join</a>
+                    <!-- Language Toggle -->
+                    <button id="language-toggle" class="flex items-center justify-center w-8 h-8 rounded-full bg-gray-100 hover:bg-gray-200">
+                        <span id="current-language" class="text-xs font-medium">EN</span>
+                    </button>
+                    <a href="join.html" class="text-sm font-medium text-primary hover:underline" data-en="Join" data-es="Unirse">Join</a>
                     <div id="auth-section">
-                        <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
+                        <a href="login.html" class="text-sm font-medium text-primary hover:underline" data-en="Log in" data-es="Iniciar sesión">Log in</a>
                     </div>
                     <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
