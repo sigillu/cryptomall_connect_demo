@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoMall - Join as Provider</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/darkmode.css">
+    <style>
+        /* Custom styles */
+        .bg-primary { background-color: #6366f1; }
+        .bg-primary-light { background-color: rgba(99, 102, 241, 0.1); }
+        .text-primary { color: #6366f1; }
+        .border-primary { border-color: #6366f1; }
+        .hover-bg-primary:hover { background-color: #6366f1; }
+        .hover-text-white:hover { color: white; }
+        
+        /* Transitions */
+        .transition { transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Version Label -->
+    <div class="bg-yellow-100 text-yellow-800 text-center py-1 text-sm font-medium">
+        (version c)
+    </div>
+    
+    <!-- Navigation -->
+    <header class="sticky top-0 z-50 w-full border-b bg-white shadow-sm">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex h-16 items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <a href="index.html" class="flex items-center gap-2">
+                        <span class="text-2xl font-bold text-primary">CryptoMall</span>
+                    </a>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a href="providers.html" class="text-sm font-medium hover:text-primary">Directory</a>
+                    <a href="quiz.html" class="text-sm font-medium hover:text-primary">Take Quiz</a>
+                    <a href="education.html" class="text-sm font-medium hover:text-primary">Learn</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-primary">About</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="join.html" class="text-sm font-medium text-primary hover:underline">Join</a>
+                    <div id="auth-section">
+                        <a href="login.html" class="text-sm font-medium text-primary hover:underline">Log in</a>
+                    </div>
+                    <button class="p-2 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200" id="theme-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="4"></circle>
+                            <path d="M12 2v2"></path>
+                            <path d="M12 20v2"></path>
+                            <path d="m4.93 4.93 1.41 1.41"></path>
+                            <path d="m17.66 17.66 1.41 1.41"></path>
+                            <path d="M2 12h2"></path>
+                            <path d="M20 12h2"></path>
+                            <path d="m6.34 17.66-1.41 1.41"></path>
+                            <path d="m19.07 4.93-1.41 1.41"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Join Content -->
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-8">
+                <h1 class="text-3xl font-bold tracking-tighter">Join CryptoMall as a Provider</h1>
+                <p class="mt-2 text-gray-500">
+                    Apply to be listed in our directory of trusted crypto service providers
+                </p>
+            </div>
+            
+            <div id="application-form" class="bg-white p-8 rounded-lg shadow-sm border">
+                <form id="provider-form" class="space-y-8">
+                    <!-- Company Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Company Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="col-span-2">
+                                <label for="company-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="company-name"
+                                    name="company-name"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="website" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Website
+                                </label>
+                                <input
+                                    type="url"
+                                    id="website"
+                                    name="website"
+                                    placeholder="https://"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="year-founded" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Year Founded
+                                </label>
+                                <input
+                                    type="number"
+                                    id="year-founded"
+                                    name="year-founded"
+                                    min="1990"
+                                    max="2025"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            
+                            <div>
+                                <label for="company-size" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Size
+                                </label>
+                                <select
+                                    id="company-size"
+                                    name="company-size"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                >
+                                    <option value="">Select size</option>
+                                    <option value="1">Solo practitioner</option>
+                                    <option value="2-10">2-10 employees</option>
+                                    <option value="11-50">11-50 employees</option>
+                                    <option value="51-200">51-200 employees</option>
+                                    <option value="201+">201+ employees</option>
+                                </select>
+                            </div>
+                            
+                            <div>
+                                <label for="location" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Primary Location *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="location"
+                                    name="location"
+                                    placeholder="City, Country"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            
+                            <div class="col-span-2">
+                                <label for="company-description" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Company Description *
+                                </label>
+                                <textarea
+                                    id="company-description"
+                                    name="company-description"
+                                    rows="4"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                ></textarea>
+                                <p class="mt-1 text-sm text-gray-500">
+                                    Briefly describe your company and the services you provide (max 500 characters)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Services Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Services & Expertise</h2>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Primary Category *
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-security"
+                                        name="primary-category"
+                                        value="security"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                        required
+                                    />
+                                    <label for="category-security" class="ml-2 block text-sm text-gray-700">
+                                        Security & Protection
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-tax"
+                                        name="primary-category"
+                                        value="tax"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-tax" class="ml-2 block text-sm text-gray-700">
+                                        Tax & Accounting
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-legal"
+                                        name="primary-category"
+                                        value="legal"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-legal" class="ml-2 block text-sm text-gray-700">
+                                        Legal Services
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-development"
+                                        name="primary-category"
+                                        value="development"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-development" class="ml-2 block text-sm text-gray-700">
+                                        Development & Technical
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-education"
+                                        name="primary-category"
+                                        value="education"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-education" class="ml-2 block text-sm text-gray-700">
+                                        Education & Training
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-business"
+                                        name="primary-category"
+                                        value="business"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-business" class="ml-2 block text-sm text-gray-700">
+                                        Business Integration
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-hardware"
+                                        name="primary-category"
+                                        value="hardware"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-hardware" class="ml-2 block text-sm text-gray-700">
+                                        Hardware & Wallets
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="radio"
+                                        id="category-other"
+                                        name="primary-category"
+                                        value="other"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300"
+                                    />
+                                    <label for="category-other" class="ml-2 block text-sm text-gray-700">
+                                        Other
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Experience Level *
+                            </label>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="experience-beginner"
+                                        name="experience-level"
+                                        value="beginner"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="experience-beginner" class="ml-2 block text-sm text-gray-700">
+                                        Beginner-Friendly
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="experience-intermediate"
+                                        name="experience-level"
+                                        value="intermediate"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="experience-intermediate" class="ml-2 block text-sm text-gray-700">
+                                        Intermediate
+                                    </label>
+                                </div>
+                                <div class="flex items-center">
+                                    <input
+                                        type="checkbox"
+                                        id="experience-advanced"
+                                        name="experience-level"
+                                        value="advanced"
+                                        class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    />
+                                    <label for="experience-advanced" class="ml-2 block text-sm text-gray-700">
+                                        Advanced
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="services" class="block text-sm font-medium text-gray-700 mb-1">
+                                Key Services (comma separated) *
+                            </label>
+                            <input
+                                type="text"
+                                id="services"
+                                name="services"
+                                placeholder="e.g., Wallet Security, Tax Planning, Smart Contract Development"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                required
+                            />
+                            <p class="mt-1 text-sm text-gray-500">
+                                List up to 5 key services you provide
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Contact Information</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact-name" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Contact Name *
+                                </label>
+                                <input
+                                    type="text"
+                                    id="contact-name"
+                                    name="contact-name"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label for="contact-title" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Job Title
+                                </label>
+                                <input
+                                    type="text"
+                                    id="contact-title"
+                                    name="contact-title"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                            <div>
+                                <label for="contact-email" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Email Address *
+                                </label>
+                                <input
+                                    type="email"
+                                    id="contact-email"
+                                    name="contact-email"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label for="contact-phone" class="block text-sm font-medium text-gray-700 mb-1">
+                                    Phone Number
+                                </label>
+                                <input
+                                    type="tel"
+                                    id="contact-phone"
+                                    name="contact-phone"
+                                    class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Additional Information Section -->
+                    <div>
+                        <h2 class="text-xl font-bold mb-4">Additional Information</h2>
+                        
+                        <div class="mb-6">
+                            <label for="referral" class="block text-sm font-medium text-gray-700 mb-1">
+                                How did you hear about us?
+                            </label>
+                            <select
+                                id="referral"
+                                name="referral"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                            >
+                                <option value="">Select option</option>
+                                <option value="search">Search Engine</option>
+                                <option value="social">Social Media</option>
+                                <option value="referral">Referral</option>
+                                <option value="advertisement">Advertisement</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="additional-info" class="block text-sm font-medium text-gray-700 mb-1">
+                                Additional Information
+                            </label>
+                            <textarea
+                                id="additional-info"
+                                name="additional-info"
+                                rows="3"
+                                class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary"
+                            ></textarea>
+                            <p class="mt-1 text-sm text-gray-500">
+                                Any other information you'd like to share about your services
+                            </p>
+                        </div>
+                        
+                        <div class="flex items-start mb-6">
+                            <div class="flex items-center h-5">
+                                <input
+                                    id="terms"
+                                    name="terms"
+                                    type="checkbox"
+                                    class="h-4 w-4 text-primary focus:ring-primary border-gray-300 rounded"
+                                    required
+                                />
+                            </div>
+                            <div class="ml-3 text-sm">
+                                <label for="terms" class="font-medium text-gray-700">
+                                    I agree to the <a href="about.html#terms" class="text-primary hover:underline">Terms of Service</a> and <a href="about.html#privacy" class="text-primary hover:underline">Privacy Policy</a> *
+                                </label>
+                                <p class="text-gray-500">
+                                    By submitting this application, you agree to our verification process and listing policies.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="flex justify-end">
+                        <button
+                            type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+                        >
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Success Message (hidden by default) -->
+            <div id="success-message" class="hidden bg-green-50 p-8 rounded-lg shadow-sm border border-green-200 mt-8 text-center">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto text-green-500 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <h2 class="text-2xl font-bold text-green-800 mb-2">Application Submitted!</h2>
+                <p class="text-green-700 mb-6">
+                    Thank you for applying to join CryptoMall. We'll review your application and get back to you within 3-5 business days.
+                </p>
+                <a href="index.html" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-primary hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+                    Return to Homepage
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">CryptoMall</h3>
+                    <p class="text-sm text-gray-500">
+                        Connecting you with trusted crypto service providers and resources.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Services</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="providers.html" class="text-sm text-gray-500 hover:text-primary">
+                                Provider Directory
+                            </a>
+                        </li>
+                        <li>
+                            <a href="quiz.html" class="text-sm text-gray-500 hover:text-primary">
+                                Matching Quiz
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html" class="text-sm text-gray-500 hover:text-primary">
+                                Educational Resources
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Resources</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="education.html#guides" class="text-sm text-gray-500 hover:text-primary">
+                                Guides
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#articles" class="text-sm text-gray-500 hover:text-primary">
+                                Articles
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#glossary" class="text-sm text-gray-500 hover:text-primary">
+                                Glossary
+                            </a>
+                        </li>
+                        <li>
+                            <a href="education.html#faq" class="text-sm text-gray-500 hover:text-primary">
+                                FAQ
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="about.html" class="text-sm text-gray-500 hover:text-primary">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#terms" class="text-sm text-gray-500 hover:text-primary">
+                                Terms of Service
+                            </a>
+                        </li>
+                        <li>
+                            <a href="about.html#privacy" class="text-sm text-gray-500 hover:text-primary">
+                                Privacy Policy
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-10 pt-6 border-t">
+                <p class="text-sm text-gray-500 text-center">
+                    &copy; 2025 CryptoMall. All rights reserved. This is a demonstration website.
+                </p>
+                <p class="text-xs text-gray-500 text-center mt-2">
+                    Disclaimer: CryptoMall does not provide financial, investment, legal, tax, or accounting advice. 
+                    Users are solely responsible for verifying the credentials and qualifications of any service provider.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/navigation.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission handler
+            const providerForm = document.getElementById('provider-form');
+            const applicationForm = document.getElementById('application-form');
+            const successMessage = document.getElementById('success-message');
+            
+            if (providerForm) {
+                providerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // For demo purposes, just show success message
+                    if (applicationForm && successMessage) {
+                        applicationForm.classList.add('hidden');
+                        successMessage.classList.remove('hidden');
+                        
+                        // Scroll to top to show success message
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
