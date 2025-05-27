@@ -1,0 +1,184 @@
+/**
+ * CryptoMall Dark Mode Styles
+ * Custom styles for dark mode appearance
+ */
+
+/* Dark mode base styles */
+body.dark-mode {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+/* Dark mode header */
+body.dark-mode header {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Dark mode footer */
+body.dark-mode footer {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Dark mode cards and containers */
+body.dark-mode .bg-white,
+body.dark-mode .bg-gray-50 {
+    background-color: #1e1e1e;
+}
+
+body.dark-mode .border {
+    border-color: #333;
+}
+
+/* Dark mode text colors */
+body.dark-mode .text-gray-900 {
+    color: #e0e0e0;
+}
+
+body.dark-mode .text-gray-700,
+body.dark-mode .text-gray-600,
+body.dark-mode .text-gray-500 {
+    color: #aaa;
+}
+
+/* Dark mode form elements */
+body.dark-mode input,
+body.dark-mode select,
+body.dark-mode textarea {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+/* Dark mode buttons */
+body.dark-mode .bg-gray-100 {
+    background-color: #2a2a2a;
+}
+
+body.dark-mode .hover\:bg-gray-100:hover {
+    background-color: #333;
+}
+
+body.dark-mode .hover\:bg-gray-50:hover {
+    background-color: #333;
+}
+
+/* Dark mode dropdown menu */
+body.dark-mode .dark-mode-dropdown {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .dark-mode-dropdown a,
+body.dark-mode .dark-mode-dropdown button {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .dark-mode-dropdown a:hover,
+body.dark-mode .dark-mode-dropdown button:hover {
+    background-color: #6366f1 !important;
+    color: white !important;
+}
+
+/* Dark mode tags */
+body.dark-mode .tag {
+    background-color: #2a2a2a;
+    border-color: #444;
+    color: #aaa;
+}
+
+body.dark-mode .tag:hover {
+    background-color: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+}
+
+body.dark-mode .tag.selected {
+    background-color: #6366f1;
+    color: white;
+}
+
+/* Dark mode hero section */
+body.dark-mode .bg-primary-light {
+    background-color: rgba(99, 102, 241, 0.15);
+}
+
+/* Fix for the hero pattern in dark mode */
+body.dark-mode .hero-pattern {
+    background-color: #1e1e1e;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236366f1' fill-opacity='0.15'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Fix for the hero card in dark mode */
+body.dark-mode .hero-pattern .bg-white {
+    background-color: #2a2a2a;
+    border-color: #444;
+}
+
+/* Dark mode tabs */
+body.dark-mode .tab-btn {
+    color: #aaa;
+}
+
+body.dark-mode .tab-active {
+    color: #6366f1;
+}
+
+/* Dark mode glossary */
+body.dark-mode .glossary-section {
+    border-color: #333;
+}
+
+/* Dark mode FAQ */
+body.dark-mode .faq-item {
+    border-color: #333;
+}
+
+/* Dark mode provider cards */
+body.dark-mode .provider-card {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+/* Dark mode quiz options */
+body.dark-mode .quiz-option {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode .quiz-option:hover {
+    background-color: rgba(99, 102, 241, 0.15);
+    border-color: #6366f1;
+}
+
+body.dark-mode .quiz-option.selected {
+    background-color: rgba(99, 102, 241, 0.2);
+    border-color: #6366f1;
+}
+
+/* Dark mode progress bar */
+body.dark-mode .progress-bar {
+    background-color: #333;
+}
+
+/* Dark mode book cards */
+body.dark-mode .book-card {
+    background-color: #1e1e1e;
+    border-color: #333;
+}
+
+body.dark-mode .book-card img {
+    border-color: #333;
+}
+
+body.dark-mode .book-card .book-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .book-card .book-author {
+    color: #aaa;
+}
+
+body.dark-mode .book-card .book-price {
+    color: #6366f1;
+}
